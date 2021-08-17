@@ -1,0 +1,47 @@
+.layout {
+    min-height: 100vh;
+  }
+
+  .logo {
+    width: 120px;
+    height: 31px;
+    margin: 16px 24px 16px 1;
+    float: left;
+  }
+  .logoimg {
+    width: 50px;
+    height: 50px;
+  }
+
+  nz-header {
+    position: fixed;
+    width: 100%;
+  }
+
+  [nz-menu] {
+    line-height: 64px;
+  }
+
+  nz-content {
+    padding: 0 50px;
+    margin-top: 64px;
+    height: 100%;
+  }
+
+  nz-breadcrumb {
+    margin: 16px 0;
+  }
+
+  .inner-content {
+    background: #fff;
+    padding: 24px;
+    min-height: 380px;
+  }
+
+  nz-footer {
+    text-align: center;
+  }
+  /* .logo
+  {  float: right;} */
+.ant-menu
+{float:right;}
