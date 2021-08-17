@@ -1,0 +1,34 @@
+.login-label {
+    text-align: center;
+    color: rgb(59, 59, 59);
+}
+
+.login-form {
+    max-width: 300px;
+}
+
+.login-form-margin {
+    margin-bottom: 16px;
+}
+
+.login-form-forgot {
+    float: right;
+}
+
+.login-form-button {
+    padding: 5px 50px 5px 50px;
+}
+
+#center-login {
+    display: flex;
+    justify-content: center;
+}
+
+.ant-form {
+    width: 30%;
+}
+
+.item_login_form_button {
+    display: flex;
+    justify-content: center;
+}
