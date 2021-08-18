@@ -1,97 +1,95 @@
-<div style="background-color: #f0f2f5;">
 <h1 nz-typography class="registration-label">Registration</h1>
-<div id="center-registation" >
-<form nz-form> 
+<div id="center-registation">
+  <form nz-form>
     <nz-form-item>
-    
-      <nz-form-control >
+
+      <nz-form-control>
         <input type="text" nz-input placeholder="Enter your FirstName" />
       </nz-form-control>
-    </nz-form-item >
-    <nz-form-item>
-      
-        <nz-form-control >
-          <input type="text" nz-input placeholder="Enter your LastName" />
-        </nz-form-control>
-    </nz-form-item >
+    </nz-form-item>
     <nz-form-item>
 
-        <nz-form-control >
-            <input type="email" nz-input  placeholder="Enter your Email"/>
-        </nz-form-control>
-    </nz-form-item >
+      <nz-form-control>
+        <input type="text" nz-input placeholder="Enter your LastName" />
+      </nz-form-control>
+    </nz-form-item>
     <nz-form-item>
-      
-        <nz-form-control >
-            <input type="text" nz-input  placeholder="Enter your Phone Number"/>
-        </nz-form-control>
-    </nz-form-item >
+
+      <nz-form-control>
+        <input type="email" nz-input placeholder="Enter your Email" />
+      </nz-form-control>
+    </nz-form-item>
     <nz-form-item>
-       
-        <nz-form-control >
-            <input type="text" nz-input  placeholder="Enter your Address"/>
-        </nz-form-control>
-    </nz-form-item >
+
+      <nz-form-control>
+        <input type="text" nz-input placeholder="Enter your Phone Number" />
+      </nz-form-control>
+    </nz-form-item>
     <nz-form-item>
-       
-        <nz-form-control >
-            <input type="text" nz-input  placeholder="Enter your IPN"/>
-        </nz-form-control>
-    </nz-form-item >
+
+      <nz-form-control>
+        <input type="text" nz-input placeholder="Enter your Address" />
+      </nz-form-control>
+    </nz-form-item>
     <nz-form-item>
-        <nz-form-control >
-       <nz-date-picker nzFormat="dd/MM/yyyy" nzPlaceHolder="Enter your Birthday"></nz-date-picker>   
-        </nz-form-control>
-    </nz-form-item >
+
+      <nz-form-control>
+        <input type="text" nz-input placeholder="Enter your IPN" />
+      </nz-form-control>
+    </nz-form-item>
     <nz-form-item>
-        <nz-form-control >
-            <input type="text" nz-input  placeholder="Enter your Job"/>
-        </nz-form-control>
-    </nz-form-item >
+      <nz-form-control>
+        <nz-date-picker nzFormat="dd/MM/yyyy" nzPlaceHolder="Enter your Birthday"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
     <nz-form-item>
-      
-        <nz-form-control >
-            <input type="text" nz-input  placeholder="Enter your Citizen"/>
-        </nz-form-control>
-    </nz-form-item >
+      <nz-form-control>
+        <input type="text" nz-input placeholder="Enter your Job" />
+      </nz-form-control>
+    </nz-form-item>
     <nz-form-item>
-      
-        <nz-form-control  >
-          <input nz-input type="password" formControlName="password"placeholder="Enter password"  />
-        </nz-form-control>
-      </nz-form-item>
-      
+
+      <nz-form-control>
+        <input type="text" nz-input placeholder="Enter your Citizen" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+
+      <nz-form-control>
+        <input nz-input type="password" formControlName="password" placeholder="Enter password" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control nzDisableAutoTips>
+        <input nz-input type="password" formControlName="confirm" placeholder="Confirm your password" />
+        <ng-template #passwordErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">Please confirm your password!</ng-container>
+          <ng-container *ngIf="control.hasError('confirm')">Password is inconsistent!</ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <button class="btn btn-dark"
+          (click)="showDiv.next = !showDiv.next;showDiv.previous = false;showDiv.current = false">
+          Is Inspector
+        </button>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item *ngIf="showDiv.next">
+      <nz-form-control>
+        <input type="text" nz-input placeholder="Enter your Service ID" />
+      </nz-form-control>
+
+    </nz-form-item>
+    <div class="item_register_form_button">
       <nz-form-item>
-        <nz-form-control  nzDisableAutoTips >
-          <input nz-input type="password" formControlName="confirm" placeholder="Confirm your password" />
-          <ng-template #passwordErrorTpl let-control>
-            <ng-container *ngIf="control.hasError('required')">Please confirm your password!</ng-container>
-            <ng-container *ngIf="control.hasError('confirm')">Password is inconsistent!</ng-container>
-          </ng-template>
+        <nz-form-control>
+          <button class=" btn btn-dark register_form_button">Register</button>
         </nz-form-control>
       </nz-form-item>
-  <nz-form-item >
-    <nz-form-control >
-      <button class="btn btn-dark" (click)="showDiv.next = !showDiv.next;showDiv.previous = false;showDiv.current = false">
-       Is Inspector
-      </button>
-    </nz-form-control>
-  </nz-form-item>
-
-  <nz-form-item *ngIf="showDiv.next">
-    <nz-form-control >
-        <input type="text" nz-input  placeholder="Enter your Service ID"/>
-    </nz-form-control>
-    
-</nz-form-item >
-<div class="item_register_form_button">
-  <nz-form-item >
-    <nz-form-control >
-      <button class=" btn btn-dark register_form_button">Register</button>
-    </nz-form-control>
-  </nz-form-item>
+    </div>
+  </form>
 </div>
-</form>
-</div>
-</div>
-

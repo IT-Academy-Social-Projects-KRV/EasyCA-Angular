@@ -1,83 +1,25 @@
 nz-content {
     padding: 0 50px;
     margin-top: 64px;
-  }
-
-  nz-breadcrumb {
-    margin: 16px 0;
-  }
-  .test
-  {display: flex;
-  width: 30%;
-  justify-content: center;
-  margin: auto;
 }
-  
-  .nz-input-group {
+
+nz-breadcrumb {
+    margin: 16px 0;
+}
+
+.test {
+    display: flex;
+    width: 30%;
+    justify-content: center;
+    margin: auto;
+}
+
+.nz-input-group {
     padding: 0;
-    color: rgba(0,0,0,.85);
+    color: rgba(0, 0, 0, .85);
     display: table;
     width: 600px;
     border-collapse: separate;
     border-spacing: 0;
     margin: auto;
 }
-
-/* .LandingV4Page_cta__30e-G {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin-top: 22px;
-}
-
-.SingleInputForm_root__1tg-6 {
-  position: relative;
-  width: 100%;
-  min-width: 280px;
-  max-width: 550px;
-  transform: translateZ(0);
-}
-.BasicVinForm_root__3E3tJ {
-  text-align: center;
-  line-height: 1;
-}
-.ExplanationTrigger_root__2zUG2 {
-  position: absolute;
-  z-index: 1;
-  top: 13px;
-  left: 14px;
-}
-.ExplanationTrigger_trigger__c02Au {
-  display: inline-block;
-  padding: 0;
-  background: none;
-  font-size: inherit;
-  line-height: 1.25;
-  text-decoration: none;
-  appearance: none;
-  cursor: pointer;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border: 2px solid;
-  font-weight: 500;
-  color: #bcbcbc;
-}
-
-.SingleInputForm_label__efREd {
-  margin-bottom: 0;
-}
-.SingleInputForm_field__13C8Z {
-  width: 100%;
-  height: 50px;
-  font-size: 18px;
-}
-.Field_root__3MKm5 {
-  position: relative;
-  display: block;
-  margin-bottom: 20px;
-  font-size: 16px; 
-  color: #666;
-}  
- */

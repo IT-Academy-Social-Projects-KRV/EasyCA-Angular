@@ -1,6 +1,5 @@
 
 import { NgModule } from '@angular/core';
-
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
@@ -11,10 +10,11 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @NgModule({
   exports: [
-  
+    NzIconModule,
     NzButtonModule,
     NzCheckboxModule,
     NzDatePickerModule,
@@ -27,6 +27,4 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     NzSelectModule,
   ]
 })
-export class DemoNgZorroAntdModule {
-
-}
+export class DemoNgZorroAntdModule {}

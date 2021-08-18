@@ -1,45 +1,51 @@
-.registration-label{
+.registration-label {
     text-align: center;
-color:rgb(59, 59, 59);
-}
-nz-date-picker {
-  margin: 0 8px 0px 0; 
-  width:100%;
+    color: rgb(59, 59, 59);
 }
 
-#center-registation{
-  display: flex;
-  justify-content: center;
+nz-date-picker {
+    margin: 0 8px 0px 0;
+    width: 100%;
 }
-.ant-form{
-  width: 30%;
+
+#center-registation {
+    display: flex;
+    justify-content: center;
 }
-.register_form_button{
-  padding: 5px 50px 5px 50px;
+
+.ant-form {
+    width: 30%;
 }
-.item_register_form_button{
-  display: flex;
-  justify-content: center;
+
+.register_form_button {
+    padding: 5px 50px 5px 50px;
+}
+
+.item_register_form_button {
+    display: flex;
+    justify-content: center;
 }
 
 @media screen and (max-width: 576px) {
-  .ant-form{
-    width: 80%;
-  }
-  .register_form_button{
-    width:100%;
-  }
-  .item_register_form_button{
-    display: block;
-  }
+    .ant-form {
+        width: 80%;
+    }
+    .register_form_button {
+        width: 100%;
+    }
+    .item_register_form_button {
+        display: block;
+    }
 }
+
 @media screen and (max-width:768px) and (min-width: 576px) {
-  .ant-form{
-    width: 50%;
-  }
+    .ant-form {
+        width: 50%;
+    }
 }
-@media screen and (max-width:912px) and (min-width:768px ) {
-  .ant-form{
-    width: 40%;
-  }
+
+@media screen and (max-width:912px) and (min-width:768px) {
+    .ant-form {
+        width: 40%;
+    }
 }
