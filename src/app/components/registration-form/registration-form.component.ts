@@ -7,11 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class RegistrationFormComponent implements OnInit {
-  showDiv = {
-    previous: false,
-    current: false,
-    next: false
-  }
   constructor() { }
   ngOnInit(): void { }
 }

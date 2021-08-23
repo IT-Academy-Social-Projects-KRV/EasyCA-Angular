@@ -34,20 +34,7 @@
                 </ng-template>
             </nz-form-control>
         </nz-form-item>
-        <nz-form-item>
-            <nz-form-control>
-                <button class="btn btn-dark" (click)="showDiv.next = !showDiv.next;showDiv.previous = false;showDiv.current = false">
-          Is Inspector
-        </button>
-            </nz-form-control>
-        </nz-form-item>
-
-        <nz-form-item *ngIf="showDiv.next">
-            <nz-form-control>
-                <input type="text" nz-input placeholder="Enter your Service ID" />
-            </nz-form-control>
-
-        </nz-form-item>
+      
         <div class="item_register_form_button">
             <nz-form-item>
                 <nz-form-control>
