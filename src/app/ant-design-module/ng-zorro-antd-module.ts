@@ -11,6 +11,7 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
 
 @NgModule({
   exports: [
@@ -25,6 +26,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     NzLayoutModule,
     NzMenuModule,
     NzSelectModule,
+    NzAlertModule
   ]
 })
 export class DemoNgZorroAntdModule {}
