@@ -10,7 +10,8 @@
     "lint": "eslint \"**/*.{ts,tsx}\"",
     "*.{js,ts}": "npm run lint",
     "*.css": "npm run lint-css",
-    "lint:fix": "eslint ./src --fix"
+    "lint:fix": "eslint ./src --fix",
+    "prettier": "prettier --write src/**/*.{js,ts,css}"
   },
   "private": true,
   "dependencies": {
