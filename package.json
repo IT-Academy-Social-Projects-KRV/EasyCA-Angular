@@ -8,6 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "eslint \"**/*.{ts,tsx}\"",
+    "*.{js,ts}": "npm run lint",
+    "*.css": "npm run lint-css",
     "lint:fix": "eslint ./src --fix"
   },
   "private": true,
