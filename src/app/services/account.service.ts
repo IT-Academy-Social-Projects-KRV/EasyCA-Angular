@@ -23,4 +23,11 @@ export class AccountService {
     const authToken = this.tokenStorageService.getToken();
     return (authToken !== null) ? true : false;
   }
+
+  logout() {
+    const removeToken = localStorage.removeItem('access_token');
+    if (removeToken == null) {
+      this.router.navigate(['/signin']);
+    }
+  }
 }
