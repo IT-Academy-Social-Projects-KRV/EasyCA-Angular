@@ -12,11 +12,8 @@ import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { NZ_ICONS } from 'ng-zorro-antd/icon';
 import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
-import { NzCardModule } from 'ng-zorro-antd/card';
 
 import { HttpClientModule }   from '@angular/common/http';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { NzInputModule } from 'ng-zorro-antd/input';
 import { PersonalCabinetComponent } from './components/personal-cabinet/personal-cabinet';
 import { ProfileComponent } from './components/profile/profile';
 import { TransportComponent } from './components/transport/trannsport';
@@ -46,10 +43,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     AppRoutingModule,
     BrowserAnimationsModule,
     DemoNgZorroAntdModule,
-    HttpClientModule,
-    NzLayoutModule,
-    NzInputModule,
-    NzCardModule 
+    HttpClientModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }, { provide: NZ_ICONS, useValue: icons }],
   bootstrap: [AppComponent]
