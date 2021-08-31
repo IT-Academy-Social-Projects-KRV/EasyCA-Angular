@@ -1,0 +1,23 @@
+<nz-layout>
+  <nz-layout>
+    <nz-sider class="my-nz-sider">
+      <button nz-button nzType="primary" (click)='clickPersonalData()'>Personal data</button>
+      <button nz-button nzType="primary" (click)='clickProfile()'>Edit profile</button>
+      <button nz-button nzType="primary" (click)='clickTransport()'>My transport</button>
+      <button nz-button nzType="primary" (click)='clickViolation()'>My violation list</button>
+    </nz-sider>
+    <nz-content >
+      <div id="center-personal" *ngIf="this.isActivInfo">
+          <h1 nz-typography class="registration-label">Personal data</h1>
+          <input nz-input placeholder="Basic usage" [disabled]="true" />
+          <input nz-input placeholder="Basic usage" [disabled]="true" />
+          <input nz-input placeholder="Basic usage" [disabled]="true" />
+          <input nz-input placeholder="Basic usage" [disabled]="true" />
+          <input nz-input placeholder="Basic usage" [disabled]="true" />
+        </div>
+        <app-profile *ngIf="this.isActivetead"></app-profile>
+        <app-transport *ngIf="this.isActivTransport"></app-transport>  
+        <app-violation-list *ngIf="this.isActivViolation"></app-violation-list>
+      </nz-content>
+    </nz-layout>    
+</nz-layout>

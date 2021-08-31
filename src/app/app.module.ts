@@ -14,6 +14,10 @@ import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 
 import { HttpClientModule }   from '@angular/common/http';
+import { PersonalCabinetComponent } from './components/personal-cabinet/personal-cabinet';
+import { ProfileComponent } from './components/profile/profile';
+import { TransportComponent } from './components/transport/trannsport';
+import { ViolationListComponent } from './components/violation-list/violation-list';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -26,7 +30,11 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     AppComponent,
     RegistrationFormComponent,
     HomePageComponent,
-    LayoutComponent
+    LayoutComponent,
+    PersonalCabinetComponent,
+    ProfileComponent,
+    TransportComponent,
+    ViolationListComponent
   ],
   imports: [
     BrowserModule,

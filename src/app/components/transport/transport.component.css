@@ -1,0 +1,19 @@
+#center-personal {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    justify-content: center;
+}
+.input{       
+    padding: 10px 0px;
+}
+.item_personal_button {    
+    padding: 15px;
+    width: 150px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+}
