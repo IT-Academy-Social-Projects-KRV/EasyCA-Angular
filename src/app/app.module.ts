@@ -18,7 +18,6 @@ import { PersonalCabinetComponent } from './components/personal-cabinet/personal
 import { ProfileComponent } from './components/profile/profile';
 import { TransportComponent } from './components/transport/trannsport';
 import { ViolationListComponent } from './components/violation-list/violation-list';
-import { DriverLicenseComponent } from './components/driver-license/driver-license';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -35,8 +34,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     PersonalCabinetComponent,
     ProfileComponent,
     TransportComponent,
-    ViolationListComponent,
-    DriverLicenseComponent
+    ViolationListComponent
   ],
   imports: [
     BrowserModule,

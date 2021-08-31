@@ -14,8 +14,9 @@
     display: flex;
     justify-content: center;
 }
-.input{       
-    padding: 10px 0px;
+[nz-input]{     
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 ::ng-deep .ant-layout-sider-children 
 { 
@@ -29,5 +30,5 @@
     height: 30px;
 }
 .ant-layout-content{
-    height: 500px;
+    height: auto;
 }

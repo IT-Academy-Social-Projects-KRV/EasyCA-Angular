@@ -12,36 +12,32 @@ export class PersonalCabinetComponent implements OnInit {
   isActivetead = false;
   isActivTransport = false;
   isActivViolation = false;
-  isActivDriverLicense = false;
+  
   constructor(private router: Router) { }
 
+  clickPersonalData(){
+    this.isActivTransport = false;
+    this.isActivViolation = false;
+    this.isActivetead = false;
+    this.isActivInfo = true;
+  }
   clickProfile(){
     this.isActivInfo = false;
     this.isActivTransport = false;
     this.isActivViolation = false;
-    this.isActivDriverLicense = false;
     this.isActivetead = true;
   }
   clickTransport(){
     this.isActivInfo = false;
     this.isActivetead = false;
     this.isActivViolation = false;
-    this.isActivDriverLicense = false;
     this.isActivTransport = true;
   }
   clickViolation(){
     this.isActivInfo = false;
     this.isActivetead = false;
     this.isActivTransport = false;
-    this.isActivDriverLicense = false;
     this.isActivViolation = true;
-  }
-  clickDriverLicense(){
-    this.isActivInfo = false;
-    this.isActivetead = false;
-    this.isActivTransport = false;
-    this.isActivViolation = false;
-    this.isActivDriverLicense = true;
   }
   ngOnInit(): void { }
 }

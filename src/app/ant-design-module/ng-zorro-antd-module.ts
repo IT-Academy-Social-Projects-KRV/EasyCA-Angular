@@ -11,6 +11,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzMentionModule } from 'ng-zorro-antd/mention';
 
 @NgModule({
   exports: [
@@ -25,7 +26,8 @@ import { NzCardModule } from 'ng-zorro-antd/card';
     NzLayoutModule,
     NzMenuModule,
     NzSelectModule,
-    NzCardModule 
+    NzCardModule,
+    NzMentionModule 
   ]
 })
 export class DemoNgZorroAntdModule {}
