@@ -1,4 +1,8 @@
 {
+    "root": true,
+    "ignorePatterns": [
+        "projects/**/*"
+    ],
     "env": {
         "browser": true,
         "es6": true,
@@ -7,6 +11,10 @@
     "extends": [
         "airbnb/base"
     ],
+    "parserOptions": {
+        "sourceType": "module",
+        "parser": "babel-eslint"
+    },
     "rules": {
         "semi": "off",
         "max-len": [
