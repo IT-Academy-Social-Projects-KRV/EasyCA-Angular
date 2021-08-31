@@ -1,0 +1,34 @@
+#center-personal {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    justify-content: center;
+}
+.item_personal_button {    
+    padding: 15px;
+    width: 150px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+}
+[nz-input]{     
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+::ng-deep .ant-layout-sider-children 
+{ 
+    display: flex;
+    flex-flow: column wrap;
+}
+[nz-button] {
+    margin-top: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 30px;
+}
+.ant-layout-content{
+    height: auto;
+}

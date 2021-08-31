@@ -1,4 +1,3 @@
-
 import { NgModule } from '@angular/core';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
@@ -12,6 +11,8 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzMentionModule } from 'ng-zorro-antd/mention';
 
 @NgModule({
   exports: [
@@ -26,7 +27,9 @@ import { NzAlertModule } from 'ng-zorro-antd/alert';
     NzLayoutModule,
     NzMenuModule,
     NzSelectModule,
-    NzAlertModule
+    NzAlertModule,
+    NzCardModule,
+    NzMentionModule 
   ]
 })
 export class DemoNgZorroAntdModule {}
