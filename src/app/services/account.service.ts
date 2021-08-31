@@ -20,7 +20,7 @@ export class AccountService {
   }
 
   get isLoggedIn(): boolean {
-    let authToken = this.tokenStorageService.getToken();
+    const authToken = this.tokenStorageService.getToken();
     return (authToken !== null) ? true : false;
   }
 }

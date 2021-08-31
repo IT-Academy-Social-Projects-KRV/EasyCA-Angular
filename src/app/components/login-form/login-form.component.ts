@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/services/account.service';
-import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from "@angular/forms";
 
@@ -11,20 +10,21 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 })
 
 export class LoginFormComponent implements OnInit {
-  form: any = {
-    email: null,
-    password: null
-  };
-  
+  signinForm: FormGroup;
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
 
-  constructor(private accountService: AccountService, private router: Router) { }
+  constructor(private accountService: AccountService, private router: Router, public fb: FormBuilder) { 
+    this.signinForm = this.fb.group({
+      email: [''],
+      password: ['']
+    })
+  }
   ngOnInit() { }
 
   onSubmit() {
-    this.accountService.login(this.form)
+    this.accountService.login(this.signinForm.value)
     .subscribe((data: any) => {
       localStorage.setItem('access_token', data.token)
       this.router.navigate(['/home']);

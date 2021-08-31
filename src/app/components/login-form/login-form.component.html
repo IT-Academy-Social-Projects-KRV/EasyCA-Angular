@@ -3,23 +3,23 @@
     <nz-alert class="error_alert_login" *ngIf="isLoginFailed" nzType="error" nzMessage="{{errorMessage}}"></nz-alert>
 </div>
 <div id="center-login"> 
-    <form nz-form (ngSubmit)="onSubmit()">
+    <form nz-form (ngSubmit)="onSubmit()" [formGroup]="signinForm" >
         <nz-form-item>
             <nz-form-control nzErrorTip="Please input your username!">
                 <nz-input-group nzPrefixIcon="user">
-                    <input type="text" [(ngModel)]="form.email" name="email" nz-input placeholder="Username" required/>
+                    <input type="text" nz-input placeholder="Username" formControlName="email" required/>
                 </nz-input-group>
             </nz-form-control>
         </nz-form-item>
         <nz-form-item>
             <nz-form-control nzErrorTip="Please input your Password!">
                 <nz-input-group nzPrefixIcon="lock">
-                    <input type="password" [(ngModel)]="form.password" name="password" required nz-input placeholder="Password" />
+                    <input type="password" nz-input placeholder="Password" formControlName="password" required/>
                 </nz-input-group>
             </nz-form-control>
         </nz-form-item>
         <div class="item_login_form_button">
-            <button class="btn btn-dark login-form-button">Log in</button>
+            <button type="submit" class="btn btn-dark login-form-button">Log in</button>
         </div>
     </form>
 </div>
