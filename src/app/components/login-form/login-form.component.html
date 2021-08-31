@@ -1,22 +1,25 @@
 <h1 nz-typography class="login-label">Login</h1>
-<div id="center-login">
-    <form nz-form>
+<div class="error_alert">
+    <nz-alert class="error_alert_login" *ngIf="isLoginFailed" nzType="error" nzMessage="{{errorMessage}}"></nz-alert>
+</div>
+<div id="center-login"> 
+    <form nz-form (ngSubmit)="onSubmit()" [formGroup]="signinForm" >
         <nz-form-item>
             <nz-form-control nzErrorTip="Please input your username!">
                 <nz-input-group nzPrefixIcon="user">
-                    <input type="text" nz-input formControlName="userName" placeholder="Username" />
+                    <input type="text" nz-input placeholder="Username" formControlName="email" required/>
                 </nz-input-group>
             </nz-form-control>
         </nz-form-item>
         <nz-form-item>
             <nz-form-control nzErrorTip="Please input your Password!">
                 <nz-input-group nzPrefixIcon="lock">
-                    <input type="password" nz-input formControlName="password" placeholder="Password" />
+                    <input type="password" nz-input placeholder="Password" formControlName="password" required/>
                 </nz-input-group>
             </nz-form-control>
         </nz-form-item>
         <div class="item_login_form_button">
-            <button class="btn btn-dark login-form-button">Log in</button>
+            <button type="submit" class="btn btn-dark login-form-button">Log in</button>
         </div>
     </form>
 </div>

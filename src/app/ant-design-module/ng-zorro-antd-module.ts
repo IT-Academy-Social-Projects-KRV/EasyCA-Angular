@@ -10,6 +10,7 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzMentionModule } from 'ng-zorro-antd/mention';
 
@@ -26,6 +27,7 @@ import { NzMentionModule } from 'ng-zorro-antd/mention';
     NzLayoutModule,
     NzMenuModule,
     NzSelectModule,
+    NzAlertModule,
     NzCardModule,
     NzMentionModule 
   ]
