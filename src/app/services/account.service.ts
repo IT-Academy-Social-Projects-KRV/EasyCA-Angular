@@ -28,8 +28,13 @@ export class AccountService {
     return (authToken !== null) ? true : false;
   }
 
+  get userRole(){
+     return localStorage.getItem('role');
+  }
+
   logout() {
     const removeToken = localStorage.removeItem('access_token');
+    localStorage.removeItem('role');
     if (removeToken == null) {
       this.router.navigate(['/signin']);
     }

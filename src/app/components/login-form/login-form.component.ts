@@ -15,6 +15,7 @@ export class LoginFormComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
 
+
   constructor(private accountService: AccountService, private router: Router, public fb: FormBuilder) { 
     this.signinForm = this.fb.group({
       email: [''],
@@ -26,7 +27,8 @@ export class LoginFormComponent implements OnInit {
   onSubmit() {
     this.accountService.login(this.signinForm.value)
     .subscribe((data: any) => {
-      localStorage.setItem('access_token', data.token)
+      localStorage.setItem('access_token', data.token);
+      localStorage.setItem('role',data.role);
       this.router.navigate(['/home']);
     },
     err => {
