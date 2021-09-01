@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { TokenStorageService } from './token-storage.service';
 import { HOST_URL} from '../config';
 import { User } from '../models/User';
+import { Observable } from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -17,6 +18,9 @@ export class AccountService {
 
   login(user:User) {
     return this.http.post<any>(`${HOST_URL}Account/Login`, user, httpOptions);
+  }
+  register(user:User): Observable<any> {
+    return this.http.post<any>(`${HOST_URL}Account/Register`, user, httpOptions)   
   }
 
   get isLoggedIn(): boolean {

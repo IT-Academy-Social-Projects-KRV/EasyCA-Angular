@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from 'src/app/services/account.service';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup } from "@angular/forms";
 
 @Component({
   selector: 'app-registration-form',
@@ -7,6 +10,32 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class RegistrationFormComponent implements OnInit {
-  constructor() { }
-  ngOnInit(): void { }
+  signupForm: FormGroup;
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
+
+  constructor(private accountService: AccountService, private router: Router, public fb: FormBuilder) { 
+    this.signupForm = this.fb.group({
+      firstName:[''],
+      lastName:[''],
+      email: [''],
+      password: [''],
+      confirmPassword: [''],
+    })
+  }
+  ngOnInit()  { }
+
+  onSubmit(){
+    this.accountService.register(this.signupForm.value)
+    .subscribe((data:any)=>{
+      console.log(data);
+      this.router.navigate(['/signin']);
+    },
+    err => {
+      this.errorMessage = err.error.message;
+      this.isSignUpFailed = true;
+    });
+  }
+  
 }
