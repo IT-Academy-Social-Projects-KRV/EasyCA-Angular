@@ -23,4 +23,12 @@ export class AccountService {
     const authToken = this.tokenStorageService.getToken();
     return (authToken !== null) ? true : false;
   }
+
+  getPersonalData() {
+    return this.http.get<any>(`${HOST_URL}Account/GetPersonalData`);
+  } 
+  
+  getUserById(){
+    return this.http.get<any>(`${HOST_URL}Account/GetUserById`);
+  }
 }

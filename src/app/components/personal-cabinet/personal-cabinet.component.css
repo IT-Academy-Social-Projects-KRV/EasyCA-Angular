@@ -32,3 +32,30 @@
 .ant-layout-content{
     height: auto;
 }
+
+.persData{
+    padding: 3%;
+}
+
+.persData h1{
+    font-size: 20px;
+    font-weight:400;
+}
+
+.persData span{
+    font-weight: bold;
+    margin-right: 3%;
+}
+
+.circle{
+    border-radius: 50%;
+    background-color: lightblue;
+    height: 200px;
+    width: 200px;
+    text-align: center;
+    padding: 70px;
+}
+
+.names{
+    font-size: 40px;
+}

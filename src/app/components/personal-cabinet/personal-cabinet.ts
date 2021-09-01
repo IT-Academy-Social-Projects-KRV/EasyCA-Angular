@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AccountService } from 'src/app/services/account.service';
+import { PersonalData } from 'src/app/models/personalData';
 
 @Component({
   selector: 'app-personal-cabinet',
@@ -12,8 +14,13 @@ export class PersonalCabinetComponent implements OnInit {
   isActivetead = false;
   isActivTransport = false;
   isActivViolation = false;
-  
-  constructor(private router: Router) { }
+  public personalData: any;
+  public user: any;
+  public userName: null;
+
+  constructor(private router: Router, public accountService: AccountService) { 
+    this.personalData = {} as PersonalData; 
+  }
 
   clickPersonalData(){
     this.isActivTransport = false;
@@ -39,5 +46,14 @@ export class PersonalCabinetComponent implements OnInit {
     this.isActivTransport = false;
     this.isActivViolation = true;
   }
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    this.accountService.getPersonalData()
+    .subscribe((data: any) => {
+      this.personalData = data;
+    });
+    this.accountService.getUserById()
+    .subscribe((data: any)=>{
+      this.userName = data.firstName[0]+data.lastName[0];
+    });
+  }
 }

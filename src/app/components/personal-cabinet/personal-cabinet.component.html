@@ -7,13 +7,20 @@
       <button nz-button nzType="primary" (click)='clickViolation()'>My violation list</button>
     </nz-sider>
     <nz-content >
-      <div id="center-personal" *ngIf="this.isActivInfo">
-          <h1 nz-typography class="registration-label">Personal data</h1>
-          <input nz-input placeholder="Basic usage" [disabled]="true" />
-          <input nz-input placeholder="Basic usage" [disabled]="true" />
-          <input nz-input placeholder="Basic usage" [disabled]="true" />
-          <input nz-input placeholder="Basic usage" [disabled]="true" />
-          <input nz-input placeholder="Basic usage" [disabled]="true" />
+        <div *ngIf="this.isActivInfo">
+          <div nz-row class="persData">
+            <div nz-col nzSpan="8">
+              <div class="circle"><span class="names">{{this.userName}}</span></div>
+            </div>
+            <div nz-col nzSpan="16">
+              <h1><span>IPN:</span>{{this.personalData.ipn}}</h1>
+              <h1><span>Adress:</span>{{this.personalData.address}}</h1>
+              <h1><span>Service number:</span>{{this.personalData.serviceNumber}}</h1>
+              <h1><span>Birthday:</span>{{this.personalData.birthDay}}</h1>
+              <h1><span>Job position:</span>{{this.personalData.jobPosition}}</h1>
+              <h1><span>User driver license:</span>{{this.personalData.userDriverLicense}}</h1>
+            </div>
+          </div>
         </div>
         <app-profile *ngIf="this.isActivetead"></app-profile>
         <app-transport *ngIf="this.isActivTransport"></app-transport>  
