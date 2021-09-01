@@ -7,7 +7,7 @@
             <li nz-menu-item><a routerLink="/home">Home</a></li>
             <li nz-menu-item> <a *ngIf="!this.accountService.isLoggedIn" routerLink="/signin">Sign In</a></li>
             <li nz-menu-item> <a *ngIf="!this.accountService.isLoggedIn" routerLink="/signup">Sign Up</a></li>
-            <li nz-menu-item> <a *ngIf="this.accountService.isLoggedIn">Logout</a></li>
+            <li nz-menu-item> <a *ngIf="this.accountService.isLoggedIn" (click)="logout()">Logout</a></li>
             <li nz-menu-item> <a routerLink="/personal">Personal cabinet</a></li>
         </ul>
     </nz-header>
