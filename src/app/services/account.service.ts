@@ -28,6 +28,10 @@ export class AccountService {
     return (authToken !== null) ? true : false;
   }
 
+  get userRole(){
+     return localStorage.getItem('role');
+  }
+
   getPersonalData() {
     return this.http.get<any>(`${HOST_URL}Account/GetPersonalData`);
   } 
@@ -37,6 +41,7 @@ export class AccountService {
 
   logout() {
     const removeToken = localStorage.removeItem('access_token');
+    localStorage.removeItem('role');
     if (removeToken == null) {
       this.router.navigate(['/signin']);
     }
