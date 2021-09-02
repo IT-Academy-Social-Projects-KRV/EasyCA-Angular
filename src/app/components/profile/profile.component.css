@@ -20,3 +20,7 @@
 .ant-layout-content{
     height: auto;
 }
+.profile-label{
+    text-align: center;
+    color: rgb(59, 59, 59);
+}

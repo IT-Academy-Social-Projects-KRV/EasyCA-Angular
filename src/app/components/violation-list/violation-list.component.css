@@ -19,3 +19,7 @@ p {
     width: 90%;
     justify-content: center;
 }
+.violation-label{
+    text-align: center;
+    color: rgb(59, 59, 59);
+}
