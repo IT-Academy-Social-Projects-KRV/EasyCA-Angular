@@ -28,6 +28,13 @@ export class AccountService {
     return (authToken !== null) ? true : false;
   }
 
+  getPersonalData() {
+    return this.http.get<any>(`${HOST_URL}Account/GetPersonalData`);
+  } 
+  
+  getUserById(){
+    return this.http.get<any>(`${HOST_URL}Account/GetUserById`);
+
   logout() {
     const removeToken = localStorage.removeItem('access_token');
     if (removeToken == null) {

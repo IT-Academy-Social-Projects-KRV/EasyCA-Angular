@@ -29,7 +29,7 @@ import { NzMentionModule } from 'ng-zorro-antd/mention';
     NzSelectModule,
     NzAlertModule,
     NzCardModule,
-    NzMentionModule 
+    NzMentionModule
   ]
 })
 export class DemoNgZorroAntdModule {}
