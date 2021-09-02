@@ -4,3 +4,4 @@ export class UserNames {
         public lastName: string
     ) { }
   }
+  

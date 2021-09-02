@@ -14,12 +14,13 @@ export class PersonalCabinetComponent implements OnInit {
   isActivetead = false;
   isActivTransport = false;
   isActivViolation = false;
-  public personalData: any;
-  public user: any;
-  public userName: null;
+  
+  public personalData: PersonalData;
+  public userName: string;
 
   constructor(private router: Router, public accountService: AccountService) { 
-    this.personalData = {} as PersonalData; 
+    this.personalData = {} as PersonalData;
+    this.userName = ""; 
   }
 
   clickPersonalData(){
@@ -51,6 +52,7 @@ export class PersonalCabinetComponent implements OnInit {
     .subscribe((data: any) => {
       this.personalData = data;
     });
+
     this.accountService.getUserById()
     .subscribe((data: any)=>{
       this.userName = data.firstName[0]+data.lastName[0];
