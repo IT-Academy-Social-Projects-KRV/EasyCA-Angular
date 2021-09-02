@@ -1,33 +1,36 @@
 <h1 nz-typography class="registration-label">Registration</h1>
+<div class="error_alert">
+    <nz-alert class=".error_alert_register" *ngIf="isSignUpFailed" nzType="error" nzMessage="{{errorMessage}}"></nz-alert>
+</div>
 <div id="center-registation">
-    <form nz-form>
+    <form nz-form (ngSubmit)="onSubmit()" [formGroup]="signupForm">
         <nz-form-item>
             <nz-form-control>
-                <input type="text" nz-input placeholder="Enter your FirstName" />
+                <input type="text" nz-input placeholder="Enter your FirstName" formControlName="firstName" required/>
             </nz-form-control>
         </nz-form-item>
         <nz-form-item>
 
             <nz-form-control>
-                <input type="text" nz-input placeholder="Enter your LastName" />
+                <input type="text" nz-input placeholder="Enter your LastName" formControlName="lastName" required />
             </nz-form-control>
         </nz-form-item>
         <nz-form-item>
 
             <nz-form-control>
-                <input type="email" nz-input placeholder="Enter your Email" />
+                <input type="email" nz-input placeholder="Enter your Email" formControlName="email" required/>
             </nz-form-control>
         </nz-form-item>
         <nz-form-item>
 
             <nz-form-control>
-                <input nz-input type="password" formControlName="password" placeholder="Enter password" />
+                <input nz-input type="password" placeholder="Enter password" formControlName="password" required />
             </nz-form-control>
         </nz-form-item>
 
         <nz-form-item>
             <nz-form-control nzDisableAutoTips>
-                <input nz-input type="password" formControlName="confirm" placeholder="Confirm your password" />
+                <input nz-input type="password" placeholder="Confirm your password" formControlName="confirmPassword" required/>
                 <ng-template #passwordErrorTpl let-control>
                     <ng-container *ngIf="control.hasError('required')">Please confirm your password!</ng-container>
                     <ng-container *ngIf="control.hasError('confirm')">Password is inconsistent!</ng-container>
@@ -38,7 +41,7 @@
         <div class="item_register_form_button">
             <nz-form-item>
                 <nz-form-control>
-                    <button class=" btn btn-dark register_form_button">Register</button>
+                    <button type="submit" class=" btn btn-dark register_form_button">Register</button>
                 </nz-form-control>
             </nz-form-item>
         </div>

@@ -10,4 +10,8 @@ import { AccountService } from 'src/app/services/account.service';
 export class LayoutComponent implements OnInit {
   constructor(public accountService:AccountService) { }
   ngOnInit(): void {}
+
+  logout(){
+    this.accountService.logout();
+  }
 }
