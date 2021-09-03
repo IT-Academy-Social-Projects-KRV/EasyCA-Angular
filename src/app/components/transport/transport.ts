@@ -12,8 +12,16 @@ import { TransportService } from 'src/app/services/transport.service';
 
 export class TransportComponent implements OnInit {
   transportForm: FormGroup;
+  insuaranceForm: FormGroup;
+  transportModel: Transport;
+  isActivNotification = false;
 
   constructor(private transportService: TransportService, private router: Router, public fb: FormBuilder) { 
+    this.transportModel = {} as Transport;
+    this.insuaranceForm = this.fb.group({
+      companyName: [''],
+      serialNumber: ['']
+    })
     this.transportForm = this.fb.group({
       producedBy:[''],
       model:[''],
@@ -22,14 +30,22 @@ export class TransportComponent implements OnInit {
       carPlate: [''],
       color: [''],
       yearOfProduction: [''],
-      insuarenceNumber: ['']
+      insuarence: this.insuaranceForm
     })
   }
 
   ngOnInit(): void { }
 
   onSubmit(){
-    this.transportService.addTransport(this.transportForm.value)
-    .subscribe((data:any)=>{ });
+    this.transportModel= this.transportForm.value;
+    this.transportModel.insuaranceNumber = this.insuaranceForm.value;
+    this.transportService.addTransport(this.transportModel)
+    .subscribe((data:any)=>{
+      this.transportForm.reset();
+      this.isActivNotification = true;
+    setTimeout(() => {
+      this.isActivNotification = false;
+    }, 2000);      
+     });
   }
 }

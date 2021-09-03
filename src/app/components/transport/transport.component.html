@@ -1,43 +1,58 @@
 <nz-layout>
   <nz-content>
     <div id="center-personal">
+      <div class="notification" *ngIf="this.isActivNotification">
+        <nz-alert nzType="success" nzMessage="Auto successfully added!" nzShowIcon></nz-alert>
+      </div>
       <h1 nz-typography class="transport-label">My transport</h1>
       <form nz-form (ngSubmit)="onSubmit()" [formGroup]="transportForm">
         <nz-form-item>
-          <nz-form-control [nzSpan]="26">
+          <nz-form-control>
             <input type="text" nz-input placeholder="Made by" formControlName="producedBy" required />
           </nz-form-control>
         </nz-form-item>
         <nz-form-item>
-          <nz-form-control [nzSpan]="26">
+          <nz-form-control>
             <input type="text"  nz-input placeholder="Model" formControlName="model" required />
           </nz-form-control>
         </nz-form-item>
         <nz-form-item>
-          <nz-form-control [nzSpan]="26">
+          <nz-form-control>
             <input  type="text" nz-input placeholder="VIN Code" maxlength="17" formControlName="vinCode" required />
           </nz-form-control>
         </nz-form-item>
         <nz-form-item>
-          <nz-form-control [nzSpan]="26">
+          <nz-form-control>
             <input  type="text" nz-input placeholder="Car categoria" formControlName="categoryName" required />
           </nz-form-control>
         </nz-form-item>
         <nz-form-item>
-          <nz-form-control [nzSpan]="26">
+          <nz-form-control >
             <input  type="text" nz-input placeholder="Car plate" maxlength="8" formControlName="carPlate" required />
           </nz-form-control>
         </nz-form-item>
         <nz-form-item>
-          <nz-form-control [nzSpan]="26">
+          <nz-form-control>
             <input type="text" nz-input  placeholder="Color" formControlName="color" required />
           </nz-form-control>
         </nz-form-item>
         <nz-form-item>
-          <nz-form-control [nzSpan]="26">
+          <nz-form-control>
             <input type="text" nz-input placeholder="Year of production" formControlName="yearOfProduction" required />
           </nz-form-control>
         </nz-form-item>
+        <form form nz-form (ngSubmit)="onSubmit()" [formGroup]="insuaranceForm">
+          <nz-form-item>
+            <nz-form-control>
+              <input type="text" nz-input  placeholder="Insuarance company name" formControlName="companyName" required />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control>
+              <input type="text" nz-input placeholder="Insuarance serial number" formControlName="serialNumber" required />
+            </nz-form-control>
+          </nz-form-item>
+        </form>
         <div class="item_add_form_button">
           <nz-form-item>
             <nz-form-control>

@@ -7,7 +7,7 @@ export class Transport{
         public categoryName: string,
         public carPlate: string,
         public color: string,
-        public insuarenceNumber: string,
+        public insuaranceNumber : string,
         public yearOfProduction: number
     ){ }
 }
