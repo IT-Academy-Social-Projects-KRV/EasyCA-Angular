@@ -30,8 +30,6 @@ export class TransportComponent implements OnInit {
 
   onSubmit(){
     this.transportService.addTransport(this.transportForm.value)
-    .subscribe((data:any)=>{
-      console.log(data);
-    });
+    .subscribe((data:any)=>{ });
   }
 }
