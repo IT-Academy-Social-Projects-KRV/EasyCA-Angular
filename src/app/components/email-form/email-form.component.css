@@ -1,0 +1,12 @@
+.email-label {
+    text-align: center;
+    color: rgb(59, 59, 59);
+}
+.email-image {
+    text-align: center;
+}
+#center-email {
+    display:flex;
+    justify-content: center;
+}
+

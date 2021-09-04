@@ -1,6 +1,7 @@
 <h1 nz-typography class="registration-label">Registration</h1>
 <div class="error_alert">
     <nz-alert class=".error_alert_register" *ngIf="isSignUpFailed" nzType="error" nzMessage="{{errorMessage}}"></nz-alert>
+    <nz-alert class=".error_alert_register" *ngIf="isRegistered" nzType="success" nzMessage="Please confirm email address"></nz-alert>
 </div>
 <div id="center-registation">
     <form nz-form (ngSubmit)="onSubmit()" [formGroup]="signupForm">
