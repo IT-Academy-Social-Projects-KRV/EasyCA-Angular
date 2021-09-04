@@ -20,6 +20,7 @@ export class AccountService {
     return this.http.post<any>(`${HOST_URL}Account/Login`, user, httpOptions);
   }
   register(user:User): Observable<any> {
+    user.clientURI="http://localhost:4200/emailVerify";
     return this.http.post<any>(`${HOST_URL}Account/Register`, user, httpOptions)   
   }
 
@@ -47,5 +48,8 @@ export class AccountService {
     if (removeToken == null) {
       this.router.navigate(['/signin']);
     }
+  }
+  confirmEmail(route:string,token:string,email:string){
+    return this.http.get<any>(`${HOST_URL}${route}/${token}/${email}`);
   }
 }
