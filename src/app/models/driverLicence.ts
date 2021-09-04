@@ -2,9 +2,9 @@ import { TransportCategories } from "./transportCategories";
 
 export class DriverLicence {
     constructor(
-        public LicenseSerialNumber: string,
-        public IssuedBy: string,
-        public ExpirationDate: Date,
-        public UserCategories: Array<TransportCategories>
+        public licenseSerialNumber: string,
+        public issuedBy: string,
+        public expirationDate: Date,
+        public userCategories: Array<TransportCategories>
     ) { }
 } 

@@ -1,12 +1,13 @@
 export class Address {
     constructor(
-        public Country: string,
-        public Region: string,
-        public City: string,
-        public District: string,
-        public Street: string ,
-        public Building: string,
-        public Appartament: number,
-        public PostalCode: string 
+        public country: string,
+        public region: string,
+        public city: string,
+        public district: string,
+        public street: string ,
+        public building: string,
+        public appartament: number,
+        public postalCode: string 
     ) { }
   } 
+  

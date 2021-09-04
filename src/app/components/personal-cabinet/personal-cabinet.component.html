@@ -14,11 +14,13 @@
             </div>
             <div nz-col nzSpan="16">
               <h1><span>IPN:</span>{{this.personalData.ipn}}</h1>
-              <h1><span>Adress:</span>{{this.personalData.address}}</h1>
+              <h1><span>Address:</span>{{this.personalData.address.country}}, {{this.personalData.address.region}}, {{this.personalData.address.city}}, {{this.personalData.address.district}},
+              {{this.personalData.address.street}}, {{this.personalData.address.building}}, {{this.personalData.address.appartament}}, {{this.personalData.address.postalCode}}</h1>
               <h1><span>Service number:</span>{{this.personalData.serviceNumber}}</h1>
               <h1><span>Birthday:</span>{{this.personalData.birthDay}}</h1>
               <h1><span>Job position:</span>{{this.personalData.jobPosition}}</h1>
-              <h1><span>User driver license:</span>{{this.personalData.userDriverLicense}}</h1>
+              <h1><span>User driver license:</span>{{this.personalData.userDriverLicense.licenseSerialNumber}},
+              {{this.personalData.userDriverLicense.issuedBy}},{{this.personalData.userDriverLicense.expirationDate}},{{this.personalData.userDriverLicense.userCategories[0]}}</h1>
             </div>
           </div>
         </div>
