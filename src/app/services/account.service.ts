@@ -38,7 +38,6 @@ export class AccountService {
   
   getUserById(){
     return this.http.get<any>(`${HOST_URL}Account/GetUserById`);
-
   }
   
   logout() {

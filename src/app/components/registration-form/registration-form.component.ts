@@ -12,7 +12,7 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 export class RegistrationFormComponent implements OnInit {
   signupForm: FormGroup;
   isSuccessful = false;
-  isSignUpFailed = false;
+  isSignUpFailed = false; 
   errorMessage = '';
 
   constructor(private accountService: AccountService, private router: Router, public fb: FormBuilder) { 
