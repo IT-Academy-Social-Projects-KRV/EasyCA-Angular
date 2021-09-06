@@ -39,6 +39,7 @@ export class AccountService {
   getUserById(){
     return this.http.get<any>(`${HOST_URL}Account/GetUserById`);
   }
+  
   logout() {
     const removeToken = localStorage.removeItem('access_token');
     localStorage.removeItem('role');
