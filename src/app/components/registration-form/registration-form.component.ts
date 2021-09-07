@@ -12,7 +12,11 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 export class RegistrationFormComponent implements OnInit {
   signupForm: FormGroup;
   isSuccessful = false;
-  isSignUpFailed = false; 
+
+  isSignUpFailed = false;
+  isRegistered=false;
+
+
   errorMessage = '';
 
   constructor(private accountService: AccountService, private router: Router, public fb: FormBuilder) { 
@@ -29,8 +33,8 @@ export class RegistrationFormComponent implements OnInit {
   onSubmit(){
     this.accountService.register(this.signupForm.value)
     .subscribe((data:any)=>{
-      console.log(data);
-      this.router.navigate(['/signin']);
+      this.isRegistered=true;
+      this.isSignUpFailed = false;
     },
     err => {
       this.errorMessage = err.error.message;
