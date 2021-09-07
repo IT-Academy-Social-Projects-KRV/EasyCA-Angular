@@ -19,11 +19,9 @@ import { authInterceptorProviders } from './helpers/jwt.interceptor';
 
 import { PersonalCabinetComponent } from './components/personal-cabinet/personal-cabinet';
 import { ProfileComponent } from './components/profile/profile';
-import { TransportComponent } from './components/transport/trannsport';
+import { TransportComponent } from './components/transport/transport';
 import { ViolationListComponent } from './components/violation-list/violation-list';
 import { EmailFormComponent } from './components/email-form/email-form.component';
-
-
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
