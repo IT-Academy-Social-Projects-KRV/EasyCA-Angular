@@ -16,6 +16,7 @@ import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 import { HttpClientModule }   from '@angular/common/http';
 import { authInterceptorProviders } from './helpers/jwt.interceptor';
+import { errorInterceptorProviders } from './helpers/error.interceptor';
 
 import { PersonalCabinetComponent } from './components/personal-cabinet/personal-cabinet';
 import { ProfileComponent } from './components/profile/profile';
@@ -53,7 +54,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
   providers: [
     { provide: NZ_I18N, useValue: en_US },
     { provide: NZ_ICONS, useValue: icons },
-    authInterceptorProviders ],
+    authInterceptorProviders,
+    errorInterceptorProviders ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
