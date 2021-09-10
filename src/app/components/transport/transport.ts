@@ -42,7 +42,6 @@ export class TransportComponent implements OnInit {
     this.addCar(transportForm);
     else
     this.updateCar(transportForm);
-
   }
   resetForm(transportForm:FormGroup)
   {
@@ -76,8 +75,7 @@ export class TransportComponent implements OnInit {
     },
     err => {
       console.log(err);
- 
-    });
+     });
  }
   updateCar(transportForm:FormGroup){
   this.transportService.putTransport().subscribe(
@@ -87,8 +85,7 @@ export class TransportComponent implements OnInit {
       this.toastr.info("Transport update","congratulation")
     },
     err => {
-      console.log(err);
- 
+      console.log(err); 
     });
   }
   onDelete(id:string){
@@ -101,14 +98,12 @@ export class TransportComponent implements OnInit {
         this.toastr.error("Car Deleted ", "congratulation")
       },
       err=>{console.log(err);}
-    )
-  }
+    )}
   }
 
   showModal(): void {
     this.isVisible = true;
   }
-
   handleOk(): void {
     console.log('Button ok clicked!');
     this.isConfirmLoading = true;
@@ -117,7 +112,6 @@ export class TransportComponent implements OnInit {
       this.isConfirmLoading = false;
     }, 1000);
   }
-
   handleCancel(): void {
     console.log('Button cancel clicked!');
     this.isVisible = false;
