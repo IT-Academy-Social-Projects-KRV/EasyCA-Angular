@@ -101,10 +101,9 @@ export class TransportComponent implements OnInit {
       res=>{
         this.transportService.refreshList();
         this.toastr.error("Car Deleted ", "congratulation")
-       },
-        err=>{console.log(err);}
-      )
-    }
+      },
+      err=>{console.log(err);}
+    )}
   }
 
   showModal(): void {
