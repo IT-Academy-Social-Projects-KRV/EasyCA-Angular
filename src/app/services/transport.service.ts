@@ -18,8 +18,6 @@ export class TransportService {
 
   formData: Transport ;
   list: Transport[] = [];
-
-
   isEmpty=true;
 
   postTransport(){
@@ -31,15 +29,12 @@ export class TransportService {
   deleteTransport(id:string){
     return this.http.delete(`${HOST_URL}Transport/DeleteTransport?transportId=${id}`);
   }
-  refreshList(){  
-  
+  refreshList(){    
     this.http.get<any>(`${HOST_URL}Transport/GetAllTransports`) 
     .toPromise()
     .then(res => this.list = res as Transport[] )
     console.log(this.formData)    
     if(this.list.length>0){
-      this.isEmpty = false;}     
-     
+      this.isEmpty = false;}    
   }  
-
 }

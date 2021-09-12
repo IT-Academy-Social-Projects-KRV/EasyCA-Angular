@@ -1,25 +1,24 @@
 <div>
     <div>
-        <h1 *ngIf="!transportService.isEmpty">List of your Cars</h1>
-        <h1 *ngIf="transportService.isEmpty">You didn't have any car! Please add one.</h1>
+        <h1 >List of your Cars</h1>      
     </div>
     <div>
         <nz-table #basicTable [nzData]="transportService.list" [nzFrontPagination]="false" [nzShowPagination]="false">
             <thead>
                 <tr>
-                    <th>Car Company</th>
-                    <th>Car Model</th>
-                    <th>Plate</th>
-                    <th>Color</th>
+                    <th class="propertyName">Car Company</th>
+                    <th class="propertyName">Car Model</th>
+                    <th class="propertyName">Plate</th>
+                    <th class="propertyName">Color</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let car of basicTable.data">
-                    <td (click)="populateForm(car)" (click)="showModal()">{{car.producedBy}}</td>
-                    <td (click)="populateForm(car)" (click)="showModal()">{{car.model}}</td>
-                    <td (click)="populateForm(car)" (click)="showModal()">{{car.carPlate}}</td>
-                    <td>
+                    <td class="mainName" (click)="populateForm(car)" (click)="showModal()">{{car.producedBy}}</td>
+                    <td class="mainName"(click)="populateForm(car)" (click)="showModal()">{{car.model}}</td>
+                    <td class="mainName" (click)="populateForm(car)" (click)="showModal()">{{car.carPlate}}</td>
+                    <td class="mainName">
                         <a> {{ car.color}}</a>
                         <nz-divider nzType="vertical"></nz-divider>
                     </td>
@@ -29,15 +28,13 @@
         </nz-table>
         <br>
     </div>
-    <div>
-        <div>
+         <div >
             <button nz-button [nzSize]="size" nzShape="round" [nzType]="'primary'" (click)="showModal()"
                 (click)="resetForm(this.transportForm)">
                 <span>Add Transport</span>
             </button>
         </div>
-    </div>
-</div>
+ </div>
 <nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter"
     (nzOnCancel)="handleCancel()">
     <ng-template #modalTitle>
@@ -51,7 +48,7 @@
                 <label for="producedBy">Car Company</label>
                 <nz-form-item>
                     <nz-form-control>
-                        <input class="form-control form-control-lg" id="producedBy" placeholder="Car Company"
+                        <input  nz-input id="producedBy" placeholder="Car Company"
                             formControlName="producedBy" required>
                     </nz-form-control>
                 </nz-form-item>
@@ -60,7 +57,7 @@
                 <label for="model">Model</label>
                 <nz-form-item>
                     <nz-form-control>
-                        <input class="form-control form-control-lg" id="model" placeholder="Your Car Model"
+                        <input  nz-input id="model" placeholder="Your Car Model"
                             formControlName="model" required>
                     </nz-form-control>
                 </nz-form-item>
@@ -69,7 +66,7 @@
                 <label for="vinCode">VIN</label>
                 <nz-form-item>
                     <nz-form-control>
-                        <input class="form-control form-control-lg" id="vinCode" placeholder="17 Digit Car VIN-code"
+                        <input  nz-input id="vinCode" placeholder="17 Digit Car VIN-code"
                             formControlName="vinCode" required maxlength="17" minlength="17">
                     </nz-form-control>
                 </nz-form-item>
@@ -78,7 +75,7 @@
                 <label for="carPlate">Car Plate</label>
                 <nz-form-item>
                     <nz-form-control>
-                        <input class="form-control form-control-lg" id="carPlate" placeholder="Car Plate"
+                        <input  nz-input id="carPlate" placeholder="Car Plate"
                             formControlName="carPlate" required>
                     </nz-form-control>
                 </nz-form-item>
@@ -87,48 +84,48 @@
                 <label for="color">Car color</label>
                 <nz-form-item>
                     <nz-form-control>
-                        <input class="form-control form-control-lg" id="color" placeholder="Color"
+                        <input  nz-input id="color" placeholder="Color"
                             formControlName="color" required>
                     </nz-form-control>
                 </nz-form-item>
             </div>
 
-            <div class="form-row">
-                <div class="form-group col-md-6">
+            <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+                <div nz-col  [nzSpan]="12">
                     <label for="categoryName">category belong</label>
                     <nz-form-item>
                         <nz-form-control>
-                            <input class="form-control form-control-lg" id="categoryName" placeholder="Car categoty"
+                            <input  nz-input id="categoryName" placeholder="Car categoty"
                                 formControlName="categoryName" required>
                         </nz-form-control>
                     </nz-form-item>
                 </div>
-                <div class="form-group col-md-6">
+                <div nz-col  [nzSpan]="12">
                     <label for="yearOfProduction">Car age</label>
                     <nz-form-item>
                         <nz-form-control>
-                            <input class="form-control form-control-lg" id="yearOfProduction" placeholder="year"
+                            <input  nz-input id="yearOfProduction" placeholder="year"
                                 formControlName="yearOfProduction" required>
                         </nz-form-control>
                     </nz-form-item>
                 </div>
             </div>
             <div> <label>Insuarance</label> </div>
-            <div class="form-row" formGroupName="insuaranceNumber">
-                <div class="form-group col-md-6">
+            <div  nz-row formGroupName="insuaranceNumber" [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+                <div nz-col  [nzSpan]="12">
                     <label for="companyName">Name of the insurance company</label>
                     <nz-form-item>
                         <nz-form-control>
-                            <input class="form-control form-control-lg" placeholder="Company Name"
+                            <input  nz-input placeholder="Company Name"
                                 formControlName="companyName" required>
                         </nz-form-control>
                     </nz-form-item>
                 </div>
-                <div class="form-group col-md-6">
+                <div nz-col  [nzSpan]="12">
                     <label for="serialNumber">Serial number of insurance</label>
                     <nz-form-item>
                         <nz-form-control>
-                            <input class="form-control form-control-lg" placeholder="Serial Number"
+                            <input  nz-input placeholder="Serial Number"
                                 formControlName="serialNumber" required>
                         </nz-form-control>
                     </nz-form-item>

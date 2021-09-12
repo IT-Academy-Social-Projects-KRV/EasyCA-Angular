@@ -19,6 +19,7 @@ export class TransportComponent implements OnInit {
     isConfirmLoading = false;
     isUpdate=false;
     errorMessage = ''
+    isTransportListEmpty=true;
     public transportForm = this.fb.group({
       id: [''],
       producedBy: [''],
@@ -35,18 +36,20 @@ export class TransportComponent implements OnInit {
     });
   ngOnInit(): void {    
     this.transportService.refreshList();   
+    if(this.transportService.list.length>0){
+      this.isTransportListEmpty=false;
+     } 
   }
   onSubmit(transportForm:FormGroup) {
     this.transportService.formData=this.transportForm.value;
-    if(this.transportService.formData.id=='')
-    this.addCar(transportForm);
-    else
+    if(this.isUpdate)
     this.updateCar(transportForm);
-
+    else
+    this.addCar(transportForm);
   }
   resetForm(transportForm:FormGroup)
   {
-    this.isUpdate=false;
+   this.isUpdate=false;
    transportForm.reset();
   }
  populateForm(selectedRecord:Transport){
@@ -75,8 +78,7 @@ export class TransportComponent implements OnInit {
       this.toastr.success("Transport added","congratulation")
     },
     err => {
-      console.log(err);
- 
+      console.log(err); 
     });
  }
   updateCar(transportForm:FormGroup){
@@ -87,10 +89,10 @@ export class TransportComponent implements OnInit {
       this.toastr.info("Transport update","congratulation")
     },
     err => {
-      console.log(err);
- 
+      console.log(err); 
     });
   }
+
   onDelete(id:string){
     if(confirm("Are you sure to delete this Transport"))
     {
@@ -99,16 +101,15 @@ export class TransportComponent implements OnInit {
       res=>{
         this.transportService.refreshList();
         this.toastr.error("Car Deleted ", "congratulation")
-      },
-      err=>{console.log(err);}
-    )
-  }
+       },
+        err=>{console.log(err);}
+      )
+    }
   }
 
   showModal(): void {
     this.isVisible = true;
   }
-
   handleOk(): void {
     console.log('Button ok clicked!');
     this.isConfirmLoading = true;
@@ -117,7 +118,6 @@ export class TransportComponent implements OnInit {
       this.isConfirmLoading = false;
     }, 1000);
   }
-
   handleCancel(): void {
     console.log('Button cancel clicked!');
     this.isVisible = false;

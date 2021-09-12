@@ -8,11 +8,10 @@ import { TransportService } from 'src/app/services/transport.service';
   styleUrls: ['./layout.component.css']
 })
 
-export class LayoutComponent implements OnInit {
-  
+export class LayoutComponent implements OnInit {  
   constructor(public accountService:AccountService) { }
   ngOnInit(): void {}
-  listOfPosition: NzPlacementType[] = ['bottomLeft', 'bottomCenter', 'bottomRight', 'topLeft', 'topCenter', 'topRight'];
+
   logout(){
     this.accountService.logout();
   }

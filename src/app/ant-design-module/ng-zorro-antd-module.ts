@@ -17,6 +17,8 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+
 
 @NgModule({
   exports: [
@@ -37,7 +39,8 @@ import { NzTableModule } from 'ng-zorro-antd/table';
     NzMentionModule,
     NzModalModule, 
     NzDividerModule,
-    NzTableModule
+    NzTableModule,
+    NzAvatarModule
   ]
 })
 export class DemoNgZorroAntdModule {}

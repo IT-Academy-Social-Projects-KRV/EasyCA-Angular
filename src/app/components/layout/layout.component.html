@@ -14,9 +14,8 @@
              </li>
             <li nz-menu-item>
                 <button class="transp"  nz-menu-item    
-                *ngIf="!this.accountService.isLoggedIn" routerLink="/signup">Sign Up</button>
-             </li>
-            
+                *ngIf="!this.accountService.isLoggedIn"  routerLink="/signup">Sign Up</button>
+             </li>            
             <li nz-menu-item> 
                 <button class="transp"  nz-menu-item  
                *ngIf="this.accountService.isLoggedIn" (click)="logout()">Logout</button>
@@ -38,7 +37,6 @@
                 <button class="transp"  nz-menu-item  
                 *ngIf="this.accountService.userRole ==='admin'">Logout</button>
             </li>
-
         </ul>
     </nz-header>
     <nz-content>
