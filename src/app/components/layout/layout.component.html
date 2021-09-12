@@ -1,23 +1,40 @@
-<nz-layout class="layout">
-    <nz-header>
-        <div class="logo">
-            <a routerLink="/home"><img class="logoimg" src="https://img2.pngio.com/white-car-icon-png-picture-1847622-white-car-icon-png-white-car-icon-png-256_256.png" alt="Easy-CA" /></a>
-        </div>
-        <ul nz-menu nzTheme="dark" nzMode="horizontal" class="mychange">
-            <li nz-menu-item><a routerLink="/home">Home</a></li>
-            <li nz-menu-item> <a *ngIf="!this.accountService.isLoggedIn" routerLink="/signin">Sign In</a></li>
-            <li nz-menu-item> <a *ngIf="!this.accountService.isLoggedIn" routerLink="/signup">Sign Up</a></li>
-            <li nz-menu-item> <a *ngIf="this.accountService.isLoggedIn" (click)="logout()">Logout</a></li>
-            <li nz-menu-item> <a *ngIf="this.accountService.isLoggedIn" routerLink="/personal">Personal cabinet</a></li>
-            <li nz-menu-item> <a *ngIf="this.accountService.userRole ==='admin'">Admin Panel</a></li>
-
-        </ul>
-    </nz-header>
-    <nz-content>
-        <br><br>
+<nz-layout>
+    <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+      <div class="logo">
+        <a routerLink="/home"><img class="logoimg" src="https://img2.pngio.com/white-car-icon-png-picture-1847622-white-car-icon-png-white-car-icon-png-256_256.png" alt="Easy-CA" /></a>
+      </div>
+      <ul nz-menu nzTheme="dark" nzMode="inline">
+        <li nz-submenu nzTitle="Login" nzIcon="login">
+            <ul>
+              <li nz-menu-item *ngIf="!this.accountService.isLoggedIn" routerLink="/signin">Sign In</li>
+              <li nz-menu-item *ngIf="!this.accountService.isLoggedIn" routerLink="/signup">Sign Up</li>
+              <li nz-menu-item *ngIf="this.accountService.isLoggedIn" (click)="logout()" routerLink="/signin">Logout</li>
+              <li nz-menu-item *ngIf="this.accountService.userRole ==='admin'">Admin Panel</li>
+            </ul>
+        </li>
+        <li nz-submenu nzTitle="Personal Cabinet" *ngIf="this.accountService.isLoggedIn" nzIcon="user">
+            <ul>
+              <li nz-menu-item routerLink="/personal">Edit profile</li>
+              <li nz-menu-item routerLink="/personal">My transport</li>
+              <li nz-menu-item routerLink="/personal">My violations list</li>
+            </ul>
+        </li>
+      </ul>
+    </nz-sider>
+    <nz-layout>
+      <nz-header>
+        <i
+          class="trigger"
+          nz-icon
+          [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+          (click)="isCollapsed = !isCollapsed"
+        ></i>
+      </nz-header>
+      <nz-content>
         <div class="inner-content">
-            <router-outlet></router-outlet>
+            <router-outlet></router-outlet> 
         </div>
-    </nz-content>
-    <nz-footer>Easy-CA ©2021 Implement By RV069 .Net</nz-footer>
-</nz-layout>
+      </nz-content>
+      <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+    </nz-layout>
+  </nz-layout>

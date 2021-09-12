@@ -41,10 +41,14 @@
     }
 }
 
-@media screen and (max-width:768px) and (min-width: 576px) {
+@media screen and (max-width:768px) and (max-width: 576px) {
     .ant-form {
-        width: 50%;
+        width: 100%;
     }
+    .registration-label{
+        font-size: 20px;
+    }
+  
 }
 
 @media screen and (max-width:912px) and (min-width:768px) {

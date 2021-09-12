@@ -8,7 +8,8 @@ import { AccountService } from 'src/app/services/account.service';
 })
 
 export class LayoutComponent implements OnInit {
-  
+  isCollapsed = false;
+
   constructor(public accountService:AccountService) { }
   ngOnInit(): void {}
 
