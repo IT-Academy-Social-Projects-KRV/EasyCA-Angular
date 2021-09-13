@@ -3,8 +3,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { TokenStorageService } from './token-storage.service';
 import { HOST_URL} from '../config';
+import { RESTORE_PASSWORD_URI } from '../config';
 import { User } from '../models/User';
 import { Observable } from 'rxjs';
+import { RestorePassword } from '../models/restorePassword';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -50,5 +52,11 @@ export class AccountService {
   }
   confirmEmail(route:string,token:string,email:string){
     return this.http.get<any>(`${HOST_URL}${route}/${token}/${email}`);
+  }
+
+  restorePassword(data: RestorePassword ) {
+    console.log(data);
+    data.clientURI = RESTORE_PASSWORD_URI;
+    return this.http.post<any>(`${HOST_URL}Account/RestorePassword`, data, httpOptions);
   }
 }

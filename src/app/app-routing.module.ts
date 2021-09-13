@@ -6,6 +6,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 
 import { PersonalCabinetComponent } from './components/personal-cabinet/personal-cabinet';
 import { EmailFormComponent } from './components/email-form/email-form.component';
+import { RestorePasswordComponent } from './components/restore-password/restore-password.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'signin', component: LoginFormComponent },
   { path: 'signup', component: RegistrationFormComponent },
   { path: 'personal', component: PersonalCabinetComponent},
-  { path: 'emailVerify', component: EmailFormComponent}
+  { path: 'emailVerify', component: EmailFormComponent},
+  { path: 'forgotPassword', component: RestorePasswordComponent}
 ];
 
 @NgModule({
