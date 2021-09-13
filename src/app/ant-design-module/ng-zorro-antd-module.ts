@@ -13,6 +13,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzMentionModule } from 'ng-zorro-antd/mention';
+import { NzProgressModule } from 'ng-zorro-antd/progress';
 
 @NgModule({
   exports: [
@@ -29,7 +30,8 @@ import { NzMentionModule } from 'ng-zorro-antd/mention';
     NzSelectModule,
     NzAlertModule,
     NzCardModule,
-    NzMentionModule
+    NzMentionModule,
+    NzProgressModule
   ]
 })
 export class DemoNgZorroAntdModule {}

@@ -17,11 +17,12 @@ import * as AllIcons from '@ant-design/icons-angular/icons';
 import { HttpClientModule }   from '@angular/common/http';
 import { authInterceptorProviders } from './helpers/jwt.interceptor';
 
-import { PersonalCabinetComponent } from './components/personal-cabinet/personal-cabinet';
-import { ProfileComponent } from './components/profile/profile';
-import { TransportComponent } from './components/transport/transport';
-import { ViolationListComponent } from './components/violation-list/violation-list';
+import { PersonalCabinetComponent } from './components/personal-cabinet/personal-cabinet.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { TransportComponent } from './components/transport/transport.component';
+import { ViolationListComponent } from './components/violation-list/violation-list.component';
 import { EmailFormComponent } from './components/email-form/email-form.component';
+import { EuroProtocolComponent } from './components/euro-protocol/euro-protocol.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -39,7 +40,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     ProfileComponent,
     TransportComponent,
     ViolationListComponent,
-    EmailFormComponent
+    EmailFormComponent,
+    EuroProtocolComponent
   ],
   imports: [
     BrowserModule,
