@@ -9,7 +9,6 @@ import { NzButtonSize } from 'ng-zorro-antd/button';
   styleUrls: ['./euro-protocol.component.css']
 })
 
-
 export class EuroProtocolComponent implements OnInit {
   dateFormat = 'yyyy/MM/dd';
   size: NzButtonSize = 'large';
