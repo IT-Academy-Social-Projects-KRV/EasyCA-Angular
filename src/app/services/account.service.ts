@@ -5,6 +5,7 @@ import { TokenStorageService } from './token-storage.service';
 import { HOST_URL} from '../config';
 import { User } from '../models/User';
 import { Observable } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -14,7 +15,7 @@ const httpOptions = {
 })
 
 export class AccountService {
-  constructor(private http: HttpClient,  public router: Router, private tokenStorageService: TokenStorageService) { }
+  constructor(private http: HttpClient,  public router: Router, private tokenStorageService: TokenStorageService, private cookieService: CookieService) { }
 
   login(user:User) {
     return this.http.post<any>(`${HOST_URL}Account/Login`, user, httpOptions);
@@ -44,6 +45,7 @@ export class AccountService {
   logout() {
     const removeToken = localStorage.removeItem('access_token');
     localStorage.removeItem('role');
+    this.cookieService.delete('refresh-token');
     if (removeToken == null) {
       this.router.navigate(['/signin']);
     }

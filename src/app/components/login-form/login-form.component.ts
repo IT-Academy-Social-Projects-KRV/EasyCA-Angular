@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/services/account.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from "@angular/forms";
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login-form',
@@ -16,7 +17,7 @@ export class LoginFormComponent implements OnInit {
   errorMessage = '';
 
 
-  constructor(private accountService: AccountService, private router: Router, public fb: FormBuilder) { 
+  constructor(private accountService: AccountService, private router: Router, public fb: FormBuilder,private cookieService: CookieService) { 
     this.signinForm = this.fb.group({
       email: [''],
       password: ['']
@@ -28,7 +29,8 @@ export class LoginFormComponent implements OnInit {
     this.accountService.login(this.signinForm.value)
     .subscribe((data: any) => {
       localStorage.setItem('access_token', data.token);
-      localStorage.setItem('role',data.role);
+      localStorage.setItem('role', data.role);
+      this.cookieService.set('refresh-token', data.refreshToken);
       this.router.navigate(['/home']);
     },
     err => {
