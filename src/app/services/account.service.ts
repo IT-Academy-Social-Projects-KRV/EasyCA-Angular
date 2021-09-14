@@ -43,12 +43,10 @@ export class AccountService {
   }
 
   logout() {
-    const removeToken = localStorage.removeItem('access_token');
+    localStorage.removeItem('access_token');
     localStorage.removeItem('role');
     this.cookieService.delete('refresh-token');
-    if (removeToken == null) {
-      this.router.navigate(['/signin']);
-    }
+    this.router.navigate(['/signin']);
   }
   confirmEmail(route:string,token:string,email:string){
     return this.http.get<any>(`${HOST_URL}${route}/${token}/${email}`);
