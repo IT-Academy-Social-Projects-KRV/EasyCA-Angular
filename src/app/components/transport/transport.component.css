@@ -3,9 +3,7 @@
     margin-right: 8px;
     margin-bottom: 12px;
   }
-
-
-  nz-button-group [nz-button] {
+nz-button-group [nz-button] {
     margin-right: 0;
   }
   [nz-input]{
@@ -29,5 +27,4 @@
   word-break: break-word;
   word-wrap: break-word;
   color: #202124;
-
 }

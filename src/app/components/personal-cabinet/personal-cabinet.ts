@@ -102,6 +102,7 @@ export class PersonalCabinetComponent implements OnInit {
   showModal(): void {
     this.isVisible = true;
   }
+
   handleOk(): void {
     console.log('Button ok clicked!');
     this.isConfirmLoading = true;
@@ -110,8 +111,9 @@ export class PersonalCabinetComponent implements OnInit {
       this.isConfirmLoading = false;
     }, 1000);
   }
+
   handleCancel(): void {
     console.log('Button cancel clicked!');
     this.isVisible = false;
   }
-  }
+}

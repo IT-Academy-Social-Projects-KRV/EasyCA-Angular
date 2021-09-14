@@ -34,24 +34,27 @@ export class TransportComponent implements OnInit {
         serialNumber: ['']
       }),
     });
-  ngOnInit(): void {    
+ngOnInit(): void {    
     this.transportService.refreshList();   
     if(this.transportService.list.length>0){
       this.isTransportListEmpty=false;
      } 
   }
-  onSubmit(transportForm:FormGroup) {
+
+onSubmit(transportForm:FormGroup) {
     this.transportService.formData=this.transportForm.value;
     if(this.isUpdate)
     this.updateCar(transportForm);
     else
     this.addCar(transportForm);
   }
-  resetForm(transportForm:FormGroup)
+
+resetForm(transportForm:FormGroup)
   {
    this.isUpdate=false;
    transportForm.reset();
   }
+
  populateForm(selectedRecord:Transport){
    this.isUpdate=true;
     console.log("work");
@@ -70,6 +73,7 @@ export class TransportComponent implements OnInit {
       }
     });
     }
+
  addCar(transportForm:FormGroup)  {
   this.transportService.postTransport().subscribe(
     res =>{     
@@ -81,6 +85,7 @@ export class TransportComponent implements OnInit {
       console.log(err); 
     });
  }
+
   updateCar(transportForm:FormGroup){
   this.transportService.putTransport().subscribe(
     res =>{     
@@ -109,6 +114,7 @@ export class TransportComponent implements OnInit {
   showModal(): void {
     this.isVisible = true;
   }
+
   handleOk(): void {
     console.log('Button ok clicked!');
     this.isConfirmLoading = true;
@@ -117,6 +123,7 @@ export class TransportComponent implements OnInit {
       this.isConfirmLoading = false;
     }, 1000);
   }
+
   handleCancel(): void {
     console.log('Button cancel clicked!');
     this.isVisible = false;

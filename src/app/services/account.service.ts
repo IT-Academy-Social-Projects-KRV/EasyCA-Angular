@@ -18,7 +18,6 @@ export class AccountService {
   personalData: PersonalData;
   errorMessage = '';
   isPersonalData=true;
-  isEmail='';
   login(user:User) {
     return this.http.post<any>(`${HOST_URL}Account/Login`, user, httpOptions);
   }
@@ -36,7 +35,6 @@ export class AccountService {
      return localStorage.getItem('role');
   }
   putPersonalData(){
-    this.personalData.email=this.isEmail;
     return this.http.put<any>(`${HOST_URL}Account/UpdateData`, this.personalData, httpOptions);
   }
 
@@ -45,7 +43,7 @@ export class AccountService {
     .subscribe(
       res => {
         this.personalData = res as PersonalData,
-        console.log(this.personalData.userData)
+        console.log(this.personalData)
       },
       err => {
           this.errorMessage = err.error.message;
@@ -53,7 +51,6 @@ export class AccountService {
       });
       if(this.personalData.userData==null)
       this.isPersonalData=false;     
-      this.isEmail=this.personalData.email;
   }
 
   logout() {
