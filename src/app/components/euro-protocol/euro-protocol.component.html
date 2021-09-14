@@ -3,8 +3,8 @@
         <h2>Terms of registration</h2>
     </div>
     <div class="euro_content">
-        <div class="text">
-            <p>If the amount of damage exceeds UAH 50,000, call the police.</p>
+        <div>
+            <p class="text">If the amount of damage exceeds UAH 50,000, call the police.</p>
         </div>
         <nz-checkbox-group [(ngModel)]="optionGroup" (ngModelChange)="allChecked()"></nz-checkbox-group>
     </div>
@@ -199,112 +199,58 @@
 
 <div class="euro_protocol_form" *ngIf="this.isActivFourth">
     <div class="euro_header">
-        <h2>Driver's license, technical passport</h2>
+        <h2>The address of the accident</h2>
     </div>
     <div class="euro_content">
         <div>
             <form nz-form>
-                <h4>2nd participant of the accident</h4>
-                <div class="information">
-                    <div class="information_col">  
-                        <h6>Driver license</h6>                      
-                        <nz-form-item>
-                            <nz-form-label [nzSpan]="24">Last name of the driver</nz-form-label>
-                            <nz-form-control  [nzSpan]="24">
-                              <input nz-input placeholder="Please input your last name" name="lastName"/>
-                            </nz-form-control>
-                        </nz-form-item>
-                        <nz-form-item>
-                            <nz-form-label [nzSpan]="24">First name of the driver</nz-form-label>
-                            <nz-form-control  [nzSpan]="24">
-                              <input nz-input placeholder="Please input your last name" name="firstName"/>
-                            </nz-form-control>
-                        </nz-form-item>
-                        <nz-form-item>
-                            <nz-form-label [nzSpan]="24">Date of birth</nz-form-label>
-                            <nz-form-control [nzSpan]="24">
-                                <nz-date-picker [nzFormat]="dateFormat"></nz-date-picker>
-                            </nz-form-control>
-                        </nz-form-item>
-                        <nz-form-item>
-                            <nz-form-label [nzSpan]="24">License serial number</nz-form-label>
-                            <nz-form-control  [nzSpan]="24">
-                              <input nz-input placeholder="Please input serial number" name="license"/>
-                            </nz-form-control>
-                        </nz-form-item>
-                        <nz-form-item>
-                            <nz-form-label [nzSpan]="24">Issued authority</nz-form-label>
-                            <nz-form-control  [nzSpan]="24">
-                              <input nz-input placeholder="Please input your issued authority" name="issuedBy "/>
-                            </nz-form-control>
-                        </nz-form-item>
-                        <nz-form-item>
-                            <nz-form-label [nzSpan]="24">Expiration date</nz-form-label>
-                            <nz-form-control  [nzSpan]="24">
-                                <nz-date-picker [nzFormat]="dateFormat"></nz-date-picker>
-                            </nz-form-control>
-                        </nz-form-item>
-                        <nz-form-item>
-                            <nz-form-label [nzSpan]="24">Opened categories</nz-form-label>
-                            <nz-form-control  [nzSpan]="24">
-                                <nz-checkbox-wrapper>
-                                    <div nz-row>
-                                      <div nz-col nzSpan="8"><label nz-checkbox nzValue="A">A</label></div>
-                                      <div nz-col nzSpan="8"><label nz-checkbox nzValue="B">B</label></div>
-                                      <div nz-col nzSpan="8"><label nz-checkbox nzValue="C">C</label></div>
-                                      <div nz-col nzSpan="8"><label nz-checkbox nzValue="D">D</label></div>
-                                      <div nz-col nzSpan="8"><label nz-checkbox nzValue="E">E</label></div>
-                                    </div>
-                                  </nz-checkbox-wrapper>
-                            </nz-form-control>
-                        </nz-form-item>
-                    </div>
-                    <div class="information_col">      
-                        <h6>Technical passport</h6>                  
-                        <nz-form-item>
-                            <nz-form-label [nzSpan]="24">Made by</nz-form-label>
-                            <nz-form-control  [nzSpan]="24">
-                              <input nz-input placeholder="Input made by" name="madeBy"/>
-                            </nz-form-control>
-                        </nz-form-item>
-                        <nz-form-item>
-                            <nz-form-label [nzSpan]="24">Model</nz-form-label>
-                            <nz-form-control  [nzSpan]="24">
-                              <input nz-input placeholder="Input model" name="model"/>
-                            </nz-form-control>
-                        </nz-form-item>
-                        <nz-form-item>
-                            <nz-form-label [nzSpan]="24">Car categoty</nz-form-label>
-                            <nz-form-control  [nzSpan]="24">
-                              <input nz-input placeholder="Input car categoty" name="carCategory"/>
-                            </nz-form-control>
-                        </nz-form-item>
-                        <nz-form-item>
-                            <nz-form-label [nzSpan]="24">Vin code</nz-form-label>
-                            <nz-form-control  [nzSpan]="24">
-                              <input nz-input placeholder="Input vin code" name="vinCode"/>
-                            </nz-form-control>
-                        </nz-form-item>
-                        <nz-form-item>
-                            <nz-form-label [nzSpan]="24">Car plate</nz-form-label>
-                            <nz-form-control  [nzSpan]="24">
-                              <input nz-input placeholder="Input car plate" name="carPlate"/>
-                            </nz-form-control>
-                        </nz-form-item>
-                        <nz-form-item>
-                            <nz-form-label [nzSpan]="24">Color</nz-form-label>
-                            <nz-form-control  [nzSpan]="24">
-                              <input nz-input placeholder="Input color" name="color"/>
-                            </nz-form-control>
-                        </nz-form-item>
-                        <nz-form-item>
-                            <nz-form-label [nzSpan]="24">Year of production</nz-form-label>
-                            <nz-form-control  [nzSpan]="24">
-                                <nz-date-picker nzMode="year" name="yearOfProduction "></nz-date-picker>
-                            </nz-form-control>
-                        </nz-form-item>
-                    </div>
-                </div>                  
+                <nz-form-item>
+                    <nz-form-control  [nzSpan]="24">
+                        <label nz-checkbox >Accident in the city</label>
+                    </nz-form-control>
+                </nz-form-item>  
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="24">City</nz-form-label>
+                    <nz-form-control  [nzSpan]="10">
+                      <input nz-input placeholder="Please input a city name" name="city"/>
+                    </nz-form-control>
+                </nz-form-item> 
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="24">District</nz-form-label>
+                    <nz-form-control  [nzSpan]="10">
+                      <input nz-input placeholder="Please input a district name" name="district"/>
+                    </nz-form-control>
+                </nz-form-item> 
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="24">Street</nz-form-label>
+                    <nz-form-control  [nzSpan]="10">
+                      <input nz-input placeholder="Please input a street name" name="street"/>
+                    </nz-form-control>
+                </nz-form-item> 
+                <nz-form-item>
+                    <nz-form-control  [nzSpan]="24">
+                        <label nz-checkbox >Accident at the intersection</label>
+                    </nz-form-control>
+                </nz-form-item> 
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="24">Cross Street</nz-form-label>
+                    <nz-form-control  [nzSpan]="10">
+                      <input nz-input placeholder="Please input a cross street" name="crossStreet"/>
+                    </nz-form-control>
+                </nz-form-item>  
+                <h6>If the accident occurred outside the city, enter the coordinates of the accident</h6>
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="24">Latitude</nz-form-label>
+                    <nz-form-control  [nzSpan]="10">
+                      <input nz-input placeholder="Please input a coordinates of latitude" name="coordinatesOfLatitude"/>
+                    </nz-form-control>
+                </nz-form-item> 
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="24">Longitude</nz-form-label>
+                    <nz-form-control  [nzSpan]="10">
+                      <input nz-input placeholder="Please input a coordinates of longitude" name="coordinatesOfLongitude"/>
+                    </nz-form-control>
+                </nz-form-item>                               
             </form>
         </div>
     </div>
@@ -643,17 +589,13 @@
 
 <div class="euro_protocol_form" *ngIf="this.isActiveSixth">
     <div class="euro_header">
-        <h2>Take a photo of the accident from 4 sides</h2>
+        <h2>Evidence</h2>
     </div>
     <div class="euro_content">
         <div>
-            <img src="https://cdn.aarp.net/content/dam/aarp/auto/2021/06/1140-car-crash.jpg" alt="">
-        </div>
-        <br>
-        <h6>
-            There is a video recording from the recorder:
-        </h6>
-        <br>        
+            <h5>Photos, videos, and photo proofs will be added to this page later,
+                as there is no video storage service yet.</h5>
+        </div>       
     </div>
     <div class="euro_progres">
         <nz-progress [nzPercent]="66" [nzShowInfo]="false" nzStatus="active"></nz-progress>
@@ -679,6 +621,9 @@
             <nz-form-item>
                 <nz-form-control  [nzSpan]="8">       
                     <label nz-checkbox>There are no witnesses</label> 
+                </nz-form-control>
+                <nz-form-control  [nzSpan]="8">       
+                    <label nz-checkbox>Is victim</label> 
                 </nz-form-control>
             </nz-form-item>           
             <nz-form-item>
