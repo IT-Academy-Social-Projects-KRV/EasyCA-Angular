@@ -23,6 +23,7 @@ import { TransportComponent } from './components/transport/transport';
 import { ViolationListComponent } from './components/violation-list/violation-list';
 import { EmailFormComponent } from './components/email-form/email-form.component';
 import { RestorePasswordComponent } from './components/restore-password/restore-password.component';
+import { AfterRestorePasswordComponent } from './components/after-restore-password/after-restore-password.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -41,7 +42,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     TransportComponent,
     ViolationListComponent,
     EmailFormComponent,
-    RestorePasswordComponent
+    RestorePasswordComponent,
+    AfterRestorePasswordComponent
   ],
   imports: [
     BrowserModule,

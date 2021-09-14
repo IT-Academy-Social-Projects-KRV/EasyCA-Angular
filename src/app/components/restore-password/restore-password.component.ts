@@ -26,7 +26,7 @@ export class RestorePasswordComponent implements OnInit {
 
   onSubmit() {
     
-    this.accountService.restorePassword(this.restorePassword.value)
+    this.accountService.forgotPassword(this.restorePassword.value)
     .subscribe((data: any) => {
       this.router.navigate(['/home']);
     },

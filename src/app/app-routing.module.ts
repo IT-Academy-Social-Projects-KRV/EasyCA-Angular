@@ -7,6 +7,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { PersonalCabinetComponent } from './components/personal-cabinet/personal-cabinet';
 import { EmailFormComponent } from './components/email-form/email-form.component';
 import { RestorePasswordComponent } from './components/restore-password/restore-password.component';
+import { AfterRestorePasswordComponent } from './components/after-restore-password/after-restore-password.component';
 
 
 const routes: Routes = [
@@ -16,7 +17,9 @@ const routes: Routes = [
   { path: 'signup', component: RegistrationFormComponent },
   { path: 'personal', component: PersonalCabinetComponent},
   { path: 'emailVerify', component: EmailFormComponent},
-  { path: 'forgotPassword', component: RestorePasswordComponent}
+  { path: 'forgotPassword', component: RestorePasswordComponent},
+  { path: 'restorePassword', component: AfterRestorePasswordComponent}
+
 ];
 
 @NgModule({
