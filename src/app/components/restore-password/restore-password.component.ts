@@ -16,14 +16,14 @@ export class RestorePasswordComponent implements OnInit {
   constructor(private accountService: AccountService, public fb: FormBuilder, private router: Router) {
     this.restorePassword = this.fb.group({
       email: [''],
-      password: [''],
+      newPassword: [''],
       confirmPassword: ['']
     })
    }
 
   ngOnInit(): void {
   }
-
+  
   onSubmit() {
     
     this.accountService.forgotPassword(this.restorePassword.value)

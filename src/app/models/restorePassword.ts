@@ -2,8 +2,8 @@
 export class RestorePassword {
     constructor(
         public email: string,
-        public password : string,
+        public newPassword : string,
         public confirmPassword : string,
-        public clientURI:string
+        public passwordURI:string
     ) { }
   } 

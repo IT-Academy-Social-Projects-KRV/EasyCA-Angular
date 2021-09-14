@@ -50,14 +50,14 @@ export class AccountService {
       this.router.navigate(['/signin']);
     }
   }
-  
+
   confirmEmail(route:string,token:string,email:string){
     return this.http.get<any>(`${HOST_URL}${route}/${token}/${email}`);
   }
 
   forgotPassword(data: RestorePassword ) {
     console.log(data);
-    data.clientURI = RESTORE_PASSWORD_URI;
+    data.passwordURI = RESTORE_PASSWORD_URI;
     return this.http.post<any>(`${HOST_URL}Account/ForgotPassword`, data, httpOptions);
   }
 

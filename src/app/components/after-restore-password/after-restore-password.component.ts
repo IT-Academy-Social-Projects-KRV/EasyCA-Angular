@@ -16,7 +16,7 @@ export class AfterRestorePasswordComponent implements OnInit {
   ngOnInit(): void {
    this.restorePassword();
   }
-
+  
   restorePassword=()=>
   {
     const token = this.route.snapshot.queryParams['token'];
