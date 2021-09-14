@@ -1,6 +1,4 @@
-export class Insuarance {
-    constructor(
-        public companyName : string,        
-        public serialNumber : string
-    ) { }
-}
+export interface Insuarance {    
+        companyName: string;        
+        serialNumber: string;
+    }
