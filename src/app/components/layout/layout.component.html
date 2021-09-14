@@ -21,11 +21,14 @@
                *ngIf="this.accountService.isLoggedIn" (click)="logout()">Logout</button>
             </li>
             <li nz-menu-item>
+                <button class="transp"  nz-menu-item    
+                *ngIf="this.accountService.isLoggedIn"  routerLink="/euroProtocol">Euro protocol</button>
+             </li> 
+            <li nz-menu-item>
             <button class="transp"  nz-menu-item  nz-dropdown [nzDropdownMenu]="menu"  
             *ngIf="this.accountService.isLoggedIn" routerLink="/personal">Personal cabinet</button>
             <nz-dropdown-menu #menu="nzDropdownMenu">
-              <ul nz-menu>
-    
+              <ul nz-menu>    
                 <li nz-menu-item routerLink="/personal">Personal data</li>
                 <li nz-menu-item routerLink="/profile">Edit profile</li>
                 <li nz-menu-item  routerLink="/transportList" >My transport</li>

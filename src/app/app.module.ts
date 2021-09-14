@@ -24,6 +24,7 @@ import { EmailFormComponent } from './components/email-form/email-form.component
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ToastrModule } from 'ngx-toastr';
+import { EuroProtocolComponent } from './components/euro-protocol/euro-protocol.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -41,7 +42,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     ProfileComponent,
     TransportComponent,
     ViolationListComponent,
-    EmailFormComponent
+    EmailFormComponent,
+    EuroProtocolComponent
   ],
   imports: [
     BrowserModule,
