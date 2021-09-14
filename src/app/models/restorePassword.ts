@@ -4,6 +4,6 @@ export class RestorePassword {
         public email: string,
         public newPassword : string,
         public confirmPassword : string,
-        public passwordURI:string
+        public passwordURI: string
     ) { }
   } 

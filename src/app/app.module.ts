@@ -24,6 +24,8 @@ import { ViolationListComponent } from './components/violation-list/violation-li
 import { EmailFormComponent } from './components/email-form/email-form.component';
 import { RestorePasswordComponent } from './components/restore-password/restore-password.component';
 import { AfterRestorePasswordComponent } from './components/after-restore-password/after-restore-password.component';
+import { ToastrModule } from 'ngx-toastr';
+
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -52,7 +54,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     DemoNgZorroAntdModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
