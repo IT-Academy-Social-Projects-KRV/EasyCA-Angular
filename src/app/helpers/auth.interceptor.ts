@@ -12,7 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class AuthInterceptor implements HttpInterceptor {
     refreshToken: RefreshToken = { refreshToken: '' };
     private isTokenRefreshing: boolean = false;
-    constructor(private tokenStorageService: TokenStorageService,private accountService:AccountService,private cookieService:CookieService) {}
+    constructor(private tokenStorageService: TokenStorageService,private accountService:AccountService, private cookieService:CookieService) {}
    
     intercept(request:HttpRequest<any>, next:HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(this.attachTokenToRequest(request)).pipe(
@@ -47,15 +47,15 @@ export class AuthInterceptor implements HttpInterceptor {
         
             return this.tokenStorageService.checkRefreshToken()
             .pipe(
-             switchMap((tokenResponse: any) => {
-                    if(tokenResponse)
-                    {
-                        localStorage.setItem('access_token', tokenResponse.token);
-                        this.cookieService.set('refresh-token',tokenResponse.refreshToken);
-                        return next.handle(this.attachTokenToRequest(request));
-                    }
-                    return <any>this.accountService.logout();
-                }));
+            switchMap((tokenResponse: any) => {
+                if(tokenResponse)
+                {
+                    localStorage.setItem('access_token', tokenResponse.token);
+                    this.cookieService.set('refresh-token',tokenResponse.refreshToken);
+                    return next.handle(this.attachTokenToRequest(request));
+                }
+                return <any>this.accountService.logout();
+            }));
         }
         else{
             this.isTokenRefreshing=false;
@@ -71,7 +71,7 @@ export class AuthInterceptor implements HttpInterceptor {
                   setHeaders: {
                     Authorization: `Bearer ${token}`,
                   }
-              });
+                });
              
             }
             return request;
@@ -84,6 +84,7 @@ export class AuthInterceptor implements HttpInterceptor {
         return throwError(errorMsg);
     }
 }
+
 export const authInterceptorProviders = [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
 ];
