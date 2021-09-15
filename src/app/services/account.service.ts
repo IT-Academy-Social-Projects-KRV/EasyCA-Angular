@@ -6,6 +6,8 @@ import { HOST_URL} from '../config';
 import { User } from '../models/User';
 import { Observable } from 'rxjs';
 import { PersonalData } from '../models/personalData';
+import { CookieService } from 'ngx-cookie-service';
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -14,7 +16,7 @@ const httpOptions = {
 })
 
 export class AccountService {
-  constructor(private http: HttpClient,  public router: Router, private tokenStorageService: TokenStorageService) { }
+  constructor(private http: HttpClient,  public router: Router, private tokenStorageService: TokenStorageService, private cookieService: CookieService) { }
   personalData: PersonalData;
   errorMessage = '';
   isPersonalData=true;
@@ -54,11 +56,10 @@ export class AccountService {
   }
 
   logout() {
-    const removeToken = localStorage.removeItem('access_token');
+    localStorage.removeItem('access_token');
     localStorage.removeItem('role');
-    if (removeToken == null) {
-      this.router.navigate(['/signin']);
-    }
+    this.cookieService.delete('refresh-token');
+    this.router.navigate(['/signin']);
   }
   
   confirmEmail(route:string,token:string,email:string){
