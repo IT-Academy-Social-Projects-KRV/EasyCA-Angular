@@ -4,13 +4,39 @@
             <a routerLink="/home"><img class="logoimg" src="https://img2.pngio.com/white-car-icon-png-picture-1847622-white-car-icon-png-white-car-icon-png-256_256.png" alt="Easy-CA" /></a>
         </div>
         <ul nz-menu nzTheme="dark" nzMode="horizontal" class="mychange">
-            <li nz-menu-item><a routerLink="/home">Home</a></li>
-            <li nz-menu-item> <a *ngIf="!this.accountService.isLoggedIn" routerLink="/signin">Sign In</a></li>
-            <li nz-menu-item> <a *ngIf="!this.accountService.isLoggedIn" routerLink="/signup">Sign Up</a></li>
-            <li nz-menu-item> <a *ngIf="this.accountService.isLoggedIn" (click)="logout()">Logout</a></li>
-            <li nz-menu-item> <a *ngIf="this.accountService.isLoggedIn" routerLink="/personal">Personal cabinet</a></li>
-            <li nz-menu-item> <a *ngIf="this.accountService.userRole ==='admin'">Admin Panel</a></li>
-
+            <li nz-menu-item>
+                <button class="transp"  nz-menu-item    
+                routerLink="/home">Home</button>
+             </li>
+            <li nz-menu-item>
+                <button class="transp"  nz-menu-item    
+                *ngIf="!this.accountService.isLoggedIn" routerLink="/signin">LogIn</button>
+             </li>
+            <li nz-menu-item>
+                <button class="transp"  nz-menu-item    
+                *ngIf="!this.accountService.isLoggedIn"  routerLink="/signup">Sign Up</button>
+             </li>            
+            <li nz-menu-item> 
+                <button class="transp"  nz-menu-item  
+               *ngIf="this.accountService.isLoggedIn" (click)="logout()">Logout</button>
+            </li>
+            <li nz-menu-item>
+            <button class="transp"  nz-menu-item  nz-dropdown [nzDropdownMenu]="menu"  
+            *ngIf="this.accountService.isLoggedIn" routerLink="/personal">Personal cabinet</button>
+            <nz-dropdown-menu #menu="nzDropdownMenu">
+              <ul nz-menu>
+    
+                <li nz-menu-item routerLink="/personal">Personal data</li>
+                <li nz-menu-item routerLink="/profile">Edit profile</li>
+                <li nz-menu-item  routerLink="/transportList" >My transport</li>
+                <li nz-menu-item routerLink="/violationList">My violation list</li>
+            </ul>
+            </nz-dropdown-menu>
+            </li>
+            <li nz-menu-item>
+                <button class="transp"  nz-menu-item  
+                *ngIf="this.accountService.userRole ==='admin'">Logout</button>
+            </li>
         </ul>
     </nz-header>
     <nz-content>

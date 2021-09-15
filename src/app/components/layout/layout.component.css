@@ -44,3 +44,14 @@ nz-footer {
 .ant-menu {
     float: right;
 }
+[nz-button] {
+    margin-right: 8px;
+    margin-bottom: 8px;
+  }
+  .transp {     
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;        
+}

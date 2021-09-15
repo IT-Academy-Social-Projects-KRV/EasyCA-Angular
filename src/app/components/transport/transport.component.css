@@ -1,52 +1,30 @@
-#center-personal {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    justify-content: center;
-}
 
-.input{       
-    padding: 10px 0px;
+[nz-button] {
+    margin-right: 8px;
+    margin-bottom: 12px;
+  }
+nz-button-group [nz-button] {
+    margin-right: 0;
+  }
+  [nz-input]{
+    font-size: 20px;
+    height:50px
 }
-
-.item_personal_button {    
-    padding: 6px;
-    width: 150px;
-    height: 40px;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    justify-content: center;
+.propertyName{
+  letter-spacing: .07272727em;
+  font-family: Roboto,Arial,sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+  word-break: break-word;
+  word-wrap: break-word;
+  color: #5f6368; 
 }
-
-.transport-label {
-    text-align: center;
-    color: rgb(59, 59, 59);
-}
-
-.item_add_form_button {
-    display: flex;
-    justify-content: center;
-}
-
-[nz-form]{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: center;
-}
-
-[nz-alert] {
-    margin-bottom: 16px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;    
-}
-
-.notification{
-    margin: 15px auto;
-    text-align: center;
-    width: 300px;
-    height: 50px;
+.mainName{
+  letter-spacing: .00625em;
+  font-family: Roboto,Arial,sans-serif;
+  font-size: 18px;
+  hyphens: auto;
+  word-break: break-word;
+  word-wrap: break-word;
+  color: #202124;
 }

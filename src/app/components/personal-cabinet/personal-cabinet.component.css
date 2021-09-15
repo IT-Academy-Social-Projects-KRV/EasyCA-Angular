@@ -1,61 +1,79 @@
-#center-personal {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    justify-content: center;
-}
-.item_personal_button {    
-    padding: 15px;
-    width: 150px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    justify-content: center;
-}
-[nz-input]{     
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-::ng-deep .ant-layout-sider-children 
-{ 
-    display: flex;
-    flex-flow: column wrap;
-}
-[nz-button] {
-    margin-top: 20px;
-    margin-left: 5%;
-    margin-right: 5%;
-    height: 30px;
-}
-.ant-layout-content{
-    height: auto;
-}
-
-.persData{
-    padding: 3%;
-}
-
-.persData h1{
-    font-size: 20px;
-    font-weight:400;
-}
-
-.persData span{
-    font-weight: bold;
-    margin-right: 3%;
-}
-
-.circle{
-    border-radius: 50%;
-    background-color: lightblue;
-    height: 200px;
-    width: 200px;
-    text-align: center;
-    padding: 70px;
-}
-
 .names{
     font-size: 40px;
+}
+.nz-avatar {
+    margin-top: 16px;
+    margin-right: 16px;
+}
+.basicInfo {
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+
+}
+.nzDiv{
+    display: block;
+    flex: none;
+    max-width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    position: relative;
+}
+.inner{
+    padding: 24px 24px 8px 24px;
+}
+[nz-button] {
+    margin-right: 8px;
+    margin-bottom: 12px;
+  }
+  nz-button-group [nz-button] {
+    margin-right: 0;
+  }
+.modal{     display: block;
+    flex: none;
+    max-width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    position: relative;}
+.propertyName{
+    letter-spacing: .07272727em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1rem;
+    text-transform: uppercase;
+    width: 30%;
+    word-break: break-word;
+    word-wrap: break-word;
+    color: #5f6368; 
+}
+.mainName{
+    letter-spacing: .00625em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5rem;
+    hyphens: auto;
+    word-break: break-word;
+    word-wrap: break-word;
+    color: #202124;
+    margin: 0;
+    padding: 0;
+    width: 40%;
+}
+.alignRight{
+    text-align: right;
+}
+.alignCenter{
+  text-align:center;
+}
+[nz-input]{
+    font-size: 20px;
+    height:50px
+}
+[nz-date-picker]{
+    font-size: 20px;
+    height:50px
+}
+[nz-input-number]{
+    font-size: 20px;
+    height:50px
 }

@@ -13,6 +13,12 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzMentionModule } from 'ng-zorro-antd/mention';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+
 
 @NgModule({
   exports: [
@@ -29,7 +35,12 @@ import { NzMentionModule } from 'ng-zorro-antd/mention';
     NzSelectModule,
     NzAlertModule,
     NzCardModule,
-    NzMentionModule
+    NzDropDownModule,
+    NzMentionModule,
+    NzModalModule, 
+    NzDividerModule,
+    NzTableModule,
+    NzAvatarModule
   ]
 })
 export class DemoNgZorroAntdModule {}
