@@ -3,8 +3,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { TokenStorageService } from './token-storage.service';
 import { HOST_URL} from '../config';
+import { RESTORE_PASSWORD_URI } from '../config';
 import { User } from '../models/User';
 import { Observable } from 'rxjs';
+import { RestorePassword } from '../models/restorePassword';
 import { PersonalData } from '../models/personalData';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -61,8 +63,18 @@ export class AccountService {
     this.cookieService.delete('refresh-token');
     this.router.navigate(['/signin']);
   }
-  
+
   confirmEmail(route:string,token:string,email:string){
     return this.http.get<any>(`${HOST_URL}${route}/${token}/${email}`);
   }
+
+  forgotPassword(data: RestorePassword ) {
+    console.log(data);
+    data.passwordURI = RESTORE_PASSWORD_URI;
+    return this.http.post<any>(`${HOST_URL}Account/ForgotPassword`, data, httpOptions);
+  }
+
+  restorePassword(route:string,token:string,email:string,password:string) {
+    return this.http.get<any>(`${HOST_URL}${route}/${password}/${token}/${email}`);
+  } 
 }

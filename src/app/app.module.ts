@@ -21,6 +21,8 @@ import { ProfileComponent } from './components/profile/profile';
 import { TransportComponent } from './components/transport/transport';
 import { ViolationListComponent } from './components/violation-list/violation-list';
 import { EmailFormComponent } from './components/email-form/email-form.component';
+import { RestorePasswordComponent } from './components/restore-password/restore-password.component';
+import { AfterRestorePasswordComponent } from './components/after-restore-password/after-restore-password.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ToastrModule } from 'ngx-toastr';
@@ -42,7 +44,9 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     ProfileComponent,
     TransportComponent,
     ViolationListComponent,
-    EmailFormComponent
+    EmailFormComponent,
+    RestorePasswordComponent,
+    AfterRestorePasswordComponent
   ],
   imports: [
     BrowserModule,
