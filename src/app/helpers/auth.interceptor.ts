@@ -18,42 +18,38 @@ export class AuthInterceptor implements HttpInterceptor {
         return next.handle(this.attachTokenToRequest(request)).pipe(
            catchError((err): Observable<any> => {
                     const errorResponse= (<HttpErrorResponse>err);
-                    if(errorResponse.status == 401)
-                    {
+                    if(errorResponse.status == 401){
                         return this.handleHttpResponseError(request,next);
                     }
-                    if(errorResponse.status == 400)
-                    {
-                        if(errorResponse.error.message == UserRefreshTokenNotFound || errorResponse.error.message == UserRefreshTokenNotActive)
-                        {
+                    if(errorResponse.status == 400){
+                        if(errorResponse.error.message == UserRefreshTokenNotFound || errorResponse.error.message == UserRefreshTokenNotActive){
                             return <any>this.accountService.logout();
                         }
-                        else
-                        {
+                        else{
                             return throwError(this.handleError(err));
                         }
                     }  
-                    else return throwError(this.handleError(err));
+                    else {
+                        return throwError(this.handleError(err));
+                    }
                }
            ) 
         )
     }
     
     private handleHttpResponseError(request:HttpRequest<any>, next:HttpHandler){
-
-        if(!this.isTokenRefreshing)
-        {
+        if(!this.isTokenRefreshing){
             this.isTokenRefreshing = true;
         
-            return this.tokenStorageService.checkRefreshToken()
-            .pipe(
+            return this.tokenStorageService.checkRefreshToken().pipe(
             switchMap((tokenResponse: any) => {
-                if(tokenResponse)
-                {
+                if(tokenResponse) {
                     localStorage.setItem('access_token', tokenResponse.token);
                     this.cookieService.set('refresh-token',tokenResponse.refreshToken);
+
                     return next.handle(this.attachTokenToRequest(request));
                 }
+
                 return <any>this.accountService.logout();
             }));
         }
@@ -72,15 +68,15 @@ export class AuthInterceptor implements HttpInterceptor {
                     Authorization: `Bearer ${token}`,
                   }
                 });
-             
             }
+
             return request;
     }
 
     private handleError(errorResponse: HttpErrorResponse) {
-        console.log("errorResponse",errorResponse);
         let errorMsg: string;
         errorMsg = `Backend returned code ${errorResponse.error.statusCode}, body was: ${errorResponse.error.message}`;
+        
         return throwError(errorMsg);
     }
 }
