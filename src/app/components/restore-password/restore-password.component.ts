@@ -15,8 +15,7 @@ export class RestorePasswordComponent implements OnInit {
   errorMessage = '';
   isRestorePasswordFailed = false;
 
-  constructor(private accountService: AccountService, public fb: FormBuilder, private router: Router, private toastr:ToastrService
-    ) {
+  constructor(private accountService: AccountService, public fb: FormBuilder, private router: Router, private toastr:ToastrService) {
     this.restorePassword = this.fb.group({
       email: [''],
       newPassword: [''],
@@ -38,5 +37,4 @@ export class RestorePasswordComponent implements OnInit {
       this.isRestorePasswordFailed = true;
     });
   }
-
 }

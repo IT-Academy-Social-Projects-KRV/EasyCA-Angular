@@ -64,5 +64,4 @@ export class AccountService {
   restorePassword(route:string,token:string,email:string,password:string) {
     return this.http.get<any>(`${HOST_URL}${route}/${password}/${token}/${email}`);
   } 
-
 }

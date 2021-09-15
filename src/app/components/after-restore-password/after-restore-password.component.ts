@@ -22,7 +22,6 @@ export class AfterRestorePasswordComponent implements OnInit {
     const token = this.route.snapshot.queryParams['token'];
     const email = this.route.snapshot.queryParams['email'];
     const password = this.route.snapshot.queryParams['password'];
-
      
     this.accountService.restorePassword('Account/RestorePassword',token,email,password) 
     .subscribe(() => {
