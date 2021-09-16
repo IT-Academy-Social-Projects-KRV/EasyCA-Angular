@@ -15,16 +15,19 @@ import { NZ_ICONS } from 'ng-zorro-antd/icon';
 import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 import { HttpClientModule }   from '@angular/common/http';
-import { authInterceptorProviders } from './helpers/jwt.interceptor';
+import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { PersonalCabinetComponent } from './components/personal-cabinet/personal-cabinet';
 import { ProfileComponent } from './components/profile/profile';
 import { TransportComponent } from './components/transport/transport';
 import { ViolationListComponent } from './components/violation-list/violation-list';
 import { EmailFormComponent } from './components/email-form/email-form.component';
+import { RestorePasswordComponent } from './components/restore-password/restore-password.component';
+import { AfterRestorePasswordComponent } from './components/after-restore-password/after-restore-password.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ToastrModule } from 'ngx-toastr';
 import { EuroProtocolComponent } from './components/euro-protocol/euro-protocol.component';
+import { CookieService } from 'ngx-cookie-service';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -44,6 +47,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     ViolationListComponent,
     EmailFormComponent,
     EuroProtocolComponent
+    RestorePasswordComponent,
+    AfterRestorePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +65,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
   providers: [
     { provide: NZ_I18N, useValue: en_US },
     { provide: NZ_ICONS, useValue: icons },
-    authInterceptorProviders ],
+    authInterceptorProviders,
+    CookieService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
