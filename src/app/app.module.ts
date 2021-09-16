@@ -26,6 +26,7 @@ import { AfterRestorePasswordComponent } from './components/after-restore-passwo
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ToastrModule } from 'ngx-toastr';
+import { EuroProtocolComponent } from './components/euro-protocol/euro-protocol.component';
 import { CookieService } from 'ngx-cookie-service';
 
 const antDesignIcons = AllIcons as {
@@ -45,6 +46,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     TransportComponent,
     ViolationListComponent,
     EmailFormComponent,
+    EuroProtocolComponent
     RestorePasswordComponent,
     AfterRestorePasswordComponent
   ],

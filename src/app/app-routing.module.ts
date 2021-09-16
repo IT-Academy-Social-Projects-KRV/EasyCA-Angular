@@ -10,6 +10,7 @@ import { PersonalCabinetComponent } from './components/personal-cabinet/personal
 import { TransportComponent } from './components/transport/transport';
 import { ViolationListComponent } from './components/violation-list/violation-list';
 import { ProfileComponent } from './components/profile/profile';
+import { EuroProtocolComponent } from './components/euro-protocol/euro-protocol.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'restorePassword', component: AfterRestorePasswordComponent},
   { path: 'transportList', component: TransportComponent},
   { path: 'violationList', component: ViolationListComponent},
-  { path: 'profile', component: ProfileComponent}  
+  { path: 'profile', component: ProfileComponent},
+  { path: 'euroProtocol', component: EuroProtocolComponent}  
 ];
 
 @NgModule({
