@@ -46,7 +46,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     TransportComponent,
     ViolationListComponent,
     EmailFormComponent,
-    EuroProtocolComponent
+    EuroProtocolComponent,
     RestorePasswordComponent,
     AfterRestorePasswordComponent
   ],
