@@ -1,4 +1,4 @@
-import { Insuarance } from "./insuarance";
+import { Insuarance } from "./Insuarance";
 export interface Transport{
     id: string;
     producedBy: string;
