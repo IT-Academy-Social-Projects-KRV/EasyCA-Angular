@@ -129,7 +129,6 @@ export class TransportComponent implements OnInit {
   }
 
   handleOk(): void {
-    console.log('Button ok clicked!');
     this.isConfirmLoading = true;
     setTimeout(() => {
       this.isVisible = false;
@@ -138,7 +137,6 @@ export class TransportComponent implements OnInit {
   }
 
   handleCancel(): void {
-    console.log('Button cancel clicked!');
     this.isVisible = false;
   }
 }
