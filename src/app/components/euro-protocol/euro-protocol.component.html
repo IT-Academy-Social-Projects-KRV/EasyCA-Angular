@@ -23,6 +23,8 @@
     <div class="euro_header">
         <h2>Checking the availability of policies</h2>
     </div>
+    <div class="euro_header">
+    </div>
     <div class="euro_content">
         <div>
             <form nz-form>
@@ -284,9 +286,6 @@
                         <div>
                             <p>1st participant</p>
                         </div>
-                        <div>
-                            <p>2nd participant</p>
-                        </div>
                     </div>
                     <nz-form-item>
                         <div class="circumstance">
@@ -295,9 +294,6 @@
                             </div>
                             <div>
                                 <p>During the staying on the parking lot/halting point</p>
-                            </div>
-                            <div>
-                                <label nz-checkbox></label> 
                             </div>
                         </div>
                     </nz-form-item>
@@ -312,9 +308,6 @@
                                 <p>While departing from parking lot/while 
                                     door opening</p>
                             </div>
-                            <div>
-                                <label nz-checkbox></label> 
-                            </div>
                         </div>
                     </nz-form-item>
                 </div>
@@ -326,9 +319,6 @@
                             </div>
                             <div>
                                 <p>While turning into the parking lot</p>
-                            </div>
-                            <div>
-                                <label nz-checkbox></label> 
                             </div>
                         </div>
                     </nz-form-item>
@@ -344,9 +334,6 @@
                                     located on private plots, or from 
                                     byroads/railway</p>
                             </div>
-                            <div>
-                                <label nz-checkbox></label> 
-                            </div>
                         </div>
                     </nz-form-item>
                 </div>
@@ -360,9 +347,6 @@
                                 <p>While turning into parking lot, located 
                                     on private plots, or into byroad/railway</p>
                             </div>
-                            <div>
-                                <label nz-checkbox></label> 
-                            </div>
                         </div>
                     </nz-form-item>
                 </div>
@@ -374,9 +358,6 @@
                             </div>
                             <div>
                                 <p>While turning into roundabout</p>
-                            </div>
-                            <div>
-                                <label nz-checkbox></label> 
                             </div>
                         </div>
                     </nz-form-item>
@@ -390,9 +371,6 @@
                             <div>
                                 <p>While driving by roundabout</p>
                             </div>
-                            <div>
-                                <label nz-checkbox></label> 
-                            </div>
                         </div>
                     </nz-form-item>
                 </div>
@@ -403,13 +381,9 @@
                                 <label nz-checkbox></label> 
                             </div>
                             <div>
-                                <p>Collision with rear-part of another 
+                                <p style="text-align: right;">Collision with rear-part of another 
                                     vehicle while driving in the same 
-                                    direction by the same lane (rear-end 
-                                    collision)</p>
-                            </div>
-                            <div>
-                                <label nz-checkbox></label> 
+                                    direction by the same lane (rear-end collision)</p>
                             </div>
                         </div>
                     </nz-form-item>
@@ -424,9 +398,6 @@
                                 <p>Collision while driving the same 
                                     direction but another lane</p>
                             </div>
-                            <div>
-                                <label nz-checkbox></label> 
-                            </div>
                         </div>
                     </nz-form-item>
                 </div>
@@ -438,9 +409,6 @@
                             </div>
                             <div>
                                 <p>While changing the lane</p>
-                            </div>
-                            <div>
-                                <label nz-checkbox></label> 
                             </div>
                         </div>
                     </nz-form-item>
@@ -454,9 +422,6 @@
                             <div>
                                 <p>While overtaking</p>
                             </div>
-                            <div>
-                                <label nz-checkbox></label> 
-                            </div>
                         </div>
                     </nz-form-item>
                 </div>
@@ -468,9 +433,6 @@
                             </div>
                             <div>
                                 <p>While turning right</p>
-                            </div>
-                            <div>
-                                <label nz-checkbox></label> 
                             </div>
                         </div>
                     </nz-form-item>
@@ -484,9 +446,6 @@
                             <div>
                                 <p>While turning left</p>
                             </div>
-                            <div>
-                                <label nz-checkbox></label> 
-                            </div>
                         </div>
                     </nz-form-item>
                 </div>
@@ -498,9 +457,6 @@
                             </div>
                             <div>
                                 <p>While driving in opposite direction</p>
-                            </div>
-                            <div>
-                                <label nz-checkbox></label> 
                             </div>
                         </div>
                     </nz-form-item>
@@ -515,9 +471,6 @@
                                 <p>While turning into the lane, designated 
                                     for traffic moving in opposite directions</p>
                             </div>
-                            <div>
-                                <label nz-checkbox></label> 
-                            </div>
                         </div>
                     </nz-form-item>
                 </div>
@@ -530,9 +483,6 @@
                             <div>
                                 <p>While driving from the right side of 
                                     weaving section</p>
-                            </div>
-                            <div>
-                                <label nz-checkbox></label> 
                             </div>
                         </div>
                     </nz-form-item>
@@ -547,9 +497,6 @@
                                 <p>As result of ignoring priority traffic sign 
                                     or stop-light</p>
                             </div>
-                            <div>
-                                <label nz-checkbox></label> 
-                            </div>
                         </div>
                     </nz-form-item>
                 </div>
@@ -562,9 +509,6 @@
                             <div>
                                 <p>Please, write number of selected 
                                     sections</p>
-                            </div>
-                            <div>
-                                <label nz-checkbox></label> 
                             </div>
                         </div>
                     </nz-form-item>
@@ -621,9 +565,6 @@
             <nz-form-item>
                 <nz-form-control  [nzSpan]="8">       
                     <label nz-checkbox>There are no witnesses</label> 
-                </nz-form-control>
-                <nz-form-control  [nzSpan]="8">       
-                    <label nz-checkbox>Is victim</label> 
                 </nz-form-control>
             </nz-form-item>           
             <nz-form-item>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
-import { PersonalData } from 'src/app/models/personalData';
-import { FormBuilder, FormGroup, FormArray, FormControl}from "@angular/forms";
+import { Data } from 'src/app/models/data';
+import { FormBuilder, FormGroup}from "@angular/forms";
 import { NzButtonSize } from 'ng-zorro-antd/button';
 import { ToastrService } from 'ngx-toastr';
 
@@ -14,18 +14,36 @@ import { ToastrService } from 'ngx-toastr';
 
 export class PersonalCabinetComponent implements OnInit {
   constructor(private router: Router, public accountService: AccountService,
-    private toastr:ToastrService, public fb: FormBuilder ) { }
+    private toastr:ToastrService, public fb: FormBuilder) { }
     size: NzButtonSize = 'large';
     isVisible = false;
     isConfirmLoading = false;
+    errorMessage = '';
     isPersonalData=true;
-  
-  public personalDataForm = this.fb.group({
+    changedCategoriesList=[''];
+    categoriesSeed=[
+      {value:"A1",checked: false},
+      {value:"A",checked: false}, 
+      {value:"B1",checked: false},
+      {value:"B",checked: false},
+      {value:"C1",checked: false},
+      {value:"C",checked: false},
+      {value:"D1",checked: false},
+      {value:"D",checked: false},
+      {value:"T",checked: false},
+      {value:"BE",checked: false},
+      {value:"C1E",checked: false},
+      {value:"CE",checked: false},
+      {value:"D1E",checked: false},
+      {value:"DE",checked: false}
+    ];
+
+  public DataForm = this.fb.group({
     email: [''],
     firstName: [''],
     lastName: [''],
-    userData: this.fb.group({
-      userAddress: this.fb.group({
+    personalData: this.fb.group({
+      address: this.fb.group({
         country: [''],
         region: [''],
         city: [''],
@@ -41,63 +59,82 @@ export class PersonalCabinetComponent implements OnInit {
       jobPosition: [''],
       userDriverLicense:  this.fb.group({
         licenseSerialNumber: [''],
+        issuedBy:[''],
         expirationDate: Date,
-        userCategories: [],
       }),
       userCars: [],
     })
    });
-    
+
   log(value: string[]): void {
+      this.changedCategoriesList=value;
       console.log(value);
+      console.log(this.changedCategoriesList);
     }
   
   ngOnInit(): void { 
-    this.accountService.getPersonalData();
-    if(this.accountService.personalData.userData==null)
-   this.isPersonalData=false;
+    this.accountService.getPersonalData() .subscribe(
+      res => {
+        this.accountService.Data = res as Data,
+        console.log(this.accountService.Data)
+      },
+      err => {
+          this.isPersonalData=false;
+          this.errorMessage = err.error.message;
+          console.log(this.errorMessage);
+      });;
   }   
 
-   onSubmit(personalDataForm:FormGroup) {
-    this.accountService.personalData=this.personalDataForm.value;
+   onSubmit(DataForm:FormGroup) {
+    this.accountService.Data=this.DataForm.value;
+    this.accountService.Data.personalData.userDriverLicense.userCategories=this.changedCategoriesList;
     this.accountService.putPersonalData().subscribe(
       res=> this.toastr.info("Data update","congratulation"),
-      err=>  console.log(err)
+      err=>  console.log(this.accountService.Data)
     );
+    console.log(this.accountService.Data);
   }
-
-  populateForm(selectedRecord:PersonalData){
+  
+  
+  populateForm(selectedRecord:Data){
      console.log("work");
-       this.personalDataForm.setValue(
+
+     this.categoriesSeed.forEach(x => {
+      x.checked = selectedRecord.personalData.userDriverLicense.userCategories.some(y => y === x.value);
+     });
+
+       this.DataForm.setValue(
       {
           email: selectedRecord.email,
           firstName: selectedRecord.firstName,
           lastName: selectedRecord.lastName,
-          userData: {
-            userAddress: {
-              country: selectedRecord.userData.userAddress.country,
-              region: selectedRecord.userData.userAddress.region,
-              city: selectedRecord.userData.userAddress.city,
-              district: selectedRecord.userData.userAddress.district,
-              street: selectedRecord.userData.userAddress.street, 
-              building: selectedRecord.userData.userAddress.building, 
-              appartament: selectedRecord.userData.userAddress.appartament, 
-              postalCode: selectedRecord.userData.userAddress.postalCode
+          personalData: {
+            address: {
+              country: selectedRecord.personalData.address.country,
+              region: selectedRecord.personalData.address.region,
+              city: selectedRecord.personalData.address.city,
+              district: selectedRecord.personalData.address.district,
+              street: selectedRecord.personalData.address.street, 
+              building: selectedRecord.personalData.address.building, 
+              appartament: selectedRecord.personalData.address.appartament, 
+              postalCode: selectedRecord.personalData.address.postalCode
             },
-            ipn: selectedRecord.userData.ipn,
-            serviceNumber:  selectedRecord.userData.serviceNumber,
-            birthDay:  selectedRecord.userData.birthDay,
-            jobPosition:  selectedRecord.userData.jobPosition,
+            ipn: selectedRecord.personalData.ipn,
+            serviceNumber:  selectedRecord.personalData.serviceNumber,
+            birthDay:  selectedRecord.personalData.birthDay,
+            jobPosition:  selectedRecord.personalData.jobPosition,
             userDriverLicense: {
-              licenseSerialNumber:  selectedRecord.userData.userDriverLicense.licenseSerialNumber,
-              expirationDate: selectedRecord.userData.userDriverLicense.expirationDate,
-              userCategories: selectedRecord.userData.userDriverLicense.userCategories,
+              licenseSerialNumber:  selectedRecord.personalData.userDriverLicense.licenseSerialNumber,
+              issuedBy: selectedRecord.personalData.userDriverLicense.issuedBy,
+              expirationDate: selectedRecord.personalData.userDriverLicense.expirationDate   
             },
-            userCars: selectedRecord.userData.userCars
+            userCars: selectedRecord.personalData.userCars
           }
-      }    
-     );
+      }
+ 
+    );
   }
+
 
   showModal(): void {
     this.isVisible = true;
