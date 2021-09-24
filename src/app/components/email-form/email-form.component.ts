@@ -21,7 +21,7 @@ export class EmailFormComponent implements OnInit {
     const token = this.route.snapshot.queryParams['token'];
     const email = this.route.snapshot.queryParams['email'];
      
-    this.accountService.confirmEmail('Account/ConfirmEmail',token,email) 
+    this.accountService.confirmEmail('Auth/ConfirmEmail',token,email) 
     .subscribe(() => {
       this.router.navigate(['/emaiVerify']);
     },

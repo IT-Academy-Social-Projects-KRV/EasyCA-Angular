@@ -2,6 +2,8 @@ import { flatten } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzButtonSize } from 'ng-zorro-antd/button';
+import { AccountService } from 'src/app/services/account.service';
+import { FormBuilder, FormGroup, FormArray, FormControl}from "@angular/forms";
 
 @Component({
   selector: 'app-euro-protocol',
@@ -10,9 +12,27 @@ import { NzButtonSize } from 'ng-zorro-antd/button';
 })
 
 export class EuroProtocolComponent implements OnInit {
+  constructor(private router: Router , public accountService:AccountService, public fb: FormBuilder ) { }
   dateFormat = 'yyyy/MM/dd';
   size: NzButtonSize = 'large';
   disabled = true;
+  public personalDataForm = this.fb.group({
+    email: [''],
+    firstName: [''],
+    lastName: [''],
+    userData: this.fb.group({
+      ipn: [''],
+      serviceNumber: [''],
+      birthDay: Date,
+      jobPosition: [''],
+      userDriverLicense:  this.fb.group({
+        licenseSerialNumber: [''],
+        expirationDate: Date,
+        userCategories: [],
+      }),
+      userCars: [],
+    })
+   });
   optionGroup = [
     { label: 'No one was injured or killed', checked: false },
     { label: 'The drivers did not drink alcohol or drugs', checked: false },
@@ -31,8 +51,7 @@ export class EuroProtocolComponent implements OnInit {
   isActiveEighth = false;
   isActiveNinth = false;
 
-  constructor(private router: Router) { 
-  } 
+  
 
   ngOnInit(): void {
   }

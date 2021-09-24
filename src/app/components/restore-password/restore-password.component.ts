@@ -30,7 +30,7 @@ export class RestorePasswordComponent implements OnInit {
     this.accountService.forgotPassword(this.restorePassword.value)
     .subscribe((data: any) => {
       this.router.navigate(['/home']);
-      this.toastr.success('Password successfully changed', 'Congratulations');
+      this.toastr.warning('Please confirm changing', 'Warning');
     },
     err => {
       this.errorMessage = err.error.message;

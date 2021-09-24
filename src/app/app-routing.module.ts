@@ -7,8 +7,8 @@ import { EmailFormComponent } from './components/email-form/email-form.component
 import { RestorePasswordComponent } from './components/restore-password/restore-password.component';
 import { AfterRestorePasswordComponent } from './components/after-restore-password/after-restore-password.component';
 import { PersonalCabinetComponent } from './components/personal-cabinet/personal-cabinet';
-import { TransportComponent } from './components/transport/transport';
 import { ViolationListComponent } from './components/violation-list/violation-list.component';
+import { TransportComponent } from './components/transport/transport-component';
 import { ProfileComponent } from './components/profile/profile';
 import { EuroProtocolComponent } from './components/euro-protocol/euro-protocol.component';
 
