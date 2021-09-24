@@ -18,7 +18,7 @@ import { HttpClientModule }   from '@angular/common/http';
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { PersonalCabinetComponent } from './components/personal-cabinet/personal-cabinet';
 import { ProfileComponent } from './components/profile/profile';
-import { TransportComponent } from './components/transport/transport';
+import { TransportComponent } from './components/transport/transport-component';
 import { ViolationListComponent } from './components/violation-list/violation-list';
 import { EmailFormComponent } from './components/email-form/email-form.component';
 import { RestorePasswordComponent } from './components/restore-password/restore-password.component';
