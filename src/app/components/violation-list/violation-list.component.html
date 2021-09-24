@@ -1,21 +1,37 @@
 <div>
-  <div class="violation-card">
-    <h1 nz-typography class="violation-label">My violation</h1>
-    <div class="violation">   
-        <nz-card style="width:80%;" nzTitle="Card title" [nzExtra]="extraTemplate">
-            <p>Card content</p>
-          </nz-card>
-          <ng-template #extraTemplate>
-            <a>More</a>
-          </ng-template>
-    </div>
-    <div class="violation">   
-        <nz-card style="width:80%;" nzTitle="Card title" [nzExtra]="extraTemplate">
-            <p>Card content</p>
-          </nz-card>
-          <ng-template #extraTemplate>
-            <a>More</a>
-          </ng-template>
-    </div>
-</div>
+  <div>
+    <h1>List of your protocols</h1>
+  </div>
+  <div>
+    <nz-table #basicTable [nzData]="protocolList" [nzFrontPagination]="false" [nzShowPagination]="false">
+      <thead>
+        <tr>
+          <th class="tableHeader">Serial Number</th>
+          <th class="tableHeader">Registration Date</th>
+          <th class="tableHeader">Address Of Accident</th>
+          <th class="tableHeader">Protocol Status</th>
+          <th class="tableHeader"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let protocol of basicTable.data">
+          <td class="tableBodyCell">{{protocol.serialNumber}}</td>
+          <td class="tableBodyCell">{{protocol.registrationDateTime | date:'MMMM d, y, H:mm'}}</td>
+          <td class="tableBodyCell">
+            <p *ngIf="protocol.address.isInCity === true">{{protocol.address.city}}, {{protocol.address.street}}</p>
+            <p *ngIf="protocol.address.isInCity === false">Out of city</p>
+          </td>
+          <td class="tableBodyCell">
+            <label *ngIf="protocol.isClosed === true">Closed</label>
+            <label *ngIf="protocol.isClosed === false">Waiting for sides confirm data</label>
+          </td>
+          <td class="tableBodyCell">
+            <button *ngIf="protocol.isClosed === false" nz-button nzType="primary" nzSize="large" class="tableButton">Confirm</button>
+            <button *ngIf="protocol.isClosed === true" nz-button nzType="default" nzSize="large" class="tableButton">View</button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+    <br>
+  </div>
 </div>

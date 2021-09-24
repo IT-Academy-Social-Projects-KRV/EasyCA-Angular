@@ -19,7 +19,7 @@ import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { PersonalCabinetComponent } from './components/personal-cabinet/personal-cabinet';
 import { ProfileComponent } from './components/profile/profile';
 import { TransportComponent } from './components/transport/transport';
-import { ViolationListComponent } from './components/violation-list/violation-list';
+import { ViolationListComponent } from './components/violation-list/violation-list.component';
 import { EmailFormComponent } from './components/email-form/email-form.component';
 import { RestorePasswordComponent } from './components/restore-password/restore-password.component';
 import { AfterRestorePasswordComponent } from './components/after-restore-password/after-restore-password.component';
@@ -46,7 +46,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     TransportComponent,
     ViolationListComponent,
     EmailFormComponent,
-    EuroProtocolComponent
+    EuroProtocolComponent,
     RestorePasswordComponent,
     AfterRestorePasswordComponent
   ],

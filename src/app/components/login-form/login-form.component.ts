@@ -31,6 +31,7 @@ export class LoginFormComponent implements OnInit {
     .subscribe((data: any) => {
       localStorage.setItem('access_token', data.token);
       localStorage.setItem('role',data.role);
+      localStorage.setItem('email', data.email);
       this.cookieService.set('refresh-token', data.refreshToken);
       this.router.navigate(['/home']);
     },
