@@ -7,7 +7,7 @@ import { RESTORE_PASSWORD_URI } from '../config';
 import { User } from '../models/User';
 import { Observable } from 'rxjs';
 import { RestorePassword } from '../models/restorePassword';
-import { PersonalData } from '../models/personalData';
+import { Data } from '../models/data';
 import { CookieService } from 'ngx-cookie-service';
 
 const httpOptions = {
@@ -19,15 +19,14 @@ const httpOptions = {
 
 export class AccountService {
   constructor(private http: HttpClient,  public router: Router, private tokenStorageService: TokenStorageService, private cookieService: CookieService) { }
-  personalData: PersonalData;
+  Data: Data;
   errorMessage = '';
-  isPersonalData=true;
-  login(user:User) {
-    return this.http.post<any>(`${HOST_URL}Account/Login`, user, httpOptions);
+   login(user:User) {
+    return this.http.post<any>(`${HOST_URL}Auth/Login`, user, httpOptions);
   }
   register(user:User): Observable<any> {
     user.clientURI="http://localhost:4200/emailVerify";
-    return this.http.post<any>(`${HOST_URL}Account/Register`, user, httpOptions)   
+    return this.http.post<any>(`${HOST_URL}Auth/Register`, user, httpOptions)   
   }
 
   get isLoggedIn(): boolean {
@@ -39,23 +38,12 @@ export class AccountService {
      return localStorage.getItem('role');
   }
   putPersonalData(){
-    return this.http.put<any>(`${HOST_URL}Account/UpdateData`, this.personalData, httpOptions);
+    return this.http.put<any>(`${HOST_URL}Account/UpdateData`, this.Data, httpOptions);
   }
 
   getPersonalData() {
-    this.http.get<any>(`${HOST_URL}Account/GetUserById`)
-    .subscribe(
-      res => {
-        this.personalData = res as PersonalData,
-        console.log(this.personalData)
-      },
-      err => {
-          this.errorMessage = err.error.message;
-          console.log(this.errorMessage);
-      });
-      if(this.personalData.userData==null)
-      this.isPersonalData=false;     
-  }
+   return this.http.get<any>(`${HOST_URL}Account/GetUserById`);
+   }
 
   logout() {
     localStorage.removeItem('access_token');
@@ -71,7 +59,7 @@ export class AccountService {
   forgotPassword(data: RestorePassword ) {
     console.log(data);
     data.passwordURI = RESTORE_PASSWORD_URI;
-    return this.http.post<any>(`${HOST_URL}Account/ForgotPassword`, data, httpOptions);
+    return this.http.post<any>(`${HOST_URL}Auth/ForgotPassword`, data, httpOptions);
   }
 
   restorePassword(route:string,token:string,email:string,password:string) {
