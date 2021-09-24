@@ -1,15 +1,15 @@
-<div *ngIf="!accountService.isPersonalData" nz-col="" nzspan="12" nzoffset="6" class="alignCenter">
+<div  *ngIf="!this.accountService.Data.personalData" nz-col="" nzspan="12" nzoffset="6" class="alignCenter">
   <div>
     <h1 nzAlign='center'>Your Personal Data is Empty!<br>You can't continue working </h1>
   </div>
   <div class="alignCenter">
     <button nz-button [nzSize]="size" nzShape="round" [nzType]="'primary'"
-      (click)="populateForm(accountService.personalData)" (click)="showModal()">
+      (click)="populateForm(accountService.Data)" (click)="showModal()">
       <span>Create Your Personal information</span>
     </button>
   </div>
 </div>
-<div *ngIf="accountService.isPersonalData">
+<div *ngIf="this.accountService.Data.personalData">
   <div nz-col="" nzspan="12" nzoffset="6" class="alignCenter">
     <div>
       <nz-avatar [nzSize]="140" nzIcon="user"></nz-avatar>
@@ -31,37 +31,37 @@
           <tbody>
             <tr>
               <td class="propertyName">Name: </td>
-              <td class="mainName">{{this.accountService.personalData.firstName}}
-                {{this.accountService.personalData.lastName}}</td>
+              <td class="mainName">{{this.accountService.Data.firstName}}
+                {{this.accountService.Data.lastName}}</td>
               <td><i nz-icon nzType="align-right" nzTheme="outline"></i></td>
             </tr>
             <tr>
               <td class="propertyName">Ipn: </td>
-              <td class="mainName">{{this.accountService.personalData.userData.ipn}}</td>
+              <td class="mainName">{{this.accountService.Data.personalData.ipn}}</td>
               <td><i nz-icon nzType="align-right" nzTheme="outline"></i> </td>
             </tr>
             <tr>
               <td class="propertyName">Insuarence Number: </td>
-              <td class="mainName">{{this.accountService.personalData.userData.serviceNumber}}</td>
+              <td class="mainName">{{this.accountService.Data.personalData.serviceNumber}}</td>
               <td><i nz-icon nzType="align-right" nzTheme="outline"></i></td>
             </tr>
             <tr>
               <td class="propertyName">Birthday: </td>
-              <td class="mainName">{{this.accountService.personalData.userData.birthDay | date:'longDate'}}</td>
+              <td class="mainName">{{this.accountService.Data.personalData.birthDay | date:'longDate'}}</td>
               <td><i nz-icon nzType="align-right" nzTheme="outline"></i></td>
             </tr>
             <tr>
               <td class="propertyName">Job: </td>
-              <td class="mainName">{{this.accountService.personalData.userData.jobPosition}}</td>
+              <td class="mainName">{{this.accountService.Data.personalData.jobPosition}}</td>
               <td><i nz-icon nzType="align-right" nzTheme="outline"></i> </td>
-            </tr>
+            </tr>        
           </tbody>
         </nz-table>
         <br>
       </div>
       <div class="alignRight">
         <button nz-button [nzSize]="size" nzShape="round" [nzType]="'primary'"
-          (click)="populateForm(accountService.personalData)" (click)="showModal()">
+          (click)="populateForm(accountService.Data)" (click)="showModal()">
           <span>Edit information</span>
         </button>
       </div>
@@ -75,9 +75,10 @@
       <span>Update your info</span>
     </ng-template>
     <ng-template #modalContent>
-      <div>
-        <form novalidate autocomplete="off" [formGroup]="personalDataForm" (ngSubmit)="onSubmit(personalDataForm)">
+      <div>      
+        <form novalidate autocomplete="off" [formGroup]="DataForm" (ngSubmit)="onSubmit(DataForm)">
           <input type="hidden" formControlName="email" />
+          
           <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
             <div nz-col [nzSpan]="12">
               <div> <label>Basic Info</label> </div>
@@ -100,7 +101,7 @@
                   </nz-form-control>
                 </nz-form-item>
               </div>
-              <div formGroupName="userData">
+              <div formGroupName="personalData">
                 <div>
                   <label for="ipn">IPN:</label>
                   <nz-form-item>
@@ -138,8 +139,8 @@
                 </div>
               </div>
             </div>
-            <div formGroupName="userData" nz-col [nzSpan]="12">
-              <div formGroupName="userAddress">
+            <div formGroupName="personalData" nz-col [nzSpan]="12">
+              <div formGroupName="address">
                 <div> <label>Adress</label> </div>
                 <nz-divider></nz-divider>
                 <div>
@@ -216,12 +217,13 @@
               </div>
             </div>
           </div>
-          <div formGroupName="userData">
+          <div formGroupName="personalData">
             <div formGroupName="userDriverLicense">
               <div> <label>Driver License</label>
                 <nz-divider></nz-divider>
               </div>
-              <div>
+              <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+              <div nz-col [nzSpan]="12">
                 <label for="licenseSerialNumber">Serial Number of Driver License:</label>
                 <nz-form-item>
                   <nz-form-control>
@@ -229,19 +231,29 @@
                       formControlName="licenseSerialNumber" required>
                   </nz-form-control>
                 </nz-form-item>
+              </div> 
+              <div nz-col [nzSpan]="12">
+                <label for="issuedBy">Serial Number of Driver License:</label>
+                <nz-form-item>
+                  <nz-form-control>
+                    <input nz-input nzSize="large" id="issuedBy" placeholder="Number your driver license"
+                      formControlName="issuedBy" required>
+                  </nz-form-control>
+                </nz-form-item>
+              </div> 
               </div>
               <div>
                 <label for="userCategories">Categories:</label>
                 <nz-form-item>
-                  <nz-form-control>
-                    <nz-checkbox-wrapper style="width: 100%;" id="userCategories"
-                      placeholder="All your driver categories" required (nzOnChange)="log($event)">
-                      <div nz-row formControlName="userCategories">
-                        <div nz-col nzSpan="6"><label nz-checkbox nzValue="A">A</label></div>
-                        <div nz-col nzSpan="6"><label nz-checkbox nzValue="B">B</label></div>
-                        <div nz-col nzSpan="6"><label nz-checkbox nzValue="C">C</label></div>
+                  <nz-form-control >
+                    <nz-checkbox-wrapper style="width: 100%;" (nzOnChange)="log($event)">
+                      <div nz-row >
+                        <div nz-col nzSpan="4" *ngFor="let sign of categoriesSeed" >
+                          <label nz-checkbox nzChecked='{{sign.checked}}'
+                          nzValue="{{sign.value}}" >{{sign.value}}</label>
+                        </div>  
                       </div>
-                    </nz-checkbox-wrapper>
+                    </nz-checkbox-wrapper>                        
                   </nz-form-control>
                 </nz-form-item>
               </div>

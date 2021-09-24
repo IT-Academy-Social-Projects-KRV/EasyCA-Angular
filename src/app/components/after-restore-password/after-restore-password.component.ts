@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/services/account.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class AfterRestorePasswordComponent implements OnInit {
 
   errorMessage = '';
 
-  constructor(private accountService: AccountService,private route: ActivatedRoute,private router:Router) { }
+  constructor(private accountService: AccountService,private route: ActivatedRoute,private router:Router, private toastr:ToastrService) { }
 
   ngOnInit(): void {
    this.restorePassword();
@@ -23,9 +24,9 @@ export class AfterRestorePasswordComponent implements OnInit {
     const email = this.route.snapshot.queryParams['email'];
     const password = this.route.snapshot.queryParams['password'];
      
-    this.accountService.restorePassword('Account/RestorePassword',token,email,password) 
+    this.accountService.restorePassword('Auth/RestorePassword',token,email,password) 
     .subscribe(() => {
-      this.router.navigate(['/home']);
+      this.toastr.success('Password successfully changed', 'Congratulations');
     },
     err => {
       this.errorMessage = err.error.message;
