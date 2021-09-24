@@ -25,6 +25,6 @@ export class TokenStorageService {
   checkRefreshToken(): Observable<RefreshToken> {
     let token=this.cookieService.get('refresh-token')
     this.refreshTokenRequest.refreshToken = (token !== null) ? token: "empty";
-    return this.http.post<any>(`${HOST_URL}Account/RefreshToken`,this.refreshTokenRequest, httpOptions);
+    return this.http.post<any>(`${HOST_URL}Auth/RefreshToken`,this.refreshTokenRequest, httpOptions);
   } 
 }

@@ -1,7 +1,11 @@
-import { UserData } from "./userData";
+import { UserDriverLicense } from "./userDriverLicense";
+import { Address} from "./address"; 
 export interface PersonalData { 
-         email: string;
-         firstName: string;
-         lastName: string;
-         userData: UserData;
- }
+         address: Address;
+         ipn: string;
+         serviceNumber: string;
+         birthDay: Date;
+         jobPosition: string;
+         userDriverLicense: UserDriverLicense;
+         userCars: Array<string>;
+ } 

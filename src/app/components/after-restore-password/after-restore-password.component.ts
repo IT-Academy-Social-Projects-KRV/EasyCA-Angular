@@ -24,7 +24,7 @@ export class AfterRestorePasswordComponent implements OnInit {
     const email = this.route.snapshot.queryParams['email'];
     const password = this.route.snapshot.queryParams['password'];
      
-    this.accountService.restorePassword('Account/RestorePassword',token,email,password) 
+    this.accountService.restorePassword('Auth/RestorePassword',token,email,password) 
     .subscribe(() => {
       this.toastr.success('Password successfully changed', 'Congratulations');
     },

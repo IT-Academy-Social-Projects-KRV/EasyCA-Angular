@@ -1,4 +1,4 @@
-export interface UserAddress {
+export interface Address {
     country: string;
     region: string;
     city: string;
