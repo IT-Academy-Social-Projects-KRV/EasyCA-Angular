@@ -21,9 +21,11 @@ export class AccountService {
   constructor(private http: HttpClient,  public router: Router, private tokenStorageService: TokenStorageService, private cookieService: CookieService) { }
   Data: Data;
   errorMessage = '';
-   login(user:User) {
+   
+  login(user:User) {
     return this.http.post<any>(`${HOST_URL}Auth/Login`, user, httpOptions);
   }
+
   register(user:User): Observable<any> {
     user.clientURI="http://localhost:4200/emailVerify";
     return this.http.post<any>(`${HOST_URL}Auth/Register`, user, httpOptions)   
@@ -37,6 +39,7 @@ export class AccountService {
   get userRole(){
      return localStorage.getItem('role');
   }
+
   putPersonalData(){
     return this.http.put<any>(`${HOST_URL}Account/UpdateData`, this.Data, httpOptions);
   }
@@ -65,4 +68,5 @@ export class AccountService {
   restorePassword(route:string,token:string,email:string,password:string) {
     return this.http.get<any>(`${HOST_URL}${route}/${password}/${token}/${email}`);
   } 
+
 }

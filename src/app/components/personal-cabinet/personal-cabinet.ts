@@ -13,8 +13,12 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 export class PersonalCabinetComponent implements OnInit {
+  public userName: string;
+
   constructor(private router: Router, public accountService: AccountService,
-    private toastr:ToastrService, public fb: FormBuilder) { }
+    private toastr:ToastrService, public fb: FormBuilder) { 
+      this.userName = ""; 
+    }
     size: NzButtonSize = 'large';
     isVisible = false;
     isConfirmLoading = false;
@@ -66,6 +70,11 @@ export class PersonalCabinetComponent implements OnInit {
     })
    });
 
+   
+  public Icon = this.fb.group({
+    name: ['']
+  });
+
   log(value: string[]): void {
       this.changedCategoriesList=value;
       console.log(value);
@@ -73,10 +82,12 @@ export class PersonalCabinetComponent implements OnInit {
     }
   
   ngOnInit(): void { 
-    this.accountService.getPersonalData() .subscribe(
+    this.accountService.getPersonalData() 
+      .subscribe(
       res => {
-        this.accountService.Data = res as Data,
-        console.log(this.accountService.Data)
+        this.accountService.Data = res as Data;
+        this.userName= res.firstName[0]+res.lastName[0];
+        console.log(this.userName);
       },
       err => {
           this.isPersonalData=false;
@@ -90,11 +101,8 @@ export class PersonalCabinetComponent implements OnInit {
     this.accountService.Data.personalData.userDriverLicense.userCategories=this.changedCategoriesList;
     this.accountService.putPersonalData().subscribe(
       res=> this.toastr.info("Data update","congratulation"),
-      err=>  console.log(this.accountService.Data)
     );
-    console.log(this.accountService.Data);
   }
-  
   
   populateForm(selectedRecord:Data){
      console.log("work");
@@ -131,10 +139,8 @@ export class PersonalCabinetComponent implements OnInit {
             userCars: selectedRecord.personalData.userCars
           }
       }
- 
     );
   }
-
 
   showModal(): void {
     this.isVisible = true;
