@@ -84,20 +84,16 @@ export class PersonalCabinetComponent implements OnInit {
 
   log(value: string[]): void {
       this.changedCategoriesList=value;
-      console.log(value);
-      console.log(this.changedCategoriesList);
     }
   
   ngOnInit(): void { 
     this.accountService.getPersonalData() .subscribe(
       res => {
-        this.accountService.Data = res as Data,
-        console.log(this.accountService.Data)
+        this.accountService.Data = res as Data
       },
       err => {
           this.isPersonalData=false;
           this.errorMessage = err.error.message;
-          console.log(this.errorMessage);
       });;
     }   
     
@@ -110,8 +106,7 @@ export class PersonalCabinetComponent implements OnInit {
     this.accountService.Data=this.DataForm.value;
     this.accountService.Data.personalData.userDriverLicense.userCategories=this.changedCategoriesList;
     this.accountService.putPersonalData().subscribe(
-      res=> this.toastr.info("Data update","congratulation"),
-      err=>  console.log(this.accountService.Data)
+      res=> this.toastr.info("Data update","Success")
     );
   }  
   
