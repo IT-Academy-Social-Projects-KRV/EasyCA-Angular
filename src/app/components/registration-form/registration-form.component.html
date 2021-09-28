@@ -7,22 +7,38 @@
     <form nz-form (ngSubmit)="onSubmit()" [formGroup]="signupForm">
         <nz-form-item>
             <nz-form-control>
-                <input type="text" nz-input placeholder="Enter your FirstName" formControlName="firstName" required/>
+                <input type="text" nz-input placeholder="Enter your FirstName" formControlName="firstName" 
+                [ngClass]="{ 'is-invalid': submitted && getControls.firstName.errors }" required/>
+                <div *ngIf="submitted && getControls.firstName.errors" class="invalid-feedback">
+                    <div *ngIf="getControls.firstName.errors.pattern">First name not valid. For example "John"</div> 
+                </div>
             </nz-form-control>
         </nz-form-item>
         <nz-form-item>
             <nz-form-control>
-                <input type="text" nz-input placeholder="Enter your LastName" formControlName="lastName" required />
+                <input type="text" nz-input placeholder="Enter your LastName" formControlName="lastName" 
+                [ngClass]="{ 'is-invalid': submitted && getControls.lastName.errors }" required />
+                <div *ngIf="submitted && getControls.lastName.errors" class="invalid-feedback">
+                    <div *ngIf="getControls.lastName.errors.pattern">Last name not valid. For example "Smith"</div> 
+                </div>
             </nz-form-control>
         </nz-form-item>
         <nz-form-item>
             <nz-form-control>
-                <input type="email" nz-input placeholder="Enter your Email" formControlName="email" required/>
+                <input type="email" nz-input placeholder="Enter your Email" formControlName="email" 
+                [ngClass]="{ 'is-invalid': submitted && getControls.email.errors }" required/>
+                <div *ngIf="submitted && getControls.email.errors" class="invalid-feedback">
+                    <div *ngIf="getControls.email.errors.email">Email must be a valid email address</div>
+                </div>
             </nz-form-control>
         </nz-form-item>
         <nz-form-item>
             <nz-form-control>
-                <input nz-input type="password" placeholder="Enter password" formControlName="password" required />
+                <input nz-input type="password" placeholder="Enter password" formControlName="password" 
+                [ngClass]="{ 'is-invalid': submitted && getControls.password.errors }" required />
+                <div *ngIf="submitted && getControls.password.errors" class="invalid-feedback">
+                    <div *ngIf="getControls.password.errors.minLength">Password must be at least 8 characters</div>
+                </div>
             </nz-form-control>
         </nz-form-item>
         <nz-form-item>

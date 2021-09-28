@@ -88,9 +88,13 @@
                 <nz-form-item>
                   <nz-form-control>
                     <input nz-input id="firstName" placeholder="Your Name" formControlName="firstName" required
-                      nzSize="large">
+                      nzSize="large"  [ngClass]="{ 'is-invalid': submitted && getControls.firstName.errors }">
                   </nz-form-control>
                 </nz-form-item>
+                <div *ngIf="submitted && getControls.firstName.errors" class="invalid-feedback">
+                  <div *ngIf="getControls.firstName.errors.required">First name is required</div>
+                  <div *ngIf="getControls.firstName.errors.pattern">First name not valid. For example "John"</div> 
+                </div>
               </div>
               <div>
                 <label for="lastName">Surname:</label>

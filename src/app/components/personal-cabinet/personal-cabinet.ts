@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
 import { Data } from 'src/app/models/data';
-import { FormBuilder, FormGroup}from "@angular/forms";
+import { FormBuilder, FormGroup, Validators}from "@angular/forms";
 import { NzButtonSize } from 'ng-zorro-antd/button';
 import { ToastrService } from 'ngx-toastr';
 
@@ -37,34 +37,54 @@ export class PersonalCabinetComponent implements OnInit {
       {value:"D1E",checked: false},
       {value:"DE",checked: false}
     ];
-
+    submitted = false;
+    firstNamePattern = "(^[A-Z]{1}[a-z]{1,17}$)|(^[А-Я]{1}[а-я]{1,16}$)";
+    lastNamePattern = "(^[A-Z]{1}[a-z]{1,17}$)|(^[А-Я]{1}[а-я]{1,16}$)";
+    countryPattern = "^[A-Z]{1}[a-z]{2}[-a-z]{1}([A-Za-z]{0,1})?([a-z]{0,11})?([-a-z]{0,1})?([A-Za-z]{0,1})?([a-z]{0,18})?$";
+    regionPattern = "(^[A-Z]{1}[a-z]{1,14}( [a-z]{2,15})?$)|(^[А-Я]{1}[а-я]{1,14}( [а-я]{0,2})?( [а-я]{14})?$)";
+    cityPattern = "(^[A-Z]{1}[a-z]{1,14}( [a-z]{2,15})?$)|(^[А-Я]{1}[а-я]{1,14}( [а-я]{0,2})?( [а-я]{14})?$)";
+    districtPattern = "(^[A-Z]{1}[a-z]{1,17}([-]{0,1})?([A-Z]{0,1})?([a-z]{0,17})?( [A-Z]{1})?([a-z]{1})?$)|(^[А-Я]{1}[а-я]{1,16}([-]{0,1})?([А-Я]{0,1})?([а-я]{0,16})?( [А-Я]{1})?([а-я]{1})?$)";
+    streetPattern = "^[A-ZА-Я]{1}[a-zа-яі]{1}[a-zа-я]{1}([-a-zа-я]{0,1})?([A-Za-zа-яі]{0,1})?([-a-zа-я]{0,1})?([a-zА-Яа-я]{0,1})?([a-zа-я]{0,1})?([і]{0,1})?([а-я]{0,2})?( [A-ZА-Я]{1})?([a-zа-я]{1})?([a-zі]{1})?([a-zа-я]{1})?([а-я]{0,1})?,[0-9]{1}([0-9a-zа-я]{0,1})?([0-9]{0,3})?([0-9a-z]{0,1})?([а-я]{0,1})?$";
+    buildingPattern = "^[0-9]{1}([0-9a-z]{0,3})?([0-9]{0,2})?([a-z]{0,1})?$";
+    postalCodePattern = "^[0-9]{5}$";
+    ipnPattern = "^[0-9]{10}$";
+    serviceNumberPattern = "^[0-9]{10}$";
+    jobPositionPattern = "(^[A-Z]{1}[a-z]{1,17}( [a-z]{17})?$)|(^[А-Я]{1}[а-я]{1,16}( [а-я]{16})?$)";
+    licenseSerialNumberPattern = "^[A-ZА-Я]{3}[0-9]{6}$";
+    userCategoriesPattern = "^[A-Z]{1}([0-9A-Z]{0,1})?([A-Z]{0,1})?$";
+    issuedByPattern = "^[0-9]{4}$";
+  
   public DataForm = this.fb.group({
-    email: [''],
-    firstName: [''],
-    lastName: [''],
+    email: ['', [Validators.email]],
+    firstName: ['', Validators.pattern(this.firstNamePattern)],
+    lastName: ['', Validators.pattern(this.lastNamePattern)],
     personalData: this.fb.group({
       address: this.fb.group({
-        country: [''],
-        region: [''],
-        city: [''],
-        district: [''],
-        street: [''], 
-        building: [''], 
-        appartament: 0, 
-        postalCode: ['']
+        country: ['', Validators.pattern(this.lastNamePattern)],
+        region: ['', Validators.pattern(this.regionPattern)],
+        city: ['', Validators.pattern(this.cityPattern)],
+        district: ['', Validators.pattern(this.districtPattern)],
+        street: ['', Validators.pattern(this.streetPattern)],
+        building: ['', Validators.pattern(this.buildingPattern)],
+        appartament: 0,
+        postalCode: ['', Validators.pattern(this.postalCodePattern)]
       }),
-      ipn: [''],
-      serviceNumber: [''],
+      ipn: ['', Validators.pattern(this.ipnPattern)],
+      serviceNumber: ['', Validators.pattern(this.serviceNumberPattern)],
       birthDay: Date,
-      jobPosition: [''],
+      jobPosition: ['', Validators.pattern(this.jobPositionPattern)],
       userDriverLicense:  this.fb.group({
-        licenseSerialNumber: [''],
-        issuedBy:[''],
+        licenseSerialNumber: ['', Validators.pattern(this.licenseSerialNumberPattern)],
+        issuedBy:['', Validators.pattern(this.issuedByPattern)],
         expirationDate: Date,
       }),
       userCars: [],
     })
    });
+
+  get getControls() {
+    return this.DataForm.controls;
+  }
 
   log(value: string[]): void {
       this.changedCategoriesList=value;
@@ -83,26 +103,26 @@ export class PersonalCabinetComponent implements OnInit {
           this.errorMessage = err.error.message;
           console.log(this.errorMessage);
       });;
-  }   
-
-   onSubmit(DataForm:FormGroup) {
+    }   
+    
+    onSubmit(DataForm:FormGroup) {
+     this.submitted = true;
+     if (this.DataForm.invalid) {
+      this.toastr.warning('Data not updated');
+      return;
+     }
     this.accountService.Data=this.DataForm.value;
     this.accountService.Data.personalData.userDriverLicense.userCategories=this.changedCategoriesList;
     this.accountService.putPersonalData().subscribe(
       res=> this.toastr.info("Data update","congratulation"),
       err=>  console.log(this.accountService.Data)
     );
-    console.log(this.accountService.Data);
-  }
-  
+  }  
   
   populateForm(selectedRecord:Data){
-     console.log("work");
-
      this.categoriesSeed.forEach(x => {
       x.checked = selectedRecord.personalData.userDriverLicense.userCategories.some(y => y === x.value);
      });
-
        this.DataForm.setValue(
       {
           email: selectedRecord.email,
@@ -130,18 +150,15 @@ export class PersonalCabinetComponent implements OnInit {
             },
             userCars: selectedRecord.personalData.userCars
           }
-      }
- 
+      } 
     );
   }
-
 
   showModal(): void {
     this.isVisible = true;
   }
 
   handleOk(): void {
-    console.log('Button ok clicked!');
     this.isConfirmLoading = true;
     setTimeout(() => {
       this.isVisible = false;
@@ -150,7 +167,6 @@ export class PersonalCabinetComponent implements OnInit {
   }
 
   handleCancel(): void {
-    console.log('Button cancel clicked!');
     this.isVisible = false;
   }
 }
