@@ -68,20 +68,16 @@ export class PersonalCabinetComponent implements OnInit {
 
   log(value: string[]): void {
       this.changedCategoriesList=value;
-      console.log(value);
-      console.log(this.changedCategoriesList);
     }
   
   ngOnInit(): void { 
     this.accountService.getPersonalData() .subscribe(
       res => {
-        this.accountService.Data = res as Data,
-        console.log(this.accountService.Data)
+        this.accountService.Data = res as Data
       },
       err => {
           this.isPersonalData=false;
           this.errorMessage = err.error.message;
-          console.log(this.errorMessage);
       });;
   }   
 
@@ -92,13 +88,10 @@ export class PersonalCabinetComponent implements OnInit {
       res=> this.toastr.info("Data update","congratulation"),
       err=>  console.log(this.accountService.Data)
     );
-    console.log(this.accountService.Data);
   }
   
   
   populateForm(selectedRecord:Data){
-     console.log("work");
-
      this.categoriesSeed.forEach(x => {
       x.checked = selectedRecord.personalData.userDriverLicense.userCategories.some(y => y === x.value);
      });
@@ -135,13 +128,11 @@ export class PersonalCabinetComponent implements OnInit {
     );
   }
 
-
   showModal(): void {
     this.isVisible = true;
   }
 
   handleOk(): void {
-    console.log('Button ok clicked!');
     this.isConfirmLoading = true;
     setTimeout(() => {
       this.isVisible = false;
@@ -150,7 +141,6 @@ export class PersonalCabinetComponent implements OnInit {
   }
 
   handleCancel(): void {
-    console.log('Button cancel clicked!');
     this.isVisible = false;
   }
 }
