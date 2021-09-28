@@ -19,6 +19,7 @@ export class PersonalCabinetComponent implements OnInit {
     private toastr:ToastrService, public fb: FormBuilder) { 
       this.userName = ""; 
     }
+  
     size: NzButtonSize = 'large';
     isVisible = false;
     isConfirmLoading = false;
@@ -69,7 +70,6 @@ export class PersonalCabinetComponent implements OnInit {
       userCars: [],
     })
    });
-
    
   public Icon = this.fb.group({
     name: ['']
@@ -77,9 +77,7 @@ export class PersonalCabinetComponent implements OnInit {
 
   log(value: string[]): void {
       this.changedCategoriesList=value;
-      console.log(value);
-      console.log(this.changedCategoriesList);
-    }
+  }
   
   ngOnInit(): void { 
     this.accountService.getPersonalData() 
@@ -87,12 +85,10 @@ export class PersonalCabinetComponent implements OnInit {
       res => {
         this.accountService.Data = res as Data;
         this.userName= res.firstName[0]+res.lastName[0];
-        console.log(this.userName);
       },
       err => {
           this.isPersonalData=false;
           this.errorMessage = err.error.message;
-          console.log(this.errorMessage);
       });;
   }   
 
@@ -105,8 +101,6 @@ export class PersonalCabinetComponent implements OnInit {
   }
   
   populateForm(selectedRecord:Data){
-     console.log("work");
-
      this.categoriesSeed.forEach(x => {
       x.checked = selectedRecord.personalData.userDriverLicense.userCategories.some(y => y === x.value);
      });
@@ -147,7 +141,6 @@ export class PersonalCabinetComponent implements OnInit {
   }
 
   handleOk(): void {
-    console.log('Button ok clicked!');
     this.isConfirmLoading = true;
     setTimeout(() => {
       this.isVisible = false;
@@ -156,7 +149,6 @@ export class PersonalCabinetComponent implements OnInit {
   }
 
   handleCancel(): void {
-    console.log('Button cancel clicked!');
     this.isVisible = false;
   }
 }
