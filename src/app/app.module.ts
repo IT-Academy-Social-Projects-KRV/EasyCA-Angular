@@ -17,7 +17,6 @@ import * as AllIcons from '@ant-design/icons-angular/icons';
 import { HttpClientModule }   from '@angular/common/http';
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { PersonalCabinetComponent } from './components/personal-cabinet/personal-cabinet';
-import { ProfileComponent } from './components/profile/profile';
 import { TransportComponent } from './components/transport/transport-component';
 import { ViolationListComponent } from './components/violation-list/violation-list';
 import { EmailFormComponent } from './components/email-form/email-form.component';
@@ -42,7 +41,6 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     HomePageComponent,
     LayoutComponent,
     PersonalCabinetComponent,
-    ProfileComponent,
     TransportComponent,
     ViolationListComponent,
     EmailFormComponent,

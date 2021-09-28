@@ -9,7 +9,6 @@ import { AfterRestorePasswordComponent } from './components/after-restore-passwo
 import { PersonalCabinetComponent } from './components/personal-cabinet/personal-cabinet';
 import { TransportComponent } from './components/transport/transport-component';
 import { ViolationListComponent } from './components/violation-list/violation-list';
-import { ProfileComponent } from './components/profile/profile';
 import { EuroProtocolComponent } from './components/euro-protocol/euro-protocol.component';
 
 const routes: Routes = [
@@ -23,7 +22,6 @@ const routes: Routes = [
   { path: 'restorePassword', component: AfterRestorePasswordComponent},
   { path: 'transportList', component: TransportComponent},
   { path: 'violationList', component: ViolationListComponent},
-  { path: 'profile', component: ProfileComponent},
   { path: 'euroProtocol', component: EuroProtocolComponent}  
 ];
 
