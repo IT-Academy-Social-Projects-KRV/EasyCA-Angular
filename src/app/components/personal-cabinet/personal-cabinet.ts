@@ -82,10 +82,6 @@ export class PersonalCabinetComponent implements OnInit {
     })
    });
 
-  get getControls() {
-    return this.DataForm.controls;
-  }
-
   log(value: string[]): void {
       this.changedCategoriesList=value;
       console.log(value);
