@@ -16,6 +16,7 @@
     margin-left: 10%;
     margin-right: 10%;
     position: relative;
+    margin-top: 2%;
 }
 .inner{
     padding: 24px 24px 8px 24px;
@@ -59,8 +60,8 @@
     padding: 0;
     width: 40%;
 }
-.alignRight{
-    text-align: right;
+.btnChange{
+    text-align: center;
 }
 .alignCenter{
   text-align:center;
@@ -76,4 +77,21 @@
 [nz-input-number]{
     font-size: 20px;
     height:50px
+}
+
+.circle{
+    border-radius: 50%;
+    background-color: lightblue;
+    height: 150px;
+    width: 150px;
+    padding: 50px;
+}
+
+.names{
+    font-size: 40px;
+}
+
+.myDiv{
+    display: flex;
+    justify-content: center;
 }
