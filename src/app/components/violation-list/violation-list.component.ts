@@ -18,13 +18,8 @@ export class ViolationListComponent implements OnInit {
   ngOnInit(): void {
     this.violationListService.getEuroProtocolsByEmail()
     .subscribe(
-      data => {
-        this.protocolList = data;
-        console.log(data);
-      },
-      err => {
-        console.log(err.error.message);
-      }
+      data => this.protocolList = data,
+      () => { }
     );
   }
 }
