@@ -1,0 +1,18 @@
+<h1 nz-typography class="resend-confirmation-label">Resend email confirmation link</h1>
+<div class="error_alert">
+    <nz-alert class="error_alert_resend_confirmation" *ngIf="isResendConfirmationFailed" nzType="error" nzMessage="{{errorMessage}}"></nz-alert>
+</div>
+<div id="center-resend-confirmation">
+    <form nz-form (ngSubmit)="onSubmit()" [formGroup]="resendConfirmation">
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Please enter your email!">
+                <nz-input-group nzPrefixIcon="mail">
+                    <input type="text" nz-input placeholder="Enter your email here" formControlName="email" required />
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+        <div class="item_resend_form_button">
+            <button type="submit" class="btn btn-dark resend-form-button">Submit</button>
+        </div>
+    </form>
+</div>

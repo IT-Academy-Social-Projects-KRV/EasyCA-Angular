@@ -23,7 +23,7 @@ export class EmailFormComponent implements OnInit {
      
     this.accountService.confirmEmail('Auth/ConfirmEmail',token,email) 
     .subscribe(() => {
-      this.router.navigate(['/emaiVerify']);
+      this.router.navigate(['/emailVerify']);
     },
     err => {
       this.errorMessage = err.error.message;
