@@ -74,10 +74,7 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     private handleError(errorResponse: HttpErrorResponse) {
-        let errorMsg: string;
-        errorMsg = `Backend returned code ${errorResponse.error.statusCode}, body was: ${errorResponse.error.message}`;
-        
-        return throwError(errorMsg);
+        return errorResponse;
     }
 }
 
