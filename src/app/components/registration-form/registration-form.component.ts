@@ -31,7 +31,7 @@ export class RegistrationFormComponent implements OnInit {
       lastName: ['', [Validators.pattern(this.lastNamePattern)]],
       email: ['', [Validators.email]],
       password: ['', [Validators.minLength(8), Validators.pattern(this.pwdPattern)]],
-      confirmPassword: ['', Validators.required],
+      confirmPassword: ['', [Validators.required]],
     })
   }
 
@@ -45,18 +45,19 @@ export class RegistrationFormComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     // stop here if form is invalid
-    if (this.signupForm.invalid) {
-      this.toastr.warning('Incorrect registration data');
-      return;
-    }
-    this.accountService.register(this.signupForm.value)
+    //if (!this.signupForm.invalid) {
+      this.accountService.register(this.signupForm.value)
       .subscribe((data: any) => {
         this.isRegistered = true;
         this.isSignUpFailed = false;
       },
-        err => {
-          this.errorMessage = err.error.message;
-          this.isSignUpFailed = true;
-        });
+      err => {
+        this.errorMessage = err.error.message;
+        this.isSignUpFailed = true;
+      });
+   // }
+   // else{
+    //  this.toastr.warning('Incorrect registration data');
+   // }
   }
 }
