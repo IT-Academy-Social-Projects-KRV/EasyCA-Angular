@@ -15,7 +15,7 @@ export class LoginFormComponent implements OnInit {
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
- // submitted = false;
+  
   pwdPattern = "^^(?!/\.\?,\$%&\^!~`$)([A-Z]{1}[a-z]{3}[A-Za-z]{1}[0-9a-z]{2}[0-9@]{1,2}([@]{0,1})?)$";
 
   constructor(private accountService: AccountService, private router: Router, public fb: FormBuilder, private cookieService: CookieService) {
@@ -30,15 +30,17 @@ export class LoginFormComponent implements OnInit {
 
   onSubmit() {
     this.accountService.login(this.signinForm.value)
-      .subscribe((data: any) => {
-        localStorage.setItem('access_token', data.token);
-        localStorage.setItem('role', data.role);
-        this.cookieService.set('refresh-token', data.refreshToken);
-        this.router.navigate(['/home']);
-      },
-        err => {
-          this.errorMessage = err.error.message;
-          this.isLoginFailed = true;
-        });
+    .subscribe((data: any) => {
+      localStorage.setItem('access_token', data.token);
+      localStorage.setItem('role',data.role);
+      localStorage.setItem('email', data.email);
+      this.cookieService.set('refresh-token', data.refreshToken);
+      this.router.navigate(['/home']);
+    },
+    err => {
+      this.errorMessage = err.error.message;
+      this.isLoginFailed = true;
+    });
+
   }
 }
