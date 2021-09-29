@@ -44,8 +44,6 @@ export class RegistrationFormComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    // stop here if form is invalid
-    //if (!this.signupForm.invalid) {
       this.accountService.register(this.signupForm.value)
       .subscribe((data: any) => {
         this.isRegistered = true;
@@ -55,9 +53,5 @@ export class RegistrationFormComponent implements OnInit {
         this.errorMessage = err.error.message;
         this.isSignUpFailed = true;
       });
-   // }
-   // else{
-    //  this.toastr.warning('Incorrect registration data');
-   // }
   }
 }
