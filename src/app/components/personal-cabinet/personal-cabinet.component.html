@@ -1,7 +1,8 @@
-<div  *ngIf="!this.accountService.Data.personalData" nz-col="" nzspan="12" nzoffset="6" class="alignCenter">
+<div  *ngIf="this.accountService.Data.personalData===null" nz-col="" nzspan="12" nzoffset="6" class="alignCenter">
   <div>
     <h1 nzAlign='center'>Your Personal Data is Empty!<br>You can't continue working </h1>
   </div>
+
   <div class="alignCenter">
     <button nz-button [nzSize]="size" nzShape="round" [nzType]="'primary'"
       (click)="populateForm(accountService.Data)" (click)="showModal()">
@@ -9,10 +10,13 @@
     </button>
   </div>
 </div>
+
 <div *ngIf="this.accountService.Data.personalData">
   <div nz-col="" nzspan="12" nzoffset="6" class="alignCenter">
-    <div>
-      <nz-avatar [nzSize]="140" nzIcon="user"></nz-avatar>
+    <div class="myDiv">
+      <div class="circle">
+        <span class="names">{{this.userName}}</span>
+      </div>
     </div>
     <div>
       <h1>Personal info </h1>
@@ -22,12 +26,19 @@
     </div>
     <br><br>
   </div>
+
+  <div class="btnChange">
+    <button nz-button [nzSize]="size" nzShape="round" [nzType]="'primary'"
+      (click)="populateForm(accountService.Data)" (click)="showModal()">
+      <span>Edit information</span>
+    </button>
+  </div>
+
   <div nz-col nzspan="16" class="basicInfo nzDiv">
     <div class="inner">
       <h2>Basic Info</h2>
       <div>
         <nz-table nzTemplateMode [nzFrontPagination]="false" [nzShowPagination]="false">
-
           <tbody>
             <tr>
               <td class="propertyName">Name: </td>
@@ -59,18 +70,95 @@
         </nz-table>
         <br>
       </div>
-      <div class="alignRight">
-        <button nz-button [nzSize]="size" nzShape="round" [nzType]="'primary'"
-          (click)="populateForm(accountService.Data)" (click)="showModal()">
-          <span>Edit information</span>
-        </button>
-      </div>
+      
+    </div>
+  </div>
+
+
+<div nz-col nzspan="16" class="basicInfo nzDiv">
+    <div class="inner">
+      <h2>Address</h2>
+      <div>
+        <nz-table nzTemplateMode [nzFrontPagination]="false" [nzShowPagination]="false">
+          <tbody>
+            <tr>
+              <td class="propertyName">Country: </td>
+              <td class="mainName">{{this.accountService.Data.personalData.address.country}}</td>
+            <td><i nz-icon nzType="align-right" nzTheme="outline"></i></td>
+          </tr>
+          <tr>
+            <td class="propertyName">Region: </td>
+            <td class="mainName">{{this.accountService.Data.personalData.address.region}}</td>
+            <td><i nz-icon nzType="align-right" nzTheme="outline"></i> </td>
+          </tr>
+          <tr>
+            <td class="propertyName">City: </td>
+            <td class="mainName">{{this.accountService.Data.personalData.address.city}}</td>
+            <td><i nz-icon nzType="align-right" nzTheme="outline"></i></td>
+          </tr>
+          <tr>
+            <td class="propertyName">District: </td>
+            <td class="mainName">{{this.accountService.Data.personalData.address.district}}</td>
+            <td><i nz-icon nzType="align-right" nzTheme="outline"></i></td>
+          </tr>
+          <tr>
+            <td class="propertyName">Street: </td>
+            <td class="mainName">{{this.accountService.Data.personalData.address.street}}</td>
+            <td><i nz-icon nzType="align-right" nzTheme="outline"></i> </td>
+          </tr>     
+          <tr>
+            <td class="propertyName">Building: </td>
+            <td class="mainName">{{this.accountService.Data.personalData.address.building}}</td>
+            <td><i nz-icon nzType="align-right" nzTheme="outline"></i> </td>
+          </tr>     
+          <tr>
+            <td class="propertyName">Appartament: </td>
+            <td class="mainName">{{this.accountService.Data.personalData.address.appartament}}</td>
+            <td><i nz-icon nzType="align-right" nzTheme="outline"></i> </td>
+          </tr>      
+          <tr>
+            <td class="propertyName">PostalCode: </td>
+            <td class="mainName">{{this.accountService.Data.personalData.address.postalCode}}</td>
+            <td><i nz-icon nzType="align-right" nzTheme="outline"></i> </td>
+          </tr>   
+        </tbody>
+      </nz-table>
+      <br>
     </div>
   </div>
 </div>
+
+<div nz-col nzspan="16" class="basicInfo nzDiv">
+  <div class="inner">
+    <h2>Driver License</h2>
+    <div>
+      <nz-table nzTemplateMode [nzFrontPagination]="false" [nzShowPagination]="false">
+        <tbody>
+          <tr>
+            <td class="propertyName">License Serial Number: </td>
+            <td class="mainName">{{this.accountService.Data.personalData.userDriverLicense.licenseSerialNumber}}</td>
+          <td><i nz-icon nzType="align-right" nzTheme="outline"></i></td>
+        </tr>
+        <tr>
+          <td class="propertyName">Issued By: </td>
+          <td class="mainName">{{this.accountService.Data.personalData.userDriverLicense.issuedBy}}</td>
+        <td><i nz-icon nzType="align-right" nzTheme="outline"></i></td>
+        </tr>
+        <tr>
+          <td class="propertyName">Expiration Date: </td>
+          <td class="mainName">{{this.accountService.Data.personalData.userDriverLicense.expirationDate | date:'longDate'}}</td>
+        <td><i nz-icon nzType="align-right" nzTheme="outline"></i></td>
+        </tr>
+      </tbody>
+    </nz-table>
+    <br>
+  </div>
+</div>
+</div>
+</div>
 <div>
   <nz-modal nzWidth="50%" [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent"
-    [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()">
+  [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()">
     <ng-template #modalTitle>
       <span>Update your info</span>
     </ng-template>

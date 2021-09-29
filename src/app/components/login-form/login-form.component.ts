@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/services/account.service';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
@@ -15,16 +15,18 @@ export class LoginFormComponent implements OnInit {
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
+  
+  pwdPattern = "^^(?!/\.\?,\$%&\^!~`$)([A-Z]{1}[a-z]{3}[A-Za-z]{1}[0-9a-z]{2}[0-9@]{1,2}([@]{0,1})?)$";
 
-  constructor(private accountService: AccountService, private router: Router, public fb: FormBuilder, private cookieService: CookieService) { 
-    transportService:
-    this.signinForm = this.fb.group({
-      email: [''],
-      password: ['']
+  constructor(private accountService: AccountService, private router: Router, public fb: FormBuilder, private cookieService: CookieService) {
+     this.signinForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.pattern(this.pwdPattern)]]
     })
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
   onSubmit() {
     this.accountService.login(this.signinForm.value)
@@ -39,5 +41,6 @@ export class LoginFormComponent implements OnInit {
       this.errorMessage = err.error.message;
       this.isLoginFailed = true;
     });
+
   }
 }

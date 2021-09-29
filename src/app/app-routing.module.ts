@@ -9,8 +9,8 @@ import { AfterRestorePasswordComponent } from './components/after-restore-passwo
 import { PersonalCabinetComponent } from './components/personal-cabinet/personal-cabinet';
 import { ViolationListComponent } from './components/violation-list/violation-list.component';
 import { TransportComponent } from './components/transport/transport-component';
-import { ProfileComponent } from './components/profile/profile';
 import { EuroProtocolComponent } from './components/euro-protocol/euro-protocol.component';
+import { ResendConfirmationComponent } from './components/resend-confirmation/resend-confirmation.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -23,8 +23,8 @@ const routes: Routes = [
   { path: 'restorePassword', component: AfterRestorePasswordComponent},
   { path: 'transportList', component: TransportComponent},
   { path: 'violationList', component: ViolationListComponent},
-  { path: 'profile', component: ProfileComponent},
-  { path: 'euroProtocol', component: EuroProtocolComponent}  
+  { path: 'euroProtocol', component: EuroProtocolComponent},
+  { path: 'resendConfirmation', component: ResendConfirmationComponent }
 ];
 
 @NgModule({

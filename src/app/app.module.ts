@@ -17,7 +17,6 @@ import * as AllIcons from '@ant-design/icons-angular/icons';
 import { HttpClientModule }   from '@angular/common/http';
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { PersonalCabinetComponent } from './components/personal-cabinet/personal-cabinet';
-import { ProfileComponent } from './components/profile/profile';
 import { ViolationListComponent } from './components/violation-list/violation-list.component';
 import { TransportComponent } from './components/transport/transport-component';
 import { EmailFormComponent } from './components/email-form/email-form.component';
@@ -28,6 +27,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ToastrModule } from 'ngx-toastr';
 import { EuroProtocolComponent } from './components/euro-protocol/euro-protocol.component';
 import { CookieService } from 'ngx-cookie-service';
+import { ResendConfirmationComponent } from './components/resend-confirmation/resend-confirmation.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -42,13 +42,13 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     HomePageComponent,
     LayoutComponent,
     PersonalCabinetComponent,
-    ProfileComponent,
     TransportComponent,
     ViolationListComponent,
     EmailFormComponent,
     EuroProtocolComponent,
     RestorePasswordComponent,
-    AfterRestorePasswordComponent
+    AfterRestorePasswordComponent,
+    ResendConfirmationComponent
   ],
   imports: [
     BrowserModule,

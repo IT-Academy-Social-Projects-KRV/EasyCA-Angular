@@ -1,9 +1,10 @@
-import { flatten } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzButtonSize } from 'ng-zorro-antd/button';
 import { AccountService } from 'src/app/services/account.service';
 import { FormBuilder, FormGroup, FormArray, FormControl}from "@angular/forms";
+import { Circumstance } from 'src/app/models/circumstance';
+import { EuroProtocolService } from 'src/app/services/euroProtocolService';
 
 @Component({
   selector: 'app-euro-protocol',
@@ -12,10 +13,14 @@ import { FormBuilder, FormGroup, FormArray, FormControl}from "@angular/forms";
 })
 
 export class EuroProtocolComponent implements OnInit {
-  constructor(private router: Router , public accountService:AccountService, public fb: FormBuilder ) { }
+  constructor(private router: Router , public accountService:AccountService, public fb: FormBuilder, public service: EuroProtocolService ) { }
+  
+  circumstancesList: Circumstance[] = [];
+  checkedCircumstancesId: number[]=[];
   dateFormat = 'yyyy/MM/dd';
   size: NzButtonSize = 'large';
   disabled = true;
+
   public personalDataForm = this.fb.group({
     email: [''],
     firstName: [''],
@@ -32,7 +37,8 @@ export class EuroProtocolComponent implements OnInit {
       }),
       userCars: [],
     })
-   });
+  });
+
   optionGroup = [
     { label: 'No one was injured or killed', checked: false },
     { label: 'The drivers did not drink alcohol or drugs', checked: false },
@@ -51,9 +57,21 @@ export class EuroProtocolComponent implements OnInit {
   isActiveEighth = false;
   isActiveNinth = false;
 
-  
+  onChange(id:Circumstance, event: any) {
+    if(event.target.checked) {
+      this.checkedCircumstancesId.push(id.circumstanceId);
+    } else {
+      let index = this.checkedCircumstancesId.findIndex(x => x == id.circumstanceId)
+      this.checkedCircumstancesId.slice(index);
+    }
+    console.log(this.checkedCircumstancesId);
+  }
 
   ngOnInit(): void {
+    this.service.getAllCircumstances()
+      .subscribe(data => {
+        this.circumstancesList = data;
+      })
   }
   
   allChecked(): void {
