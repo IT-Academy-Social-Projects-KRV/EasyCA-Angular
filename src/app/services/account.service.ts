@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { TokenStorageService } from './token-storage.service';
-import { HOST_URL} from '../config';
+import { HOST_URL, RESEND_CONFIRMATION_URI} from '../config';
 import { RESTORE_PASSWORD_URI } from '../config';
 import { User } from '../models/User';
 import { Observable } from 'rxjs';
 import { RestorePassword } from '../models/restorePassword';
 import { Data } from '../models/data';
 import { CookieService } from 'ngx-cookie-service';
+import { ResendConfirmation } from '../models/resendConfirmation';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -46,7 +47,7 @@ export class AccountService {
 
   getPersonalData() {
    return this.http.get<any>(`${HOST_URL}Account/GetUserById`);
-   }
+  }
 
   logout() {
     localStorage.removeItem('access_token');
@@ -67,6 +68,10 @@ export class AccountService {
 
   restorePassword(route:string,token:string,email:string,password:string) {
     return this.http.get<any>(`${HOST_URL}${route}/${password}/${token}/${email}`);
-  } 
+  }
 
+  resendConfirmation(data:ResendConfirmation) {
+    data.resendConfirmationURI = RESEND_CONFIRMATION_URI;
+    return this.http.post<any>(`${HOST_URL}Auth/ResendConfirmation`, data, httpOptions);
+  }
 }

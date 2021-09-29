@@ -27,6 +27,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ToastrModule } from 'ngx-toastr';
 import { EuroProtocolComponent } from './components/euro-protocol/euro-protocol.component';
 import { CookieService } from 'ngx-cookie-service';
+import { ResendConfirmationComponent } from './components/resend-confirmation/resend-confirmation.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -46,7 +47,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     EmailFormComponent,
     EuroProtocolComponent,
     RestorePasswordComponent,
-    AfterRestorePasswordComponent
+    AfterRestorePasswordComponent,
+    ResendConfirmationComponent
   ],
   imports: [
     BrowserModule,
