@@ -11,6 +11,8 @@ import { ViolationListService } from 'src/app/services/violation-list.service';
 })
 
 export class ViolationListComponent implements OnInit {
+  selectedEuroProtocol: EuroProtocol;
+  isEuroProtocolModalVisible = false;
 
   constructor(public fb: FormBuilder, public http: HttpClient, public violationListService: ViolationListService) { }
   protocolList: EuroProtocol[] = [];
@@ -21,5 +23,16 @@ export class ViolationListComponent implements OnInit {
       data => this.protocolList = data,
       () => { }
     );
+  }
+
+  loadEuroProtocol(id: number) : void {
+    this.selectedEuroProtocol = this.protocolList[id];
+  }
+
+  showEuroProtocolModal() : void {
+    this.isEuroProtocolModalVisible = true;
+  }
+  cancelEuroProtocolModal() : void {
+    this.isEuroProtocolModalVisible = false;
   }
 }
