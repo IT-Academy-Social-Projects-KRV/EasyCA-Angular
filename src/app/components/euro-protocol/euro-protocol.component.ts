@@ -7,7 +7,7 @@ import { Circumstance } from 'src/app/models/circumstance';
 import { EuroProtocolService } from 'src/app/services/euroProtocolService';
 import { TransportService } from 'src/app/services/transport.service';
 import { EuroProtocol } from 'src/app/models/euroProtocol';
-import { Side } from 'src/app/models/side';
+import { side } from 'src/app/models/side';
 import { Evidence } from 'src/app/models/evidence';
 import { AddressOfAccident } from 'src/app/models/addressOfAccident';
 import { Witness } from 'src/app/models/witness';
@@ -40,7 +40,8 @@ export class EuroProtocolComponent implements OnInit {
         transportId:'',
       },
        this.euroProtocol={
-        registrationDateTime: new Date('1968-11-16T00:00:00'),
+        id:'',
+        registrationDateTime: new Date('2021-10-04'),
         serialNumber:'',
         address: <AddressOfAccident>{
           coordinatesOfLatitude:'',
@@ -60,8 +61,8 @@ export class EuroProtocolComponent implements OnInit {
     }
 
   public euroProtocol: EuroProtocol;
-  public sideA: Side;
-  public sideB: Side;
+  public sideA: side;
+  public sideB: side;
 
   circumstancesList: Circumstance[] = [];
   checkedCircumstancesId: number[]=[];
