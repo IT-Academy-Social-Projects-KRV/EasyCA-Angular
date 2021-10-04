@@ -2,10 +2,10 @@ export interface AddressOfAccident {
     city: string;
     district: string;
     street: string;
-    CrossStreet: string;
-    CoordinatesOfLatitude: string;
-    CoordinatesOfLongitude: string;
-    IsInCity: boolean,
-    IsIntersection: boolean,
+    crossStreet: string;
+    coordinatesOfLatitude: string;
+    coordinatesOfLongitude: string;
+    isInCity: boolean,
+    isIntersection: boolean,
   } 
  

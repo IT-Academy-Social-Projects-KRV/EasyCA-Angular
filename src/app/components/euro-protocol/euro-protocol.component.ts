@@ -43,11 +43,11 @@ export class EuroProtocolComponent implements OnInit {
         registrationDateTime: new Date('1968-11-16T00:00:00'),
         serialNumber:'',
         address: <AddressOfAccident>{
-          CoordinatesOfLatitude:'',
-          CoordinatesOfLongitude:'',
-          CrossStreet:'',
-          IsInCity:true,
-          IsIntersection:true,
+          coordinatesOfLatitude:'',
+          coordinatesOfLongitude:'',
+          crossStreet:'',
+          isInCity:true,
+          isIntersection:true,
           city:'',
           district:'',
           street:''
