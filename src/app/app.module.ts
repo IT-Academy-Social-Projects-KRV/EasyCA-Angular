@@ -17,8 +17,8 @@ import * as AllIcons from '@ant-design/icons-angular/icons';
 import { HttpClientModule }   from '@angular/common/http';
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { PersonalCabinetComponent } from './components/personal-cabinet/personal-cabinet';
+import { ViolationListComponent } from './components/violation-list/violation-list.component';
 import { TransportComponent } from './components/transport/transport-component';
-import { ViolationListComponent } from './components/violation-list/violation-list';
 import { EmailFormComponent } from './components/email-form/email-form.component';
 import { RestorePasswordComponent } from './components/restore-password/restore-password.component';
 import { AfterRestorePasswordComponent } from './components/after-restore-password/after-restore-password.component';
@@ -27,6 +27,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ToastrModule } from 'ngx-toastr';
 import { EuroProtocolComponent } from './components/euro-protocol/euro-protocol.component';
 import { CookieService } from 'ngx-cookie-service';
+import { ResendConfirmationComponent } from './components/resend-confirmation/resend-confirmation.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -46,7 +47,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     EmailFormComponent,
     EuroProtocolComponent,
     RestorePasswordComponent,
-    AfterRestorePasswordComponent
+    AfterRestorePasswordComponent,
+    ResendConfirmationComponent
   ],
   imports: [
     BrowserModule,

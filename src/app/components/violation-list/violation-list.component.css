@@ -1,25 +1,23 @@
-p {
-    margin: 0;
+.tableHeader {
+  letter-spacing: .07272727em;
+  font-family: Roboto,Arial,sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+  word-break: break-word;
+  word-wrap: break-word;
+  color: #5f6368; 
 }
-.violation-card{
-    display:flex;
-    flex-flow: column wrap;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 15px;
-    width: 90%;
-    justify-content: center;
+
+.tableBodyCell{
+  letter-spacing: .00625em;
+  font-family: Roboto,Arial,sans-serif;
+  font-size: 18px;
+  hyphens: auto;
+  word-break: break-word;
+  word-wrap: break-word;
+  color: #202124;
 }
-.violation{
-    display:flex;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    width: 90%;
-    justify-content: center;
-}
-.violation-label{
-    text-align: center;
-    color: rgb(59, 59, 59);
+
+.tableButton{
+  width: 90px;
 }

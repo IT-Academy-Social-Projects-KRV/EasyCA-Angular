@@ -1,0 +1,32 @@
+.resend-confirmation-label {
+    text-align: center;
+    color: rgb(59, 59, 59);
+}
+
+.error_alert {
+    display: flex;
+    justify-content: center; 
+    margin-bottom:10px;
+}
+
+.error_alert_resend_confirmation {
+    width: 30%;
+}
+
+#center-resend-confirmation {
+    display: flex;
+    justify-content: center;
+}
+
+.resend-form-button {
+    padding: 5px 50px 5px 50px;
+}
+
+.item_resend_form_button {
+    display: flex;
+    justify-content: center;
+}
+
+.ant-form {
+    width: 30%;
+}

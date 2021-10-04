@@ -7,9 +7,10 @@ import { EmailFormComponent } from './components/email-form/email-form.component
 import { RestorePasswordComponent } from './components/restore-password/restore-password.component';
 import { AfterRestorePasswordComponent } from './components/after-restore-password/after-restore-password.component';
 import { PersonalCabinetComponent } from './components/personal-cabinet/personal-cabinet';
+import { ViolationListComponent } from './components/violation-list/violation-list.component';
 import { TransportComponent } from './components/transport/transport-component';
-import { ViolationListComponent } from './components/violation-list/violation-list';
 import { EuroProtocolComponent } from './components/euro-protocol/euro-protocol.component';
+import { ResendConfirmationComponent } from './components/resend-confirmation/resend-confirmation.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'restorePassword', component: AfterRestorePasswordComponent},
   { path: 'transportList', component: TransportComponent},
   { path: 'violationList', component: ViolationListComponent},
-  { path: 'euroProtocol', component: EuroProtocolComponent}  
+  { path: 'euroProtocol', component: EuroProtocolComponent},
+  { path: 'resendConfirmation', component: ResendConfirmationComponent }
 ];
 
 @NgModule({

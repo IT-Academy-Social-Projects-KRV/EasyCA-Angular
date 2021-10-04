@@ -1,8 +1,8 @@
 import { Evidence } from "./evidence";
 
-export interface Side{
+export interface side {
     email: string;
-    transportId: string;
+    trasportId: string;
     circumstances: Array<number>;
     evidences: Array<Evidence>;
     driverLicenseSerial: string;

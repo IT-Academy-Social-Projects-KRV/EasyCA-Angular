@@ -1,13 +1,14 @@
 import { AddressOfAccident } from "./addressOfAccident";
-import { Side } from "./side";
+import { side } from "./side";
 import { Witness } from "./witness";
 
-export interface EuroProtocol{
-    registrationDateTime: Date;        
+export interface EuroProtocol {
+    id : string;
+    registrationDateTime : Date;
     serialNumber: string;
-    address: AddressOfAccident;
-    sideA: Side;
-    sideB: Side;
-    isClosed: boolean;
-    witnesses: Array<Witness>;
+    address : AddressOfAccident;
+    sideA : side;
+    sideB : side;
+    isClosed : boolean;
+    witnesses : Array<Witness>;
 }

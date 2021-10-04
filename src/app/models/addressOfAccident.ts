@@ -8,4 +8,3 @@ export interface AddressOfAccident {
     isInCity: boolean,
     isIntersection: boolean,
   } 
- 
