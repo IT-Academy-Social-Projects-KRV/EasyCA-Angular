@@ -105,7 +105,7 @@ export class PersonalCabinetComponent implements OnInit {
       err => {
           this.isPersonalData=false;
           this.errorMessage = err.error.message;
-      });;
+      });
     }   
     
     onSubmit(DataForm:FormGroup) {
