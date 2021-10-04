@@ -30,6 +30,15 @@ export class EuroProtocolComponent implements OnInit {
          isGulty: false,
          transportId:'',
        }
+       this.sideB = {
+        circumstances: Array<number>(),
+        damage:'',
+        email:'',
+        driverLicenseSerial:'',
+        evidences:Array<Evidence>(),
+        isGulty: false,
+        transportId:'',
+      },
        this.euroProtocol={
         registrationDateTime: new Date('1968-11-16T00:00:00'),
         serialNumber:'',
@@ -44,7 +53,7 @@ export class EuroProtocolComponent implements OnInit {
           street:''
         },
         sideA: this.sideA,
-        sideB: this.sideA,
+        sideB: this.sideB,
         isClosed: false,
         witnesses: Array<Witness>(),
       }
@@ -52,6 +61,7 @@ export class EuroProtocolComponent implements OnInit {
 
   public euroProtocol: EuroProtocol;
   public sideA: Side;
+  public sideB: Side;
 
   circumstancesList: Circumstance[] = [];
   checkedCircumstancesId: number[]=[];
@@ -83,7 +93,7 @@ export class EuroProtocolComponent implements OnInit {
   });
 
   public emailSideB = this.fb.group({
-    email: [''],
+    email: '',
   });
 
   public firstFormSideA = this.fb.group({
@@ -307,14 +317,32 @@ export class EuroProtocolComponent implements OnInit {
     this.sideA.email = this.personalDataForm.value.email;
     this.sideA.driverLicenseSerial = this.personalDataForm.value.licenseSerialNumber;
     this.sideA.damage = this.addressOfAccident.value.damage;
-    
+
+    this.sideB.email = this.emailSideB.value.email;
+    this.sideB.circumstances = [];
+    this.sideB.damage = '';
+    this.sideB.driverLicenseSerial = '';
+    this.sideB.evidences = [];
+    this.sideB.isGulty = false;
+    this.sideB.transportId = '';
+
     this.euroProtocol.address = this.addressOfAccident.value;
     this.euroProtocol.isClosed = false;
     this.euroProtocol.sideA = this.sideA;
+    this.euroProtocol.sideB = this.sideB;
+    this.euroProtocol.serialNumber="00000012";
+
+    this.euroProtocol.sideA.email= this.personalDataForm.value.email;
     this.euroProtocol.sideB.email = this.emailSideB.value.email;
-    this.euroProtocol.serialNumber="00000002";
 
     this.service.createEuroProtocol(this.euroProtocol)
+    .subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+          console.log(err);
+      });
   } 
 
   stepBackToEighth(): void{
