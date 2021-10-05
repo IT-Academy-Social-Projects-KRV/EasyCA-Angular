@@ -1,5 +1,5 @@
-export interface Evidence {
-    Explanation: string;
-    PhotoSchema: string;
-    Attachments: Array<string>;
+export interface Evidence{
+    explanation: string;
+    photoSchema: string;
+    attachments: Array<string>;
 }

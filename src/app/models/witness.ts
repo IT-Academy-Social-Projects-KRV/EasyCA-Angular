@@ -1,7 +1,7 @@
-export interface Witness {
-    FirstName: string;
-    LastName: string;
-    WitnessAddress: string;
-    PhoneNumber: string;
-    IsVictim: boolean;
+export interface Witness{
+    firstName: string;
+    lastName: string;
+    witnessAddress: string;
+    phoneNumber: string;
+    isVictim: boolean;
 }

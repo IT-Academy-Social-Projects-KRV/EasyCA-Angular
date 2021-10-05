@@ -61,26 +61,26 @@ export class PersonalCabinetComponent implements OnInit {
   
   public DataForm = this.fb.group({
     email: ['', [Validators.email]],
-    firstName: ['', Validators.pattern(this.firstNamePattern)],
-    lastName: ['', Validators.pattern(this.lastNamePattern)],
+    firstName: ['', [Validators.pattern(this.firstNamePattern)]],
+    lastName: ['', [Validators.pattern(this.lastNamePattern)]],
     personalData: this.fb.group({
       address: this.fb.group({
-        country: ['', Validators.pattern(this.lastNamePattern)],
-        region: ['', Validators.pattern(this.regionPattern)],
-        city: ['', Validators.pattern(this.cityPattern)],
-        district: ['', Validators.pattern(this.districtPattern)],
-        street: ['', Validators.pattern(this.streetPattern)],
-        building: ['', Validators.pattern(this.buildingPattern)],
+        country: ['', [Validators.pattern(this.lastNamePattern)]],
+        region: ['', [Validators.pattern(this.regionPattern)]],
+        city: ['', [Validators.pattern(this.cityPattern)]],
+        district: ['', [Validators.pattern(this.districtPattern)]],
+        street: ['', [Validators.pattern(this.streetPattern)]],
+        building: ['', [Validators.pattern(this.buildingPattern)]],
         appartament: 0,
-        postalCode: ['', Validators.pattern(this.postalCodePattern)]
+        postalCode: ['', [Validators.pattern(this.postalCodePattern)]]
       }),
-      ipn: ['', Validators.pattern(this.ipnPattern)],
-      serviceNumber: ['', Validators.pattern(this.serviceNumberPattern)],
+      ipn: ['', [Validators.pattern(this.ipnPattern)]],
+      serviceNumber: ['', [Validators.pattern(this.serviceNumberPattern)]],
       birthDay: Date,
-      jobPosition: ['', Validators.pattern(this.jobPositionPattern)],
+      jobPosition: ['', [Validators.pattern(this.jobPositionPattern)]],
       userDriverLicense:  this.fb.group({
-        licenseSerialNumber: ['', Validators.pattern(this.licenseSerialNumberPattern)],
-        issuedBy:['', Validators.pattern(this.issuedByPattern)],
+        licenseSerialNumber: ['', [Validators.pattern(this.licenseSerialNumberPattern)]],
+        issuedBy:['', [Validators.pattern(this.issuedByPattern)]],
         expirationDate: Date,
       }),
       userCars: [],
@@ -105,7 +105,7 @@ export class PersonalCabinetComponent implements OnInit {
       err => {
           this.isPersonalData=false;
           this.errorMessage = err.error.message;
-      });;
+      });
     }   
     
     onSubmit(DataForm:FormGroup) {

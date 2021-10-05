@@ -27,32 +27,34 @@
     </div>
     <div class="euro_content">
         <div>
-            <form nz-form>
+            <form nz-form [formGroup]="firstFormSideA" >
                 <h4>1st participant of the accident</h4>
                 <nz-form-item>
                     <nz-form-label [nzSpan]="5">Insuarance number</nz-form-label>
-                    <nz-form-control  [nzSpan]="6">
-                      <input nz-input placeholder="Input the code" name="firstInsuarance"/>
+                    <nz-form-control  [nzSpan]="6">  
+                      <input nz-input placeholder="Input the code" name="FirstInsuarance" formControlName="firstInsuaranceNumber" required/>
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item>
                     <nz-form-label [nzSpan]="5">Car plate</nz-form-label>
                     <nz-form-control  [nzSpan]="6">
-                      <input nz-input placeholder="Input the number" name="firstCarPlate"/>
+                      <input nz-input placeholder="Input the number" name="FirstCarPlate" formControlName="firstCarPlate" required/>
                     </nz-form-control>
                 </nz-form-item>
-                  <h4>2nd participant of the accident</h4>
+            </form>
+                <h4>2nd participant of the accident</h4>
+            <form nz-form [formGroup]="secondFormSideB">   
                 <nz-form-item>
                     <br/>
                     <nz-form-label [nzSpan]="5">Insuarance number</nz-form-label>
                     <nz-form-control  [nzSpan]="6">
-                      <input nz-input placeholder="Input the code" name="secondInsuarance"/>
+                      <input nz-input placeholder="Input the code" name="SecondInsuarance" formControlName="secondInsuaranceNumber" required/>
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item>
                     <nz-form-label [nzSpan]="5">Car plate</nz-form-label>
                     <nz-form-control  [nzSpan]="6">
-                      <input nz-input placeholder="Input the number" name="secondCarPlate"/>
+                      <input nz-input placeholder="Input the number" name="SecondCarPlate" formControlName="secondCarPlate" required/>
                     </nz-form-control>
                 </nz-form-item>
             </form>
@@ -87,13 +89,13 @@
                         <nz-form-item>
                             <nz-form-label [nzSpan]="24">Last name of the driver</nz-form-label>
                             <nz-form-control  [nzSpan]="24">
-                              <input nz-input placeholder="Please input your last name" name="lastName"/>
+                              <input nz-input placeholder="Please input your last name" value="{{this.personalDataForm.value.lastName}}" name="lastName"/>
                             </nz-form-control>
                         </nz-form-item>
                         <nz-form-item>
                             <nz-form-label [nzSpan]="24">First name of the driver</nz-form-label>
                             <nz-form-control  [nzSpan]="24">
-                              <input nz-input placeholder="Please input your last name" name="firstName"/>
+                              <input nz-input placeholder="Please input your last name" value="{{this.personalDataForm.value.firstName}}" name="firstName"/>
                             </nz-form-control>
                         </nz-form-item>
                         <nz-form-item>
@@ -105,13 +107,13 @@
                         <nz-form-item>
                             <nz-form-label [nzSpan]="24">License serial number</nz-form-label>
                             <nz-form-control  [nzSpan]="24">
-                              <input nz-input placeholder="Please input serial number" name="license"/>
+                              <input nz-input placeholder="Please input serial number" value="{{this.personalDataForm.value.licenseSerialNumber}}" name="license"/>
                             </nz-form-control>
                         </nz-form-item>
                         <nz-form-item>
                             <nz-form-label [nzSpan]="24">Issued authority</nz-form-label>
                             <nz-form-control  [nzSpan]="24">
-                              <input nz-input placeholder="Please input your issued authority" name="issuedBy "/>
+                              <input nz-input placeholder="Please input your issued authority" value="{{this.personalDataForm.value.issuedBy}}" name="issuedBy "/>
                             </nz-form-control>
                         </nz-form-item>
                         <nz-form-item>
@@ -135,51 +137,54 @@
                             </nz-form-control>
                         </nz-form-item>
                     </div>
-                    <div class="information_col">      
-                        <h6>Technical passport</h6>                  
-                        <nz-form-item>
-                            <nz-form-label [nzSpan]="24">Made by</nz-form-label>
-                            <nz-form-control  [nzSpan]="24">
-                              <input nz-input placeholder="Input made by" name="madeBy"/>
-                            </nz-form-control>
-                        </nz-form-item>
-                        <nz-form-item>
-                            <nz-form-label [nzSpan]="24">Model</nz-form-label>
-                            <nz-form-control  [nzSpan]="24">
-                              <input nz-input placeholder="Input model" name="model"/>
-                            </nz-form-control>
-                        </nz-form-item>
-                        <nz-form-item>
-                            <nz-form-label [nzSpan]="24">Car categoty</nz-form-label>
-                            <nz-form-control  [nzSpan]="24">
-                              <input nz-input placeholder="Input car categoty" name="carCategory"/>
-                            </nz-form-control>
-                        </nz-form-item>
-                        <nz-form-item>
-                            <nz-form-label [nzSpan]="24">Vin code</nz-form-label>
-                            <nz-form-control  [nzSpan]="24">
-                              <input nz-input placeholder="Input vin code" name="vinCode"/>
-                            </nz-form-control>
-                        </nz-form-item>
-                        <nz-form-item>
-                            <nz-form-label [nzSpan]="24">Car plate</nz-form-label>
-                            <nz-form-control  [nzSpan]="24">
-                              <input nz-input placeholder="Input car plate" name="carPlate"/>
-                            </nz-form-control>
-                        </nz-form-item>
-                        <nz-form-item>
-                            <nz-form-label [nzSpan]="24">Color</nz-form-label>
-                            <nz-form-control  [nzSpan]="24">
-                              <input nz-input placeholder="Input color" name="color"/>
-                            </nz-form-control>
-                        </nz-form-item>
-                        <nz-form-item>
-                            <nz-form-label [nzSpan]="24">Year of production</nz-form-label>
-                            <nz-form-control  [nzSpan]="24">
-                                <nz-date-picker nzMode="year" name="yearOfProduction "></nz-date-picker>
-                            </nz-form-control>
-                        </nz-form-item>
-                    </div>
+                    <form>
+                        <div class="information_col">      
+                            <h6>Technical passport</h6>                  
+                            <nz-form-item>
+                                <nz-form-label [nzSpan]="24">Made by</nz-form-label>
+                                <nz-form-control  [nzSpan]="24">
+                                <input nz-input placeholder="Input made by" value="{{this.transportForm.value.producedBy}}" name="madeBy"/>
+                                </nz-form-control>
+                            </nz-form-item>
+                            <nz-form-item>
+                                <nz-form-label [nzSpan]="24">Model</nz-form-label>
+                                <nz-form-control  [nzSpan]="24">
+                                <input nz-input placeholder="Input model" value="{{this.transportForm.value.model}}" name="model"/>
+                                </nz-form-control>
+                            </nz-form-item>
+                            <nz-form-item>
+                                <nz-form-label [nzSpan]="24">Car categoty</nz-form-label>
+                                <nz-form-control  [nzSpan]="24">
+                                <input nz-input placeholder="Input car categoty" value="{{this.transportForm.value.categoryName}}" name="carCategory"/>
+                                </nz-form-control>
+                            </nz-form-item>
+                            <nz-form-item>
+                                <nz-form-label [nzSpan]="24">Vin code</nz-form-label>
+                                <nz-form-control  [nzSpan]="24">
+                                <input nz-input placeholder="Input vin code" value="{{this.transportForm.value.vinCode}}" name="vinCode"/>
+                                </nz-form-control>
+                            </nz-form-item>
+                            <nz-form-item>
+                                <nz-form-label [nzSpan]="24">Car plate</nz-form-label>
+                                <nz-form-control  [nzSpan]="24">
+                                <input nz-input placeholder="Input car plate" value="{{this.transportForm.value.carPlate}}" name="carPlate"/>
+                                </nz-form-control>
+                            </nz-form-item>
+                            <nz-form-item>
+                                <nz-form-label [nzSpan]="24">Color</nz-form-label>
+                                <nz-form-control  [nzSpan]="24">
+                                <input nz-input placeholder="Input color"  value="{{this.transportForm.value.color}}" name="color"/>
+                                </nz-form-control>
+                            </nz-form-item>
+                            <nz-form-item>
+                                <nz-form-label [nzSpan]="24">Year of production</nz-form-label>
+                                <nz-form-control  [nzSpan]="24">
+                                    <nz-date-picker nzMode="year" name="yearOfProduction"></nz-date-picker>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </form>
+
                 </div>                  
             </form>
         </div>
@@ -205,7 +210,7 @@
     </div>
     <div class="euro_content">
         <div>
-            <form nz-form>
+            <form  nz-form [formGroup]="addressOfAccident">
                 <nz-form-item>
                     <nz-form-control  [nzSpan]="24">
                         <label nz-checkbox >Accident in the city</label>
@@ -214,19 +219,19 @@
                 <nz-form-item>
                     <nz-form-label [nzSpan]="24">City</nz-form-label>
                     <nz-form-control  [nzSpan]="10">
-                      <input nz-input placeholder="Please input a city name" name="city"/>
+                      <input nz-input placeholder="Please input a city name" formControlName="city" required name="city"/>
                     </nz-form-control>
                 </nz-form-item> 
                 <nz-form-item>
                     <nz-form-label [nzSpan]="24">District</nz-form-label>
                     <nz-form-control  [nzSpan]="10">
-                      <input nz-input placeholder="Please input a district name" name="district"/>
+                      <input nz-input placeholder="Please input a district name" formControlName="district" required name="district"/>
                     </nz-form-control>
                 </nz-form-item> 
                 <nz-form-item>
                     <nz-form-label [nzSpan]="24">Street</nz-form-label>
                     <nz-form-control  [nzSpan]="10">
-                      <input nz-input placeholder="Please input a street name" name="street"/>
+                      <input nz-input placeholder="Please input a street name" formControlName="street" required name="street"/>
                     </nz-form-control>
                 </nz-form-item> 
                 <nz-form-item>
@@ -237,20 +242,26 @@
                 <nz-form-item>
                     <nz-form-label [nzSpan]="24">Cross Street</nz-form-label>
                     <nz-form-control  [nzSpan]="10">
-                      <input nz-input placeholder="Please input a cross street" name="crossStreet"/>
+                      <input nz-input placeholder="Please input a cross street" formControlName="CrossStreet" required name="crossStreet"/>
                     </nz-form-control>
                 </nz-form-item>  
                 <h6>If the accident occurred outside the city, enter the coordinates of the accident</h6>
                 <nz-form-item>
                     <nz-form-label [nzSpan]="24">Latitude</nz-form-label>
                     <nz-form-control  [nzSpan]="10">
-                      <input nz-input placeholder="Please input a coordinates of latitude" name="coordinatesOfLatitude"/>
+                      <input nz-input placeholder="Please input a coordinates of latitude" formControlName="CoordinatesOfLatitude" required  name="coordinatesOfLatitude"/>
                     </nz-form-control>
                 </nz-form-item> 
                 <nz-form-item>
                     <nz-form-label [nzSpan]="24">Longitude</nz-form-label>
                     <nz-form-control  [nzSpan]="10">
-                      <input nz-input placeholder="Please input a coordinates of longitude" name="coordinatesOfLongitude"/>
+                      <input nz-input placeholder="Please input a coordinates of longitude" formControlName="CoordinatesOfLongitude" required name="coordinatesOfLongitude"/>
+                    </nz-form-control>
+                </nz-form-item>    
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="24">Damage car</nz-form-label>
+                    <nz-form-control  [nzSpan]="10">
+                      <input nz-input placeholder="Please input a damage of your auto" formControlName="damage" required name="damage"/>
                     </nz-form-control>
                 </nz-form-item>                               
             </form>
@@ -342,35 +353,37 @@
     </div>
     <div class="euro_content">
         <div>    
-            <nz-form-item>
-                <nz-form-control  [nzSpan]="8">       
-                    <label nz-checkbox>There are no witnesses</label> 
-                </nz-form-control>
-            </nz-form-item>           
-            <nz-form-item>
-                <nz-form-label [nzSpan]="24">Last name of the witness</nz-form-label>
-                <nz-form-control  [nzSpan]="8">
-                  <input nz-input placeholder="Please input last name witness" name="lastName"/>
-                </nz-form-control>
-            </nz-form-item>
-            <nz-form-item>
-                <nz-form-label [nzSpan]="24">First name of the witness</nz-form-label>
-                <nz-form-control  [nzSpan]="8">
-                  <input nz-input placeholder="Please input first name witness" name="firstName"/>
-                </nz-form-control>
-            </nz-form-item>   
-            <nz-form-item>
-                <nz-form-label [nzSpan]="24">Mobile</nz-form-label>
-                <nz-form-control [nzSpan]="8">
-                  <input nz-input placeholder="Please input mobile!"/>
-                </nz-form-control>
-            </nz-form-item> 
-            <nz-form-item>
-                <nz-form-label [nzSpan]="24">Address</nz-form-label>
-                <nz-form-control [nzSpan]="8">
-                  <input nz-input placeholder="Please write witness address here!"/>
-                </nz-form-control>
-            </nz-form-item>      
+            <form nz-form [formGroup]="witness">
+                <nz-form-item>
+                    <nz-form-control  [nzSpan]="8">       
+                        <label nz-checkbox>There are no witnesses</label> 
+                    </nz-form-control>
+                </nz-form-item>           
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="24">Last name of the witness</nz-form-label>
+                    <nz-form-control  [nzSpan]="8">
+                        <input nz-input placeholder="Please input last name witness" formControlName="lastName" required name="lastName"/>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="24">First name of the witness</nz-form-label>
+                    <nz-form-control  [nzSpan]="8">
+                        <input nz-input placeholder="Please input first name witness" formControlName="firstName" required name="firstName"/>
+                    </nz-form-control>
+                </nz-form-item>   
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="24">Mobile</nz-form-label>
+                    <nz-form-control [nzSpan]="8">
+                        <input nz-input placeholder="Please input mobile!" formControlName="phone" required/>
+                    </nz-form-control>
+                </nz-form-item> 
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="24">Address</nz-form-label>
+                    <nz-form-control [nzSpan]="8">
+                        <input nz-input placeholder="Please write witness address here!" formControlName="adress" required/>
+                    </nz-form-control>
+                </nz-form-item>      
+            </form>
         </div>
     </div>
     <div class="euro_progres">
@@ -394,20 +407,22 @@
     </div>
     <div class="euro_content">
         <div>  
-            <h4>1st participant</h4>                     
-            <nz-form-item>
-                <nz-form-label [nzSpan]="24">Email</nz-form-label>
-                <nz-form-control  [nzSpan]="8">
-                  <input nz-input placeholder="Please input email!" name="firstEmail"/>
-                </nz-form-control>
-            </nz-form-item>
-            <h4>2nd participant</h4>
-            <nz-form-item>
-                <nz-form-label [nzSpan]="24">Email</nz-form-label>
-                <nz-form-control  [nzSpan]="8">
-                  <input nz-input placeholder="Please input email!" name="secondEmail"/>
-                </nz-form-control>
-            </nz-form-item>      
+            <h4>1st participant</h4>    
+            <form [formGroup]="emailSideB">
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="24">Email</nz-form-label>
+                    <nz-form-control  [nzSpan]="8">
+                        <input nz-input placeholder="Please input email!" name="firstEmail" value="{{this.personalDataForm.value.email}}"/>
+                    </nz-form-control>
+                </nz-form-item>
+                <h4>2nd participant</h4>
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="24">Email</nz-form-label>
+                    <nz-form-control  [nzSpan]="8">
+                        <input nz-input placeholder="Please input email!" formControlName="email" required name="secondEmail"/>
+                    </nz-form-control>
+                </nz-form-item>      
+            </form>                 
         </div>
     </div>
     <div class="euro_progres">

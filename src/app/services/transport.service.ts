@@ -18,13 +18,20 @@ export class TransportService {
   postTransport(){
     return this.http.post<any>(`${HOST_URL}Transport/AddTransport`, this.formData, httpOptions);
   }
+  
   putTransport(){
     return this.http.put<any>(`${HOST_URL}Transport/UpdateTransport`, this.formData, httpOptions);
   }
+
   deleteTransport(id:string){
     return this.http.delete(`${HOST_URL}Transport/DeleteTransport?transportId=${id}`);
   }
+
   refreshList(){    
     return this.http.get(`${HOST_URL}Transport/GetAllTransports`);
+  }
+
+  getTransportByCarPlate(carPlate: string){
+    return this.http.get(`${HOST_URL}Transport/GetTransportByCarPlate?carPlate=${carPlate}`);
   }
 }

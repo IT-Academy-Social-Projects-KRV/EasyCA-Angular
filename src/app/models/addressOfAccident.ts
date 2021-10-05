@@ -5,6 +5,6 @@ export interface AddressOfAccident {
     crossStreet: string;
     coordinatesOfLatitude: string;
     coordinatesOfLongitude: string;
-    isInCity: boolean;
-    isIntersection: boolean;
-}
+    isInCity: boolean,
+    isIntersection: boolean,
+  } 
