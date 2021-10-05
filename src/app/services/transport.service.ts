@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { HOST_URL} from '../config';
+import { HOST_URL} from '../configs/config';
 import { Transport } from '../models/Transport';
 
 const httpOptions = {

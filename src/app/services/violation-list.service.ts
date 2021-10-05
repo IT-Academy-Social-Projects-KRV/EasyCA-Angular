@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HOST_URL } from '../config';
+import { HOST_URL } from '../configs/config';
 import { EuroProtocol } from '../models/euroProtocol';
 
 @Injectable({
