@@ -1,0 +1,147 @@
+<div>
+    <div>
+        <h1>List of Inspector</h1>
+    </div>
+    <div>
+        <nz-table #basicTable [nzFrontPagination]="false" [nzShowPagination]="false">
+            <thead>
+                <tr>
+                    <th class="propertyName">Email</th>
+                    <th class="propertyName">First name</th>
+                    <th class="propertyName">Last name</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="mainName" (click)="showModal1()">Test@gmail.com</td>
+                    <td class="mainName" (click)="showModal1()">Test</td>
+                    <td class="mainName" (click)="showModal1()">Test</td>
+                    <td><i nz-icon nzType="delete" nzTheme="twotone"></i> </td>
+                </tr>
+            </tbody>
+        </nz-table>
+        <br>
+    </div>
+    <div class="taCenter">
+        <button nz-button [nzSize]="size" nzShape="round" [nzType]="'primary'" (click)="showModal1()">
+            <span>Add Inspector</span>
+        </button>
+    </div>
+</div>
+
+<div>
+    <div>
+        <h1>List of CA</h1>
+    </div>
+    <div>
+        <nz-table #basicTable [nzFrontPagination]="false" [nzShowPagination]="false">
+            <thead>
+                <tr>
+                    <th class="propertyName">SERIAL NUMBER</th>
+                    <th class="propertyName">REGISTRATION DATE</th>
+                    <th class="propertyName">ADDRESS OF ACCIDENT</th>
+                    <th class="propertyName">PROTOCOL STATUS</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="mainName" (click)="showModal2()">00000001</td>
+                    <td class="mainName" (click)="showModal2()">September 27, 2021, 14:47</td>
+                    <td class="mainName" (click)="showModal2()">Ua, Rivne</td>
+                    <td class="mainName" (click)="showModal2()">Closed</td>
+                    <td><i nz-icon nzType="delete" nzTheme="twotone"></i> </td>
+                </tr>
+            </tbody>
+        </nz-table>
+        <br>
+    </div>
+    <div class="taCenter">
+        <button nz-button [nzSize]="size" nzShape="round" [nzType]="'primary'" (click)="showModal1()">
+            <span>Add to Archieve</span>
+        </button>
+    </div>
+</div>
+
+<nz-modal [(nzVisible)]="isFirstVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter"
+    (nzOnCancel)="handleCancel1()">
+    <ng-template #modalTitle>
+        <span>Add Inspector</span>
+    </ng-template>
+    <ng-template #modalContent>
+        <form novalidate autocomplete="off">
+            <input type="hidden"/>
+            <div>
+                <label>Email</label>
+                <nz-form-item>
+                    <nz-form-control>
+                        <input nz-input id="email" placeholder="Email" required>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div>
+                <label>First Name</label>
+                <nz-form-item>
+                    <nz-form-control>
+                        <input nz-input id="firstName" placeholder="First Name" required>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div>
+                <label>Last Name</label>
+                <nz-form-item>
+                    <nz-form-control>
+                        <input nz-input id="lastName" placeholder="Last Name" required>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div>
+                <label>Date of Birth</label>
+                <nz-form-item>
+                    <nz-form-control>
+                        <input nz-input id="birthDay" placeholder="Date of Birth" required>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div>
+                <label>Serial number</label>
+                <nz-form-item>
+                    <nz-form-control>
+                        <input nz-input id="serialNumber" placeholder="Serial Number" required>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-row>
+                <button nz-button [nzSize]="size" nzShape="round" [nzType]="'primary'"
+                    type="submit">Add</button>
+            </div>
+        </form>
+    </ng-template>
+    <ng-template #modalFooter></ng-template>
+</nz-modal>
+
+<nz-modal [(nzVisible)]="isSecondVisible" [nzTitle]="modalTitle2" [nzContent]="modalContent2" [nzFooter]="modalFooter2"
+    (nzOnCancel)="handleCancel2()">
+    <ng-template #modalTitle2>
+        <span>Add to Archieve</span>
+    </ng-template>
+    <ng-template #modalContent2>
+        <form novalidate autocomplete="off">
+            <input type="hidden"/>
+            <div>
+                <label>Serial Number</label>
+                <nz-form-item>
+                    <nz-form-control>
+                        <input nz-input id="serialNumber" placeholder="Serial Number" required>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-row>
+                <button nz-button [nzSize]="size" nzShape="round" [nzType]="'primary'"
+                    type="submit">Add</button>
+            </div>
+        </form>
+    </ng-template>
+    <ng-template #modalFooter2></ng-template>
+</nz-modal>

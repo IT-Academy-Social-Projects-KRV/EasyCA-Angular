@@ -28,6 +28,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { EuroProtocolComponent } from './components/euro-protocol/euro-protocol.component';
 import { CookieService } from 'ngx-cookie-service';
 import { ResendConfirmationComponent } from './components/resend-confirmation/resend-confirmation.component';
+import { AdminPanel } from './components/admin-panel/admin-panel.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -48,7 +49,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     EuroProtocolComponent,
     RestorePasswordComponent,
     AfterRestorePasswordComponent,
-    ResendConfirmationComponent
+    ResendConfirmationComponent,
+    AdminPanel
   ],
   imports: [
     BrowserModule,
