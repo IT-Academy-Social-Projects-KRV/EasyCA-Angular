@@ -65,7 +65,7 @@ export class PersonalDataModalComponent implements OnInit {
         issuedBy: [''],
         expirationDate: null,
       }),
-      userCars: [],
+      userCars:[],
     })
   });
 
@@ -95,7 +95,7 @@ export class PersonalDataModalComponent implements OnInit {
       this.toastr.warning('Data not updated');
       return;
     }
-
+    
     this.data = DataForm.value;
     this.data.personalData.userDriverLicense.userCategories = this.checkedCategoriesList;
 

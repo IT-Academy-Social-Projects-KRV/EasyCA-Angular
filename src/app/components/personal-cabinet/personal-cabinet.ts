@@ -17,6 +17,7 @@ export class PersonalCabinetComponent implements OnInit {
   public isPersonalData = false;
   public isAddPersonalData = true;
   public errorMessage = '';
+  private userCars:string[];
 
   public Icon = this.fb.group({
     name: ['']
@@ -32,6 +33,7 @@ export class PersonalCabinetComponent implements OnInit {
         res => {
           this.data = res;
           this.userName = res.firstName[0] + res.lastName[0];
+          this.userCars=res.personalData.userCars;
 
           if (this.data.personalData != null) {
             this.isPersonalData = true;
@@ -54,12 +56,14 @@ export class PersonalCabinetComponent implements OnInit {
   }
 
   update($event: Data) {
+    $event.personalData.userCars=this.userCars;
     this.accountService.putPersonalData($event).
       subscribe(
         res => {
           this.toastr.info(res.message, "Success");
           this.isVisible = false;
           this.data = $event;
+         
           this.userName = $event.firstName[0] + $event.lastName[0];
         },
         err => {
