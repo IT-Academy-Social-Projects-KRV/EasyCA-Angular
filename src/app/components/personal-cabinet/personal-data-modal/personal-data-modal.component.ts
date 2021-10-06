@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { ToastrService } from 'ngx-toastr';
 import { Data } from 'src/app/models/data';
-import { AccountService } from 'src/app/services/account.service';
 
 @Component({
   selector: 'app-personal-data-modal',
@@ -12,25 +11,34 @@ import { AccountService } from 'src/app/services/account.service';
 export class PersonalDataModalComponent implements OnInit {
 
   public isVisible = false;
-  public data:Data;
+  public data: Data;
+  public isAdd = false;
+  public checkedCategoriesList: string[] = [];
 
-  @Input() set setData(data: Data){
-    this.data=data;
+  @Input() set setData(data: Data) {
+    this.data = data;
+  }
+  @Input() set setIsAdd(add: boolean) {
+    this.isAdd = add;
   }
 
   @Input() set setVisible(isVisible: boolean) {
     this.isVisible = isVisible;
-      this.populateForm(); 
+
+    if (!this.isAdd) {
+      this.populateForm();
+    }
   }
-  
+
   @Output() isVisibleEvent = new EventEmitter<boolean>();
-  @Output() submittedEvent=new EventEmitter<Data>();
+  @Output() submittedEvent = new EventEmitter<Data>();
+  @Output() addedEvent = new EventEmitter<Data>();
 
-  checkedCategoriesList: string[] = [];
 
-  constructor(public fb: FormBuilder, public accountService: AccountService,private toastr:ToastrService) { }
+  constructor(public fb: FormBuilder, private toastr: ToastrService) { }
 
   ngOnInit(): void {
+
   }
 
   public DataForm = this.fb.group({
@@ -50,13 +58,12 @@ export class PersonalDataModalComponent implements OnInit {
       }),
       ipn: [''],
       serviceNumber: [''],
-      birthDay: Date,
+      birthDay: null,
       jobPosition: [''],
       userDriverLicense: this.fb.group({
         licenseSerialNumber: [''],
         issuedBy: [''],
-        expirationDate: Date,
-        
+        expirationDate: null,
       }),
       userCars: [],
     })
@@ -83,39 +90,44 @@ export class PersonalDataModalComponent implements OnInit {
   }
 
   onSubmit(DataForm: FormGroup) {
-  
+
     if (this.DataForm.invalid) {
       this.toastr.warning('Data not updated');
       return;
     }
 
-    this.data=DataForm.value;
+    this.data = DataForm.value;
     this.data.personalData.userDriverLicense.userCategories = this.checkedCategoriesList;
-    this.submittedEvent.emit(this.data);
+
+    if (this.isAdd) {
+      this.data.email = localStorage.getItem('email') ?? '';
+      this.addedEvent.emit(this.data);
+    }
+    else {
+      this.submittedEvent.emit(this.data);
+    }
   }
+
   onChange(event: any) {
     this.checkedCategoriesList = event;
-    console.log(this.checkedCategoriesList);
   }
 
   populateForm() {
-    if(this.data.personalData!=null)
-    {
+
+    if (this.data.personalData) {
       let personalData = this.data.personalData;
       let address = personalData.address;
       let driverLicense = personalData.userDriverLicense;
-      
-      console.log(this.data);
-      if(driverLicense.userCategories!=null)
-      {
+
+      if (driverLicense.userCategories != null) {
         this.categoriesSeed.forEach(x => {
           x.checked = driverLicense.userCategories.some(y => y === x.value);
         });
       }
-      
+
       this.checkedCategoriesList = driverLicense.userCategories;
       let userCars = personalData.userCars;
-      
+
       this.DataForm.setValue(
         {
           email: this.data.email,
@@ -144,7 +156,7 @@ export class PersonalDataModalComponent implements OnInit {
             userCars: userCars
           }
         });
-      }
     }
-    }
-    
+  }
+}
+

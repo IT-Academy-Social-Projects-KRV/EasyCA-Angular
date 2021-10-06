@@ -7,11 +7,11 @@ import { Address } from 'src/app/models/address';
   styleUrls: ['./address.component.css']
 })
 export class AddressComponent implements OnInit {
-  
-  public address:Address;
 
-  @Input() set setAddress(info:Address){
-    this.address=info;
+  public address: Address;
+
+  @Input() set setAddress(info: Address) {
+    this.address = info;
   };
 
   constructor() { }

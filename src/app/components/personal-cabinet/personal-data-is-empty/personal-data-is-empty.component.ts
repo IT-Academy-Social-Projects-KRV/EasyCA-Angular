@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { NzButtonSize } from 'ng-zorro-antd/button';
 
 @Component({
   selector: 'app-personal-data-is-empty',
@@ -8,14 +7,14 @@ import { NzButtonSize } from 'ng-zorro-antd/button';
 })
 export class PersonalDataIsEmptyComponent implements OnInit {
 
-  @Output() isVisibleEvent=new EventEmitter<boolean>();
+  @Output() isVisibleEvent = new EventEmitter<boolean>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  showModal(){
-     this.isVisibleEvent.emit(true);
+  showModal() {
+    this.isVisibleEvent.emit(true);
   }
 }

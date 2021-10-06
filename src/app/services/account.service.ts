@@ -10,6 +10,7 @@ import { RestorePassword } from '../models/restorePassword';
 import { Data } from '../models/data';
 import { CookieService } from 'ngx-cookie-service';
 import { ResendConfirmation } from '../models/resendConfirmation';
+import { PersonalData } from '../models/personalData';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -46,6 +47,11 @@ export class AccountService {
 
   getPersonalData() {
    return this.http.get<Data>(`${HOST_URL}Account/GetUserById`);
+  }
+
+  addPersonalData(data:PersonalData){
+    return this.http.post<any>(`${HOST_URL}Account/CreatePersonalData`, data, httpOptions);
+
   }
 
   logout() {

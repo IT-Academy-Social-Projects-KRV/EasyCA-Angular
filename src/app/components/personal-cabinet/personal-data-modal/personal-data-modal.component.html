@@ -1,157 +1,157 @@
 <nz-modal nzWidth="50%" [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent"
   [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()">
-    <ng-template #modalTitle>
-      <span>Update your info</span>
-    </ng-template>
-    <ng-template #modalContent>
-      <div>      
-        <form novalidate autocomplete="off" [formGroup]="DataForm" (ngSubmit)="onSubmit(DataForm)">
-          <input type="hidden" formControlName="email" />
-          
-          <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
-            <div nz-col [nzSpan]="12">
-              <div> <label>Basic Info</label> </div>
-              <nz-divider></nz-divider>
-              <div>
-                <label for="firstName">Name:</label>
-                <nz-form-item>
-                  <nz-form-control>
-                    <input nz-input id="firstName" placeholder="Your Name" formControlName="firstName" required
-                      nzSize="large">
-                  </nz-form-control>
-                </nz-form-item>
-              </div>
-              <div>
-                <label for="lastName">Surname:</label>
-                <nz-form-item>
-                  <nz-form-control>
-                    <input nz-input id="lastName" placeholder="Your Surname" formControlName="lastName" required
-                      nzSize="large">
-                  </nz-form-control>
-                </nz-form-item>
-              </div>
-              <div formGroupName="personalData">
-                <div>
-                  <label for="ipn">IPN:</label>
-                  <nz-form-item>
-                    <nz-form-control>
-                      <input nz-input id="ipn" placeholder="Indefication code" formControlName="ipn" required
-                        nzSize="large">
-                    </nz-form-control>
-                  </nz-form-item>
-                </div>
-                <div>
-                  <label for="serviceNumber">Insuarance number:</label>
-                  <nz-form-item>
-                    <nz-form-control>
-                      <input nz-input id="serviceNumber" placeholder="Insuarance number" formControlName="serviceNumber"
-                        required nzSize="large">
-                    </nz-form-control>
-                  </nz-form-item>
-                </div>
-                <div>
-                  <label for="jobPosition">Job:</label>
-                  <nz-form-item>
-                    <nz-form-control>
-                      <input nz-input id="jobPosition" placeholder="Place where you working"
-                        formControlName="jobPosition" required nzSize="large">
-                    </nz-form-control>
-                  </nz-form-item>
-                </div>
-                <div>
-                  <label for="birthDay">Birthday:</label>
-                  <nz-form-item>
-                    <nz-form-control>
-                      <nz-date-picker id="birthDay" formControlName="birthDay" [nzSize]="'large'"></nz-date-picker>
-                    </nz-form-control>
-                  </nz-form-item>
-                </div>
-              </div>
+  <ng-template #modalTitle>
+    <span>Update your info</span>
+  </ng-template>
+  <ng-template #modalContent>
+    <div>
+      <form novalidate autocomplete="off" [formGroup]="DataForm" (ngSubmit)="onSubmit(DataForm)">
+        <input type="hidden" formControlName="email" />
+
+        <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+          <div nz-col [nzSpan]="12">
+            <div> <label>Basic Info</label> </div>
+            <nz-divider></nz-divider>
+            <div>
+              <label for="firstName">Name:</label>
+              <nz-form-item>
+                <nz-form-control>
+                  <input nz-input id="firstName" placeholder="Your Name" formControlName="firstName" required
+                    nzSize="large">
+                </nz-form-control>
+              </nz-form-item>
             </div>
-            <div formGroupName="personalData" nz-col [nzSpan]="12">
-              <div formGroupName="address">
-                <div> <label>Adrress</label> </div>
-                <nz-divider></nz-divider>
-                <div>
-                  <label for="country">Country:</label>
-                  <nz-form-item>
-                    <nz-form-control>
-                      <input nz-input id="country" placeholder="Place where you living" formControlName="country"
-                        required nzSize="large">
-                    </nz-form-control>
-                  </nz-form-item>
-                </div>
-                <div>
-                  <label for="region">Region:</label>
-                  <nz-form-item>
-                    <nz-form-control>
-                      <input nz-input id="region" placeholder="Your region" formControlName="region" required
-                        nzSize="large">
-                    </nz-form-control>
-                  </nz-form-item>
-                </div>
-                <div>
-                  <label for="city">City:</label>
-                  <nz-form-item>
-                    <nz-form-control>
-                      <input nz-input id="city" placeholder="Your city" formControlName="city" required nzSize="large">
-                    </nz-form-control>
-                  </nz-form-item>
-                </div>
-                <div>
-                  <label for="district">District:</label>
-                  <nz-form-item>
-                    <nz-form-control>
-                      <input nz-input id="district" placeholder="Your district" formControlName="district" required
-                        nzSize="large">
-                    </nz-form-control>
-                  </nz-form-item>
-                </div>
-                <div>
-                  <label for="street">Street:</label>
-                  <nz-form-item>
-                    <nz-form-control>
-                      <input nz-input id="street" placeholder="Your street" formControlName="street" required
-                        nzSize="large">
-                    </nz-form-control>
-                  </nz-form-item>
-                </div>
-                <div>
-                  <label for="building">Building:</label>
-                  <nz-form-item>
-                    <nz-form-control>
-                      <input nz-input id="building" placeholder="Your building" formControlName="building" required
-                        nzSize="large">
-                    </nz-form-control>
-                  </nz-form-item>
-                </div>
-                <div>
-                  <label for="postalCode">Post Code:</label>
-                  <nz-form-item>
-                    <nz-form-control>
-                      <input nz-input id="postalCode" placeholder="Your postal code" formControlName="postalCode"
-                        required nzSize="large">
-                    </nz-form-control>
-                  </nz-form-item>
-                </div>
-                <div>
-                  <label for="appartament">Appartament:</label>
-                  <nz-form-item>
-                    <nz-form-control>
-                      <nz-input-number nzSize="large" formControlName="appartament" [nzMin]="1" [nzMax]="10000"
-                        [nzStep]="1" required></nz-input-number>
-                    </nz-form-control>
-                  </nz-form-item>
-                </div>
+            <div>
+              <label for="lastName">Surname:</label>
+              <nz-form-item>
+                <nz-form-control>
+                  <input nz-input id="lastName" placeholder="Your Surname" formControlName="lastName" required
+                    nzSize="large">
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div formGroupName="personalData">
+              <div>
+                <label for="ipn">IPN:</label>
+                <nz-form-item>
+                  <nz-form-control>
+                    <input nz-input id="ipn" placeholder="Indefication code" formControlName="ipn" required
+                      nzSize="large">
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div>
+                <label for="serviceNumber">Insuarance number:</label>
+                <nz-form-item>
+                  <nz-form-control>
+                    <input nz-input id="serviceNumber" placeholder="Insuarance number" formControlName="serviceNumber"
+                      required nzSize="large">
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div>
+                <label for="jobPosition">Job:</label>
+                <nz-form-item>
+                  <nz-form-control>
+                    <input nz-input id="jobPosition" placeholder="Place where you working" formControlName="jobPosition"
+                      required nzSize="large">
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div>
+                <label for="birthDay">Birthday:</label>
+                <nz-form-item>
+                  <nz-form-control>
+                    <nz-date-picker id="birthDay" formControlName="birthDay" [nzSize]="'large'"></nz-date-picker>
+                  </nz-form-control>
+                </nz-form-item>
               </div>
             </div>
           </div>
-          <div formGroupName="personalData">
-            <div formGroupName="userDriverLicense">
-              <div> <label>Driver License</label>
-                <nz-divider></nz-divider>
+          <div formGroupName="personalData" nz-col [nzSpan]="12">
+            <div formGroupName="address">
+              <div> <label>Adrress</label> </div>
+              <nz-divider></nz-divider>
+              <div>
+                <label for="country">Country:</label>
+                <nz-form-item>
+                  <nz-form-control>
+                    <input nz-input id="country" placeholder="Place where you living" formControlName="country" required
+                      nzSize="large">
+                  </nz-form-control>
+                </nz-form-item>
               </div>
-              <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+              <div>
+                <label for="region">Region:</label>
+                <nz-form-item>
+                  <nz-form-control>
+                    <input nz-input id="region" placeholder="Your region" formControlName="region" required
+                      nzSize="large">
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div>
+                <label for="city">City:</label>
+                <nz-form-item>
+                  <nz-form-control>
+                    <input nz-input id="city" placeholder="Your city" formControlName="city" required nzSize="large">
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div>
+                <label for="district">District:</label>
+                <nz-form-item>
+                  <nz-form-control>
+                    <input nz-input id="district" placeholder="Your district" formControlName="district" required
+                      nzSize="large">
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div>
+                <label for="street">Street:</label>
+                <nz-form-item>
+                  <nz-form-control>
+                    <input nz-input id="street" placeholder="Your street" formControlName="street" required
+                      nzSize="large">
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div>
+                <label for="building">Building:</label>
+                <nz-form-item>
+                  <nz-form-control>
+                    <input nz-input id="building" placeholder="Your building" formControlName="building" required
+                      nzSize="large">
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div>
+                <label for="postalCode">Post Code:</label>
+                <nz-form-item>
+                  <nz-form-control>
+                    <input nz-input id="postalCode" placeholder="Your postal code" formControlName="postalCode" required
+                      nzSize="large">
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div>
+                <label for="appartament">Appartament:</label>
+                <nz-form-item>
+                  <nz-form-control>
+                    <nz-input-number nzSize="large" formControlName="appartament" [nzMin]="1" [nzMax]="10000"
+                      [nzStep]="1" required></nz-input-number>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div formGroupName="personalData">
+          <div formGroupName="userDriverLicense">
+            <div> <label>Driver License</label>
+              <nz-divider></nz-divider>
+            </div>
+            <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
               <div nz-col [nzSpan]="12">
                 <label for="licenseSerialNumber">Serial Number of Driver License:</label>
                 <nz-form-item>
@@ -160,7 +160,7 @@
                       formControlName="licenseSerialNumber" required>
                   </nz-form-control>
                 </nz-form-item>
-              </div> 
+              </div>
               <div nz-col [nzSpan]="12">
                 <label for="issuedBy">IssuedBy:</label>
                 <nz-form-item>
@@ -169,40 +169,38 @@
                       formControlName="issuedBy" required>
                   </nz-form-control>
                 </nz-form-item>
-              </div> 
-              </div>
-              <div>
-                <label for="userCategories">Categories:</label>
-                <nz-form-item>
-                  <nz-form-control >
-                    <nz-checkbox-wrapper style="width: 100%;" (nzOnChange)="onChange($event)">
-                      <div nz-row >                 
-                           <div nz-col nzSpan="4" *ngFor="let sign of categoriesSeed" >
-                               <label nz-checkbox nzChecked='{{sign.checked}}'
-                               nzValue="{{sign.value}}" >{{sign.value}}</label>
-                            </div>  
-                      </div>
-                    </nz-checkbox-wrapper>                        
-                  </nz-form-control>
-                </nz-form-item>
-              </div>
-              <div>
-                <label for="expirationDate">Expiration Date your Driver License:</label>
-                <nz-form-item>
-                  <nz-form-control>
-                    <nz-date-picker id="expirationDate" formControlName="expirationDate" [nzSize]="'large'">
-                    </nz-date-picker>
-                  </nz-form-control>
-                </nz-form-item>
               </div>
             </div>
+            <div>
+              <label for="userCategories">Categories:</label>
+              <nz-form-item>
+                <nz-form-control>
+                  <nz-checkbox-wrapper style="width: 100%;" (nzOnChange)="onChange($event)">
+                    <div nz-row>
+                      <div nz-col nzSpan="4" *ngFor="let sign of categoriesSeed">
+                        <label nz-checkbox nzChecked='{{sign.checked}}' nzValue="{{sign.value}}">{{sign.value}}</label>
+                      </div>
+                    </div>
+                  </nz-checkbox-wrapper>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div>
+              <label for="expirationDate">Expiration Date your Driver License:</label>
+              <nz-form-item>
+                <nz-form-control>
+                  <nz-date-picker id="expirationDate" formControlName="expirationDate" [nzSize]="'large'">
+                  </nz-date-picker>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
           </div>
-          <div nz-row>
-            <button  nz-button [nzSize]="'large'" nzShape="round" [nzType]="'primary'"
-              type="submit">SUBMIT</button>
-          </div>
-        </form>
-      </div>
-    </ng-template>
-    <ng-template #modalFooter></ng-template>
-  </nz-modal>
+        </div>
+        <div nz-row>
+          <button nz-button [nzSize]="'large'" nzShape="round" [nzType]="'primary'" type="submit">SUBMIT</button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+  <ng-template #modalFooter></ng-template>
+</nz-modal>

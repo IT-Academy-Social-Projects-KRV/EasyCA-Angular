@@ -1,42 +1,45 @@
-
-<div *ngIf="this.isPersonalData===false">
+<div *ngIf="this.data && this.isPersonalData===false" class="alignCenter">
   <app-personal-data-is-empty (isVisibleEvent)="receiveVisible($event)"></app-personal-data-is-empty>
 </div>
 
 <div>
-  <app-personal-data-modal  [setData]="this.data" [setVisible]="this.isVisible" (submittedEvent)="update($event)"  (isVisibleEvent)="receiveVisible($event)"></app-personal-data-modal>
+  <app-personal-data-modal class="modal" [setIsAdd]="this.isAddPersonalData" [setData]="this.data"
+    [setVisible]="this.isVisible" (submittedEvent)="update($event)" (addedEvent)="add($event)"
+    (isVisibleEvent)="receiveVisible($event)"></app-personal-data-modal>
 </div>
 
-<div >
-  <div nz-col="" nzspan="12" nzoffset="6" class="alignCenter">
-    <div class="myDiv">
-      <div class="circle">
-        <span class="names">{{this.userName}}</span>
+<div *ngIf="this.isPersonalData">
+  <div>
+    <div nz-col="" nzspan="12" nzoffset="6" class="alignCenter">
+      <div class="myDiv">
+        <div class="circle">
+          <span class="names">{{this.userName}}</span>
+        </div>
       </div>
+      <div>
+        <h1>Personal info </h1>
+      </div>
+      <div>
+        Info about you and your preferences across Easy-CA
+      </div>
+      <br><br>
     </div>
+
+    <div class="btnChange">
+      <button nz-button [nzSize]="'large'" nzShape="round" [nzType]="'primary'" (click)="editModal()">
+        <span>Edit information</span>
+      </button>
+    </div>
+
     <div>
-      <h1>Personal info </h1>
+      <app-basic-info [basicInfo]="this.data"></app-basic-info>
     </div>
-    <div class="persInf2row">
-      Info about you and your preferences across Easy-CA
+
+    <div>
+      <app-address [setAddress]="this.data.personalData.address"></app-address>
     </div>
-    <br><br>
+
+    <div>
+      <app-driver-license [setLicense]="this.data.personalData.userDriverLicense"></app-driver-license>
+    </div>
   </div>
-
-  <div class="btnChange">
-    <button nz-button [nzSize]="'large'" nzShape="round" [nzType]="'primary'" (click)="receiveVisible(true)">
-      <span>Edit information</span>
-    </button>
-</div>
-
-<div *ngIf="this.isPersonalData">
-  <app-basic-info [basicInfo]="this.data"></app-basic-info>
-</div>
-
-<div *ngIf="this.isPersonalData">
-<app-address [setAddress]="this.data.personalData.address"></app-address>
-</div>
-
-<div *ngIf="this.isPersonalData">
-  <app-driver-license [setLicense]="this.data.personalData.userDriverLicense"></app-driver-license>
-</div>

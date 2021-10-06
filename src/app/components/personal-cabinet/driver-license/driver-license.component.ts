@@ -8,10 +8,10 @@ import { UserDriverLicense } from 'src/app/models/userDriverLicense';
 })
 export class DriverLicenseComponent implements OnInit {
 
-  public license:UserDriverLicense;
+  public license: UserDriverLicense;
 
-  @Input() set setLicense(info:UserDriverLicense){
-    this.license=info;
+  @Input() set setLicense(info: UserDriverLicense) {
+    this.license = info;
   };
 
   constructor() { }

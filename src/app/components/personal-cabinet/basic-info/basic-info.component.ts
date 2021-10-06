@@ -8,15 +8,14 @@ import { Data } from 'src/app/models/data';
 })
 export class BasicInfoComponent implements OnInit {
 
-  public userInfo:Data;
+  public userInfo: Data;
 
-  @Input('basicInfo') set basicInfo(info:Data){
-    this.userInfo=info;
+  @Input('basicInfo') set basicInfo(info: Data) {
+    this.userInfo = info;
   };
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.userInfo);
   }
 }
