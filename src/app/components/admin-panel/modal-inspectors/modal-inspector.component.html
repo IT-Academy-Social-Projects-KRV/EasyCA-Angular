@@ -1,0 +1,59 @@
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter"
+    (nzOnCancel)="handleCancel()">
+    <ng-template #modalTitle>
+        <span *ngIf="this.isAdd">Add Inspector</span>
+        <span *ngIf="!this.isAdd">Edit Inspector</span>
+    </ng-template>
+    <ng-template #modalContent>
+        <form novalidate autocomplete="off">
+            <input type="hidden"/>
+            <div>
+                <label>Email</label>
+                <nz-form-item>
+                    <nz-form-control>
+                        <input nz-input id="email" placeholder="Email" required>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div>
+                <label>First Name</label>
+                <nz-form-item>
+                    <nz-form-control>
+                        <input nz-input id="firstName" placeholder="First Name" required>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div>
+                <label>Last Name</label>
+                <nz-form-item>
+                    <nz-form-control>
+                        <input nz-input id="lastName" placeholder="Last Name" required>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div>
+                <label>Password</label>
+                <nz-form-item>
+                    <nz-form-control>
+                        <input nz-input type="password" id="Password" placeholder="Password" required>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div>
+                <label>Confirm password</label>
+                <nz-form-item>
+                    <nz-form-control>
+                        <input nz-input type="confirmPassword" id="confirmPassword" placeholder="Confirm password" required>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-row>
+                <button nz-button nzShape="round" [nzType]="'primary'" type="submit">
+                    <span *ngIf="this.isAdd">Add Inspector</span>
+                    <span *ngIf="!this.isAdd">Edit Inspector</span>
+                </button>
+            </div>
+        </form>
+    </ng-template>
+    <ng-template #modalFooter></ng-template>
+</nz-modal>

@@ -29,6 +29,9 @@ import { EuroProtocolComponent } from './components/euro-protocol/euro-protocol.
 import { CookieService } from 'ngx-cookie-service';
 import { ResendConfirmationComponent } from './components/resend-confirmation/resend-confirmation.component';
 import { AdminPanel } from './components/admin-panel/admin-panel.component';
+import { ModalInspectors } from './components/admin-panel/modal-inspectors/modal-inspector.component';
+import { ListCAComponent } from './components/list-ca/list-ca.component';
+import { ModalCAComponent } from './components/list-ca/modal-ca/modal-ca.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -50,7 +53,10 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     RestorePasswordComponent,
     AfterRestorePasswordComponent,
     ResendConfirmationComponent,
-    AdminPanel
+    AdminPanel,
+    ModalInspectors,
+    ListCAComponent,
+    ModalCAComponent
   ],
   imports: [
     BrowserModule,

@@ -12,6 +12,7 @@ import { TransportComponent } from './components/transport/transport-component';
 import { EuroProtocolComponent } from './components/euro-protocol/euro-protocol.component';
 import { ResendConfirmationComponent } from './components/resend-confirmation/resend-confirmation.component';
 import { AdminPanel } from './components/admin-panel/admin-panel.component';
+import { ListCAComponent } from './components/list-ca/list-ca.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -26,7 +27,8 @@ const routes: Routes = [
   { path: 'violationList', component: ViolationListComponent},
   { path: 'euroProtocol', component: EuroProtocolComponent},
   { path: 'resendConfirmation', component: ResendConfirmationComponent },
-  { path: 'adminPanel', component: AdminPanel }
+  { path: 'listOfInspectors', component: AdminPanel },
+  { path: 'listOfCa', component: ListCAComponent }
 ];
 
 @NgModule({
