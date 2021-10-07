@@ -11,6 +11,13 @@ import { ViolationListComponent } from './components/violation-list/violation-li
 import { TransportComponent } from './components/transport/transport-component';
 import { EuroProtocolComponent } from './components/euro-protocol/euro-protocol.component';
 import { ResendConfirmationComponent } from './components/resend-confirmation/resend-confirmation.component';
+import { TermsComponent } from './components/euro-protocol/terms/terms.component';
+import { WitnessesComponent } from './components/euro-protocol/witnesses/witnesses.component';
+import { ParticipantInfoComponent } from './components/euro-protocol/participant-info/participant-info.component';
+import { EvidenceComponent } from './components/euro-protocol/evidence/evidence.component';
+import { CheckInsuranceComponent } from './components/euro-protocol/check-insurance/check-insurance.component';
+import { CircumstancesComponent } from './components/euro-protocol/circumstances/circumstances.component';
+import { AccidentAddressComponent } from './components/euro-protocol/accident-address/accident-address.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -24,7 +31,15 @@ const routes: Routes = [
   { path: 'transportList', component: TransportComponent},
   { path: 'violationList', component: ViolationListComponent},
   { path: 'euroProtocol', component: EuroProtocolComponent},
-  { path: 'resendConfirmation', component: ResendConfirmationComponent }
+  { path: 'resendConfirmation', component: ResendConfirmationComponent },
+  { path: 'terms', component: TermsComponent},
+  { path: 'witnesses', component: WitnessesComponent},
+  { path: 'participantInfo', component: ParticipantInfoComponent},
+  { path: 'evidence', component: EvidenceComponent},
+  { path: 'confirmation', component: EvidenceComponent},
+  { path: 'checkInsurance', component: CheckInsuranceComponent},
+  { path: 'circumstances', component: CircumstancesComponent},
+  { path: 'accidentAddress', component: AccidentAddressComponent}
 ];
 
 @NgModule({
