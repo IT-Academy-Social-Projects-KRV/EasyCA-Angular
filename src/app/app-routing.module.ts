@@ -11,8 +11,8 @@ import { ViolationListComponent } from './components/violation-list/violation-li
 import { TransportComponent } from './components/transport/transport-component';
 import { EuroProtocolComponent } from './components/euro-protocol/euro-protocol.component';
 import { ResendConfirmationComponent } from './components/resend-confirmation/resend-confirmation.component';
-import { AdminPanel } from './components/admin-panel/admin-panel.component';
 import { ListCAComponent } from './components/list-ca/list-ca.component';
+import { AdminPanel } from './components/list-inspector/list-inspector.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
