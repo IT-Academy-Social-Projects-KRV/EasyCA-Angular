@@ -12,7 +12,7 @@ import { TransportComponent } from './components/transport/transport-component';
 import { EuroProtocolComponent } from './components/euro-protocol/euro-protocol.component';
 import { ResendConfirmationComponent } from './components/resend-confirmation/resend-confirmation.component';
 import { ListCAComponent } from './components/list-ca/list-ca.component';
-import { AdminPanel } from './components/list-inspector/list-inspector.component';
+import { ListInspectors } from './components/list-inspector/list-inspector.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'violationList', component: ViolationListComponent},
   { path: 'euroProtocol', component: EuroProtocolComponent},
   { path: 'resendConfirmation', component: ResendConfirmationComponent },
-  { path: 'listOfInspectors', component: AdminPanel },
+  { path: 'listOfInspectors', component: ListInspectors },
   { path: 'listOfCa', component: ListCAComponent }
 ];
 

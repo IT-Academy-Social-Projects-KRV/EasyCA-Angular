@@ -28,7 +28,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { EuroProtocolComponent } from './components/euro-protocol/euro-protocol.component';
 import { CookieService } from 'ngx-cookie-service';
 import { ResendConfirmationComponent } from './components/resend-confirmation/resend-confirmation.component';
-import { AdminPanel } from './components/list-inspector/list-inspector.component';
+import { ListInspectors } from './components/list-inspector/list-inspector.component';
 import { ModalInspectors } from './components/list-inspector/modal-inspectors/modal-inspector.component';
 import { ListCAComponent } from './components/list-ca/list-ca.component';
 import { ModalCAComponent } from './components/list-ca/modal-ca/modal-ca.component';
@@ -53,7 +53,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     RestorePasswordComponent,
     AfterRestorePasswordComponent,
     ResendConfirmationComponent,
-    AdminPanel,
+    ListInspectors,
     ModalInspectors,
     ListCAComponent,
     ModalCAComponent

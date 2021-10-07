@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-panel.component.css']
 })
 
-export class AdminPanel implements OnInit {
+export class ListInspectors implements OnInit {
     
     public isAdd = true;
     public isVisible = false;
