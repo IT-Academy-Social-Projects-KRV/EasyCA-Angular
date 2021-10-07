@@ -27,8 +27,8 @@ const routes: Routes = [
   { path: 'violationList', component: ViolationListComponent},
   { path: 'euroProtocol', component: EuroProtocolComponent},
   { path: 'resendConfirmation', component: ResendConfirmationComponent },
-  { path: 'listOfInspectors', component: ListInspectors },
-  { path: 'listOfCa', component: ListCAComponent }
+  { path: 'listOfCa', component: ListCAComponent },
+  { path: 'listOfInspectors', component: ListInspectors }
 ];
 
 @NgModule({
