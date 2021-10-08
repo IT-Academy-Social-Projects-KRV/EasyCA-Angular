@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NzButtonSize } from 'ng-zorro-antd/button';
+import { ToastrService } from 'ngx-toastr';
 import { AddressOfAccident } from 'src/app/models/addressOfAccident';
 import { EuroProtocol } from 'src/app/models/euroProtocol';
 import { Evidence } from 'src/app/models/evidence';
@@ -15,7 +17,7 @@ import { EuroProtocolService } from 'src/app/services/euroProtocolService';
 })
 export class ConfirmationComponent implements OnInit {
 
-  constructor(public service: EuroProtocolService, public fb: FormBuilder) {
+  constructor(public service: EuroProtocolService, public fb: FormBuilder, private router: Router, private toastr: ToastrService) {
     this.sideA = {
       circumstances: Array<number>(),
       damage:'',
@@ -140,6 +142,7 @@ export class ConfirmationComponent implements OnInit {
       err => {
           console.log(err);
       });
+    this.toastr.success("The European Protocol has been successfully established", "Success");
+    this.router.navigate(['/home']);
   } 
-
 }

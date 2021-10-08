@@ -26,38 +26,3 @@
     <app-confirmation></app-confirmation>
   </div>
 </div>
-
-<div class="euro_protocol_form">
-  <div class="euro_header">
-    <h2>The European Protocol has been successfully established</h2>
-  </div>
-  <div class="euro_content">
-    <div>
-      <h6>Thank you!</h6>
-      <br />
-      <h6>
-        The protocol was drawn up and sent to the insurance company and to the
-        Motor (Transport) Insurance Bureau of Ukraine.
-      </h6>
-      <br />
-      <h6>
-        Your insurance companies are parties to the Direct Loss Settlement
-        Agreement.
-      </h6>
-      <br />
-    </div>
-  </div>
-  <div class="euro_progres">
-    <nz-progress [nzPercent]="100" [nzShowInfo]="false"></nz-progress>
-  </div>
-  <div class="euro_footer_next">
-    <button nz-button nzType="primary" [nzSize]="size" (click)="stepBackToEighth()" >
-      <i nz-icon nzType="left"></i>
-      Backward
-    </button>
-    <button nz-button nzType="primary" [nzSize]="size" (click)="onSubmit()">
-      Forward
-      <i nz-icon nzType="right"></i>
-    </button>
-  </div>
-</div>
