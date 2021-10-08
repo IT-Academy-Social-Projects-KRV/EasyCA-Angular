@@ -169,36 +169,6 @@ export class EuroProtocolComponent implements OnInit {
       })
   } 
   
-  stepBackToSecond(): void{
-  }
-
-  clickToFourth(): void{
-  } 
-
-  stepBackToThird(): void{
-  }
-
-  clickToFifth(): void{
-  } 
-
-  stepBackToFourth(): void{
-  }
-
-  clickToSixth(): void{
-  } 
-
-  stepBackToFifth(): void{
-  }
-
-  clickToSeventh(): void{
-  } 
-
-  stepBackToSixth(): void{
-  }
-
-  clickToEighth(): void{
-  } 
-
   stepBackToSeventh(): void{
   }
 

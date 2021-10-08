@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { NzButtonSize } from 'ng-zorro-antd/button';
 
 @Component({
   selector: 'app-witnesses',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WitnessesComponent implements OnInit {
 
-  constructor() { }
+  constructor(public fb: FormBuilder) { }
+  
+  size: NzButtonSize = 'large';
+  
+  public witness = this.fb.group({
+    lastName: [''],
+    firstName: [''],
+    phone:[''],
+    adress:[''],
+  });
 
   ngOnInit(): void {
   }
+  
+  stepBackToSixth(): void{
+  }
 
+  clickToEighth(): void{
+  } 
 }

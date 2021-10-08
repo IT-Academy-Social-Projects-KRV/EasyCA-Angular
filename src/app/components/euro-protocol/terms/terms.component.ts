@@ -19,8 +19,7 @@ export class TermsComponent implements OnInit {
     { label: 'Drivers have insurance policies', checked: false },
     { label: 'The drivers agreed on the circumstances of the accident', checked: false },
     { label: 'Cars without trailers', checked: false }
-  ];
-  
+  ];  
   
   allChecked(): void {
     if (this.optionGroup.every(item => item.checked)) {

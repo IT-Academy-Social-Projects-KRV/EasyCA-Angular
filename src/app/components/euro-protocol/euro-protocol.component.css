@@ -3,7 +3,7 @@
     min-width: 100%;
     margin: 0 auto;
 }
-
+ 
 .euro_header{
     padding-bottom: 2%;
 }
@@ -95,12 +95,6 @@ p{
     margin-left: 15%;
     margin-bottom: 1%;
     justify-content: space-between;
-}
-
-img{
-    width: 250px;
-    height: 180px;
-    padding: 10px;
 }
 
 .information_col{
