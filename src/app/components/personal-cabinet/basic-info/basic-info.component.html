@@ -1,0 +1,38 @@
+<div nz-col nzspan="16" class="basicInfo nzDiv">
+    <div class="inner">
+        <h2>Basic Info</h2>
+        <div>
+            <nz-table nzTemplateMode [nzFrontPagination]="false" [nzShowPagination]="false">
+                <tbody>
+                    <tr>
+                        <td class="propertyName">Name: </td>
+                        <td class="mainName">{{userInfo.firstName}}
+                            {{userInfo.lastName}}</td>
+                        <td><i nz-icon nzType="align-right" nzTheme="outline"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="propertyName">Ipn: </td>
+                        <td class="mainName">{{userInfo.personalData.ipn}}</td>
+                        <td><i nz-icon nzType="align-right" nzTheme="outline"></i> </td>
+                    </tr>
+                    <tr>
+                        <td class="propertyName">Insuarence Number: </td>
+                        <td class="mainName">{{userInfo.personalData.serviceNumber}}</td>
+                        <td><i nz-icon nzType="align-right" nzTheme="outline"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="propertyName">Birthday: </td>
+                        <td class="mainName">{{userInfo.personalData.birthDay | date:'longDate'}}</td>
+                        <td><i nz-icon nzType="align-right" nzTheme="outline"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="propertyName">Job: </td>
+                        <td class="mainName">{{userInfo.personalData.jobPosition}}</td>
+                        <td><i nz-icon nzType="align-right" nzTheme="outline"></i> </td>
+                    </tr>
+                </tbody>
+            </nz-table>
+            <br>
+        </div>
+    </div>
+</div>

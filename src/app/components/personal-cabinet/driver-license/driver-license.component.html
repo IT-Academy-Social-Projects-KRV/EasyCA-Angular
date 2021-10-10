@@ -1,0 +1,29 @@
+<div nz-col nzspan="16" class="basicInfo nzDiv">
+    <div class="inner">
+        <h2>Driver License</h2>
+        <div>
+            <nz-table nzTemplateMode [nzFrontPagination]="false" [nzShowPagination]="false">
+                <tbody>
+                    <tr>
+                        <td class="propertyName">License Serial Number: </td>
+                        <td class="mainName">
+                            {{license.licenseSerialNumber}}</td>
+                        <td><i nz-icon nzType="align-right" nzTheme="outline"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="propertyName">Issued By: </td>
+                        <td class="mainName">{{license.issuedBy}}</td>
+                        <td><i nz-icon nzType="align-right" nzTheme="outline"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="propertyName">Expiration Date: </td>
+                        <td class="mainName">{{license.expirationDate |
+                            date:'longDate'}}</td>
+                        <td><i nz-icon nzType="align-right" nzTheme="outline"></i></td>
+                    </tr>
+                </tbody>
+            </nz-table>
+            <br>
+        </div>
+    </div>
+</div>

@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HOST_URL } from '../config';
 import { EuroProtocolFullModel } from '../models/euroProtocolFullModel';
 import { EuroProtocolSimpleModel } from '../models/euroProtocolSimpleModel';
+import { HOST_URL } from '../configs/config';
 
 @Injectable({
   providedIn: 'root'

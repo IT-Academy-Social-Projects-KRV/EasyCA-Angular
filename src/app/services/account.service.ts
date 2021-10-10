@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { TokenStorageService } from './token-storage.service';
-import { HOST_URL, RESEND_CONFIRMATION_URI} from '../config';
-import { RESTORE_PASSWORD_URI } from '../config';
+import { HOST_URL, RESEND_CONFIRMATION_URI} from '../configs/config';
+import { RESTORE_PASSWORD_URI } from '../configs/config';
 import { User } from '../models/User';
 import { Observable } from 'rxjs';
 import { RestorePassword } from '../models/restorePassword';
 import { Data } from '../models/data';
 import { CookieService } from 'ngx-cookie-service';
 import { ResendConfirmation } from '../models/resendConfirmation';
+import { PersonalData } from '../models/personalData';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -20,7 +21,6 @@ const httpOptions = {
 
 export class AccountService {
   constructor(private http: HttpClient,  public router: Router, private tokenStorageService: TokenStorageService, private cookieService: CookieService) { }
-  Data: Data;
   errorMessage = '';
    
   login(user:User) {
@@ -41,12 +41,17 @@ export class AccountService {
      return localStorage.getItem('role');
   }
 
-  putPersonalData(){
-    return this.http.put<any>(`${HOST_URL}Account/UpdateData`, this.Data, httpOptions);
+  putPersonalData(data:Data){
+    return this.http.put<any>(`${HOST_URL}Account/UpdateData`, data, httpOptions);
   }
 
   getPersonalData() {
-   return this.http.get<any>(`${HOST_URL}Account/GetUserById`);
+   return this.http.get<Data>(`${HOST_URL}Account/GetUserById`);
+  }
+
+  addPersonalData(data:PersonalData){
+    return this.http.post<any>(`${HOST_URL}Account/CreatePersonalData`, data, httpOptions);
+
   }
 
   logout() {

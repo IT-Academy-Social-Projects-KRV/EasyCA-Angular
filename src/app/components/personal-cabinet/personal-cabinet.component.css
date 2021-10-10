@@ -5,19 +5,6 @@
     margin-top: 16px;
     margin-right: 16px;
 }
-.basicInfo {
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-
-}
-.nzDiv{
-    display: block;
-    flex: none;
-    max-width: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
-    position: relative;
-    margin-top: 2%;
-}
 .inner{
     padding: 24px 24px 8px 24px;
 }
@@ -34,49 +21,12 @@
     margin-left: 10%;
     margin-right: 10%;
     position: relative;}
-.propertyName{
-    letter-spacing: .07272727em;
-    font-family: Roboto,Arial,sans-serif;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 1rem;
-    text-transform: uppercase;
-    width: 30%;
-    word-break: break-word;
-    word-wrap: break-word;
-    color: #5f6368; 
-}
-.mainName{
-    letter-spacing: .00625em;
-    font-family: Roboto,Arial,sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 1.5rem;
-    hyphens: auto;
-    word-break: break-word;
-    word-wrap: break-word;
-    color: #202124;
-    margin: 0;
-    padding: 0;
-    width: 40%;
-}
+
 .btnChange{
     text-align: center;
 }
 .alignCenter{
   text-align:center;
-}
-[nz-input]{
-    font-size: 20px;
-    height:50px
-}
-[nz-date-picker]{
-    font-size: 20px;
-    height:50px
-}
-[nz-input-number]{
-    font-size: 20px;
-    height:50px
 }
 
 .circle{
@@ -85,10 +35,6 @@
     height: 150px;
     width: 150px;
     padding: 50px;
-}
-
-.names{
-    font-size: 40px;
 }
 
 .myDiv{
