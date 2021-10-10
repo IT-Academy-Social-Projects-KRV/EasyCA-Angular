@@ -203,20 +203,20 @@
         <div>
           <label class="inputLabel">Name:</label>
           <input nz-input id="firstName" placeholder="Witness first name"
-            [ngModel]="witness.FirstName + ' ' + witness.LastName" readonly />
+            [ngModel]="witness.firstName + ' ' + witness.lastName" readonly />
         </div>
         <br>
         <div>
           <label class="inputLabel">Address:</label>
           <textarea nz-input [nzAutosize]="{ minRows: 1, maxRows: 3 }" id="witnessAddress" placeholder="Witness address"
-            [ngModel]="witness.WitnessAddress" readonly></textarea>
+            [ngModel]="witness.witnessAddress" readonly></textarea>
         </div>
         <br>
         <nz-row nzGutter=16>
           <nz-col nzSpan=8>
             <div>
               <label class="inputLabel">Phone Number:</label>
-              <input nz-input id="phoneNumber" placeholder="Witness phone number" [ngModel]="witness.PhoneNumber"
+              <input nz-input id="phoneNumber" placeholder="Witness phone number" [ngModel]="witness.phoneNumber"
                 readonly />
             </div>
           </nz-col>
@@ -224,7 +224,7 @@
             <div>
               <label class="inputLabel">Side of conflict:</label>
               <input nz-input id="isVictim" placeholder="Witness side of conflict"
-                [ngClass]="witness.IsVictim ? 'isVictim' : 'isGuilty'" [ngModel]="witness.IsVictim? 'Victim' : 'Guilty'"
+                [ngClass]="witness.isVictim ? 'isVictim' : 'isGuilty'" [ngModel]="witness.isVictim? 'Victim' : 'Guilty'"
                 readonly />
             </div>
           </nz-col>

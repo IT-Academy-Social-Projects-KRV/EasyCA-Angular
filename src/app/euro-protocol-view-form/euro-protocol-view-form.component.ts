@@ -42,7 +42,7 @@ export class EuroProtocolViewFormComponent implements OnInit {
           witnesses: [],
           sideA: {
             email: '',
-            trasportId: '',
+            transportId: '',
             circumstances: [],
             evidences: [],
             driverLicenseSerial: '',
@@ -51,7 +51,7 @@ export class EuroProtocolViewFormComponent implements OnInit {
           },
           sideB: {
             email: '',
-            trasportId: '',
+            transportId: '',
             circumstances: [],
             evidences: [],
             driverLicenseSerial: '',
@@ -189,12 +189,5 @@ export class EuroProtocolViewFormComponent implements OnInit {
         this.errorMessage = "Couldn't to load protocol's data";
       }
     );
-
-
   }
-
-  onOkButtonClick(DataForm: FormGroup) {
-
-  }
-
 }

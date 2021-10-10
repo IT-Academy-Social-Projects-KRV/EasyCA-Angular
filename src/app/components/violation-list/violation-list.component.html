@@ -47,16 +47,9 @@
         </tr>
       </tbody>
     </nz-table>
-    <nz-modal nzWidth="80%" [(nzVisible)]="isEuroProtocolModalVisible" [nzTitle]="modalTitle" [nzContent]="modalContent"
-    [nzFooter]="modalFooter" (nzOnCancel)="cancelEuroProtocolModal()">
-      <ng-template #modalTitle>
-        <span>View Euro Protocol Data</span>
-      </ng-template>
+    <nz-modal nzWidth="80%" [(nzVisible)]="isEuroProtocolModalVisible" nzTitle="View Euro Protocol Data" [nzContent]="modalContent" (nzOnCancel)="cancelEuroProtocolModal()">
       <ng-template #modalContent>
         <app-euro-protocol-view-form [protocolNumber]="selectedEuroProtocolNumber"></app-euro-protocol-view-form>
-      </ng-template>
-      <ng-template #modalFooter>
-
       </ng-template>
     </nz-modal>
     <br>
