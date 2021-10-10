@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { EuroProtocol } from 'src/app/models/euroProtocol';
+import { EuroProtocolSimpleModel } from 'src/app/models/euroProtocolSimpleModel';
 import { ViolationListService } from 'src/app/services/violation-list.service';
 
 @Component({
@@ -11,14 +11,14 @@ import { ViolationListService } from 'src/app/services/violation-list.service';
 })
 
 export class ViolationListComponent implements OnInit {
-  selectedEuroProtocol: EuroProtocol;
+  selectedEuroProtocolNumber: string;
   isEuroProtocolModalVisible = false;
 
   constructor(public fb: FormBuilder, public http: HttpClient, public violationListService: ViolationListService) { }
-  protocolList: EuroProtocol[] = [];
+  protocolList: EuroProtocolSimpleModel[];
 
   ngOnInit(): void {
-    this.violationListService.getEuroProtocolsByEmail()
+    this.violationListService.getAllEuroProtocolsByEmail()
     .subscribe(
       data => this.protocolList = data,
       () => { }
@@ -26,7 +26,7 @@ export class ViolationListComponent implements OnInit {
   }
 
   loadEuroProtocol(id: number) : void {
-    this.selectedEuroProtocol = this.protocolList[id];
+    this.selectedEuroProtocolNumber = this.protocolList[id].serialNumber;
   }
 
   showEuroProtocolModal() : void {

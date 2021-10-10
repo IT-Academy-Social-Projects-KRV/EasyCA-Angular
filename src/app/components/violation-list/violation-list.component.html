@@ -5,28 +5,28 @@
   <div>
     <nz-table #basicTable [nzData]="protocolList" [nzFrontPagination]="false" [nzShowPagination]="false">
       <thead>
-        <tr>
-          <th class="tableHeader">Serial Number</th>
-          <th class="tableHeader">Registration Date</th>
-          <th class="tableHeader">Address Of Accident</th>
-          <th class="tableHeader">Protocol Status</th>
-          <th class="tableHeader"></th>
+        <tr class="tableHeader">
+          <th >Serial Number</th>
+          <th>Registration Date</th>
+          <th>Address Of Accident</th>
+          <th>Protocol Status</th>
+          <th></th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="tableBodyCell">
         <tr *ngFor="let protocol of basicTable.data; let i = index">
-          <td class="tableBodyCell">{{protocol.serialNumber}}</td>
-          <td class="tableBodyCell">{{protocol.registrationDateTime | date:'MMMM d, y, H:mm'}}</td>
-          <td class="tableBodyCell">
+          <td>{{protocol.serialNumber}}</td>
+          <td>{{protocol.registrationDateTime | date:'MMMM d, y, H:mm'}}</td>
+          <td>
             <div *ngIf="protocol.address.isInCity === true; then thenBlock else elseBlock"></div>
             <ng-template #thenBlock>{{protocol.address.city}}, {{protocol.address.street}}</ng-template>
             <ng-template #elseBlock>Out of city</ng-template>
           </td>
-          <td class="tableBodyCell">
+          <td>
             <label *ngIf="protocol.isClosed === true">Closed</label>
             <label *ngIf="protocol.isClosed === false">Waiting for sides confirm data</label>
           </td>
-          <td class="tableBodyCell">
+          <td>
             <button *ngIf="protocol.isClosed === false" 
                     nz-button nzType="primary" 
                     nzSize="large" 
@@ -53,7 +53,7 @@
         <span>View Euro Protocol Data</span>
       </ng-template>
       <ng-template #modalContent>
-        <app-euro-protocol-confirmation-form [euroProtocol]="selectedEuroProtocol"></app-euro-protocol-confirmation-form>
+        <app-euro-protocol-view-form [protocolNumber]="selectedEuroProtocolNumber"></app-euro-protocol-view-form>
       </ng-template>
       <ng-template #modalFooter>
 
