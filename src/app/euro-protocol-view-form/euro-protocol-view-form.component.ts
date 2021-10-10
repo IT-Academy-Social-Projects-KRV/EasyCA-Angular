@@ -15,6 +15,8 @@ export class EuroProtocolViewFormComponent implements OnInit {
 
   @Input() public protocolNumber: string;
   public protocol: EuroProtocolFullModel;
+  errorMessage: string;
+  isAnyErrors = false;
 
   constructor(
     public fb: FormBuilder,
@@ -181,6 +183,10 @@ export class EuroProtocolViewFormComponent implements OnInit {
             };
           }
         );
+      },
+      err => {
+        this.isAnyErrors = true;
+        this.errorMessage = "Couldn't to load protocol's data";
       }
     );
 
