@@ -32,6 +32,11 @@ import { ModalInspectors } from './components/list-inspector/modal-inspectors/mo
 import { ListCAComponent } from './components/list-ca/list-ca.component';
 import { ModalCAComponent } from './components/list-ca/modal-ca/modal-ca.component';
 import { ListInspectors } from './components/list-inspector/list-inspector.component';
+import { PersonalDataIsEmptyComponent } from './components/personal-cabinet/personal-data-is-empty/personal-data-is-empty.component';
+import { PersonalDataModalComponent } from './components/personal-cabinet/personal-data-modal/personal-data-modal.component';
+import { BasicInfoComponent } from './components/personal-cabinet/basic-info/basic-info.component';
+import { AddressComponent } from './components/personal-cabinet/address/address.component';
+import { DriverLicenseComponent } from './components/personal-cabinet/driver-license/driver-license.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -57,6 +62,11 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     ListCAComponent,
     ModalCAComponent,
     ListInspectors
+    PersonalDataIsEmptyComponent,
+    PersonalDataModalComponent,
+    BasicInfoComponent,
+    AddressComponent,
+    DriverLicenseComponent
   ],
   imports: [
     BrowserModule,
