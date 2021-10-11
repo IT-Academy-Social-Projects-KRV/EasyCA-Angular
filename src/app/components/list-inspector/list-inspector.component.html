@@ -3,7 +3,7 @@
         <h1>List of Inspector</h1>
     </div>
     <div>
-        <nz-table #basicTable [nzFrontPagination]="false" [nzShowPagination]="false">
+        <nz-table #basicTable [nzData]="list" [nzFrontPagination]="false" [nzShowPagination]="false">
             <thead>
                 <tr class="propertyName">
                     <th>Email</th>
@@ -13,10 +13,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr (click)="showModalEdit()" class="mainName">
-                    <td>Test@gmail.com</td>
-                    <td>Test</td>
-                    <td>Test</td>
+                <tr (click)="showModal(false)" class="mainName" *ngFor="let insp of basicTable.data">
+                    <td>{{insp.email}}</td>
+                    <td>{{insp.firstName}}</td>
+                    <td>{{insp.lastName}}</td>
                     <td><i nz-icon nzType="delete" nzTheme="twotone"></i> </td>
                 </tr>
             </tbody>
@@ -24,7 +24,7 @@
         <br>
     </div>
     <div class="taCenter">
-        <button nz-button nzShape="round" [nzType]="'primary'" (click)="showModal()">
+        <button nz-button nzShape="round" [nzType]="'primary'" (click)="showModal(true)">
             <span>Add Inspector</span>
         </button>
     </div>

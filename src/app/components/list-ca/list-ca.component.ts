@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EuroProtocol } from 'src/app/models/euroProtocol';
 
 @Component({
   selector: 'app-list-ca',
@@ -7,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListCAComponent implements OnInit {
 
+  list: EuroProtocol[] = [];
   public isAdd = true;
   public isVisible = false;
   constructor() { }
-
+  
   ngOnInit(): void {
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Inspector } from 'src/app/models/inspector';
 
 @Component({
   selector: 'list-inspector',
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 
 export class ListInspectors implements OnInit {
     
+    list: Inspector[] = [];
     public isAdd = true;
     public isVisible = false;
     constructor() { }
@@ -15,13 +17,8 @@ export class ListInspectors implements OnInit {
     ngOnInit(): void {
     }
 
-    showModal() {
-        this.isAdd = true;
-        this.isVisible = true;
-    }
-
-    showModalEdit(){
-        this.isAdd = false;
+    showModal(isAdd: boolean) {
+        this.isAdd = isAdd;
         this.isVisible = true;
     }
 
