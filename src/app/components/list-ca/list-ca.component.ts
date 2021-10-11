@@ -18,7 +18,6 @@ export class ListCAComponent implements OnInit {
   ngOnInit(): void {
     this.service.getAllEuroProtocols()
     .subscribe((data: any)=>{
-      console.log(data);
       this.list = data;
     })
   }
