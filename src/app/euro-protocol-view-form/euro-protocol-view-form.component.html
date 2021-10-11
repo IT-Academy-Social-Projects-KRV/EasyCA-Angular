@@ -1,7 +1,7 @@
 <div class="error_alert">
   <nz-alert class="error_alert_login" *ngIf="isAnyErrors" nzType="error" nzMessage="{{errorMessage}}"></nz-alert>
 </div>
-<div *ngIf="!isAnyErrors">
+<div *ngIf="!isAnyErrors && protocol">
   <div nz-row nzGutter="16">
     <div nz-col nzSpan="8">
       <label class="title">Serial Number:</label>

@@ -23,7 +23,7 @@ export class EuroProtocolViewFormComponent implements OnInit {
     public http: HttpClient,
     public violationListService: ViolationListService,
     public euroProtocolService: EuroProtocolService) {
-      this.protocol = {
+/*      this.protocol = {
         euroProtocol: {
           id: '',
           registrationDateTime: new Date(),
@@ -146,7 +146,7 @@ export class EuroProtocolViewFormComponent implements OnInit {
             serialNumber: ''
           }
         }
-      }
+      }*/
     }
     
     ngOnInit(): void {
