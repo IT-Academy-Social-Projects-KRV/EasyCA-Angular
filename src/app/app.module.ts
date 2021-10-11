@@ -28,6 +28,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { EuroProtocolComponent } from './components/euro-protocol/euro-protocol.component';
 import { CookieService } from 'ngx-cookie-service';
 import { ResendConfirmationComponent } from './components/resend-confirmation/resend-confirmation.component';
+import { ModalInspectors } from './components/list-inspector/modal-inspectors/modal-inspector.component';
+import { ListCAComponent } from './components/list-ca/list-ca.component';
+import { ModalCAComponent } from './components/list-ca/modal-ca/modal-ca.component';
+import { ListInspectors } from './components/list-inspector/list-inspector.component';
 import { PersonalDataIsEmptyComponent } from './components/personal-cabinet/personal-data-is-empty/personal-data-is-empty.component';
 import { PersonalDataModalComponent } from './components/personal-cabinet/personal-data-modal/personal-data-modal.component';
 import { BasicInfoComponent } from './components/personal-cabinet/basic-info/basic-info.component';
@@ -54,6 +58,10 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     RestorePasswordComponent,
     AfterRestorePasswordComponent,
     ResendConfirmationComponent,
+    ModalInspectors,
+    ListCAComponent,
+    ModalCAComponent,
+    ListInspectors
     PersonalDataIsEmptyComponent,
     PersonalDataModalComponent,
     BasicInfoComponent,

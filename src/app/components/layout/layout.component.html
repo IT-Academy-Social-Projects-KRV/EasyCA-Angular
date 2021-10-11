@@ -25,19 +25,25 @@
                 *ngIf="this.accountService.isLoggedIn"  routerLink="/euroProtocol">Euro protocol</button>
              </li> 
             <li nz-menu-item>
-            <button class="transp"  nz-menu-item  nz-dropdown [nzDropdownMenu]="menu"  
-            *ngIf="this.accountService.isLoggedIn" routerLink="/personal">Personal cabinet</button>
-            <nz-dropdown-menu #menu="nzDropdownMenu">
-              <ul nz-menu>    
-                <li nz-menu-item routerLink="/personal">Personal data</li>
-                <li nz-menu-item  routerLink="/transportList" >My transport</li>
-                <li nz-menu-item routerLink="/violationList">My violation list</li>
-            </ul>
-            </nz-dropdown-menu>
+                <button class="transp"  nz-menu-item  nz-dropdown [nzDropdownMenu]="menu"  
+                *ngIf="this.accountService.isLoggedIn" routerLink="/personal">Personal cabinet</button>
+                <nz-dropdown-menu #menu="nzDropdownMenu">
+                    <ul nz-menu>    
+                        <li nz-menu-item routerLink="/personal">Personal data</li>
+                        <li nz-menu-item routerLink="/transportList" >My transport</li>
+                        <li nz-menu-item routerLink="/violationList">My violation list</li>
+                    </ul>
+                </nz-dropdown-menu>
             </li>
             <li nz-menu-item>
-                <button class="transp"  nz-menu-item  
-                *ngIf="this.accountService.userRole ==='admin'">Admin</button>
+                <button class="transp" nz-menu-item nz-dropdown [nzDropdownMenu]="adminMenu"  
+                *ngIf="this.accountService.userRole ==='admin'" routerLink="/listOfInspectors">Admin panel</button>
+                <nz-dropdown-menu #adminMenu="nzDropdownMenu">
+                    <ul nz-menu>    
+                        <li nz-menu-item routerLink="/listOfInspectors">List of inspectors</li>
+                        <li nz-menu-item routerLink="/listOfCa" >List of CA</li>
+                    </ul>
+                </nz-dropdown-menu>
             </li>
         </ul>
     </nz-header>
