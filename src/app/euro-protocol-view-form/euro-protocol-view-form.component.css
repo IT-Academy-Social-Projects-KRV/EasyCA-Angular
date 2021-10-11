@@ -1,0 +1,68 @@
+.title {
+    letter-spacing: .07272727em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 20px;
+    text-transform: uppercase;
+    word-break: break-word;
+    word-wrap: break-word;
+  }
+.childTitle {
+    letter-spacing: .07272727em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    word-break: break-word;
+    word-wrap: break-word;
+  }
+.inputLabel {
+    letter-spacing: .07272727em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    word-break: break-word;
+    word-wrap: break-word;
+  }
+
+input {
+  font-size: 16px;
+  height:40px;
+}
+
+.listItem {
+    letter-spacing: normal;
+    font-family: Arial;
+    font-size: 16px;
+    text-transform: none;
+    word-break: normal;
+    word-wrap: normal;
+}
+
+textarea {
+  font-size: 16px;
+  height:40px;
+}
+
+input.guiltiness {
+    background: white;
+    display: inline-block;
+}
+
+input.isGuilty {
+  border-width: 1;
+  border-color: darkgoldenrod;
+}
+
+input.isVictim {
+  border-width: 1;
+  border-color: green;
+}
+
+input.isProtocolNotClosed {
+  border-width: 1;
+  border-color: darkgoldenrod;
+}
+
+input.isProtocolClosed {
+  border-width: 1;
+  border-color: green;
+}

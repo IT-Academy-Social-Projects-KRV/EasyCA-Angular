@@ -19,6 +19,8 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
+import { NzListModule } from 'ng-zorro-antd/list'
 
 @NgModule({
   exports: [
@@ -41,7 +43,9 @@ import { NzProgressModule } from 'ng-zorro-antd/progress';
     NzDividerModule,
     NzTableModule,
     NzAvatarModule,
-    NzProgressModule
+    NzProgressModule,
+    NzCollapseModule,
+    NzListModule
   ]
 })
 export class DemoNgZorroAntdModule {}
