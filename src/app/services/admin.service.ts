@@ -23,5 +23,8 @@ export class AdminService {
   getListInspectors() {
    return this.http.get<any>(`${HOST_URL}Admin/GetAllInspectors`);
   }
-  
+ 
+  getAllEuroProtocols() {
+   return this.http.get<any>(`http://localhost:5001/api/Admin/GetAllEuroProtocols`);
+  }
 }
