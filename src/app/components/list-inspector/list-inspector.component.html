@@ -24,11 +24,10 @@
         <br>
     </div>
     <div class="taCenter">
-        <button nz-button nzShape="round" [nzType]="'primary'" (click)="showModal(true)">
+        <button nz-button nzShape="round" [nzType]="'primary'" (click)="showModal()">
             <span>Add Inspector</span>
         </button>
     </div>
 </div>
 
-<app-modal-inspector [setVisible]="this.isVisible" (isVisibleEvent)="handleCancel($event)" [setAdd]="this.isAdd">
-</app-modal-inspector>
+<app-modal-inspector [setVisible]="this.isVisible" (isVisibleEvent)="handleCancel($event)"></app-modal-inspector>

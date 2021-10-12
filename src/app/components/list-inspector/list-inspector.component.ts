@@ -13,6 +13,7 @@ export class ListInspectors implements OnInit {
 
     listInspectors: Inspector[] = [];
     public isAdd = true;
+
     public isVisible = false;
     constructor(private adminService: AdminService, private toastr: ToastrService) { }
 
@@ -37,8 +38,7 @@ export class ListInspectors implements OnInit {
                 })
     }
 
-    showModal(isAdd: boolean) {
-        this.isAdd = isAdd;
+    showModal() {
         this.isVisible = true;
     }
 

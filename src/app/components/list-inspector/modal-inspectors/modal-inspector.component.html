@@ -4,13 +4,13 @@
         <span>Add Inspector</span>
     </ng-template>
     <ng-template #modalContent>
-        <form novalidate autocomplete="off">
+        <form novalidate autocomplete="off" nz-form [formGroup]="inspectorForm" (ngSubmit)="onSubmit()">
             <input type="hidden"/>
             <div>
                 <label>Email</label>
                 <nz-form-item>
                     <nz-form-control>
-                        <input nz-input id="email" placeholder="Email" required>
+                        <input nz-input id="email" formControlName="email" placeholder="Email" required>
                     </nz-form-control>
                 </nz-form-item>
             </div>
@@ -18,7 +18,7 @@
                 <label>First Name</label>
                 <nz-form-item>
                     <nz-form-control>
-                        <input nz-input id="firstName" placeholder="First Name" required>
+                        <input nz-input  id="firstName" formControlName="firstName" placeholder="First Name" required>
                     </nz-form-control>
                 </nz-form-item>
             </div>
@@ -26,7 +26,7 @@
                 <label>Last Name</label>
                 <nz-form-item>
                     <nz-form-control>
-                        <input nz-input id="lastName" placeholder="Last Name" required>
+                        <input nz-input id="lastName" formControlName="lastName" placeholder="Last Name" required>
                     </nz-form-control>
                 </nz-form-item>
             </div>
@@ -34,7 +34,7 @@
                 <label>Password</label>
                 <nz-form-item>
                     <nz-form-control>
-                        <input nz-input type="password" id="Password" placeholder="Password" required>
+                        <input nz-input type="password" formControlName="password" id="Password" placeholder="Password" required>
                     </nz-form-control>
                 </nz-form-item>
             </div>
@@ -42,13 +42,13 @@
                 <label>Confirm password</label>
                 <nz-form-item>
                     <nz-form-control>
-                        <input nz-input type="confirmPassword" id="confirmPassword" placeholder="Confirm password" required>
+                        <input nz-input type="confirmPassword" formControlName="confirmPassword" id="confirmPassword" placeholder="Confirm password" required>
                     </nz-form-control>
                 </nz-form-item>
             </div>
             <div nz-row>
                 <button nz-button nzShape="round" [nzType]="'primary'" type="submit">
-                    <span >Add Inspector</span>
+                    <span>Add Inspector</span>
                 </button>
             </div>
         </form>
