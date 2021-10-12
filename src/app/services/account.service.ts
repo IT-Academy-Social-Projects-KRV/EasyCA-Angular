@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { TokenStorageService } from './token-storage.service';
-import { HOST_URL, RESEND_CONFIRMATION_URI} from '../configs/config';
+import { HOST_URL, RESEND_CONFIRMATION_URI } from '../configs/config';
 import { RESTORE_PASSWORD_URI } from '../configs/config';
 import { User } from '../models/User';
 import { Observable } from 'rxjs';
@@ -20,16 +20,16 @@ const httpOptions = {
 })
 
 export class AccountService {
-  constructor(private http: HttpClient,  public router: Router, private tokenStorageService: TokenStorageService, private cookieService: CookieService) { }
+  constructor(private http: HttpClient, public router: Router, private tokenStorageService: TokenStorageService, private cookieService: CookieService) { }
   errorMessage = '';
-   
-  login(user:User) {
+
+  login(user: User) {
     return this.http.post<any>(`${HOST_URL}Auth/Login`, user, httpOptions);
   }
 
-  register(user:User): Observable<any> {
-    user.clientURI="http://localhost:4200/emailVerify";
-    return this.http.post<any>(`${HOST_URL}Auth/Register`, user, httpOptions)   
+  register(user: User): Observable<any> {
+    user.clientURI = "http://localhost:4200/emailVerify";
+    return this.http.post<any>(`${HOST_URL}Auth/Register`, user, httpOptions)
   }
 
   get isLoggedIn(): boolean {
@@ -37,21 +37,20 @@ export class AccountService {
     return (authToken !== null) ? true : false;
   }
 
-  get userRole(){
-     return localStorage.getItem('role');
+  get userRole() {
+    return localStorage.getItem('role');
   }
 
-  putPersonalData(data:Data){
+  putPersonalData(data: Data) {
     return this.http.put<any>(`${HOST_URL}Account/UpdateData`, data, httpOptions);
   }
 
   getPersonalData() {
-   return this.http.get<Data>(`${HOST_URL}Account/GetUserById`);
+    return this.http.get<any>(`${HOST_URL}Account/GetUserById`);
   }
 
-  addPersonalData(data:PersonalData){
+  addPersonalData(data: PersonalData) {
     return this.http.post<any>(`${HOST_URL}Account/CreatePersonalData`, data, httpOptions);
-
   }
 
   logout() {
@@ -61,21 +60,21 @@ export class AccountService {
     this.router.navigate(['/signin']);
   }
 
-  confirmEmail(route:string,token:string,email:string){
+  confirmEmail(route: string, token: string, email: string) {
     return this.http.get<any>(`${HOST_URL}${route}/${token}/${email}`);
   }
 
-  forgotPassword(data: RestorePassword ) {
+  forgotPassword(data: RestorePassword) {
     console.log(data);
     data.passwordURI = RESTORE_PASSWORD_URI;
     return this.http.post<any>(`${HOST_URL}Auth/ForgotPassword`, data, httpOptions);
   }
 
-  restorePassword(route:string,token:string,email:string,password:string) {
+  restorePassword(route: string, token: string, email: string, password: string) {
     return this.http.get<any>(`${HOST_URL}${route}/${password}/${token}/${email}`);
   }
 
-  resendConfirmation(data:ResendConfirmation) {
+  resendConfirmation(data: ResendConfirmation) {
     data.resendConfirmationURI = RESEND_CONFIRMATION_URI;
     return this.http.post<any>(`${HOST_URL}Auth/ResendConfirmation`, data, httpOptions);
   }

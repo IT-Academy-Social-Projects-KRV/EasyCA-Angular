@@ -1,8 +1,7 @@
 <nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter"
     (nzOnCancel)="handleCancel()">
     <ng-template #modalTitle>
-        <span *ngIf="this.isAdd">Add Inspector</span>
-        <span *ngIf="!this.isAdd">Edit Inspector</span>
+        <span>Add Inspector</span>
     </ng-template>
     <ng-template #modalContent>
         <form novalidate autocomplete="off">
@@ -49,8 +48,7 @@
             </div>
             <div nz-row>
                 <button nz-button nzShape="round" [nzType]="'primary'" type="submit">
-                    <span *ngIf="this.isAdd">Add Inspector</span>
-                    <span *ngIf="!this.isAdd">Edit Inspector</span>
+                    <span >Add Inspector</span>
                 </button>
             </div>
         </form>

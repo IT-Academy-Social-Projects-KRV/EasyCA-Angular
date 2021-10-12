@@ -14,14 +14,16 @@ const httpOptions = {
 })
 
 export class AdminService {
-  constructor(private http: HttpClient,  public router: Router) { }
-   
-  registerInspector(user:User): Observable<any> {
-    return this.http.post<any>(`${HOST_URL}Auth/AddInspector`, user, httpOptions)   
+  constructor(private http: HttpClient, public router: Router) { }
+
+  registerInspector(user: User): Observable<any> {
+    return this.http.post<any>(`${HOST_URL}Auth/AddInspector`, user, httpOptions)
   }
 
   getListInspectors() {
-   return this.http.get<any>(`${HOST_URL}Admin/GetAllInspectors`);
+    return this.http.get<any>(`${HOST_URL}Admin/GetAllInspectors`);
   }
-  
+  deleteInspector(email: string) {
+    return this.http.put<any>(`${HOST_URL}Admin/DeleteInspectorRole`, { email });
+  }
 }
