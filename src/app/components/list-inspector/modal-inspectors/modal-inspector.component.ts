@@ -33,9 +33,11 @@ export class ModalInspectors implements OnInit {
 
     addInspector(inspector: Inspector){
         this.adminService.registerInspector(inspector)
-            .subscribe((data: any) => {
+            .subscribe(res => {
                 this.toastr.success("Inspector added","Congratulation");
                 this.isVisible = false;
+            },
+            err => {
             });
     };
 
