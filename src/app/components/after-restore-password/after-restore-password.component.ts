@@ -12,25 +12,23 @@ export class AfterRestorePasswordComponent implements OnInit {
 
   errorMessage = '';
 
-  constructor(private accountService: AccountService,private route: ActivatedRoute,private router:Router, private toastr:ToastrService) { }
+  constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-   this.restorePassword();
+    this.restorePassword();
   }
-  
-  restorePassword=()=>
-  {
+
+  restorePassword = () => {
     const token = this.route.snapshot.queryParams['token'];
     const email = this.route.snapshot.queryParams['email'];
     const password = this.route.snapshot.queryParams['password'];
-     
-    this.accountService.restorePassword('Auth/RestorePassword',token,email,password) 
-    .subscribe(() => {
-      this.toastr.success('Password successfully changed', 'Congratulations');
-    },
-    err => {
-      this.errorMessage = err.error.message;
-    });
-  }
 
+    this.accountService.restorePassword('Auth/RestorePassword', token, email, password)
+      .subscribe(() => {
+        this.toastr.success('Password successfully changed', 'Congratulations');
+      },
+        err => {
+          this.errorMessage = err;
+        });
+  }
 }

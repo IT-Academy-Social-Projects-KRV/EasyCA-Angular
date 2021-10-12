@@ -17,7 +17,7 @@ export class PersonalCabinetComponent implements OnInit {
   public isPersonalData = false;
   public isAddPersonalData = true;
   public errorMessage = '';
-  private userCars:string[];
+  private userCars: string[];
 
   public Icon = this.fb.group({
     name: ['']
@@ -33,15 +33,15 @@ export class PersonalCabinetComponent implements OnInit {
         res => {
           this.data = res;
           this.userName = res.firstName[0] + res.lastName[0];
-          this.userCars=res.personalData.userCars;
 
           if (this.data.personalData != null) {
+            this.userCars = res.personalData.userCars;
             this.isPersonalData = true;
           }
         },
         err => {
           this.isPersonalData = false;
-          this.errorMessage = err.error.message;
+          this.errorMessage = err;
         });
   }
 
@@ -56,18 +56,18 @@ export class PersonalCabinetComponent implements OnInit {
   }
 
   update($event: Data) {
-    $event.personalData.userCars=this.userCars;
+    $event.personalData.userCars = this.userCars;
     this.accountService.putPersonalData($event).
       subscribe(
         res => {
           this.toastr.info(res.message, "Success");
           this.isVisible = false;
           this.data = $event;
-         
+
           this.userName = $event.firstName[0] + $event.lastName[0];
         },
         err => {
-          this.toastr.warning('Data not updated', err.error.message);
+          this.toastr.warning('Data not updated', err);
         }
       );
   }
@@ -83,7 +83,7 @@ export class PersonalCabinetComponent implements OnInit {
           this.isAddPersonalData = false;
         },
         err => {
-          this.toastr.warning('Data not added', err.error.message);
+          this.toastr.warning('Data not added', err);
         }
       );
   }

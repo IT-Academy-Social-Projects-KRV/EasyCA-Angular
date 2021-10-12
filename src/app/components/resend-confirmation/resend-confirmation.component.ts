@@ -11,28 +11,28 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./resend-confirmation.component.css']
 })
 export class ResendConfirmationComponent implements OnInit {
-  resendConfirmation : FormGroup;
+  resendConfirmation: FormGroup;
   errorMessage = '';
   isResendConfirmationFailed = false;
 
-  constructor(private accountService: AccountService, public fb: FormBuilder, private router: Router, private toastr:ToastrService) {
+  constructor(private accountService: AccountService, public fb: FormBuilder, private router: Router, private toastr: ToastrService) {
     this.resendConfirmation = this.fb.group({
       email: ['']
     })
-   }
+  }
 
   ngOnInit(): void {
   }
-  
+
   onSubmit() {
     this.accountService.resendConfirmation(this.resendConfirmation.value)
-    .subscribe((data: any) => {
-      this.router.navigate(['/signin']);
-      this.toastr.success('The confirmation link has been resent to your email');
-    },
-    err => {
-      this.errorMessage = err.error.message;
-      this.isResendConfirmationFailed = true;
-    });
+      .subscribe((data: any) => {
+        this.router.navigate(['/signin']);
+        this.toastr.success('The confirmation link has been resent to your email');
+      },
+        err => {
+          this.errorMessage = err;
+          this.isResendConfirmationFailed = true;
+        });
   }
 }

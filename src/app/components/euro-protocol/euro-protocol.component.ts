@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzButtonSize } from 'ng-zorro-antd/button';
 import { AccountService } from 'src/app/services/account.service';
-import { FormBuilder, FormGroup, FormArray, FormControl}from "@angular/forms";
+import { FormBuilder, FormGroup, FormArray, FormControl } from "@angular/forms";
 import { Circumstance } from 'src/app/models/circumstance';
 import { EuroProtocolService } from 'src/app/services/euroProtocolService';
 import { TransportService } from 'src/app/services/transport.service';
@@ -19,53 +19,53 @@ import { Witness } from 'src/app/models/witness';
 })
 
 export class EuroProtocolComponent implements OnInit {
-  constructor(private router: Router , public accountService:AccountService, public fb: FormBuilder,
-     public service: EuroProtocolService, public transportService: TransportService ) { 
-       this.sideA = {
-         circumstances: Array<number>(),
-         damage:'',
-         email:'',
-         driverLicenseSerial:'',
-         evidences:Array<Evidence>(),
-         isGulty: false,
-         transportId:'',
-       }
-       this.sideB = {
-        circumstances: Array<number>(),
-        damage:'',
-        email:'',
-        driverLicenseSerial:'',
-        evidences:Array<Evidence>(),
-        isGulty: false,
-        transportId:'',
-      },
-       this.euroProtocol={
-        id:'',
+  constructor(private router: Router, public accountService: AccountService, public fb: FormBuilder,
+    public service: EuroProtocolService, public transportService: TransportService) {
+    this.sideA = {
+      circumstances: Array<number>(),
+      damage: '',
+      email: '',
+      driverLicenseSerial: '',
+      evidences: Array<Evidence>(),
+      isGulty: false,
+      transportId: '',
+    }
+    this.sideB = {
+      circumstances: Array<number>(),
+      damage: '',
+      email: '',
+      driverLicenseSerial: '',
+      evidences: Array<Evidence>(),
+      isGulty: false,
+      transportId: '',
+    },
+      this.euroProtocol = {
+        id: '',
         registrationDateTime: new Date('2021-10-04'),
-        serialNumber:'',
+        serialNumber: '',
         address: <AddressOfAccident>{
-          coordinatesOfLatitude:'',
-          coordinatesOfLongitude:'',
-          crossStreet:'',
-          isInCity:true,
-          isIntersection:true,
-          city:'',
-          district:'',
-          street:''
+          coordinatesOfLatitude: '',
+          coordinatesOfLongitude: '',
+          crossStreet: '',
+          isInCity: true,
+          isIntersection: true,
+          city: '',
+          district: '',
+          street: ''
         },
         sideA: this.sideA,
         sideB: this.sideB,
         isClosed: false,
         witnesses: Array<Witness>(),
       }
-    }
+  }
 
   public euroProtocol: EuroProtocol;
   public sideA: side;
   public sideB: side;
 
   circumstancesList: Circumstance[] = [];
-  checkedCircumstancesId: number[]=[];
+  checkedCircumstancesId: number[] = [];
 
   dateFormat = 'yyyy/MM/dd';
   size: NzButtonSize = 'large';
@@ -112,7 +112,7 @@ export class EuroProtocolComponent implements OnInit {
     district: [''],
     street: [''],
     CrossStreet: [''],
-    CoordinatesOfLatitude:[''],
+    CoordinatesOfLatitude: [''],
     CoordinatesOfLongitude: [''],
     IsInCity: true,
     IsIntersection: true,
@@ -122,10 +122,10 @@ export class EuroProtocolComponent implements OnInit {
   public witness = this.fb.group({
     lastName: [''],
     firstName: [''],
-    phone:[''],
-    adress:[''],
+    phone: [''],
+    adress: [''],
   });
-  
+
   optionGroup = [
     { label: 'No one was injured or killed', checked: false },
     { label: 'The drivers did not drink alcohol or drugs', checked: false },
@@ -133,10 +133,10 @@ export class EuroProtocolComponent implements OnInit {
     { label: 'The drivers agreed on the circumstances of the accident', checked: false },
     { label: 'Cars without trailers', checked: false }
   ];
-  
-  isActivFirst = true; 
+
+  isActivFirst = true;
   isActivSecond = false;
-  isActivThird = false; 
+  isActivThird = false;
   isActivFourth = false;
   isActivFifth = false;
   isActiveSixth = false;
@@ -144,8 +144,8 @@ export class EuroProtocolComponent implements OnInit {
   isActiveEighth = false;
   isActiveNinth = false;
 
-  onChange(id:Circumstance, event: any) {
-    if(event.target.checked) {
+  onChange(id: Circumstance, event: any) {
+    if (event.target.checked) {
       this.checkedCircumstancesId.push(id.circumstanceId);
     } else {
       let index = this.checkedCircumstancesId.findIndex(x => x == id.circumstanceId);
@@ -157,33 +157,36 @@ export class EuroProtocolComponent implements OnInit {
     this.service.getAllCircumstances()
       .subscribe(data => {
         this.circumstancesList = data;
-      })
+      },
+        err => {
+
+        })
   }
-  
+
   allChecked(): void {
     if (this.optionGroup.every(item => item.checked)) {
       this.disabled = false;
-    }else {
+    } else {
       this.disabled = true;
     }
   }
 
-  clickToSecond(): void{
+  clickToSecond(): void {
     this.isActivFirst = false;
     this.isActivSecond = true;
   }
 
-  stepBackToFirst(): void{
+  stepBackToFirst(): void {
     this.isActivFirst = true;
     this.isActivSecond = false;
   }
 
-  clickToThird(): void{
+  clickToThird(): void {
     this.isActivFirst = false;
     this.isActivSecond = false;
     this.isActivThird = true;
     this.accountService.getPersonalData()
-      .subscribe((data: any)=>{
+      .subscribe((data: any) => {
         this.personalDataForm.value.email = data.email;
         this.personalDataForm.value.firstName = data.firstName;
         this.personalDataForm.value.lastName = data.lastName;
@@ -193,48 +196,48 @@ export class EuroProtocolComponent implements OnInit {
         this.personalDataForm.value.licenseSerialNumber = data.personalData.userDriverLicense.licenseSerialNumber;
         this.personalDataForm.value.userCategories = data.personalData.userDriverLicense.userCategories;
       });
-      this.transportService.getTransportByCarPlate(this.firstFormSideA.value.firstCarPlate)
-      .subscribe((data: any) =>{
+    this.transportService.getTransportByCarPlate(this.firstFormSideA.value.firstCarPlate)
+      .subscribe((data: any) => {
         this.transportForm.value.id = data.id
         this.transportForm.value.producedBy = data.producedBy;
         this.transportForm.value.model = data.model;
-        this.transportForm.value.vinCode = data.vinCode;   
+        this.transportForm.value.vinCode = data.vinCode;
         this.transportForm.value.carPlate = data.carPlate;
         this.transportForm.value.color = data.color;
         this.transportForm.value.yearOfProduction = data.yearOfProduction as number;
         this.transportForm.value.categoryName = data.categoryName;
       })
-  } 
-  
-  stepBackToSecond(): void{
+  }
+
+  stepBackToSecond(): void {
     this.isActivFirst = false;
     this.isActivSecond = true;
     this.isActivThird = false;
   }
 
-  clickToFourth(): void{
+  clickToFourth(): void {
     this.isActivFirst = false;
     this.isActivSecond = false;
     this.isActivThird = false;
     this.isActivFourth = true;
-  } 
+  }
 
-  stepBackToThird(): void{
+  stepBackToThird(): void {
     this.isActivFirst = false;
     this.isActivSecond = false;
     this.isActivThird = true;
     this.isActivFourth = false;
   }
 
-  clickToFifth(): void{
+  clickToFifth(): void {
     this.isActivFirst = false;
     this.isActivSecond = false;
     this.isActivThird = false;
     this.isActivFourth = false;
     this.isActivFifth = true;
-  } 
+  }
 
-  stepBackToFourth(): void{
+  stepBackToFourth(): void {
     this.isActivFirst = false;
     this.isActivSecond = false;
     this.isActivThird = false;
@@ -242,16 +245,16 @@ export class EuroProtocolComponent implements OnInit {
     this.isActivFifth = false;
   }
 
-  clickToSixth(): void{
+  clickToSixth(): void {
     this.isActivFirst = false;
     this.isActivSecond = false;
     this.isActivThird = false;
     this.isActivFourth = false;
     this.isActivFifth = false;
     this.isActiveSixth = true;
-  } 
+  }
 
-  stepBackToFifth(): void{
+  stepBackToFifth(): void {
     this.isActivFirst = false;
     this.isActivSecond = false;
     this.isActivThird = false;
@@ -260,7 +263,7 @@ export class EuroProtocolComponent implements OnInit {
     this.isActiveSixth = false;
   }
 
-  clickToSeventh(): void{
+  clickToSeventh(): void {
     this.isActivFirst = false;
     this.isActivSecond = false;
     this.isActivThird = false;
@@ -268,9 +271,9 @@ export class EuroProtocolComponent implements OnInit {
     this.isActivFifth = false;
     this.isActiveSixth = false;
     this.isActiveSeventh = true;
-  } 
+  }
 
-  stepBackToSixth(): void{
+  stepBackToSixth(): void {
     this.isActivFirst = false;
     this.isActivSecond = false;
     this.isActivThird = false;
@@ -280,7 +283,7 @@ export class EuroProtocolComponent implements OnInit {
     this.isActiveSeventh = false;
   }
 
-  clickToEighth(): void{
+  clickToEighth(): void {
     this.isActivFirst = false;
     this.isActivSecond = false;
     this.isActivThird = false;
@@ -289,9 +292,9 @@ export class EuroProtocolComponent implements OnInit {
     this.isActiveSixth = false;
     this.isActiveSeventh = false;
     this.isActiveEighth = true;
-  } 
+  }
 
-  stepBackToSeventh(): void{
+  stepBackToSeventh(): void {
     this.isActivFirst = false;
     this.isActivSecond = false;
     this.isActivThird = false;
@@ -302,7 +305,7 @@ export class EuroProtocolComponent implements OnInit {
     this.isActiveEighth = false;
   }
 
-  clickToNinth(): void{
+  clickToNinth(): void {
     this.isActivFirst = false;
     this.isActivSecond = false;
     this.isActivThird = false;
@@ -314,7 +317,7 @@ export class EuroProtocolComponent implements OnInit {
     this.isActiveNinth = true;
 
     this.sideA.circumstances = this.checkedCircumstancesId;
-    this.sideA.transportId=this.transportForm.value.id;
+    this.sideA.transportId = this.transportForm.value.id;
     this.sideA.email = this.personalDataForm.value.email;
     this.sideA.driverLicenseSerial = this.personalDataForm.value.licenseSerialNumber;
     this.sideA.damage = this.addressOfAccident.value.damage;
@@ -331,22 +334,22 @@ export class EuroProtocolComponent implements OnInit {
     this.euroProtocol.isClosed = false;
     this.euroProtocol.sideA = this.sideA;
     this.euroProtocol.sideB = this.sideB;
-    this.euroProtocol.serialNumber="00000012";
+    this.euroProtocol.serialNumber = "00000012";
 
-    this.euroProtocol.sideA.email= this.personalDataForm.value.email;
+    this.euroProtocol.sideA.email = this.personalDataForm.value.email;
     this.euroProtocol.sideB.email = this.emailSideB.value.email;
 
     this.service.createEuroProtocol(this.euroProtocol)
-    .subscribe(
-      res => {
-        console.log(res);
-      },
-      err => {
+      .subscribe(
+        res => {
+          console.log(res);
+        },
+        err => {
           console.log(err);
-      });
-  } 
+        });
+  }
 
-  stepBackToEighth(): void{
+  stepBackToEighth(): void {
     this.isActivFirst = false;
     this.isActivSecond = false;
     this.isActivThird = false;
@@ -358,7 +361,7 @@ export class EuroProtocolComponent implements OnInit {
     this.isActiveNinth = false;
   }
 
-  onSubmit(): void{
+  onSubmit(): void {
     this.router.navigate(['/home']);
   }
 }
