@@ -22,7 +22,6 @@ export class ModalInspectors implements OnInit {
     });
 
     public isVisible = false;
-    public isAdd = false;
 
     ngOnInit(): void {
     }
@@ -43,10 +42,6 @@ export class ModalInspectors implements OnInit {
 
     @Input() set setVisible(isVisible: boolean) {
         this.isVisible = isVisible;
-    }
-
-    @Input() set setAdd(isAdd: boolean) {
-        this.isAdd = isAdd;
     }
 
     @Output() isVisibleEvent = new EventEmitter<boolean>();

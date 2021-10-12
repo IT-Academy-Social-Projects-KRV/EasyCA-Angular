@@ -10,15 +10,13 @@ import { Inspector } from 'src/app/models/inspector';
 export class ListInspectors implements OnInit {
     
     list: Inspector[] = [];
-    public isAdd = true;
     public isVisible = false;
     constructor() { }
 
     ngOnInit(): void {
     }
 
-    showModal(isAdd: boolean) {
-        this.isAdd = isAdd;
+    showModal() {
         this.isVisible = true;
     }
 
