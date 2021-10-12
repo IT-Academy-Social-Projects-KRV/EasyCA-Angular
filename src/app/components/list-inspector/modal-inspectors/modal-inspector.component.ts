@@ -1,4 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { Inspector } from 'src/app/models/inspector';
+import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
   selector: 'app-modal-inspector',
@@ -7,20 +11,37 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 
 export class ModalInspectors implements OnInit {
-    constructor() { }
+    constructor(public fb: FormBuilder, public adminService: AdminService,private toastr:ToastrService) { }
+    
+    public inspectorForm = this.fb.group({
+        email: [''],
+        firstName: [''],
+        lastName: [''],
+        password: [''],
+        confirmPassword: ['']
+    });
 
     public isVisible = false;
-    public isAdd = false;
 
     ngOnInit(): void {
     }
 
-    @Input() set setVisible(isVisible: boolean) {
-        this.isVisible = isVisible;
+    onSubmit(){
+        this.addInspector(this.inspectorForm.value);
     }
 
-    @Input() set setAdd(isAdd: boolean) {
-        this.isAdd = isAdd;
+    addInspector(inspector: Inspector){
+        this.adminService.registerInspector(inspector)
+            .subscribe(res => {
+                this.toastr.success("Inspector added","Congratulation");
+                this.isVisible = false;
+            },
+            err => {
+            });
+    };
+
+    @Input() set setVisible(isVisible: boolean) {
+        this.isVisible = isVisible;
     }
 
     @Output() isVisibleEvent = new EventEmitter<boolean>();
