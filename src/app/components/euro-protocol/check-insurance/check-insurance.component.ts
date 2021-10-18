@@ -72,5 +72,6 @@ export class CheckInsuranceComponent implements OnInit {
         this.transportForm.value.yearOfProduction = data.yearOfProduction as number;
         this.transportForm.value.categoryName = data.categoryName;
       })
+      console.log(this.transportForm);
   } 
 }

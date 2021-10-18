@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NzButtonSize } from 'ng-zorro-antd/button';
 
 @Component({
@@ -28,8 +28,11 @@ export class TermsComponent implements OnInit {
       this.disabled = true;
     }
   }
-  
-  clickToSecond(): void{
+
+  @Output() indexChanged = new EventEmitter<number>();
+
+  clickToSecond(): void {
+    this.indexChanged.emit();
   }
   
   ngOnInit(): void {

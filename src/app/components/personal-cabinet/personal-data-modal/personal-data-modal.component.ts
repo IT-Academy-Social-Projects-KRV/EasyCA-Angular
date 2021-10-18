@@ -54,7 +54,7 @@ export class PersonalDataModalComponent implements OnInit {
         street: [''],
         building: [''],
         appartament: 0,
-        postalCode: ['']
+        postalCode: [''] 
       }),
       ipn: [''],
       serviceNumber: [''],

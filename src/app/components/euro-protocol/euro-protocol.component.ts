@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactory, ComponentFactoryResolver, ComponentRef, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzButtonSize } from 'ng-zorro-antd/button';
 import { AccountService } from 'src/app/services/account.service';
@@ -11,6 +11,15 @@ import { side } from 'src/app/models/side';
 import { Evidence } from 'src/app/models/evidence';
 import { AddressOfAccident } from 'src/app/models/addressOfAccident';
 import { Witness } from 'src/app/models/witness';
+import { Renderer2 } from '@angular/core';
+import { CheckInsuranceComponent } from './check-insurance/check-insurance.component';
+import { TermsComponent } from './terms/terms.component';
+import { ParticipantInfoComponent } from './participant-info/participant-info.component';
+import { AccidentAddressComponent } from './accident-address/accident-address.component';
+import { CircumstancesComponent } from './circumstances/circumstances.component';
+import { EvidenceComponent } from './evidence/evidence.component';
+import { WitnessesComponent } from './witnesses/witnesses.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 @Component({
   selector: 'app-euro-protocol',
@@ -20,7 +29,9 @@ import { Witness } from 'src/app/models/witness';
 
 export class EuroProtocolComponent implements OnInit {
   constructor(private router: Router , public accountService:AccountService, public fb: FormBuilder,
-     public service: EuroProtocolService, public transportService: TransportService ) { 
+     public service: EuroProtocolService, public transportService: TransportService, 
+     public renderer: Renderer2, private resolver: ComponentFactoryResolver
+     ) { 
        this.sideA = {
          circumstances: Array<number>(),
          damage:'',
@@ -69,6 +80,7 @@ export class EuroProtocolComponent implements OnInit {
 
   dateFormat = 'yyyy/MM/dd';
   size: NzButtonSize = 'large';
+  disabled = true;
   
   public personalDataForm = this.fb.group({
     email: [''],
@@ -124,7 +136,17 @@ export class EuroProtocolComponent implements OnInit {
     phone:[''],
     adress:[''],
   });
-    
+
+  components: Array<any> = [TermsComponent, CheckInsuranceComponent, ParticipantInfoComponent, 
+              AccidentAddressComponent, CircumstancesComponent, EvidenceComponent,
+              WitnessesComponent, ConfirmationComponent];
+
+  index = 0;  
+
+  @ViewChild('mainComponent', { read: ViewContainerRef })container: any;
+
+  componentRef: ComponentRef<any>;
+
   onChange(id:Circumstance, event: any) {
     if(event.target.checked) {
       this.checkedCircumstancesId.push(id.circumstanceId);
@@ -134,14 +156,28 @@ export class EuroProtocolComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this.service.getAllCircumstances()
       .subscribe(data => {
         this.circumstancesList = data;
       })
   }
   
-  stepBackToFirst(): void{
+  ngAfterViewInit():void{
+    setTimeout(() => {
+      this.generatePage();
+    });
+  }
+
+  generatePage(): void{
+    this.container.clear(); 
+    const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(this.components[this.index]);
+    this.componentRef = this.container.createComponent(factory);
+    console.log(this.componentRef.instance.index.subscribe("changeIndex($event)"));
+  }
+
+  changeIndex(index: number) {
+    this.generatePage();
   }
 
   clickToThird(): void{
@@ -169,9 +205,6 @@ export class EuroProtocolComponent implements OnInit {
       })
   } 
   
-  stepBackToSeventh(): void{
-  }
-
   clickToNinth(): void{
 
     this.sideA.circumstances = this.checkedCircumstancesId;
@@ -206,9 +239,6 @@ export class EuroProtocolComponent implements OnInit {
           console.log(err);
       });
   } 
-
-  stepBackToEighth(): void{
-  }
 
   onSubmit(): void{
     this.router.navigate(['/home']);
