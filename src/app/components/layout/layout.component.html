@@ -1,51 +1,47 @@
 <nz-layout class="layout">
     <nz-header>
         <div class="logo">
-            <a routerLink="/home"><img class="logoimg"
-                    src="https://img2.pngio.com/white-car-icon-png-picture-1847622-white-car-icon-png-white-car-icon-png-256_256.png"
-                    alt="Easy-CA" /></a>
+            <a routerLink="/home"><img class="logoimg" src="https://img2.pngio.com/white-car-icon-png-picture-1847622-white-car-icon-png-white-car-icon-png-256_256.png" alt="Easy-CA" /></a>
         </div>
         <ul nz-menu nzTheme="dark" nzMode="horizontal" class="mychange">
             <li nz-menu-item>
-                <button class="transp" nz-menu-item routerLink="/home">Home</button>
+                <button class="transp"  nz-menu-item    
+                routerLink="/home">Home</button>
+             </li>
+            <li nz-menu-item>
+                <button class="transp"  nz-menu-item    
+                *ngIf="!this.accountService.isLoggedIn" routerLink="/signin">LogIn</button>
+             </li>
+            <li nz-menu-item>
+                <button class="transp"  nz-menu-item    
+                *ngIf="!this.accountService.isLoggedIn"  routerLink="/signup">Sign Up</button>
+             </li>            
+            <li nz-menu-item> 
+                <button class="transp"  nz-menu-item  
+               *ngIf="this.accountService.isLoggedIn" (click)="logout()">Logout</button>
             </li>
             <li nz-menu-item>
-                <button class="transp" nz-menu-item *ngIf="!this.accountService.isLoggedIn"
-                    routerLink="/signin">LogIn</button>
-            </li>
+                <button class="transp"  nz-menu-item    
+                *ngIf="this.accountService.isLoggedIn"  routerLink="/euroProtocol">Euro protocol</button>
+             </li> 
             <li nz-menu-item>
-                <button class="transp" nz-menu-item *ngIf="!this.accountService.isLoggedIn" routerLink="/signup">Sign
-                    Up</button>
-            </li>
-            <li nz-menu-item>
-                <button class="transp" nz-menu-item *ngIf="this.accountService.isLoggedIn"
-                    (click)="logout()">Logout</button>
-            </li>
-            <li nz-menu-item>
-                <button class="transp" nz-menu-item *ngIf="this.accountService.isLoggedIn"
-                    routerLink="/euroProtocol">Euro protocol</button>
-            </li>
-            <li nz-menu-item>
-                <button class="transp" nz-menu-item nz-dropdown [nzDropdownMenu]="menu"
-                    *ngIf="this.accountService.isLoggedIn" routerLink="/personal">Personal cabinet</button>
+                <button class="transp"  nz-menu-item  nz-dropdown [nzDropdownMenu]="menu"  
+                *ngIf="this.accountService.isLoggedIn" routerLink="/personal">Personal cabinet</button>
                 <nz-dropdown-menu #menu="nzDropdownMenu">
-                    <ul nz-menu>
+                    <ul nz-menu>    
                         <li nz-menu-item routerLink="/personal">Personal data</li>
-                        <li nz-menu-item routerLink="/transportList">My transport</li>
+                        <li nz-menu-item routerLink="/transportList" >My transport</li>
                         <li nz-menu-item routerLink="/violationList">My violation list</li>
                     </ul>
                 </nz-dropdown-menu>
             </li>
-            <li nz-menu-item *ngIf="this.accountService.userRole ==='inspector'">
-                <button class="transp" nz-menu-item routerLink="/inspector/list-of-ca">Inspector</button>
-            </li>
             <li nz-menu-item>
-                <button class="transp" nz-menu-item nz-dropdown [nzDropdownMenu]="adminMenu"
-                    *ngIf="this.accountService.userRole ==='admin'" routerLink="/listOfInspectors">Admin panel</button>
+                <button class="transp" nz-menu-item nz-dropdown [nzDropdownMenu]="adminMenu"  
+                *ngIf="this.accountService.userRole ==='admin'" routerLink="/listOfInspectors">Admin panel</button>
                 <nz-dropdown-menu #adminMenu="nzDropdownMenu">
-                    <ul nz-menu>
+                    <ul nz-menu>    
                         <li nz-menu-item routerLink="/listOfInspectors">List of inspectors</li>
-                        <li nz-menu-item routerLink="/listOfCa">List of CA</li>
+                        <li nz-menu-item routerLink="/listOfCa" >List of CA</li>
                     </ul>
                 </nz-dropdown-menu>
             </li>
