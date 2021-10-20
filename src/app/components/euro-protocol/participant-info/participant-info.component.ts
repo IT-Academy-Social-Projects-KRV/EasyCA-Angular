@@ -1,6 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NzButtonSize } from 'ng-zorro-antd/button';
+import { EuroProtocol } from 'src/app/models/euroProtocol';
 
 @Component({
   selector: 'app-participant-info',
@@ -9,6 +10,13 @@ import { NzButtonSize } from 'ng-zorro-antd/button';
 })
 export class ParticipantInfoComponent implements OnInit {
 
+  public protocol:EuroProtocol;
+
+  @Input() set setProtocol(euroProtocol:EuroProtocol)
+  {
+    this.protocol=euroProtocol;
+    console.log(this.protocol);
+  }
   constructor(public fb: FormBuilder) { }
   
   size: NzButtonSize = 'large';

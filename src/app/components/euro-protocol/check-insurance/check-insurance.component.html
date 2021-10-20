@@ -4,18 +4,12 @@
    </div>
    <div class="euro_content">
      <div>
-       <form nz-form [formGroup]="firstFormSideA">
+       <form nz-form [formGroup]="carPlateForm">
          <h4>1st participant of the accident</h4>
          <nz-form-item>
-           <nz-form-label [nzSpan]="5">Insuarance number</nz-form-label>
+           <nz-form-label [nzSpan]="8">Car plate</nz-form-label>
            <nz-form-control [nzSpan]="6">
-             <input nz-input placeholder="Input the code" name="FirstInsuarance" formControlName="firstInsuaranceNumber" required />
-           </nz-form-control>
-         </nz-form-item>
-         <nz-form-item>
-           <nz-form-label [nzSpan]="5">Car plate</nz-form-label>
-           <nz-form-control [nzSpan]="6">
-             <input nz-input placeholder="Input the number" name="FirstCarPlate" formControlName="firstCarPlate" required />
+             <input nz-input placeholder="Input the number" name="CarPlate" formControlName="CarPlate" required />
            </nz-form-control>
          </nz-form-item>
        </form>

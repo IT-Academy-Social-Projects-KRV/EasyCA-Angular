@@ -28,12 +28,14 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
 })
 
 export class EuroProtocolComponent implements OnInit {
+
+  public euroProtocol:EuroProtocol;
+
   constructor(private router: Router , public accountService:AccountService, public fb: FormBuilder,
      public service: EuroProtocolService, public transportService: TransportService, 
      public renderer: Renderer2, private resolver: ComponentFactoryResolver
      ) { }
 
-  public euroProtocol: EuroProtocol;
   public sideA: side;
   public sideB: side;
 
@@ -132,16 +134,27 @@ export class EuroProtocolComponent implements OnInit {
   }
 
   generatePage(): void {
+    let component=this.components[this.index];
     this.container.clear(); 
-    const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(this.components[this.index]);
+    const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(component);
     this.componentRef = this.container.createComponent(factory);
     this.componentRef.instance.indexChanged.subscribe((val:any) => this.changeIndex(val));
+    this.componentRef.instance.setProtocol=this.euroProtocol; 
+    if(component!=TermsComponent)
+    {
+      this.componentRef.instance.euroProtocolEvent.subscribe((val:any)=>this.setEuroProtocol(val));
+    }
   }
 
   changeIndex($event:number) {
     this.index=$event;
     console.log(this.index);
     this.generatePage();
+  }
+
+  setEuroProtocol($event:EuroProtocol)
+  {
+    this.euroProtocol=$event;
   }
 
   clickToThird(): void{
