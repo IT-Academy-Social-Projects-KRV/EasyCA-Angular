@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NzButtonSize } from 'ng-zorro-antd/button';
 
 @Component({
@@ -14,11 +14,10 @@ export class EvidenceComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
-  stepBackToFifth(): void{
-  }
+  @Output() indexChanged = new EventEmitter<number>();
 
-  clickToSeventh(): void{
+  changePage(index:number){
+    this.indexChanged.emit(index);
   }
 
 }

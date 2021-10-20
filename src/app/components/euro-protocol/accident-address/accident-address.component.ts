@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NzButtonSize } from 'ng-zorro-antd/button';
 
@@ -27,11 +27,9 @@ export class AccidentAddressComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
-  stepBackToThird(): void{
+  @Output() indexChanged = new EventEmitter<number>();
+
+  changePage(index:number){
+     this.indexChanged.emit(index);
   }
-
-  clickToFifth(): void{
-  } 
-
 }

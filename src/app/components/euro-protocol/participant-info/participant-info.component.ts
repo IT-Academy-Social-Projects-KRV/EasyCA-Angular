@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NzButtonSize } from 'ng-zorro-antd/button';
 
@@ -39,9 +39,9 @@ export class ParticipantInfoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  stepBackToSecond(): void{
-  }
+  @Output() indexChanged = new EventEmitter<number>();
 
-  clickToFourth(): void{
-  } 
+  changePage(index:number){
+    this.indexChanged.emit(index);
+  }
 }

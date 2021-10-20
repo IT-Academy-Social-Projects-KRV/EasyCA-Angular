@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NzButtonSize } from 'ng-zorro-antd/button';
 import { Circumstance } from 'src/app/models/circumstance';
 import { EuroProtocolService } from 'src/app/services/euroProtocolService';
@@ -12,10 +12,10 @@ export class CircumstancesComponent implements OnInit {
 
   constructor(public service: EuroProtocolService) {
   }
-  
+
   size: NzButtonSize = 'large';
   circumstancesList: Circumstance[] = [];
-  checkedCircumstancesId: number[]=[];
+  checkedCircumstancesId: number[] = [];
 
   ngOnInit(): void {
     this.service.getAllCircumstances()
@@ -23,9 +23,9 @@ export class CircumstancesComponent implements OnInit {
         this.circumstancesList = data;
       })
   }
-    
-  onChange(id:Circumstance, event: any) {
-    if(event.target.checked) {
+
+  onChange(id: Circumstance, event: any) {
+    if (event.target.checked) {
       this.checkedCircumstancesId.push(id.circumstanceId);
     } else {
       let index = this.checkedCircumstancesId.findIndex(x => x == id.circumstanceId);
@@ -33,10 +33,10 @@ export class CircumstancesComponent implements OnInit {
     }
   }
 
-  stepBackToFourth(): void{
-  }
+  @Output() indexChanged = new EventEmitter<number>();
 
-  clickToSixth(): void{
-  } 
+  changePage(index: number) {
+    this.indexChanged.emit(index);
+  }
 
 }

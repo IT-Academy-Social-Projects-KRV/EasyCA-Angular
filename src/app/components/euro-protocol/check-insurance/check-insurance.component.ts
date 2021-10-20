@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NzButtonSize } from 'ng-zorro-antd/button';
 import { AccountService } from 'src/app/services/account.service';
@@ -45,8 +45,10 @@ export class CheckInsuranceComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  @Output() indexChanged = new EventEmitter<number>();
 
-  stepBackToFirst(): void{
+  changePage(index:number){
+    this.indexChanged.emit(index);
   }
 
   clickToThird(): void{

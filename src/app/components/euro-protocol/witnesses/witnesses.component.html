@@ -36,10 +36,10 @@
      <nz-progress [nzPercent]="77" [nzShowInfo]="false" nzStatus="active" ></nz-progress>
    </div>
    <div class="euro_footer_next">
-     <button nz-button nzType="primary" [nzSize]="size" (click)="stepBackToSixth()" >
+     <button nz-button nzType="primary" [nzSize]="size" (click)="changePage(5)" >
        <i nz-icon nzType="left"></i> Backward
      </button>
-     <button  nz-button nzType="primary" [nzSize]="size" (click)="clickToEighth()" >
+     <button  nz-button nzType="primary" [nzSize]="size" (click)="changePage(7)" >
        Forward
        <i nz-icon nzType="right"></i>
      </button>

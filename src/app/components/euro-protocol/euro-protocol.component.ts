@@ -31,45 +31,7 @@ export class EuroProtocolComponent implements OnInit {
   constructor(private router: Router , public accountService:AccountService, public fb: FormBuilder,
      public service: EuroProtocolService, public transportService: TransportService, 
      public renderer: Renderer2, private resolver: ComponentFactoryResolver
-     ) { 
-       this.sideA = {
-         circumstances: Array<number>(),
-         damage:'',
-         email:'',
-         driverLicenseSerial:'',
-         evidences:Array<Evidence>(),
-         isGulty: false,
-         transportId:'',
-       }
-       this.sideB = {
-        circumstances: Array<number>(),
-        damage:'',
-        email:'',
-        driverLicenseSerial:'',
-        evidences:Array<Evidence>(),
-        isGulty: false,
-        transportId:'',
-      },
-       this.euroProtocol={
-        id:'',
-        registrationDateTime: new Date('2021-10-04'),
-        serialNumber:'',
-        address: <AddressOfAccident>{
-          coordinatesOfLatitude:'',
-          coordinatesOfLongitude:'',
-          crossStreet:'',
-          isInCity:true,
-          isIntersection:true,
-          city:'',
-          district:'',
-          street:''
-        },
-        sideA: this.sideA,
-        sideB: this.sideB,
-        isClosed: false,
-        witnesses: Array<Witness>(),
-      }
-    }
+     ) { }
 
   public euroProtocol: EuroProtocol;
   public sideA: side;
@@ -169,14 +131,16 @@ export class EuroProtocolComponent implements OnInit {
     });
   }
 
-  generatePage(): void{
+  generatePage(): void {
     this.container.clear(); 
     const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(this.components[this.index]);
     this.componentRef = this.container.createComponent(factory);
-    console.log(this.componentRef.instance.index.subscribe("changeIndex($event)"));
+    this.componentRef.instance.indexChanged.subscribe((val:any) => this.changeIndex(val));
   }
 
-  changeIndex(index: number) {
+  changeIndex($event:number) {
+    this.index=$event;
+    console.log(this.index);
     this.generatePage();
   }
 

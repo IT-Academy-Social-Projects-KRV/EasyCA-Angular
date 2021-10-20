@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NzButtonSize } from 'ng-zorro-antd/button';
@@ -37,7 +37,6 @@ export class ConfirmationComponent implements OnInit {
      transportId:'',
    },
     this.euroProtocol={
-     id:'',
      registrationDateTime: new Date('2021-10-04'),
      serialNumber:'',
      address: <AddressOfAccident>{
@@ -56,7 +55,11 @@ export class ConfirmationComponent implements OnInit {
      witnesses: Array<Witness>(),
    }
   }
-  
+  @Output() indexChanged = new EventEmitter<number>();
+
+  changePage(index:number){
+    this.indexChanged.emit(index);
+  }
   public transportForm = this.fb.group({
     id: [''],
     producedBy: [''],

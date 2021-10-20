@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NzButtonSize } from 'ng-zorro-antd/button';
 
@@ -23,9 +23,9 @@ export class WitnessesComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  stepBackToSixth(): void{
-  }
+  @Output() indexChanged = new EventEmitter<number>();
 
-  clickToEighth(): void{
-  } 
+  changePage(index:number){
+    this.indexChanged.emit(index);
+  }
 }
