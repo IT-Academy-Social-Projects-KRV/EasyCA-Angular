@@ -30,4 +30,4 @@
     </div>
 </div>
 
-<app-modal-inspector [setVisible]="this.isVisible" (isVisibleEvent)="handleCancel($event)"></app-modal-inspector>
+<app-modal-inspector [setVisible]="this.isVisible" (AddedInspector)="addInspector($event)" (isVisibleEvent)="handleCancel($event)"></app-modal-inspector>
