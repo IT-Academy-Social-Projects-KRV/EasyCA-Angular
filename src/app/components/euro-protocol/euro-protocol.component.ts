@@ -151,7 +151,6 @@ export class EuroProtocolComponent implements OnInit {
       let index = this.checkedCircumstancesId.findIndex(x => x == id.circumstanceId);
       this.checkedCircumstancesId.splice(index,1);  
     }
-    console.log(this.checkedCircumstancesId);
   }
 
   ngOnInit(): void {
@@ -343,10 +342,10 @@ export class EuroProtocolComponent implements OnInit {
     this.service.createEuroProtocol(this.euroProtocol)
       .subscribe(
         res => {
-          console.log(res);
+          
         },
         err => {
-          console.log(err);
+          
         });
   }
 
