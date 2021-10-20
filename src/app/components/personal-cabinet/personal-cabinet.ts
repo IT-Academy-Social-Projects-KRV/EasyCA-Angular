@@ -3,6 +3,7 @@ import { AccountService } from 'src/app/services/account.service';
 import { Data } from 'src/app/models/data';
 import { FormBuilder } from "@angular/forms";
 import { ToastrService } from 'ngx-toastr';
+import { ChangePassword } from 'src/app/models/changePassword';
 
 @Component({
   selector: 'app-personal-cabinet',
@@ -14,6 +15,7 @@ export class PersonalCabinetComponent implements OnInit {
   public userName: string;
   public data: Data;
   public isVisible = false;
+  public changePasswordVisible=false;
   public isPersonalData = false;
   public isAddPersonalData = true;
   public errorMessage = '';
@@ -49,6 +51,10 @@ export class PersonalCabinetComponent implements OnInit {
     this.isVisible = $event;
     this.isAddPersonalData = true;
   }
+   receiveChangePasswordVisible($event:boolean)
+   {
+     this.changePasswordVisible=$event;
+   }
 
   editModal() {
     this.isVisible = true;
@@ -86,5 +92,24 @@ export class PersonalCabinetComponent implements OnInit {
           this.toastr.warning('Data not added', err);
         }
       );
+  }
+
+  changePasswordModal()
+  {
+    this.changePasswordVisible=true;
+  }
+
+  changePassword($event:ChangePassword)
+  {
+     this.accountService.changePassword($event).
+     subscribe(
+       (res:any)=>{
+        this.toastr.info("Password has been changed", "Success");
+        this.changePasswordVisible=false;
+       },
+       (err:any)=>{
+         this.toastr.warning('Password wasnt change',err);
+       }
+     )
   }
 }
