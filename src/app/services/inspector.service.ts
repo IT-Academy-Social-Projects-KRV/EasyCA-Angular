@@ -7,9 +7,11 @@ import { CarAccident } from '../models/carAccident';
 @Injectable({
   providedIn: 'root'
 })
+
 export class InspectorService {
 
   constructor(private http: HttpClient) { }
+
   getAllCarAccidentsByInspectorId(): Observable<CarAccident[]> {
     return this.http.get<CarAccident[]>(`${HOST_URL}CarAccident`);
   }

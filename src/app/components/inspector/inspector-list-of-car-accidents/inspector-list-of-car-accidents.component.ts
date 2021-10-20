@@ -7,6 +7,7 @@ import { InspectorService } from 'src/app/services/inspector.service';
   templateUrl: './inspector-list-of-car-accidents.component.html',
   styleUrls: ['./inspector-list-of-car-accidents.component.css']
 })
+
 export class InspectorListOfCarAccidentsComponent implements OnInit {
   accidentList: CarAccident[];
   isAccidentListEmpty = false;
@@ -26,5 +27,4 @@ export class InspectorListOfCarAccidentsComponent implements OnInit {
       error => { }
     )
   }
-
 }
