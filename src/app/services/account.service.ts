@@ -11,6 +11,7 @@ import { Data } from '../models/data';
 import { CookieService } from 'ngx-cookie-service';
 import { ResendConfirmation } from '../models/resendConfirmation';
 import { PersonalData } from '../models/personalData';
+import { ChangePassword } from '../models/changePassword';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -77,5 +78,10 @@ export class AccountService {
   resendConfirmation(data: ResendConfirmation) {
     data.resendConfirmationURI = RESEND_CONFIRMATION_URI;
     return this.http.post<any>(`${HOST_URL}Auth/ResendConfirmation`, data, httpOptions);
+  }
+  
+  changePassword(data:ChangePassword)
+  {
+    return this.http.post<any>(`${HOST_URL}Account/ChangePassword`,data,httpOptions);
   }
 }

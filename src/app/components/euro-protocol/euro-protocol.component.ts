@@ -149,7 +149,7 @@ export class EuroProtocolComponent implements OnInit {
       this.checkedCircumstancesId.push(id.circumstanceId);
     } else {
       let index = this.checkedCircumstancesId.findIndex(x => x == id.circumstanceId);
-      this.checkedCircumstancesId.slice(index);
+      this.checkedCircumstancesId.splice(index,1);  
     }
   }
 
@@ -342,10 +342,10 @@ export class EuroProtocolComponent implements OnInit {
     this.service.createEuroProtocol(this.euroProtocol)
       .subscribe(
         res => {
-          console.log(res);
+          
         },
         err => {
-          console.log(err);
+          
         });
   }
 

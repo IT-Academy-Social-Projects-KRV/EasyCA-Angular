@@ -12,9 +12,8 @@ import { AdminService } from 'src/app/services/admin.service';
 export class ListInspectors implements OnInit {
 
     listInspectors: Inspector[] = [];
-    public isAdd = true;
-
     public isVisible = false;
+    
     constructor(private adminService: AdminService, private toastr: ToastrService) { }
 
     ngOnInit(): void {
@@ -37,6 +36,17 @@ export class ListInspectors implements OnInit {
                     this.toastr.warning(err, "Warning");
                 })
     }
+
+    addInspector($event: Inspector){
+        this.adminService.registerInspector($event)
+            .subscribe(res => {
+                this.toastr.success("Inspector added","Congratulation");
+                this.isVisible = false;
+                this.listInspectors.push($event);
+            },
+            err => {
+            });
+    };
 
     showModal() {
         this.isVisible = true;

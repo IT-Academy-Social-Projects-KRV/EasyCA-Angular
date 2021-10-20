@@ -27,24 +27,18 @@ export class ModalInspectors implements OnInit {
     }
 
     onSubmit(){
-        this.addInspector(this.inspectorForm.value);
+        if(this.inspectorForm.value.confirmPassword != this.inspectorForm.value.password){
+            this.toastr.warning("Please, confirm password","Failed");
+        }
+        else this.AddedInspector.emit(this.inspectorForm.value);
     }
-
-    addInspector(inspector: Inspector){
-        this.adminService.registerInspector(inspector)
-            .subscribe(res => {
-                this.toastr.success("Inspector added","Congratulation");
-                this.isVisible = false;
-            },
-            err => {
-            });
-    };
 
     @Input() set setVisible(isVisible: boolean) {
         this.isVisible = isVisible;
     }
 
     @Output() isVisibleEvent = new EventEmitter<boolean>();
+    @Output() AddedInspector = new EventEmitter<Inspector>();
 
     handleCancel(): void {
         this.isVisibleEvent.emit(false);

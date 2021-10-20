@@ -39,6 +39,7 @@ import { BasicInfoComponent } from './components/personal-cabinet/basic-info/bas
 import { AddressComponent } from './components/personal-cabinet/address/address.component';
 import { DriverLicenseComponent } from './components/personal-cabinet/driver-license/driver-license.component';
 import { InspectorListOfCarAccidentsComponent } from './components/inspector/inspector-list-of-car-accidents/inspector-list-of-car-accidents.component';
+import { ChangePasswordModalComponent } from './components/personal-cabinet/change-password-modal/change-password-modal.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -70,7 +71,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     BasicInfoComponent,
     AddressComponent,
     DriverLicenseComponent,
-    InspectorListOfCarAccidentsComponent
+    InspectorListOfCarAccidentsComponent,
+    ChangePasswordModalComponent
   ],
   imports: [
     BrowserModule,
