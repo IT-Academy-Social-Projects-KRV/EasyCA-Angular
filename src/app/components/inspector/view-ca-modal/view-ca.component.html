@@ -1,0 +1,139 @@
+<nz-modal nzWidth="80%" [(nzVisible)]="isVisible" nzTitle="View CA" [nzContent]="modalContent" (nzOnCancel)="handleCancel()">
+    <ng-template #modalContent>
+        <div>
+            <div nz-row nzGutter="16">
+              <div nz-col nzSpan="8">
+                <label class="title">Serial Number:</label>
+                <input nz-input placeholder="Number of protocol"/>
+              </div>
+              <div nz-col nzSpan="8">
+                <label class="title">Date of accident:</label>
+                <input nz-input id="registrationDate" placeholder="Registration date of protocol" />
+              </div>
+              <div nz-col nzSpan="8">
+                <label class="title">Inspector:</label>
+                <input nz-input placeholder="Inspector name" />
+              </div>
+            </div>
+            <br>
+            <div nz-row nzGutter="16">
+              <div nz-col nzSpan="20">
+                <div>
+                  <label class="inputLabel">Address:</label>
+                  <textarea nz-input [nzAutosize]="{ minRows: 1, maxRows: 3 }" placeholder="Accident address city"></textarea>
+                </div>
+              </div>
+              <div nz-col nzSpan="4">
+                <div class="taCenter">
+                  <label class="inputLabel">Doc take off:</label>
+                  <input nz-input type="checkbox"/>
+                </div>
+              </div>
+            </div>
+            <nz-divider></nz-divider>
+            <nz-collapse nzAccordion>
+              <nz-collapse-panel nzHeader="Participant" class="childTitle">
+                <div>
+                  <label class="inputLabel">Name:</label>
+                  <input nz-input placeholder="Side name" />
+                </div>
+                <br>
+                <nz-collapse nzAccordion>
+                  <nz-collapse-panel nzHeader="Transport" class="inputLabel">
+                    <div>
+                      <label class="inputLabel">Model:</label>
+                      <input nz-input placeholder="Transport model" />
+                    </div>
+                    <br>
+                    <nz-row nzGutter="16">
+                      <nz-col nzSpan="8">
+                        <div>
+                          <label class="inputLabel">Car Plate:</label>
+                          <input nz-input placeholder="Transport car plate" />
+                        </div>
+                      </nz-col>
+                      <nz-col nzSpan="16">
+                        <div>
+                          <label class="inputLabel">Color:</label>
+                          <input nz-input placeholder="Transport color" />
+                        </div>
+                      </nz-col>
+                    </nz-row>
+                    <br>
+                    <nz-row nzGutter="16">
+                      <nz-col nzSpan="8">
+                        <div>
+                          <label class="inputLabel">Production Year:</label>
+                          <input nz-input placeholder="Transport production year" />
+                        </div>
+                      </nz-col>
+                      <nz-col nzSpan="16">
+                        <div>
+                          <label class="inputLabel">Insurance:</label>
+                          <input nz-input placeholder="Transport insurance" />
+                        </div>
+                      </nz-col>
+                    </nz-row>
+                  </nz-collapse-panel>
+                  <nz-collapse-panel nzHeader="Circumstances" class="inputLabel">
+                    <nz-list class="listItem">
+                      <nz-list-item >
+                        Circumstance
+                      </nz-list-item>
+                    </nz-list>
+                  </nz-collapse-panel>
+                </nz-collapse>
+                <br>
+                <div>
+                  <label class="inputLabel" for="damage">Damage:</label>
+                  <textarea [nzAutosize]="{ minRows: 1, maxRows: 3 }" nz-input placeholder="Damage"></textarea>
+                </div>
+                <br>
+                <nz-row nzGutter=16>
+                  <nz-col nzSpan=8>
+                    <div>
+                      <label class="inputLabel" for="driverLicenseSerial">Driver License:</label>
+                      <input nz-input placeholder="Driver License" />
+                    </div>
+                  </nz-col>
+                  <nz-col nzSpan=16>
+                    <div>
+                      <label class="inputLabel" for="isGulty">Conflict Side:</label>
+                      <input class="guiltiness" nz-input id="isGulty" placeholder="Damage" />
+                    </div>
+                  </nz-col>
+                </nz-row>
+              </nz-collapse-panel>
+              <nz-collapse-panel nzHeader="Witnesses" class="childTitle">
+                <div>
+                  <div>
+                    <label class="inputLabel">Name:</label>
+                    <input nz-input id="firstName" placeholder="Witness first name" />
+                  </div>
+                  <br>
+                  <div>
+                    <label class="inputLabel">Address:</label>
+                    <textarea nz-input [nzAutosize]="{ minRows: 1, maxRows: 3 }" id="witnessAddress" placeholder="Witness address"></textarea>
+                  </div>
+                  <br>
+                  <nz-row nzGutter=16>
+                    <nz-col nzSpan=8>
+                      <div>
+                        <label class="inputLabel">Phone Number:</label>
+                        <input nz-input id="phoneNumber" placeholder="Witness phone number" />
+                      </div>
+                    </nz-col>
+                    <nz-col nzSpan=16>
+                      <div>
+                        <label class="inputLabel">Side of conflict:</label>
+                        <input nz-input id="isVictim" placeholder="Witness side of conflict" />
+                      </div>
+                    </nz-col>
+                  </nz-row>
+                  <nz-divider></nz-divider>
+                </div>
+              </nz-collapse-panel>
+            </nz-collapse>
+        </div>
+    </ng-template>
+  </nz-modal>
