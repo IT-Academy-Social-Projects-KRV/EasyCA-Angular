@@ -13,6 +13,7 @@ import { EuroProtocolComponent } from './components/euro-protocol/euro-protocol.
 import { ResendConfirmationComponent } from './components/resend-confirmation/resend-confirmation.component';
 import { ListCAComponent } from './components/list-ca/list-ca.component';
 import { ListInspectors } from './components/list-inspector/list-inspector.component';
+import { InspectorListOfCarAccidentsComponent } from './components/inspector/inspector-list-of-car-accidents/inspector-list-of-car-accidents.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -28,7 +29,8 @@ const routes: Routes = [
   { path: 'euroProtocol', component: EuroProtocolComponent},
   { path: 'resendConfirmation', component: ResendConfirmationComponent },
   { path: 'listOfCa', component: ListCAComponent },
-  { path: 'listOfInspectors', component: ListInspectors }
+  { path: 'listOfInspectors', component: ListInspectors },
+  { path: 'inspector/list-of-ca', component: InspectorListOfCarAccidentsComponent }
 ];
 
 @NgModule({

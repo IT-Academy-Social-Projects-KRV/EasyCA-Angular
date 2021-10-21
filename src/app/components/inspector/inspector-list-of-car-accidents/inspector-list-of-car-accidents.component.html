@@ -1,0 +1,46 @@
+<div *ngIf="isAccidentListEmpty" class="alignCenter">
+    <div>
+        <h1>There are no CA protocols registered by you.<br>Create a new one by pressing the button below</h1>
+    </div>
+    <div>
+        <button nz-button [nzSize]="'large'" nzShape="round" [nzType]="'primary'">Create CA Protocol</button>
+    </div>
+</div>
+<div *ngIf="!isAccidentListEmpty">
+    <div nz-row>
+        <div nz-col nzSpan="3">
+            <h1>List of CA</h1>
+        </div>
+        <div nz-col nzSpan="3" nzOffset="18">
+            <button nz-button nzShape="round" [nzType]="'primary'">Create CA Protocol</button>
+        </div>
+    </div>
+    <div>
+        <nz-table #basicTable [nzData]="accidentList" [nzPageSize]="5">
+            <thead>
+                <tr class="tableHeader">
+                    <th>SERIAL NUMBER</th>
+                    <th>REGISTRATION DATE</th>
+                    <th>ADDRESS OF ACCIDENT</th>
+                    <th>PROTOCOL STATUS</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="tableBodyCell" *ngFor="let accident of basicTable.data">
+                    <td>{{accident.serialNumber}}</td>
+                    <td>{{accident.registrationDateTime | date:'MMMM d, y, H:mm'}}</td>
+                    <td>
+                        <div *ngIf="accident.address.isInCity === true; then thenBlock else elseBlock"></div>
+                        <ng-template #thenBlock>{{accident.address.city}}, {{accident.address.street}}</ng-template>
+                        <ng-template #elseBlock>Out of city</ng-template>
+                    </td>
+                    <td *ngIf="accident.isClosed === true">Closed</td>
+                    <td *ngIf="accident.isClosed === false">Waiting for second side</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </nz-table>
+        <br>
+    </div>
+</div>
