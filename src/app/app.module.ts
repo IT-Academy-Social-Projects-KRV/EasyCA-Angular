@@ -42,6 +42,7 @@ import { ConfirmComponent } from './components/violation-list/confirm/confirm.co
 import { EnterDataSecondSideComponent } from './components/violation-list/enter-data-second-side/enter-data-second-side.component';
 import { InspectorListOfCarAccidentsComponent } from './components/inspector/inspector-list-of-car-accidents/inspector-list-of-car-accidents.component';
 import { ChangePasswordModalComponent } from './components/personal-cabinet/change-password-modal/change-password-modal.component';
+import { ViewCAComponent } from './components/inspector/view-ca-modal/view-ca.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -76,8 +77,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     ConfirmComponent,
     EnterDataSecondSideComponent,
     InspectorListOfCarAccidentsComponent,
-    ChangePasswordModalComponent
-
+    ChangePasswordModalComponent,
+    ViewCAComponent
   ],
   imports: [
     BrowserModule,
