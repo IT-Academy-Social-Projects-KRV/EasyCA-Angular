@@ -44,7 +44,7 @@ export class TransportComponent implements OnInit {
 
   getTransports(){
     this.transportService.refreshList().subscribe(
-      (res:any) => {
+      res => {
         this.list = res as Transport[];
         if(this.list.length>0){
           this.isEmpty = false;
@@ -64,7 +64,7 @@ export class TransportComponent implements OnInit {
     }
 
   resetForm(transportForm:FormGroup)
-    {
+  {
     this.isUpdate=false;
     transportForm.reset();
     }
@@ -85,11 +85,11 @@ export class TransportComponent implements OnInit {
           serialNumber: selectedRecord.insuaranceNumber.serialNumber
         }
       });
-      }
+    }
 
   addCar(transportForm:FormGroup)  {
     this.transportService.postTransport().subscribe(
-      res =>{     
+      () =>{     
         this.resetForm(transportForm); 
         this.getTransports();
         this.toastr.success("Transport added","congratulation")
@@ -101,7 +101,7 @@ export class TransportComponent implements OnInit {
 
   updateCar(transportForm:FormGroup){
   this.transportService.putTransport().subscribe(
-    res =>{     
+    () =>{     
       this.resetForm(transportForm);
       this.getTransports();
       this.toastr.info("Transport update","congratulation")
@@ -116,7 +116,7 @@ export class TransportComponent implements OnInit {
     {
     this.transportService.deleteTransport(id)
     .subscribe(
-      res=>{
+      ()=>{
         this.getTransports();
         this.toastr.error("Car Deleted ", "congratulation")
       },

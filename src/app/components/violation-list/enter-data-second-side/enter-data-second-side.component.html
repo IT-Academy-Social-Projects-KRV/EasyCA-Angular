@@ -1,0 +1,76 @@
+<nz-modal nzWidth="80%" [(nzVisible)]="isVisible" nzTitle="Enter Your Data" [nzContent]="modalContent"  [nzFooter]="modalFooter"
+  (nzOnCancel)="handleCancel()">
+  <ng-template #modalContent>
+    <nz-carousel [nzEffect]="effect" [nzDots]="false">
+      <div nz-carousel-content  *ngFor="let index of array; let i = index">
+        <div class="carousel" [style.height.px]="this.height">
+         <div  *ngIf="(index==='EnterCarPlate')" class="first" >
+          <h1 class="alignCenter" >Please Enter Your CarPlate</h1>
+          <input class="alignCenter" nz-input id="carPlate" type="text" [(ngModel)]="carPlate">
+        </div>
+        <div *ngIf="(index==='AllData')">
+          <app-main-form ></app-main-form>
+        </div>
+        <div *ngIf="(index==='Circumstance')"> 
+          <div>
+          <h2>Circumstances of the accident</h2>
+          <div>
+            <h5>Choose the circumstances of the accident according 
+                to the actions of each participant</h5>            
+            <br>
+            <div>
+                <form nz-form *ngFor="let item of this.circumstancesList">
+                    <div>
+                        <nz-form-item>
+                            <div class="circumstance">
+                                <div>
+                                    <input type="checkbox"  (change)="onChange(item, $event)"/> 
+                                </div>
+                                <div>
+                                    <p>{{item.circumstanceName}}</p>
+                                </div>
+                            </div>
+                        </nz-form-item>
+                    </div>
+                </form>
+            </div>
+        </div>
+      </div>          
+        </div>
+        <div *ngIf="(index==='Sucess')">
+          <div >
+            <h2>The European protocol is issued</h2>
+        </div>
+        <div nz-col="" nzspan="12" nzoffset="6" class="alignCenter">
+          <div class="myDiv">
+            <div class="circle">
+              <span class="check"><i nz-icon nzType="check" nzTheme="outline"></i></span>
+            </div>
+          </div>
+          <div>
+            <h1>Personal info </h1>
+          </div>
+          <div>
+            Info about you and your preferences across Easy-CA
+          </div>
+          <br><br>
+        </div>
+        </div>
+        <div class="euro_progres">
+          <nz-progress [nzPercent]="25*(i+1)" [nzShowInfo]="false" ></nz-progress>
+        </div>
+        <br>
+        <div class="euro_footer_next">
+          <button nz-button *ngIf="!(index==='EnterCarPlate')" nzType="default" nzSize="large" (click)="previous(index)"> <i nz-icon
+              nzType="left"></i>Previous</button>
+          <button nz-button *ngIf="!(index==='Sucess') " nzType="default" nzSize="large" (click)="next(index)">Next <i nz-icon nzType="right"></i></button>
+        </div>
+        </div>
+      </div>
+    </nz-carousel>
+  </ng-template>
+  <ng-template #modalFooter>
+    <div  class="first" > </div>
+    <button nz-button nzType="default" (click)="handleCancel()">Close</button>
+    </ng-template>
+</nz-modal>

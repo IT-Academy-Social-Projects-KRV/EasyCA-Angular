@@ -32,7 +32,7 @@
                     nzSize="large" 
                     class="tableButton"
                     (click)="loadEuroProtocol(i)" 
-                    (click)="showEuroProtocolModal()">
+                    (click)="showEuroProtocolConfirmModal()">
                     Confirm
             </button>
             <button *ngIf="protocol.isClosed === true" 
@@ -47,8 +47,36 @@
         </tr>
       </tbody>
     </nz-table>
-    <nz-modal nzWidth="80%" [(nzVisible)]="isEuroProtocolModalVisible" nzTitle="View Euro Protocol Data" [nzContent]="modalContent" (nzOnCancel)="cancelEuroProtocolModal()">
+    <nz-modal nzWidth="80%" 
+        [(nzVisible)]="isEuroProtocolConfirmModalVisible"
+        nzTitle="Confirm Euro Protocol Data" 
+        [nzContent]="modalContent" 
+        (nzOnCancel)="canceConfirmlEuroProtocolModal()"
+        [nzFooter]="modalFooter">>
       <ng-template #modalContent>
+      <app-confirm [protocolNumber]="selectedEuroProtocolNumber"></app-confirm>
+      </ng-template>
+      <ng-template #modalFooter>
+        <button nz-button nzType="primary" (click)="ContinueFill()" >Continue Fill Data</button>
+      </ng-template>
+    </nz-modal>
+    <div>
+      <app-enter-data-second-side  
+       [setVisible]="this.isSecondSideForm" 
+       (isVisibleEvent)="visibleSecondSideForm($event)"       
+       [setCircumstance]="this.circumstancesList"
+       (carPlateOutput)="setInfo($event)"   
+       (checkedCircumstancesIdOutput)="registr($event)"
+      ></app-enter-data-second-side>
+       <app-main-form [hidden]="true" [setData]="this.data"  [setTransport]="this.transport" ></app-main-form>
+    </div>  
+    <nz-modal nzWidth="80%"
+        [(nzVisible)]="isEuroProtocolModalVisible"
+        nzTitle="View Euro Protocol Data"
+        [nzContent]="modalInfo" 
+        (nzOnCancel)="cancelEuroProtocolModal()" 
+        [nzFooter]="modalFooter">
+      <ng-template #modalInfo>
         <app-euro-protocol-view-form [protocolNumber]="selectedEuroProtocolNumber"></app-euro-protocol-view-form>
       </ng-template>
     </nz-modal>
