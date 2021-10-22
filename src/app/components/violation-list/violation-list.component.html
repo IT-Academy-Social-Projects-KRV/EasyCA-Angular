@@ -57,7 +57,7 @@
       <app-confirm [protocolNumber]="selectedEuroProtocolNumber"></app-confirm>
       </ng-template>
       <ng-template #modalFooter>
-        <button nz-button nzType="primary" (click)="ContinueFill()" >Continue Fill Data</button>
+        <button nz-button nzType="primary" *ngIf="this.condition === false"  (click)="ContinueFill()" >Continue Fill Data</button>
       </ng-template>
     </nz-modal>
     <div>

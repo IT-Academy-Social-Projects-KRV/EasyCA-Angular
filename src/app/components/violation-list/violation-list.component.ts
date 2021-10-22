@@ -29,6 +29,7 @@ export class ViolationListComponent implements OnInit {
   public selectedEuroProtocolNumber: string;
   public isEuroProtocolModalVisible = false;
   public isEuroProtocolConfirmModalVisible = false;
+  public condition:boolean;
   public isSecondSideForm = false;
   private carPlateSideB: string;
 
@@ -107,6 +108,7 @@ export class ViolationListComponent implements OnInit {
     this.isSecondSideForm=true;
   }
   loadEuroProtocol(id: number) : void {
+    this.condition=this.protocolList[id].isClosed;
     this.selectedEuroProtocolNumber = this.protocolList[id].serialNumber;
     console.log( this.selectedEuroProtocolNumber);
   }
