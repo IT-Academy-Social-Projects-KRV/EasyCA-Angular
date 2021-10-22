@@ -7,7 +7,7 @@ import { Circumstance } from 'src/app/models/circumstance';
 import { EuroProtocolService } from 'src/app/services/euroProtocolService';
 import { TransportService } from 'src/app/services/transport.service';
 import { EuroProtocol } from 'src/app/models/euroProtocol';
-import { side } from 'src/app/models/side';
+import { Side } from 'src/app/models/side';
 import { Evidence } from 'src/app/models/evidence';
 import { AddressOfAccident } from 'src/app/models/addressOfAccident';
 import { Witness } from 'src/app/models/witness';
@@ -20,7 +20,7 @@ import { Witness } from 'src/app/models/witness';
 
 export class EuroProtocolComponent implements OnInit {
   constructor(private router: Router , public accountService:AccountService, public fb: FormBuilder,
-     public service: EuroProtocolService, public transportService: TransportService ) { 
+     public euroProtocolService: EuroProtocolService, public transportService: TransportService ) { 
        this.sideA = {
          circumstances: Array<number>(),
          damage:'',
@@ -29,6 +29,7 @@ export class EuroProtocolComponent implements OnInit {
          evidences:Array<Evidence>(),
          isGulty: false,
          transportId:'',
+         protocolSerial:''
        }
        this.sideB = {
         circumstances: Array<number>(),
@@ -38,6 +39,7 @@ export class EuroProtocolComponent implements OnInit {
         evidences:Array<Evidence>(),
         isGulty: false,
         transportId:'',
+        protocolSerial:''
       },
        this.euroProtocol={
         id:'',
@@ -61,10 +63,10 @@ export class EuroProtocolComponent implements OnInit {
     }
 
   public euroProtocol: EuroProtocol;
-  public sideA: side;
-  public sideB: side;
+  public sideA: Side;
+  public sideB: Side;
 
-  circumstancesList: Circumstance[] = [];
+  circumstancesList: Circumstance[];
   checkedCircumstancesId: number[]=[];
 
   dateFormat = 'yyyy/MM/dd';
@@ -81,7 +83,6 @@ export class EuroProtocolComponent implements OnInit {
     licenseSerialNumber: [''],
     userCategories: [],
   });
-
   public transportForm = this.fb.group({
     id: [''],
     producedBy: [''],
@@ -152,9 +153,8 @@ export class EuroProtocolComponent implements OnInit {
       this.checkedCircumstancesId.slice(index);
     }
   }
-
   ngOnInit(): void {
-    this.service.getAllCircumstances()
+    this.euroProtocolService.getAllCircumstances()
       .subscribe(data => {
         this.circumstancesList = data;
       })
@@ -326,6 +326,7 @@ export class EuroProtocolComponent implements OnInit {
     this.sideB.evidences = [];
     this.sideB.isGulty = false;
     this.sideB.transportId = '';
+    this.sideB.protocolSerial='';
 
     this.euroProtocol.address = this.addressOfAccident.value;
     this.euroProtocol.isClosed = false;
@@ -336,7 +337,7 @@ export class EuroProtocolComponent implements OnInit {
     this.euroProtocol.sideA.email= this.personalDataForm.value.email;
     this.euroProtocol.sideB.email = this.emailSideB.value.email;
 
-    this.service.createEuroProtocol(this.euroProtocol)
+    this.euroProtocolService.createEuroProtocol(this.euroProtocol)
     .subscribe(
       res => {
         console.log(res);

@@ -20,7 +20,7 @@ export class TransportService {
   }
   
   putTransport(){
-    return this.http.put<any>(`${HOST_URL}Transport/UpdateTransport`, this.formData, httpOptions);
+    return this.http.put<Transport>(`${HOST_URL}Transport/UpdateTransport`, this.formData, httpOptions);
   }
 
   deleteTransport(id:string){
@@ -32,6 +32,6 @@ export class TransportService {
   }
 
   getTransportByCarPlate(carPlate: string){
-    return this.http.get(`${HOST_URL}Transport/GetTransportByCarPlate?carPlate=${carPlate}`);
+    return this.http.get<Transport>(`${HOST_URL}Transport/GetTransportByCarPlate?carPlate=${carPlate}`);
   }
 }

@@ -1,0 +1,154 @@
+
+<div class="error_alert">
+    <nz-alert class="error_alert_login" *ngIf="isAnyErrors" nzType="error" nzMessage="{{errorMessage}}"></nz-alert>
+  </div>
+  <div *ngIf="!isAnyErrors && protocol">
+    <div nz-row nzGutter="16">
+      <div nz-col nzSpan="8">
+        <label class="title">Serial Number:</label>
+        <input nz-input id="serialNumber" placeholder="Number of protocol" [ngModel]="protocol.euroProtocol.serialNumber"
+          readonly />
+      </div>
+      <div nz-col nzSpan="8">
+        <label class="title">Date of accident:</label>
+        <input nz-input id="registrationDate" placeholder="Registration date of protocol"
+          [ngModel]="protocol.euroProtocol.registrationDateTime | date:'MMMM d, y, H:mm'" readonly />
+      </div>
+      <div nz-col nzSpan="8">
+        <label class="title">Status:</label>
+        <input nz-input id="isClosed" placeholder="Status of protocol"
+          [ngClass]="this.protocol.euroProtocol.isClosed ? 'isProtocolClosed' : 'isProtocolNotClosed'"
+          [ngModel]="protocol.euroProtocol.isClosed? 'Closed' : 'Waiting for confirm'" readonly />
+      </div>
+    </div>
+    <br>
+    <div nz-row nzGutter="16">
+      <div nz-col nzSpan="24">
+        <div>
+          <label class="inputLabel">Address:</label>
+          <textarea nz-input [nzAutosize]="{ minRows: 1, maxRows: 3 }" id="city" placeholder="Accident address city"
+            [ngModel]="protocol.euroProtocolFullAddress" readonly></textarea>
+        </div>
+      </div>
+    </div>
+    <nz-divider></nz-divider>
+    <nz-collapse nzAccordion>
+      <nz-collapse-panel nzHeader="First side" class="childTitle">
+        <div>
+          <label class="inputLabel">Name:</label>
+          <input nz-input id="name" placeholder="First side name"
+            [ngModel]="protocol.userDataSideA.firstName + ' ' + protocol.userDataSideA.lastName" readonly />
+        </div>
+        <br>
+        <nz-collapse nzAccordion>
+          <nz-collapse-panel nzHeader="Transport" class="inputLabel">
+            <div>
+              <label class="inputLabel">Model:</label>
+              <input nz-input id="producedBy" placeholder="Transport model"
+                [ngModel]="protocol.transportSideA.producedBy + ' ' + protocol.transportSideA.model" readonly />
+            </div>
+            <br>
+            <nz-row nzGutter="16">
+              <nz-col nzSpan="8">
+                <div>
+                  <label class="inputLabel">Car Plate:</label>
+                  <input nz-input id="transportCarPlate" placeholder="Transport car plate"
+                    [ngModel]="protocol.transportSideA.carPlate" readonly />
+                </div>
+              </nz-col>
+              <nz-col nzSpan="16">
+                <div>
+                  <label class="inputLabel">Color:</label>
+                  <input nz-input id="producedBy" placeholder="Transport color" [ngModel]="protocol.transportSideA.color"
+                    readonly />
+                </div>
+              </nz-col>
+            </nz-row>
+            <br>
+            <nz-row nzGutter="16">
+              <nz-col nzSpan="8">
+                <div>
+                  <label class="inputLabel">Production Year:</label>
+                  <input nz-input id="producedBy" placeholder="Transport production year"
+                    [ngModel]="protocol.transportSideA.yearOfProduction" readonly />
+                </div>
+              </nz-col>
+              <nz-col nzSpan="16">
+                <div>
+                  <label class="inputLabel">Insurance:</label>
+                  <input nz-input id="producedBy" placeholder="Transport insurance"
+                    [ngModel]="'№' + protocol.transportSideA.insuaranceNumber.serialNumber + ' by ' + protocol.transportSideA.insuaranceNumber.companyName"
+                    readonly />
+                </div>
+              </nz-col>
+            </nz-row>
+          </nz-collapse-panel>
+          <nz-collapse-panel nzHeader="Circumstances" class="inputLabel">
+            <nz-list class="listItem">
+              <nz-list-item *ngFor="let circumstance of protocol.sideACircumstances">
+                {{circumstance}}
+              </nz-list-item>
+            </nz-list>
+          </nz-collapse-panel>
+        </nz-collapse>
+        <br>
+        <div>
+          <label class="inputLabel" for="damage">Damage:</label>
+          <textarea [nzAutosize]="{ minRows: 1, maxRows: 3 }" nz-input id="damage" placeholder="Damage"
+            [ngModel]="protocol.euroProtocol.sideA.damage" readonly></textarea>
+        </div>
+        <br>
+        <nz-row nzGutter=16>
+          <nz-col nzSpan=8>
+            <div>
+              <label class="inputLabel" for="driverLicenseSerial">Driver License:</label>
+              <input nz-input id="driverLicenseSerial" placeholder="Driver License"
+                [ngModel]="protocol.euroProtocol.sideA.driverLicenseSerial" readonly />
+            </div>
+          </nz-col>
+          <nz-col nzSpan=16>
+            <div>
+              <label class="inputLabel" for="isGulty">Conflict Side:</label>
+              <input class="guiltiness" [ngClass]="this.protocol.euroProtocol.sideA.isGulty ? 'isGuilty' : 'isVictim'"
+                nz-input id="isGulty" placeholder="Damage"
+                [ngModel]="protocol.euroProtocol.sideA.isGulty? 'Guilty' : 'Victim'" readonly />
+            </div>
+          </nz-col>
+        </nz-row>
+      </nz-collapse-panel>
+      <nz-collapse-panel nzHeader="Witnesses" class="childTitle">
+        <div *ngFor="let witness of protocol.euroProtocol.witnesses">
+          <div>
+            <label class="inputLabel">Name:</label>
+            <input nz-input id="firstName" placeholder="Witness first name"
+              [ngModel]="witness.firstName + ' ' + witness.lastName" readonly />
+          </div>
+          <br>
+          <div>
+            <label class="inputLabel">Address:</label>
+            <textarea nz-input [nzAutosize]="{ minRows: 1, maxRows: 3 }" id="witnessAddress" placeholder="Witness address"
+              [ngModel]="witness.witnessAddress" readonly></textarea>
+          </div>
+          <br>
+          <nz-row nzGutter=16>
+            <nz-col nzSpan=8>
+              <div>
+                <label class="inputLabel">Phone Number:</label>
+                <input nz-input id="phoneNumber" placeholder="Witness phone number" [ngModel]="witness.phoneNumber"
+                  readonly />
+              </div>
+            </nz-col>
+            <nz-col nzSpan=16>
+              <div>
+                <label class="inputLabel">Side of conflict:</label>
+                <input nz-input id="isVictim" placeholder="Witness side of conflict"
+                  [ngClass]="witness.isVictim ? 'isVictim' : 'isGuilty'" [ngModel]="witness.isVictim? 'Victim' : 'Guilty'"
+                  readonly />
+              </div>
+            </nz-col>
+          </nz-row>
+          <nz-divider></nz-divider>
+        </div>
+      </nz-collapse-panel>
+    </nz-collapse>
+  </div> 

@@ -28,7 +28,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { EuroProtocolComponent } from './components/euro-protocol/euro-protocol.component';
 import { CookieService } from 'ngx-cookie-service';
 import { ResendConfirmationComponent } from './components/resend-confirmation/resend-confirmation.component';
-import { EuroProtocolViewFormComponent } from './euro-protocol-view-form/euro-protocol-view-form.component';
 import { ModalInspectors } from './components/list-inspector/modal-inspectors/modal-inspector.component';
 import { ListCAComponent } from './components/list-ca/list-ca.component';
 import { ModalCAComponent } from './components/list-ca/modal-ca/modal-ca.component';
@@ -38,7 +37,10 @@ import { PersonalDataModalComponent } from './components/personal-cabinet/person
 import { BasicInfoComponent } from './components/personal-cabinet/basic-info/basic-info.component';
 import { AddressComponent } from './components/personal-cabinet/address/address.component';
 import { DriverLicenseComponent } from './components/personal-cabinet/driver-license/driver-license.component';
-
+import { EuroProtocolViewFormComponent } from './components/euro-protocol-view-form/euro-protocol-view-form.component';
+import { ConfirmComponent } from './components/violation-list/confirm/confirm.component';
+import { EnterDataSecondSideComponent } from './components/violation-list/enter-data-second-side/enter-data-second-side.component';
+import { MainFormComponent } from './components/violation-list/main-form/main-form.component';
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
 };
@@ -68,7 +70,10 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     PersonalDataModalComponent,
     BasicInfoComponent,
     AddressComponent,
-    DriverLicenseComponent
+    DriverLicenseComponent,
+    ConfirmComponent,
+    EnterDataSecondSideComponent,
+    MainFormComponent,
   ],
   imports: [
     BrowserModule,

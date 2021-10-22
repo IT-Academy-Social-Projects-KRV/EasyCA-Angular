@@ -1,20 +1,22 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Circumstance } from '../models/circumstance';
-import { EuroProtocolFullModel } from '../models/euroProtocolFullModel';
-import { EuroProtocolService } from '../services/euroProtocolService';
-import { ViolationListService } from '../services/violation-list.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { Circumstance } from 'src/app/models/circumstance';
+import { EuroProtocolFullModel } from 'src/app/models/euroProtocolFullModel';
+import { EuroProtocolService } from 'src/app/services/euroProtocolService';
+import { ViolationListService } from 'src/app/services/violation-list.service';
 
 @Component({
-  selector: 'app-euro-protocol-view-form',
-  templateUrl: './euro-protocol-view-form.component.html',
-  styleUrls: ['./euro-protocol-view-form.component.css']
+  selector: 'app-confirm',
+  templateUrl: './confirm.component.html',
+  styleUrls: ['./confirm.component.css']
 })
-export class EuroProtocolViewFormComponent implements OnInit {
-
+export class ConfirmComponent implements OnInit {
+  public isVisible = false;
   @Input() public protocolNumber: string;
-  public protocol: EuroProtocolFullModel;
+  public protocol: EuroProtocolFullModel
+
   errorMessage: string;
   isAnyErrors = false;
 
@@ -22,9 +24,12 @@ export class EuroProtocolViewFormComponent implements OnInit {
     public fb: FormBuilder,
     public http: HttpClient,
     public violationListService: ViolationListService,
-    public euroProtocolService: EuroProtocolService) { }
-    
-    ngOnInit(): void {
+    public euroProtocolService: EuroProtocolService, 
+    private toastr: ToastrService) { }
+
+
+
+  ngOnInit(): void {
     this.violationListService.getEuroProtocolBySerialNumber(this.protocolNumber).subscribe(
       data => {
         this.protocol = data;
@@ -64,5 +69,6 @@ export class EuroProtocolViewFormComponent implements OnInit {
         this.errorMessage = "Couldn't to load protocol's data";
       }
     );
-  }
+   }
+
 }

@@ -1,0 +1,51 @@
+
+[nz-input]{
+  font-size: 18px;
+  height:50px
+}
+[nz-date-picker]{
+  font-size: 18px;
+  height:50px
+}
+[nz-input-number]{
+  font-size: 18px;
+  height:50px
+}
+[nz-button] {
+  margin-right: 8px;
+  margin-bottom: 12px;
+}
+nz-button-group [nz-button] {
+  margin-right: 0px;
+}
+.alignCenter{
+  text-align:center;
+}
+.circumstance{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;   
+  border-bottom: 1px solid #bdc0c0;
+}
+.carousel {
+  height: 200px;
+  margin-right: 15px; 
+}
+.euro_footer_next{
+  display: flex;
+  justify-content: space-between;
+}
+.circle{
+  border-radius: 50%;
+  background-color: rgb(54, 243, 29);
+  height: 150px;
+  width: 150px;
+  padding: 50px;
+}
+.myDiv{
+  display: flex;
+  justify-content: center;
+}
+.check{
+  font-size: 40px;
+}
