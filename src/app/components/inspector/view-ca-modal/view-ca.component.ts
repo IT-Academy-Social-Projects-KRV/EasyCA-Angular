@@ -17,6 +17,10 @@ export class ViewCAComponent implements OnInit {
     this.isVisible = isVisible;
   }
 
+  showModal() {
+    this.isVisible = true;
+  }
+  
   @Output() isVisibleEvent = new EventEmitter<boolean>();
 
   handleCancel(): void {
