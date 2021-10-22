@@ -6,83 +6,83 @@
      <h4>1st participant of the accident</h4>
      <div class="information">
          <div class="information_col">
-             <form nz-form>
+             <form nz-form novalidate autocomplete="off" [formGroup]="personalDataForm" >
            <h6>Driver license</h6>
            <nz-form-item>
              <nz-form-label [nzSpan]="24">Last name of the driver</nz-form-label>
-             <nz-form-control [nzSpan]="24">
-               <input nz-input placeholder="Please input your last name" value="{{ this.personalDataForm.value.lastName }}" name="lastName" />
+             <nz-form-control >
+               <input nz-input id="lastName" placeholder="Please input your last name" formControlName="lastName" name="lastName" />
              </nz-form-control>
            </nz-form-item>
            <nz-form-item>
              <nz-form-label [nzSpan]="24" >First name of the driver</nz-form-label>
              <nz-form-control [nzSpan]="24">
-               <input nz-input placeholder="Please input your last name" value="{{ this.personalDataForm.value.firstName }}" name="firstName" />
+               <input nz-input placeholder="Please input your last name" formControlName="firstName"  name="firstName" />
              </nz-form-control>
            </nz-form-item>
            <nz-form-item>
              <nz-form-label [nzSpan]="24">License serial number</nz-form-label>
              <nz-form-control [nzSpan]="24">
-               <input nz-input placeholder="Please input serial number" value="{{ this.personalDataForm.value.licenseSerialNumber }}" name="license" />
+               <input nz-input placeholder="Please input serial number" formControlName="licenseSerialNumber"  name="license" />
              </nz-form-control>
            </nz-form-item>
            <nz-form-item>
              <nz-form-label [nzSpan]="24">Issued authority</nz-form-label>
              <nz-form-control [nzSpan]="24">
-               <input nz-input placeholder="Please input your issued authority" value="{{ this.personalDataForm.value.issuedBy }}" name="issuedBy" />
+               <input nz-input placeholder="Please input your issued authority" formControlName="issuedBy" name="issuedBy" />
              </nz-form-control>
            </nz-form-item>
            <nz-form-item>
-             <nz-form-label [nzSpan]="24">Expiration date</nz-form-label>
+             <nz-form-label [nzSpan]="24" >Expiration date</nz-form-label>
              <nz-form-control [nzSpan]="24">
-               <nz-date-picker [nzFormat]="dateFormat"></nz-date-picker>
-             </nz-form-control>
+               <nz-date-picker  id="expirationDate" formControlName="expirationDate" formControlName="expirationDate"></nz-date-picker>
+              </nz-form-control>
            </nz-form-item>
          </form>
          </div>
          <div class="information_col">
-             <form nz-form>
+             <form nz-form [formGroup]="transportForm">
            <h6>Technical passport</h6>
            <nz-form-item>
              <nz-form-label [nzSpan]="24">Made by</nz-form-label>
              <nz-form-control [nzSpan]="24">
-               <input  nz-input placeholder="Input made by" value="{{ this.transportForm.value.producedBy }}" name="madeBy" />
+               <input  nz-input placeholder="Input made by" formControlName="producedBy"  name="madeBy" />
              </nz-form-control>
            </nz-form-item>
            <nz-form-item>
              <nz-form-label [nzSpan]="24">Model</nz-form-label>
              <nz-form-control [nzSpan]="24">
-               <input nz-input placeholder="Input model" value="{{ this.transportForm.value.model }}" name="model" />
+               <input nz-input placeholder="Input model"  formControlName="model"  name="model" />
              </nz-form-control>
            </nz-form-item>
            <nz-form-item>
              <nz-form-label [nzSpan]="24">Car categoty</nz-form-label>
              <nz-form-control [nzSpan]="24">
-               <input nz-input placeholder="Input car categoty" value="{{ this.transportForm.value.categoryName }}" name="carCategory" />
+               <input nz-input placeholder="Input car categoty" formControlName="categoryName" name="carCategory" />
              </nz-form-control>
            </nz-form-item>
            <nz-form-item>
              <nz-form-label [nzSpan]="24">Vin code</nz-form-label>
              <nz-form-control [nzSpan]="24">
-               <input nz-input placeholder="Input vin code" value="{{ this.transportForm.value.vinCode }}" name="vinCode" />
+               <input nz-input placeholder="Input vin code" formControlName="vinCode" name="vinCode" />
              </nz-form-control>
            </nz-form-item>
            <nz-form-item>
              <nz-form-label [nzSpan]="24">Car plate</nz-form-label>
              <nz-form-control [nzSpan]="24">
-               <input nz-input placeholder="Input car plate" value="{{ this.transportForm.value.carPlate }}" name="carPlate" />
+               <input nz-input placeholder="Input car plate" formControlName="carPlate"  name="carPlate" />
              </nz-form-control>
            </nz-form-item>
            <nz-form-item>
              <nz-form-label [nzSpan]="24">Color</nz-form-label>
              <nz-form-control [nzSpan]="24">
-               <input nz-input placeholder="Input color" value="{{ this.transportForm.value.color }}" name="color" />
+               <input nz-input placeholder="Input color" formControlName="color"  name="color" />
              </nz-form-control>
            </nz-form-item>
            <nz-form-item>
              <nz-form-label [nzSpan]="24">Year of production</nz-form-label>
              <nz-form-control [nzSpan]="24">
-               <nz-date-picker nzMode="year" name="yearOfProduction" ></nz-date-picker>
+               <nz-date-picker nzMode="year" formControlName="yearOfProduction" name="yearOfProduction" ></nz-date-picker>
              </nz-form-control>
            </nz-form-item>
          </form>

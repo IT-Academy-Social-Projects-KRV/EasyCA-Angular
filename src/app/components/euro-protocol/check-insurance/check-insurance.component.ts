@@ -29,7 +29,7 @@ export class CheckInsuranceComponent implements OnInit {
   });
 
   public carPlateForm = this.fb.group({
-    CarPlate: ['']
+    carPlate: ['']
   });
 
   public transportForm = this.fb.group({
@@ -55,12 +55,10 @@ export class CheckInsuranceComponent implements OnInit {
   } 
 
   @Output() indexChanged = new EventEmitter<number>();
-  @Output() euroProtocolEvent=new EventEmitter<EuroProtocol>();
-
+  @Output() carPlateEvent=new EventEmitter<string>();
   changePage(index:number){
+    this.carPlateEvent.emit(this.carPlateForm.value.carPlate);
     this.indexChanged.emit(index);
-    //this.protocol.sideA.
-    this.euroProtocolEvent.emit(this.protocol);
   }
 
   clickToThird(): void{

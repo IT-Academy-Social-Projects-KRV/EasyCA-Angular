@@ -30,6 +30,7 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
 export class EuroProtocolComponent implements OnInit {
 
   public euroProtocol:EuroProtocol;
+  public carPlate:string;
 
   constructor(private router: Router , public accountService:AccountService, public fb: FormBuilder,
      public service: EuroProtocolService, public transportService: TransportService, 
@@ -116,7 +117,7 @@ export class EuroProtocolComponent implements OnInit {
       this.checkedCircumstancesId.push(id.circumstanceId);
     } else {
       let index = this.checkedCircumstancesId.findIndex(x => x == id.circumstanceId);
-      this.checkedCircumstancesId.slice(index);
+      this.checkedCircumstancesId.splice(index,1);
     }
   }
 
@@ -139,11 +140,25 @@ export class EuroProtocolComponent implements OnInit {
     const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(component);
     this.componentRef = this.container.createComponent(factory);
     this.componentRef.instance.indexChanged.subscribe((val:any) => this.changeIndex(val));
-    this.componentRef.instance.setProtocol=this.euroProtocol; 
-    if(component!=TermsComponent)
+  
+    switch(component)
     {
-      this.componentRef.instance.euroProtocolEvent.subscribe((val:any)=>this.setEuroProtocol(val));
-    }
+      case TermsComponent:{
+        break;
+      }
+      case CheckInsuranceComponent:{
+        this.componentRef.instance.carPlateEvent.subscribe((val:string)=>this.setCarPlate(val));
+        break;
+      }
+      case ParticipantInfoComponent:{       
+        this.componentRef.instance.carPlateInput=this.carPlate;
+        break;
+      } 
+      default:
+        {
+          this.componentRef.instance.setProtocol=this.euroProtocol; 
+        }
+    };
   }
 
   changeIndex($event:number) {
@@ -155,6 +170,11 @@ export class EuroProtocolComponent implements OnInit {
   setEuroProtocol($event:EuroProtocol)
   {
     this.euroProtocol=$event;
+  }
+  
+  setCarPlate($event:string)
+  {
+    this.carPlate=$event;
   }
 
   clickToThird(): void{
