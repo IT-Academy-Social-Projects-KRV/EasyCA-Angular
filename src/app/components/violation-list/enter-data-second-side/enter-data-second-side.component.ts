@@ -13,28 +13,14 @@ import { Circumstance } from 'src/app/models/circumstance';
 })
 export class EnterDataSecondSideComponent implements OnInit {
 
+  public data: Data;
+  public transport: Transport; 
   public circumstancesList: Circumstance[];
   public checkedCircumstancesId: number[]=[]; 
   public isVisible = false;
+  public isMainForm=false;
   public array = ["EnterCarPlate","AllData","Circumstance","Sucess"];
   public effect = 'fade';
-  @HostBinding('style.height.px') height: number;
-  public carPlate: string;
-  @Input() set setVisible(isVisible: boolean) {
-    this.isVisible = isVisible;    
-  }
-  @Input() set setCircumstance(circumstancesList: Circumstance[]) {
-    this.circumstancesList = circumstancesList;
-  }
-
-  @Output() circumstanceOutput = new EventEmitter<{circumstancesList: Circumstance[]}>();
-  @Output() carPlateOutput = new EventEmitter<string>();
-  @Output() isVisibleEvent = new EventEmitter<boolean>();
-  @Output() checkedCircumstancesIdOutput =new EventEmitter<number[]>();
-  @Output() populateOutput = new EventEmitter();
-
-  @ViewChild(NzCarouselComponent, { static: false })
-  myCarousel: NzCarouselComponent; 
   public personalDataForm = this.fb.group({
     email: [''],
     firstName: [''],
@@ -42,8 +28,7 @@ export class EnterDataSecondSideComponent implements OnInit {
     birthDay: null,
     licenseSerialNumber: [''],
     issuedBy: [''],
-    expirationDate: null
-   
+    expirationDate: null   
   });  
   public transportForm = this.fb.group({
     id: [''],
@@ -56,7 +41,34 @@ export class EnterDataSecondSideComponent implements OnInit {
     yearOfProduction: [''],
     insuaranceNumber:['']
   });
- 
+  @HostBinding('style.height.px') height: number;
+  public carPlate: string;
+  @Input() set setVisible(isVisible: boolean) {
+    this.isVisible = isVisible;    
+  } 
+  @Input() set setCircumstance(circumstancesList: Circumstance[]) {
+    this.circumstancesList = circumstancesList;
+  }
+  @Input() set setData(data: Data) {
+    this.data = data;
+    console.log(this.data);  
+    this.populatepersonalDataForm()
+  }  
+  @Input() set setTransport(transport: Transport) {
+    this.transport = transport;   
+    this.populatetransportForm();
+  }
+
+
+  @Output() circumstanceOutput = new EventEmitter<{circumstancesList: Circumstance[]}>();
+  @Output() carPlateOutput = new EventEmitter<string>();
+  @Output() isVisibleEvent = new EventEmitter<boolean>();
+  @Output() checkedCircumstancesIdOutput =new EventEmitter<number[]>();  
+
+  @ViewChild(NzCarouselComponent, { static: false })
+  myCarousel: NzCarouselComponent; 
+
+
   onChange(id:Circumstance, event: any) {
     if(event.target.checked) {
       this.checkedCircumstancesId.push(id.circumstanceId);
@@ -68,26 +80,28 @@ export class EnterDataSecondSideComponent implements OnInit {
   }
   constructor(public fb: FormBuilder) { }
 
-  next(array:string) {
-    this.myCarousel.next();            
-    if(this.array[0]===array){ 
+  next(arrayName:string) {
+    this.myCarousel.next();   
+             
+    if(this.array[0]===arrayName){ 
       this.carPlateOutput.emit(this.carPlate);
-      this.height=1000;    
-
+      this.height=1000;     
     }
-    if(this.array[1]===array){
+    if(this.array[1]===arrayName){
       this.height=1220;
     }
-    if(this.array[2]===array){ 
+    if(this.array[2]===arrayName){ 
       this.checkedCircumstancesIdOutput.emit(this.checkedCircumstancesId);
       this.height=450;
     }  
-  console.log(array);
+  console.log(arrayName);
+  console.log(this.array[0]);
+
   }
   previous(array:string) {
     this.myCarousel.pre();
     if(this.array[1]===array){ 
-      this.height=200;
+      this.height=1200;
     }
     if(this.array[2]===array){ 
       this.height=1000;
@@ -97,38 +111,40 @@ export class EnterDataSecondSideComponent implements OnInit {
     }
     console.log(array);
   }
-  // populatepersonalDataForm(){
-  //   if (this.data.personalData) {
-  //   let personalData = this.data.personalData;
-  //   let driverLicense = personalData.userDriverLicense;
-  //   this.personalDataForm.setValue(
-  //     {
-  //     email: this.data.email,
-  //     firstName: this.data.firstName,
-  //     lastName: this.data.lastName,
-  //     birthDay: personalData.birthDay,
-  //     expirationDate: driverLicense.expirationDate,
-  //     issuedBy: driverLicense.issuedBy,
-  //     licenseSerialNumber: driverLicense.licenseSerialNumber
-  //     });
-  //   }
-  // }
-  // populatetransportForm(){
-  //   if (this.transport) { 
-  //     this.transportForm.setValue(
-  //       {
-  //         id: this.transport.id,
-  //         producedBy: this.transport.producedBy,
-  //         model: this.transport.model,
-  //         categoryName: this.transport.categoryName,
-  //         vinCode: this.transport.vinCode,
-  //         carPlate: this.transport.carPlate,
-  //         color: this.transport.color,
-  //         yearOfProduction: this.transport.yearOfProduction,
-  //         insuaranceNumber:this.transport.insuaranceNumber
-  //       });
-  //     }
-  // }
+
+  populatepersonalDataForm(){
+    if (this.data.personalData) {
+    let personalData = this.data.personalData;
+    let driverLicense = personalData.userDriverLicense;
+    this.personalDataForm.setValue(
+      {
+      email: this.data.email,
+      firstName: this.data.firstName,
+      lastName: this.data.lastName,
+      birthDay: personalData.birthDay,
+      licenseSerialNumber: driverLicense.licenseSerialNumber,
+      issuedBy: driverLicense.issuedBy,
+      expirationDate: driverLicense.expirationDate
+      });
+    }
+  }
+  populatetransportForm(){
+    if (this.transport) { 
+      this.transportForm.setValue(
+        {
+          id: this.transport.id,
+          producedBy: this.transport.producedBy,
+          model: this.transport.model,
+          categoryName: this.transport.categoryName,
+          vinCode: this.transport.vinCode,
+          carPlate: this.transport.carPlate,
+          color: this.transport.color,
+          yearOfProduction: this.transport.yearOfProduction,
+          insuaranceNumber:this.transport.insuaranceNumber
+        });
+      }
+  }
+
   sendCarPlate():void{
     this.carPlateOutput.emit(this.carPlate);
   }

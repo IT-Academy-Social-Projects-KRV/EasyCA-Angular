@@ -67,8 +67,8 @@
        [setCircumstance]="this.circumstancesList"
        (carPlateOutput)="setInfo($event)"   
        (checkedCircumstancesIdOutput)="registr($event)"
+       [setData]="this.data"  [setTransport]="this.transport" 
       ></app-enter-data-second-side>
-       <app-main-form [hidden]="true" [setData]="this.data"  [setTransport]="this.transport" ></app-main-form>
     </div>  
     <nz-modal nzWidth="80%"
         [(nzVisible)]="isEuroProtocolModalVisible"

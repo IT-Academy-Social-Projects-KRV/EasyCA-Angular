@@ -3,13 +3,142 @@
   <ng-template #modalContent>
     <nz-carousel [nzEffect]="effect" [nzDots]="false">
       <div nz-carousel-content  *ngFor="let index of array; let i = index">
-        <div class="carousel" [style.height.px]="this.height">
+        <div class="carousel" [style.height.px]="this.height" >
          <div  *ngIf="(index==='EnterCarPlate')" class="first" >
           <h1 class="alignCenter" >Please Enter Your CarPlate</h1>
           <input class="alignCenter" nz-input id="carPlate" type="text" [(ngModel)]="carPlate">
         </div>
-        <div *ngIf="(index==='AllData')">
-          <app-main-form ></app-main-form>
+        <div *ngIf="(index==='AllData')">         
+            <h1 class="alignCenter">1st participant of the accident</h1>
+            <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+                <div nz-col [nzSpan]="12">
+                    <form autocomplete="off" [formGroup]="personalDataForm" >
+                        <h2 class="alignCenter">Driver license</h2>
+                        <div>
+                            <nz-form-item>
+                                <nz-form-label [nzSpan]="24">Last name of the driver</nz-form-label>
+                                <nz-form-control [nzSpan]="24">
+                                    <input nz-input placeholder="Please input your last name" id="lastName"
+                                        formControlName="lastName" required nzSize="large" readonly/>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                        <div>
+                            <nz-form-item>
+                                <nz-form-label [nzSpan]="24">First name of the driver</nz-form-label>
+                                <nz-form-control [nzSpan]="24">
+                                    <input nz-input placeholder="Please input your last name" id="firstName"
+                                        formControlName="firstName" required nzSize="large"readonly />
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                        <div>
+                            <nz-form-item>
+                                <nz-form-label [nzSpan]="24">Date of birth</nz-form-label>
+                                <nz-form-control [nzSpan]="24">
+                                    <nz-date-picker id="birthDay" formControlName="birthDay" [nzSize]="'large'" readonly>
+                                    </nz-date-picker>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                        <div>
+                            <nz-form-item>
+                                <nz-form-label [nzSpan]="24">License serial number</nz-form-label>
+                                <nz-form-control [nzSpan]="24">
+                                    <input nz-input placeholder="Please input serial number" id="licenseSerialNumber"
+                                        formControlName="licenseSerialNumber" required nzSize="large" readonly/>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                        <div>
+                            <nz-form-item>
+                                <nz-form-label [nzSpan]="24">Issued authority</nz-form-label>
+                                <nz-form-control [nzSpan]="24">
+                                    <input nz-input placeholder="Please input your issued authority" id="issuedBy"
+                                        formControlName="issuedBy" required nzSize="large" readonly/>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                        <div>
+                            <nz-form-item>
+                                <nz-form-label [nzSpan]="24">Expiration date</nz-form-label>
+                                <nz-form-control [nzSpan]="24">
+                                    <nz-date-picker id="expirationDate" formControlName="expirationDate" [nzSize]="'large'" readonly>
+                                    </nz-date-picker>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </form>
+                </div>
+                <div nz-col [nzSpan]="12">
+                    <form novalidate autocomplete="off" [formGroup]="transportForm">
+                        <h2 class="alignCenter">Technical passport</h2>
+                        <div>
+                            <nz-form-item>
+                                <nz-form-label [nzSpan]="24">Made by</nz-form-label>
+                                <nz-form-control [nzSpan]="24">
+                                    <input nz-input placeholder="Input made by" id="producedBy" formControlName="producedBy"
+                                        required nzSize="large" readonly/>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                        <div>
+                            <nz-form-item>
+                                <nz-form-label [nzSpan]="24">Model</nz-form-label>
+                                <nz-form-control [nzSpan]="24">
+                                    <input nz-input placeholder="Input model" id="model" formControlName="model" required
+                                        nzSize="large" readonly/>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                        <div>
+                            <nz-form-item>
+                                <nz-form-label [nzSpan]="24">Car categoty</nz-form-label>
+                                <nz-form-control [nzSpan]="24">
+                                    <input nz-input placeholder="Input car categoty" id="categoryName"
+                                        formControlName="categoryName" required nzSize="large" readonly/>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                        <div>
+                            <nz-form-item>
+                                <nz-form-label [nzSpan]="24">Vin code</nz-form-label>
+                                <nz-form-control [nzSpan]="24">
+                                    <input nz-input placeholder="Input vin code" id="vinCode" formControlName="vinCode" required
+                                        nzSize="large" readonly/>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                        <div>
+                            <nz-form-item>
+                                <nz-form-label [nzSpan]="24">Car plate</nz-form-label>
+                                <nz-form-control [nzSpan]="24">
+                                    <input nz-input placeholder="Input car plate" id="carPlate" formControlName="carPlate"
+                                        required nzSize="large" readonly/>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                        <div>
+                            <nz-form-item>
+                                <nz-form-label [nzSpan]="24">Color</nz-form-label>
+                                <nz-form-control [nzSpan]="24">
+                                    <input nz-input placeholder="Input color" id="color" formControlName="color" required
+                                        nzSize="large"  readonly/>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                        <div>
+                            <nz-form-item>
+                                <nz-form-label [nzSpan]="24">Year of production</nz-form-label>
+                                <nz-form-control [nzSpan]="24">
+                                    <input nz-input placeholder="Input Car Year" id="yearOfProduction"
+                                        formControlName="yearOfProduction" required nzSize="large" readonly />
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </form>
+                </div>
+            </div>      
         </div>
         <div *ngIf="(index==='Circumstance')"> 
           <div>

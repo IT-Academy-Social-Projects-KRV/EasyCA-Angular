@@ -16,6 +16,7 @@ const httpOptions = {
 
 export class EuroProtocolService {
   constructor(private http: HttpClient,  public router: Router) { }
+  
   registerSideBEuroProtocol(side:Side):Observable<Side>{
     return this.http.post<Side>(`${HOST_URL}EuroProtocol/RegisterSideBEuroProtocol`, side, httpOptions);
   }
