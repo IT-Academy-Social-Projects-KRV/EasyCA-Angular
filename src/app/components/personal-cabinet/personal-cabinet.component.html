@@ -7,6 +7,11 @@
     [setVisible]="this.isVisible" (submittedEvent)="update($event)" (addedEvent)="add($event)"
     (isVisibleEvent)="receiveVisible($event)"></app-personal-data-modal>
 </div>
+<div>
+  <app-change-password-modal class="modal" [setVisible]="this.changePasswordVisible" (changePasswordEvent)="changePassword($event)" (isVisibleEvent)="receiveChangePasswordVisible($event)">
+
+  </app-change-password-modal>
+</div>
 
 <div *ngIf="this.isPersonalData">
   <div>
@@ -28,6 +33,9 @@
     <div class="btnChange">
       <button nz-button [nzSize]="'large'" nzShape="round" [nzType]="'primary'" (click)="editModal()">
         <span>Edit information</span>
+      </button>
+      <button nz-button [nzSize]="'large'" nzShape="round" [nzType]="'primary'" (click)="changePasswordModal()" >
+        <span>Change Password</span>
       </button>
     </div>
 

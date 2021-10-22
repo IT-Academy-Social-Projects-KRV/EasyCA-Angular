@@ -41,6 +41,9 @@ import { EuroProtocolViewFormComponent } from './components/euro-protocol-view-f
 import { ConfirmComponent } from './components/violation-list/confirm/confirm.component';
 import { EnterDataSecondSideComponent } from './components/violation-list/enter-data-second-side/enter-data-second-side.component';
 import { MainFormComponent } from './components/violation-list/main-form/main-form.component';
+import { InspectorListOfCarAccidentsComponent } from './components/inspector/inspector-list-of-car-accidents/inspector-list-of-car-accidents.component';
+import { ChangePasswordModalComponent } from './components/personal-cabinet/change-password-modal/change-password-modal.component';
+
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
 };
@@ -74,6 +77,9 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     ConfirmComponent,
     EnterDataSecondSideComponent,
     MainFormComponent,
+    InspectorListOfCarAccidentsComponent,
+    ChangePasswordModalComponent
+
   ],
   imports: [
     BrowserModule,

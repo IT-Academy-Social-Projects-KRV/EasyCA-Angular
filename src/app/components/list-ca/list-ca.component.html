@@ -3,7 +3,7 @@
         <h1>List of CA</h1>
     </div>
     <div>
-        <nz-table #basicTable [nzData]="list" [nzFrontPagination]="false" [nzShowPagination]="false">
+        <nz-table #basicTable [nzData]="list" [nzPageSize]="5">
             <thead>
                 <tr class="propertyName">
                     <th>SERIAL NUMBER</th>
@@ -24,16 +24,10 @@
                     </td>
                     <td *ngIf="ep.isClosed === true">Closed</td>
                     <td *ngIf="ep.isClosed === false">Waiting for second side</td>
-                    <td><i nz-icon nzType="delete" nzTheme="twotone"></i> </td>
                 </tr>
             </tbody>
         </nz-table>
         <br>
-    </div>
-    <div class="taCenter">
-        <button nz-button nzShape="round" [nzType]="'primary'" (click)="showModal()">
-            <span>Add to Archieve</span>
-        </button>
     </div>
 </div>
 

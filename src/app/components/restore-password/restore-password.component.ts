@@ -11,30 +11,30 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./restore-password.component.css']
 })
 export class RestorePasswordComponent implements OnInit {
-  restorePassword : FormGroup;
+  restorePassword: FormGroup;
   errorMessage = '';
   isRestorePasswordFailed = false;
 
-  constructor(private accountService: AccountService, public fb: FormBuilder, private router: Router, private toastr:ToastrService) {
+  constructor(private accountService: AccountService, public fb: FormBuilder, private router: Router, private toastr: ToastrService) {
     this.restorePassword = this.fb.group({
       email: [''],
       newPassword: [''],
       confirmPassword: ['']
     })
-   }
+  }
 
   ngOnInit(): void {
   }
-  
+
   onSubmit() {
     this.accountService.forgotPassword(this.restorePassword.value)
-    .subscribe((data: any) => {
-      this.router.navigate(['/home']);
-      this.toastr.warning('Please confirm changing', 'Warning');
-    },
-    err => {
-      this.errorMessage = err.error.message;
-      this.isRestorePasswordFailed = true;
-    });
+      .subscribe((data: any) => {
+        this.router.navigate(['/home']);
+        this.toastr.warning('Please confirm changing', 'Warning');
+      },
+        err => {
+          this.errorMessage = err;
+          this.isRestorePasswordFailed = true;
+        });
   }
 }

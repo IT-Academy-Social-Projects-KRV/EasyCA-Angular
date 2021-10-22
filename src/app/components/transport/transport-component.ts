@@ -14,14 +14,14 @@ import { throwError } from 'rxjs';
 })
 export class TransportComponent implements OnInit {
   list: Transport[] = [];
-  isEmpty=true;
+  isEmpty = true;
   size: NzButtonSize = 'large';
   isVisible = false;
   isConfirmLoading = false;
-  isUpdate=false;
+  isUpdate = false;
   errorMessage = ''
-  isTransportListEmpty=true;
-  
+  isTransportListEmpty = true;
+
   public transportForm = this.fb.group({
     id: [''],
     producedBy: [''],
@@ -36,38 +36,40 @@ export class TransportComponent implements OnInit {
       serialNumber: ['']
     }),
   });
-  constructor(public transportService:TransportService, private router: Router, private toastr:ToastrService,public fb: FormBuilder ) { }
-  
-  ngOnInit(){    
+  constructor(public transportService: TransportService, private router: Router, private toastr: ToastrService, public fb: FormBuilder) { }
+
+  ngOnInit() {
     this.getTransports();
   }
 
-  getTransports(){
+  getTransports() {
     this.transportService.refreshList().subscribe(
       res => {
+
         this.list = res as Transport[];
-        if(this.list.length>0){
+        if (this.list.length > 0) {
           this.isEmpty = false;
-        } 
+        }
       },
       err => {
-        throwError(err);
-    });
+      });
   }
 
-  onSubmit(transportForm:FormGroup) {
-      this.transportService.formData=this.transportForm.value;
-      if(this.isUpdate)
+  onSubmit(transportForm: FormGroup) {
+    this.transportService.formData = this.transportForm.value;
+    if (this.isUpdate)
       this.updateCar(transportForm);
-      else
+    else
       this.addCar(transportForm);
-    }
+  }
+
 
   resetForm(transportForm:FormGroup)
   {
     this.isUpdate=false;
+
     transportForm.reset();
-    }
+  }
 
   populateForm(selectedRecord:Transport){
     this.isUpdate=true;
@@ -87,17 +89,20 @@ export class TransportComponent implements OnInit {
       });
     }
 
-  addCar(transportForm:FormGroup)  {
+
+  addCar(transportForm: FormGroup) {
     this.transportService.postTransport().subscribe(
+
       () =>{     
         this.resetForm(transportForm); 
+
         this.getTransports();
-        this.toastr.success("Transport added","congratulation")
+        this.toastr.success("Transport added", "congratulation")
       },
       err => {
-        throwError(err);
       });
   }
+
 
   updateCar(transportForm:FormGroup){
   this.transportService.putTransport().subscribe(
@@ -117,13 +122,13 @@ export class TransportComponent implements OnInit {
     this.transportService.deleteTransport(id)
     .subscribe(
       ()=>{
-        this.getTransports();
-        this.toastr.error("Car Deleted ", "congratulation")
-      },
-      err=>{
-        throwError(err);
-      }
-    )}
+            this.getTransports();
+            this.toastr.error("Car Deleted ", "congratulation")
+          },
+          err => { throwError(err);
+          }
+        )
+    }
   }
 
   showModal(): void {
