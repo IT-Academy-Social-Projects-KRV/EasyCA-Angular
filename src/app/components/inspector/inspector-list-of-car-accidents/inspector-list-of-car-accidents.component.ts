@@ -11,6 +11,7 @@ import { InspectorService } from 'src/app/services/inspector.service';
 export class InspectorListOfCarAccidentsComponent implements OnInit {
   accidentList: CarAccident[];
   isAccidentListEmpty = false;
+  isVisible = false;
 
   constructor(private inspectorService: InspectorService) { }
 
@@ -26,5 +27,13 @@ export class InspectorListOfCarAccidentsComponent implements OnInit {
       },
       error => { }
     )
+  }
+
+  showModal() {
+    this.isVisible = true;
+  }
+
+  handleCancel($event: boolean) {
+      this.isVisible = $event;
   }
 }
