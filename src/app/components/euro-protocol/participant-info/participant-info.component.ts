@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { NzButtonSize } from 'ng-zorro-antd/button';
+import { ToastrService } from 'ngx-toastr';
 import { EuroProtocol } from 'src/app/models/euroProtocol';
 import { AccountService } from 'src/app/services/account.service';
 import { TransportService } from 'src/app/services/transport.service';
@@ -12,24 +12,26 @@ import { TransportService } from 'src/app/services/transport.service';
 })
 export class ParticipantInfoComponent implements OnInit {
 
-  public protocol: EuroProtocol;
+  public euroProtocol: EuroProtocol;
   public carPlate: string;
+  public dateFormat = 'yyyy/MM/dd';
 
-  @Input() set setProtocol(euroProtocol: EuroProtocol) {
-    this.protocol = euroProtocol;
-    console.log(this.protocol);
+  constructor(public fb: FormBuilder, public accountService: AccountService, public transportService: TransportService, private toastr: ToastrService) { }
+
+  ngOnInit(): void { }
+
+  @Input() set euroProtocolInput(euroProtocol: EuroProtocol) {
+    this.euroProtocol = euroProtocol;
   }
 
   @Input() set carPlateInput(carPlate: string) {
     this.carPlate = carPlate;
-    console.log(this.carPlate);
+    this.getTransport();
+    this.getPersonalData();
   }
 
-
-  constructor(public fb: FormBuilder, public accountService: AccountService, public transportService: TransportService) { }
-
-  size: NzButtonSize = 'large';
-  dateFormat = 'yyyy/MM/dd';
+  @Output() indexChangedEvent = new EventEmitter<number>();
+  @Output() euroProtocolEvent = new EventEmitter<EuroProtocol>();
 
   public transportForm = this.fb.group({
     id: [''],
@@ -46,34 +48,16 @@ export class ParticipantInfoComponent implements OnInit {
     email: [''],
     firstName: [''],
     lastName: [''],
-    birthDay:new Date(),
-    expirationDate:new Date(),
+    birthDay: new Date(),
+    expirationDate: new Date(),
     issuedBy: [''],
     licenseSerialNumber: [''],
     userCategories: [],
   });
 
-  ngOnInit(): void {
-
-
-    this.accountService.getPersonalData()
-      .subscribe((data: any) => {
-
-        this.personalDataForm.setValue({
-          email: data.email,
-          firstName: data.firstName,
-          lastName: data.lastName,
-          birthDay: data.personalData.birthDay,
-          expirationDate: new Date(data.personalData.userDriverLicense.expirationDate),
-          issuedBy: data.personalData.userDriverLicense.issuedBy,
-          licenseSerialNumber: data.personalData.userDriverLicense.licenseSerialNumber,
-          userCategories: data.personalData.userDriverLicense.userCategories,
-        })
-        console.log(data.personalData.userDriverLicense.expirationDate)
-      });
+  getTransport() {
     this.transportService.getTransportByCarPlate(this.carPlate)
       .subscribe((data: any) => {
-
         this.transportForm.setValue({
           id: data.id,
           producedBy: data.producedBy,
@@ -81,15 +65,49 @@ export class ParticipantInfoComponent implements OnInit {
           vinCode: data.vinCode,
           carPlate: data.carPlate,
           color: data.color,
-          yearOfProduction:new Date(data.yearOfProduction),
+          yearOfProduction: new Date(data.yearOfProduction),
           categoryName: data.categoryName,
         })
-      })
+        this.euroProtocol.sideA.transportId = data.id;
+      },
+        err => {
+          this.toastr.warning("Warning", err.error.message);
+        });
   }
 
-  @Output() indexChanged = new EventEmitter<number>();
+  getPersonalData() {
+    this.accountService.getPersonalData()
+      .subscribe((data: any) => {
+        if (data.personalData) {
+          let personalData = data.personalData;
+
+          this.personalDataForm.setValue({
+            email: data.email,
+            firstName: data.firstName,
+            lastName: data.lastName,
+            birthDay: personalData.birthDay,
+            expirationDate: new Date(personalData.userDriverLicense.expirationDate),
+            issuedBy: personalData.userDriverLicense.issuedBy,
+            licenseSerialNumber: personalData.userDriverLicense.licenseSerialNumber,
+            userCategories: personalData.userDriverLicense.userCategories,
+          });
+          this.euroProtocol.sideA.driverLicenseSerial = personalData.userDriverLicense.licenseSerialNumber;
+        }
+        else {
+          this.toastr.warning("Warning", "Personal data is empty");
+        }
+      },
+        err => {
+          this.toastr.warning("Warning", err);
+        });
+  }
 
   changePage(index: number) {
-    this.indexChanged.emit(index);
+    this.changeEuroProtocol(this.euroProtocol);
+    this.indexChangedEvent.emit(index);
+  }
+
+  changeEuroProtocol($event: EuroProtocol) {
+    this.euroProtocolEvent.emit($event);
   }
 }

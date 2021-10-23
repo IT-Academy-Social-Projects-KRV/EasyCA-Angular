@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { NzButtonSize } from 'ng-zorro-antd/button';
 
 @Component({
   selector: 'app-terms',
@@ -7,11 +6,7 @@ import { NzButtonSize } from 'ng-zorro-antd/button';
   styleUrls: ['./terms.component.css']
 })
 export class TermsComponent implements OnInit {
-
-  constructor() { }
-
-  @Output() indexChanged = new EventEmitter<number>();
-
+  
   public disabled = true;
   public optionGroup = [
     { label: 'No one was injured or killed', checked: false },
@@ -21,6 +16,12 @@ export class TermsComponent implements OnInit {
     { label: 'Cars without trailers', checked: false }
   ];
   
+  constructor() { }
+  
+  ngOnInit(): void { }
+  
+  @Output() indexChangedEvent = new EventEmitter<number>();
+
   allChecked(): void {
     if (this.optionGroup.every(item => item.checked)) {
       this.disabled = false;
@@ -30,9 +31,6 @@ export class TermsComponent implements OnInit {
   }
 
   changePage(index: number) {
-    this.indexChanged.emit(index);
-  }
-
-  ngOnInit(): void {
+    this.indexChangedEvent.emit(index);
   }
 }

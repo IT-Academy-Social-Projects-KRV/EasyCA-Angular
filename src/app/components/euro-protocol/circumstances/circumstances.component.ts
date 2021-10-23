@@ -1,6 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { NzButtonSize } from 'ng-zorro-antd/button';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Circumstance } from 'src/app/models/circumstance';
+import { EuroProtocol } from 'src/app/models/euroProtocol';
 import { EuroProtocolService } from 'src/app/services/euroProtocolService';
 
 @Component({
@@ -10,33 +11,64 @@ import { EuroProtocolService } from 'src/app/services/euroProtocolService';
 })
 export class CircumstancesComponent implements OnInit {
 
-  constructor(public service: EuroProtocolService) {
-  }
+  public checkedCircumstancesId: number[] = [];
+  public list: Array<{ id: number, value: string, checked: boolean }> = [];
+  public euroProtocol: EuroProtocol;
+  public isCircumstances = false;
 
-  size: NzButtonSize = 'large';
-  circumstancesList: Circumstance[] = [];
-  checkedCircumstancesId: number[] = [];
+  constructor(public service: EuroProtocolService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.service.getAllCircumstances()
-      .subscribe(data => {
-        this.circumstancesList = data;
-      })
+    this.getCircumstances();
   }
 
-  onChange(id: Circumstance, event: any) {
-    if (event.target.checked) {
-      this.checkedCircumstancesId.push(id.circumstanceId);
-    } else {
-      let index = this.checkedCircumstancesId.findIndex(x => x == id.circumstanceId);
-      this.checkedCircumstancesId.slice(index);
-    }
+  @Input() set euroProtocolInput(euroProtocol: EuroProtocol) {
+    this.euroProtocol = euroProtocol;
   }
 
-  @Output() indexChanged = new EventEmitter<number>();
+  @Output() indexChangedEvent = new EventEmitter<number>();
+  @Output() euroProtocolEvent = new EventEmitter<EuroProtocol>();
+
+  onChange(id: number) {
+    let index = this.list.findIndex(x => x.id == id);
+    this.list[index].checked = !this.list[index].checked;
+
+    this.isCircumstances = this.list.filter(x => x.checked == true).length > 0 ? true : false;
+  }
 
   changePage(index: number) {
-    this.indexChanged.emit(index);
+    this.setEuroProtocol();
+    this.indexChangedEvent.emit(index);
   }
 
+  setEuroProtocol() {
+    this.list.forEach(element => {
+      if (element.checked) {
+        this.checkedCircumstancesId.push(element.id);
+      }
+    });
+
+    this.euroProtocol.sideA.circumstances = this.checkedCircumstancesId;
+    this.euroProtocolEvent.emit(this.euroProtocol);
+  }
+
+  getCircumstances() {
+    this.service.getAllCircumstances()
+      .subscribe((data: Circumstance[]) => {
+
+        data.forEach(element => {
+          this.list.push({ id: element.circumstanceId, value: element.circumstanceName, checked: false });
+        });
+
+        if (this.euroProtocol.sideA.circumstances) {
+          for (let i = 0; i < this.euroProtocol.sideA.circumstances.length; i++) {
+            this.list[this.euroProtocol.sideA.circumstances[i] - 1].checked = true;
+          }
+          this.isCircumstances = this.list.filter(x => x.checked == true).length > 0 ? true : false;
+        }
+      },
+        err => {
+          this.toastr.warning("Warning", err.error.message);
+        });
+  }
 }

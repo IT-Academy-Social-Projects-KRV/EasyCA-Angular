@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { NzButtonSize } from 'ng-zorro-antd/button';
 
 @Component({
   selector: 'app-evidence',
@@ -9,15 +8,12 @@ import { NzButtonSize } from 'ng-zorro-antd/button';
 export class EvidenceComponent implements OnInit {
 
   constructor() { }
-  
-  size: NzButtonSize = 'large';
 
-  ngOnInit(): void {
-  }
-  @Output() indexChanged = new EventEmitter<number>();
+  ngOnInit(): void {}
+
+  @Output() indexChangedEvent = new EventEmitter<number>();
 
   changePage(index:number){
-    this.indexChanged.emit(index);
+    this.indexChangedEvent.emit(index);
   }
-
 }
