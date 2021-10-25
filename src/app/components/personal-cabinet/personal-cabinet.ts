@@ -33,9 +33,9 @@ export class PersonalCabinetComponent implements OnInit {
         res => {
           this.data = res;
           this.userName = res.firstName[0] + res.lastName[0];
-          this.userCars=res.personalData.userCars;
-
+          
           if (this.data.personalData != null) {
+            this.userCars=res.personalData.userCars;
             this.isPersonalData = true;
           }
         },
