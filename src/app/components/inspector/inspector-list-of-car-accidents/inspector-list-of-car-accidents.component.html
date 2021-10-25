@@ -3,7 +3,7 @@
         <h1>There are no CA protocols registered by you.<br>Create a new one by pressing the button below</h1>
     </div>
     <div>
-        <button nz-button [nzSize]="'large'" (click)="showModal()" nzShape="round" [nzType]="'primary'">Create CA Protocol</button>
+        <button nz-button [nzSize]="'large'" (click)="showModal(true)" nzShape="round" [nzType]="'primary'">Create CA Protocol</button>
     </div>
 </div>
 <div *ngIf="!isAccidentListEmpty">
@@ -12,7 +12,7 @@
             <h1>List of CA</h1>
         </div>
         <div nz-col nzSpan="3" nzOffset="18">
-            <button nz-button nzShape="round" (click)="showModal()" [nzType]="'primary'">Create CA Protocol</button>
+            <button nz-button nzShape="round" (click)="showModal(true)" [nzType]="'primary'">Create CA Protocol</button>
         </div>
     </div>
     <div>
@@ -27,7 +27,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="tableBodyCell" *ngFor="let accident of basicTable.data" (click)="showModal()">
+                <tr class="tableBodyCell" *ngFor="let accident of basicTable.data" (click)="showModal(false)"
+                 (click)="setSelectedCA(accident)">
                     <td>{{accident.serialNumber}}</td>
                     <td>{{accident.registrationDateTime | date:'MMMM d, y, H:mm'}}</td>
                     <td>
@@ -45,4 +46,7 @@
     </div>
 </div>
 
-<app-view-ca [setVisible]="this.isVisible" (isVisibleEvent)="handleCancel($event)"></app-view-ca>
+<app-view-ca [setAdd]="this.isAdd" 
+[setVisible]="this.isVisible" 
+[setData] = "this.selectedCA" 
+(isVisibleEvent)="handleCancel($event)"></app-view-ca>
