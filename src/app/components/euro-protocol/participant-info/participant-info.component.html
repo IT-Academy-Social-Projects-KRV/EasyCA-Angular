@@ -96,7 +96,7 @@
      <button nz-button nzType="primary" [nzSize]="'large'" (click)="changePage(1)" >
        <i nz-icon nzType="left"></i> Backward
      </button>
-     <button nz-button nzType="primary" [nzSize]="'large'" *ngIf="!transportForm.invalid &&!personalDataForm.invalid" (click)="changePage(3)" >
+     <button nz-button nzType="primary" [nzSize]="'large'" *ngIf="!transportForm.invalid && isPersonalData" (click)="changePage(3)" >
        Forward
        <i nz-icon nzType="right"></i>
      </button>

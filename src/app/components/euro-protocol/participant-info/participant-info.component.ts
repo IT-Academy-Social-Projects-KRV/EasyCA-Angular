@@ -15,7 +15,7 @@ export class ParticipantInfoComponent implements OnInit {
   public euroProtocol: EuroProtocol;
   public carPlate: string;
   public dateFormat = 'yyyy/MM/dd';
-
+  public isPersonalData=false;
   constructor(public fb: FormBuilder, public accountService: AccountService, public transportService: TransportService, private toastr: ToastrService) { }
 
   ngOnInit(): void { }
@@ -80,7 +80,7 @@ export class ParticipantInfoComponent implements OnInit {
       .subscribe((data: any) => {
         if (data.personalData) {
           let personalData = data.personalData;
-
+          this.isPersonalData=true;
           this.personalDataForm.setValue({
             email: data.email,
             firstName: data.firstName,
@@ -95,6 +95,8 @@ export class ParticipantInfoComponent implements OnInit {
         }
         else {
           this.toastr.warning("Warning", "Personal data is empty");
+          this.isPersonalData=false;
+
         }
       },
         err => {
