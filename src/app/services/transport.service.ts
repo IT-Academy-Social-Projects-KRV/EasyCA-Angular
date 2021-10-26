@@ -12,22 +12,21 @@ const httpOptions = {
 })
 
 export class TransportService {
-  constructor(private http: HttpClient,  public router: Router) { }
-  formData: Transport;
+  constructor(private http: HttpClient,  public router: Router) { }  
 
-  postTransport(){
-    return this.http.post<any>(`${HOST_URL}Transport/AddTransport`, this.formData, httpOptions);
+  postTransport(transport: Transport){
+    return this.http.post<any>(`${HOST_URL}Transport/AddTransport`, transport, httpOptions);
   }
   
-  putTransport(){
-    return this.http.put<any>(`${HOST_URL}Transport/UpdateTransport`, this.formData, httpOptions);
+  putTransport(transport: Transport){
+    return this.http.put<any>(`${HOST_URL}Transport/UpdateTransport`, transport, httpOptions);
   }
 
   deleteTransport(id:string){
     return this.http.delete(`${HOST_URL}Transport/DeleteTransport?transportId=${id}`);
   }
 
-  refreshList(){    
+  getAllTransports(){    
     return this.http.get(`${HOST_URL}Transport/GetAllTransports`);
   }
 

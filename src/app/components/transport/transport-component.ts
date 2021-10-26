@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Transport } from 'src/app/models/Transport';
 import { TransportService } from 'src/app/services/transport.service';
 import { ToastrService } from 'ngx-toastr';
@@ -13,132 +13,77 @@ import { throwError } from 'rxjs';
   styleUrls: ['./transport.component.css']
 })
 export class TransportComponent implements OnInit {
-  list: Transport[] = [];
-  isEmpty=true;
-  size: NzButtonSize = 'large';
-  isVisible = false;
-  isConfirmLoading = false;
+  list: Transport[] = []; 
+  isVisible = false;  
   isUpdate=false;
-  errorMessage = ''
-  isTransportListEmpty=true;
+  errorMessage = ''; 
+  isAdd = false; 
+  currentTransport: Transport; 
   
-  public transportForm = this.fb.group({
-    id: [''],
-    producedBy: [''],
-    model: [''],
-    categoryName: [''],
-    vinCode: [''],
-    carPlate: [''],
-    color: [''],
-    yearOfProduction: [''],
-    insuaranceNumber: this.fb.group({
-      companyName: [''],
-      serialNumber: ['']
-    }),
-  });
   constructor(public transportService:TransportService, private router: Router, private toastr:ToastrService,public fb: FormBuilder ) { }
   
   ngOnInit(){    
-    this.getTransports();
-  }
-
-  getTransports(){
-    this.transportService.refreshList().subscribe(
+    this.transportService.getAllTransports().subscribe(
       (res:any) => {
-        this.list = res as Transport[];
-        if(this.list.length>0){
-          this.isEmpty = false;
-        } 
+        this.list = res as Transport[];        
       },
       err => {
         throwError(err);
     });
-  }
+  }  
 
-  onSubmit(transportForm:FormGroup) {
-      this.transportService.formData=this.transportForm.value;
-      if(this.isUpdate)
-      this.updateCar(transportForm);
-      else
-      this.addCar(transportForm);
-    }
-
-  resetForm(transportForm:FormGroup)
-    {
-    this.isUpdate=false;
-    transportForm.reset();
-    }
-
-  populateForm(selectedRecord:Transport){
-    this.isUpdate=true;
-        this.transportForm.setValue({
-        id: selectedRecord.id,
-        producedBy: selectedRecord.producedBy,
-        model: selectedRecord.model,
-        categoryName: selectedRecord.categoryName,
-        vinCode: selectedRecord.vinCode,
-        carPlate: selectedRecord.carPlate,
-        color: selectedRecord.color,
-        yearOfProduction: selectedRecord.yearOfProduction,
-        insuaranceNumber: {
-          companyName:selectedRecord.insuaranceNumber.companyName,
-          serialNumber: selectedRecord.insuaranceNumber.serialNumber
-        }
-      });
-      }
-
-  addCar(transportForm:FormGroup)  {
-    this.transportService.postTransport().subscribe(
+  addCar($event: Transport)  {
+    
+    this.transportService.postTransport($event).subscribe(
       res =>{     
-        this.resetForm(transportForm); 
-        this.getTransports();
-        this.toastr.success("Transport added","congratulation")
+        this.toastr.success("Transport added","congratulation");
+        this.isVisible = false;
+        this.list.push($event);
       },
       err => {
         throwError(err);
       });
   }
 
-  updateCar(transportForm:FormGroup){
-  this.transportService.putTransport().subscribe(
+  updateCar($event: Transport){
+  this.transportService.putTransport($event).subscribe(
     res =>{     
-      this.resetForm(transportForm);
-      this.getTransports();
       this.toastr.info("Transport update","congratulation")
+      this.isVisible = false;
     },
     err => {
       throwError(err);
     });
+  }  
+
+  setCurrentTransport(id:string){
+    let index = this.list.findIndex(x => x.id == id);
+    this.currentTransport = this.list[index];
   }
 
-  onDelete(id:string){
-    if(confirm("Are you sure to delete this Transport"))
-    {
+  onDelete(id:string){    
     this.transportService.deleteTransport(id)
     .subscribe(
-      res=>{
-        this.getTransports();
-        this.toastr.error("Car Deleted ", "congratulation")
+      res=>{        
+        this.toastr.error("Car Deleted ", "congratulation");
+        let index = this.list.findIndex(x => x.id == id);
+        this.list.splice(index, 1);
+        
       },
       err=>{
         throwError(err);
       }
-    )}
+    )
   }
 
-  showModal(): void {
+  showModal(isAdd: boolean): void {
     this.isVisible = true;
+    this.isAdd = isAdd;
+  }  
+
+  handleCancel($event: boolean): void {
+    this.isVisible = $event;
   }
 
-  handleOk(): void {
-    this.isConfirmLoading = true;
-    setTimeout(() => {
-      this.isVisible = false;
-      this.isConfirmLoading = false;
-    }, 1000);
-  }
-
-  handleCancel(): void {
-    this.isVisible = false;
-  }
+ 
 }
