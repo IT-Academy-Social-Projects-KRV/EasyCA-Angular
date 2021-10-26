@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { CarAccident } from 'src/app/models/carAccident';
 import { Transport } from 'src/app/models/Transport';
+import { CAService } from 'src/app/services/ca.service';
 import { TransportService } from 'src/app/services/transport.service';
 
 @Component({
@@ -12,10 +14,11 @@ import { TransportService } from 'src/app/services/transport.service';
 export class ViewCAComponent implements OnInit {
 
   public isVisible = false;
-  isAdd = false;
-  protocolCA: CarAccident;
+  public isAdd = false;
+  public protocolCA: CarAccident;
 
-  constructor(public fb: FormBuilder, public transportService: TransportService) { }
+
+  constructor(public fb: FormBuilder,public CAservice: CAService, public transportService: TransportService, private toastr: ToastrService) { }
 
   @Input() set setVisible(isVisible: boolean) {
     this.isVisible = isVisible;
@@ -27,12 +30,9 @@ export class ViewCAComponent implements OnInit {
 
   @Input() set setData(protocol: CarAccident){
       this.protocolCA = protocol;
-      if(this.isAdd === false){
-        if(this.protocolCA){
+      if(this.isAdd === false && this.protocolCA){
           this.populateForm(protocol);
-          console.log(this.transportForm.value);
-        }
-    }
+      }
   }
 
   @Output() isVisibleEvent = new EventEmitter<boolean>();
@@ -91,33 +91,37 @@ export class ViewCAComponent implements OnInit {
   }
 
   async populateForm(selectedRecord: CarAccident) {
+    let address = selectedRecord.address;
+    let witnesses = selectedRecord.witnesses;
+    let sideOfAccident = selectedRecord.sideOfAccident;
+
     this.DataForm.setValue({
       serialNumber: selectedRecord.serialNumber,
       inspectorId: selectedRecord.inspectorId,
       registrationDateTime: selectedRecord.registrationDateTime,
       address: {
-        city: selectedRecord.address.city,
-        district: selectedRecord.address.district,
-        street: selectedRecord.address.street,
-        crossStreet: selectedRecord.address.crossStreet,
-        coordinatesOfLatitude: selectedRecord.address.coordinatesOfLatitude,
-        coordinatesOfLongitude: selectedRecord.address.coordinatesOfLongitude,
-        isInCity: selectedRecord.address.isInCity,
-        isIntersection: selectedRecord.address.isIntersection,
+        city: address.city,
+        district: address.district,
+        street: address.street,
+        crossStreet: address.crossStreet,
+        coordinatesOfLatitude: address.coordinatesOfLatitude,
+        coordinatesOfLongitude: address.coordinatesOfLongitude,
+        isInCity: address.isInCity,
+        isIntersection: address.isIntersection,
       },
       sideOfAccident: {
-        email: selectedRecord.sideOfAccident.email,
-        transportId: selectedRecord.sideOfAccident.transportId,
-        driverLicenseSerial: selectedRecord.sideOfAccident.driverLicenseSerial,
+        email: sideOfAccident.email,
+        transportId: sideOfAccident.transportId,
+        driverLicenseSerial: sideOfAccident.driverLicenseSerial,
       },
       accidentCircumstances: selectedRecord.accidentCircumstances,
       trafficRuleId: selectedRecord.trafficRuleId,
       driverExplanation: selectedRecord.driverExplanation,
       witnesses: {
-        lastName: selectedRecord.witnesses[0].lastName,
-        firstName: selectedRecord.witnesses[0].firstName,
-        phoneNumber: selectedRecord.witnesses[0].phoneNumber,
-        witnessAddress: selectedRecord.witnesses[0].witnessAddress,
+        lastName: witnesses[0].lastName,
+        firstName: witnesses[0].firstName,
+        phoneNumber: witnesses[0].phoneNumber,
+        witnessAddress: witnesses[0].witnessAddress,
       },
       evidences: selectedRecord.evidences,
       courtDTG: selectedRecord.courtDTG,

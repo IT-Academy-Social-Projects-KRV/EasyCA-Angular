@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { AddressOfAccident } from 'src/app/models/addressOfAccident';
 import { CarAccident } from 'src/app/models/carAccident';
 import { EvidenceCA } from 'src/app/models/evidenceCA';
@@ -14,12 +15,12 @@ import { InspectorService } from 'src/app/services/inspector.service';
 
 export class InspectorListOfCarAccidentsComponent implements OnInit {
   
-  accidentList: CarAccident[];
-  isAccidentListEmpty = false;
-  isVisible = false;
-  isAdd = false;
+  public accidentList: CarAccident[];
+  public isAccidentListEmpty = false;
+  public isVisible = false;
+  public isAdd = false;
 
-  selectedCA: CarAccident = {
+  public selectedCA: CarAccident = {
     id: <string>{},
     serialNumber: <string>{},
     inspectorId: <string>{},
@@ -36,13 +37,14 @@ export class InspectorListOfCarAccidentsComponent implements OnInit {
     courtDTG: <Date>{}
   };
   
-  constructor(private inspectorService: InspectorService) { }
+  constructor(private inspectorService: InspectorService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.inspectorService.getAllCarAccidentsByInspectorId().subscribe(
       data => {
         if (data.length == 0) {
-          this.isAccidentListEmpty = true;                    
+          this.isAccidentListEmpty = true; 
+          this.toastr.warning("CA protocols is empty", "Warning");
         }
         else {
           this.accidentList = data;
@@ -62,6 +64,6 @@ export class InspectorListOfCarAccidentsComponent implements OnInit {
   } 
 
   handleCancel($event: boolean) {
-      this.isVisible = $event;
+    this.isVisible = $event;
   }
 }
