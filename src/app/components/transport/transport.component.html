@@ -14,7 +14,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="mainName"  (click)="showModal(false)" (click)="setCurrentTransport(car.id)" *ngFor="let car of list">
+                <tr class="mainName" (click)="showModal(false)" (click)="setCurrentTransport(car.id)" *ngFor="let car of list">
                     <td>{{car.producedBy}}</td>
                     <td>{{car.model}}</td>
                     <td>{{car.carPlate}}</td>
@@ -34,7 +34,10 @@
         </button>
     </div>
 </div>
-<app-transport-data-modal [setTransport]="this.currentTransport" 
-
-[setVisible]="this.isVisible" (isVisibleEvent)="handleCancel($event)" 
-[setAdd]="this.isAdd" (AddedTransport)="addCar($event)" (EditedTransport)="updateCar($event)"></app-transport-data-modal>
+<app-transport-data-modal 
+[setTransport]="this.currentTransport" 
+[setVisible]="this.isVisible" 
+(isVisibleEvent)="handleCancel($event)" 
+[setAdd]="this.isAdd" 
+(AddedTransport)="addCar($event)" 
+(EditedTransport)="updateCar($event)"></app-transport-data-modal>

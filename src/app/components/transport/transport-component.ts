@@ -2,9 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Transport } from 'src/app/models/Transport';
 import { TransportService } from 'src/app/services/transport.service';
 import { ToastrService } from 'ngx-toastr';
-import { FormBuilder, FormGroup } from "@angular/forms";
-import { Router } from '@angular/router';
-import { NzButtonSize } from 'ng-zorro-antd/button';
+import { FormBuilder } from "@angular/forms";
 import { throwError } from 'rxjs';
 
 @Component({
@@ -12,19 +10,19 @@ import { throwError } from 'rxjs';
   templateUrl: './transport.component.html',
   styleUrls: ['./transport.component.css']
 })
+
 export class TransportComponent implements OnInit {
-  list: Transport[] = []; 
-  isVisible = false;  
-  isUpdate=false;
-  errorMessage = ''; 
-  isAdd = false; 
-  currentTransport: Transport; 
+  public list: Transport[] = []; 
+  public isVisible = false;  
+  public errorMessage = ''; 
+  public isAdd = false; 
+  public currentTransport: Transport; 
   
-  constructor(public transportService:TransportService, private router: Router, private toastr:ToastrService,public fb: FormBuilder ) { }
+  constructor(public transportService:TransportService, private toastr:ToastrService,public fb: FormBuilder ) { }
   
   ngOnInit(){    
     this.transportService.getAllTransports().subscribe(
-      (res:any) => {
+      (res: any) => {
         this.list = res as Transport[];        
       },
       err => {
@@ -33,9 +31,8 @@ export class TransportComponent implements OnInit {
   }  
 
   addCar($event: Transport)  {
-    
     this.transportService.postTransport($event).subscribe(
-      res =>{     
+      res =>{ 
         this.toastr.success("Transport added","congratulation");
         this.isVisible = false;
         this.list.push($event);
@@ -64,11 +61,12 @@ export class TransportComponent implements OnInit {
   onDelete(id:string){    
     this.transportService.deleteTransport(id)
     .subscribe(
-      res=>{        
-        this.toastr.error("Car Deleted ", "congratulation");
+      res=>{      
+        console.log(id);  
+        this.toastr.error("Car Deleted ", "Congratulation");
         let index = this.list.findIndex(x => x.id == id);
         this.list.splice(index, 1);
-        
+        this.isVisible = false;
       },
       err=>{
         throwError(err);
@@ -82,8 +80,7 @@ export class TransportComponent implements OnInit {
   }  
 
   handleCancel($event: boolean): void {
+    this.isAdd=false;
     this.isVisible = $event;
   }
-
- 
 }

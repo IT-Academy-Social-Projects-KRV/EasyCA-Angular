@@ -35,10 +35,7 @@ export class TransportDataModalComponent implements OnInit {
   ngOnInit(): void {
   }  
 
-
-
   populateForm(selectedRecord:Transport){   
-        this.resetForm(this.transportForm); 
         this.transportForm.setValue({        
         id: selectedRecord.id,
         producedBy: selectedRecord.producedBy,
@@ -55,15 +52,12 @@ export class TransportDataModalComponent implements OnInit {
       });      
     }
 
-    resetForm(TransportForm: FormGroup) {
-      this.isAdd = true;
-      TransportForm.reset();
-    }
-  
+  resetForm(TransportForm: FormGroup) {
+    TransportForm.reset();
+  }
 
   onSubmit() {
     this.AddedTransport.emit(this.transportForm.value);
-    this.resetForm(this.transportForm);
   }
 
   @Input() set setVisible(isVisible: boolean){
@@ -72,22 +66,21 @@ export class TransportDataModalComponent implements OnInit {
 
   @Input() set setAdd(isAdd: boolean){
     this.isAdd = isAdd;
-    if(isAdd === true){
-      this.resetForm(this.transportForm);
-    }
-    if(isAdd === false && this.transport){
-      this.resetForm(this.transportForm);
-      this.populateForm(this.transport);
-    }    
+    this.resetForm(this.transportForm);
   }
 
   @Input() set setTransport(transport: Transport){
+    console.log(transport);
     this.transport = transport;
+    if(this.transport && !this.isAdd){
+      this.populateForm(this.transport);
+    }
   }
 
   @Output() isVisibleEvent = new EventEmitter<boolean>();
   @Output() AddedTransport = new EventEmitter<Transport>();
   @Output() EditedTransport = new EventEmitter<Transport>();
+  @Output() setsetTransport = new EventEmitter<Transport>();
 
   handleCancel(): void {
     this.isVisibleEvent.emit(false);
