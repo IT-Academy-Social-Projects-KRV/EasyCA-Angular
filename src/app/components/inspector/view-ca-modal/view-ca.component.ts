@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { CarAccident } from 'src/app/models/carAccident';
 import { Transport } from 'src/app/models/Transport';
+import { Witness } from 'src/app/models/witness';
 import { CAService } from 'src/app/services/ca.service';
 import { TransportService } from 'src/app/services/transport.service';
 
@@ -16,7 +17,7 @@ export class ViewCAComponent implements OnInit {
   public isVisible = false;
   public isAdd = false;
   public protocolCA: CarAccident;
-
+  public witnessesList: Witness[] = [];
 
   constructor(public fb: FormBuilder,public CAservice: CAService, public transportService: TransportService, private toastr: ToastrService) { }
 
@@ -30,10 +31,19 @@ export class ViewCAComponent implements OnInit {
 
   @Input() set setData(protocol: CarAccident){
       this.protocolCA = protocol;
+
+      if (this.protocolCA.witnesses.length > 0) {
+        this.witnessesList = this.protocolCA.witnesses;
+      }
+
       if(this.isAdd === false && this.protocolCA){
           this.populateForm(protocol);
       }
   }
+
+  public inspectorEmail = this.fb.group({
+    email: localStorage.getItem('email'),
+  });
 
   @Output() isVisibleEvent = new EventEmitter<boolean>();
 
@@ -47,6 +57,13 @@ export class ViewCAComponent implements OnInit {
     insuaranceNumber: this.fb.group({
       companyName: [''],
     }),
+  });
+
+  public witnessForm = this.fb.group({
+    firstName: [''],
+    lastName: [''],
+    phoneNumber: [''],
+    witnessAddress: [''],
   });
 
   public DataForm = this.fb.group({
@@ -71,12 +88,6 @@ export class ViewCAComponent implements OnInit {
     accidentCircumstances: [''],
     trafficRuleId: [''],
     driverExplanation: [''],
-    witnesses: this.fb.group({
-        lastName: [''],
-        firstName: [''],
-        phoneNumber: [''],
-        witnessAddress: [''],
-      }),
     evidences: [''],
     courtDTG: null,
     isDocumentTakenOff:null,
@@ -90,9 +101,8 @@ export class ViewCAComponent implements OnInit {
     this.isVisible = true;
   }
 
-  async populateForm(selectedRecord: CarAccident) {
+  populateForm(selectedRecord: CarAccident) {
     let address = selectedRecord.address;
-    let witnesses = selectedRecord.witnesses;
     let sideOfAccident = selectedRecord.sideOfAccident;
 
     this.DataForm.setValue({
@@ -117,19 +127,13 @@ export class ViewCAComponent implements OnInit {
       accidentCircumstances: selectedRecord.accidentCircumstances,
       trafficRuleId: selectedRecord.trafficRuleId,
       driverExplanation: selectedRecord.driverExplanation,
-      witnesses: {
-        lastName: witnesses[0].lastName,
-        firstName: witnesses[0].firstName,
-        phoneNumber: witnesses[0].phoneNumber,
-        witnessAddress: witnesses[0].witnessAddress,
-      },
       evidences: selectedRecord.evidences,
       courtDTG: selectedRecord.courtDTG,
       isDocumentTakenOff: selectedRecord.isDocumentTakenOff,
       isClosed: selectedRecord.isClosed
     });
 
-    await this.transportService.getTransportById(this.DataForm.value.sideOfAccident.transportId)
+    this.transportService.getTransportById(this.DataForm.value.sideOfAccident.transportId)
     .subscribe((data: Transport)=>{
         this.transportForm.setValue({
           carPlate: data.carPlate,
@@ -144,6 +148,22 @@ export class ViewCAComponent implements OnInit {
         })},
         error => { }
       )
+  }
+
+  addWitness(data: any) {
+    if (!data.invalid) {
+      this.witnessesList.push(data.value);
+      this.witnessForm.reset();
+    }
+    else {
+      this.toastr.warning("Wrong witness")
+    }
+  }
+
+  deleteWitness(item: Witness) {
+    let index = this.witnessesList.findIndex(x => x == item);
+    this.witnessesList.splice(index, 1);
+    this.toastr.success("Witness was delete");
   }
 
   handleCancel(): void {

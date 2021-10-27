@@ -15,9 +15,9 @@
                 <label class="title">Date of accident:</label>
                 <input nz-input id="registrationDate" formControlName="registrationDateTime" placeholder="Registration date of protocol" />
               </div>
-              <div nz-col nzSpan="6">
+              <div nz-col nzSpan="6" [formGroup]="inspectorEmail">
                 <label class="title">Inspector:</label>
-                <input nz-input formControlName="inspectorId" placeholder="Inspector name" />
+                <input nz-input formControlName="email" placeholder="Inspector name" />
               </div>
               <div nz-col nzSpan="3">
                 <div class="taCenter">
@@ -134,33 +134,35 @@
                 </div>
                   <nz-divider></nz-divider>
               </nz-collapse-panel>
-              <nz-collapse-panel nzHeader="Witnesses" class="childTitle" formGroupName="witnesses">
-                <div nz-row nzGutter="12">
-                  <div nz-col nzSpan="12">
-                    <label class="inputLabel">Name:</label>
-                    <input nz-input formControlName="firstName" placeholder="Witness first name"/>
-                  </div>
-                  <div nz-col nzSpan="12">
-                    <label class="inputLabel">Last name:</label>
-                    <input nz-input formControlName="lastName" placeholder="Witness address"/>
-                  </div>
-                </div>
-                <br>
-                  <nz-row nzGutter=16>
-                    <nz-col nzSpan=8>
-                      <div>
-                        <label class="inputLabel">Phone Number:</label>
-                        <input nz-input formControlName="phoneNumber" placeholder="Witness phone number"/>
-                      </div>
-                    </nz-col>
-                    <nz-col nzSpan=16>
-                      <div>
-                        <label class="inputLabel">Witness address:</label>
-                        <input nz-input formControlName="witnessAddress" placeholder="Witness address"/>
-                      </div>
-                    </nz-col>
-                  </nz-row>
-                  <nz-divider></nz-divider>
+              <nz-collapse-panel nzHeader="Witnesses" class="childTitle">
+                  <nz-table #basicTable [nzData]="witnessesList" [nzFrontPagination]="false" [nzShowPagination]="false">
+                    <thead>
+                        <tr class="propertyName">
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Address</th>
+                            <th>Phone number</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of witnessesList">
+                            <td>{{item.firstName}}</td>
+                            <td>{{item.lastName}}</td>
+                            <td>{{item.witnessAddress}}</td>
+                            <td>{{item.phoneNumber}}</td>
+                            <td><i nz-icon nzType="delete" (click)="deleteWitness(item)" nzTheme="twotone"></i></td>
+                        </tr>
+                      </tbody>
+                    </nz-table>
+                    <form [formGroup]="witnessForm" class="addWitness" nz-row (ngSubmit)="addWitness(witnessForm)">
+                      <input formControlName="firstName" required nz-col nzSpan="5" nz-input placeholder="First name"/>
+                      <input formControlName="lastName" required nz-col nzSpan="5" nz-input placeholder="Last name"/>
+                      <input formControlName="witnessAddress" required nz-col nzSpan="5" nz-input placeholder="Address"/>
+                      <input formControlName="phoneNumber" required nz-col nzSpan="6" nz-input placeholder="Phone number"/>
+                      <button nz-button [nzSize]="'large'" nz-col nzSpan="3" [nzType]="'primary'" type="submit">SUBMIT</button>                    
+                    </form>
+                <nz-divider></nz-divider>
               </nz-collapse-panel>
               <nz-collapse-panel nzHeader="More" class="childTitle" [formGroup]="DataForm">
                 <div nz-row nzGutter="12">
