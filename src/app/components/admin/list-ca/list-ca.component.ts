@@ -11,8 +11,7 @@ import { AdminService } from 'src/app/services/admin.service';
 export class ListCAComponent implements OnInit {
 
   list: EuroProtocol[] = [];
-  public isAdd = true;
-  public isVisible = false;
+
   constructor(public service: AdminService) { }
   
   ngOnInit(): void {
@@ -20,20 +19,6 @@ export class ListCAComponent implements OnInit {
     .subscribe((data: any)=>{
       this.list = data;
     })
-  }
-
-  showModal() {
-      this.isAdd = true;
-      this.isVisible = true;
-  }
-
-  showModalEdit(){
-      this.isAdd = false;
-      this.isVisible = true;
-  }
-
-  handleCancel($event: boolean){
-      this.isVisible = $event;
   }
 
 }

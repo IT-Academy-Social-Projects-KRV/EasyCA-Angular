@@ -11,7 +11,7 @@ import { ViolationListComponent } from './components/violation-list/violation-li
 import { TransportComponent } from './components/transport/transport-component';
 import { EuroProtocolComponent } from './components/euro-protocol/euro-protocol.component';
 import { ResendConfirmationComponent } from './components/resend-confirmation/resend-confirmation.component';
-import { ListCAComponent } from './components/list-ca/list-ca.component';
+import { ListCAComponent } from './components/admin/list-ca/list-ca.component';
 import { ListInspectors } from './components/list-inspector/list-inspector.component';
 import { InspectorListOfCarAccidentsComponent } from './components/inspector/inspector-list-of-car-accidents/inspector-list-of-car-accidents.component';
 import { ViewCAComponent } from './components/inspector/view-ca-modal/view-ca.component';

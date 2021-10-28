@@ -30,8 +30,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { ResendConfirmationComponent } from './components/resend-confirmation/resend-confirmation.component';
 import { EuroProtocolViewFormComponent } from './euro-protocol-view-form/euro-protocol-view-form.component';
 import { ModalInspectors } from './components/list-inspector/modal-inspectors/modal-inspector.component';
-import { ListCAComponent } from './components/list-ca/list-ca.component';
-import { ModalCAComponent } from './components/list-ca/modal-ca/modal-ca.component';
+import { ListCAComponent } from './components/admin/list-ca/list-ca.component';
 import { ListInspectors } from './components/list-inspector/list-inspector.component';
 import { PersonalDataIsEmptyComponent } from './components/personal-cabinet/personal-data-is-empty/personal-data-is-empty.component';
 import { PersonalDataModalComponent } from './components/personal-cabinet/personal-data-modal/personal-data-modal.component';
@@ -66,7 +65,6 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     EuroProtocolViewFormComponent,
     ModalInspectors,
     ListCAComponent,
-    ModalCAComponent,
     ListInspectors,
     PersonalDataIsEmptyComponent,
     PersonalDataModalComponent,
