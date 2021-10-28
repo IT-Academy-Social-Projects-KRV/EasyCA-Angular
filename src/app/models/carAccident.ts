@@ -1,6 +1,6 @@
 import { AddressOfAccident } from "./addressOfAccident";
-import { Evidence } from "./evidence";
-import { side } from "./side";
+import { EvidenceCA } from "./evidenceCA";
+import { sideCA } from "./sideCA";
 import { Witness } from "./witness";
 
 export interface CarAccident {
@@ -9,12 +9,12 @@ export interface CarAccident {
     inspectorId: string;
     registrationDateTime: Date;
     address: AddressOfAccident;
-    sideOfAccident: side;
+    sideOfAccident: sideCA;
     accidentCircumstances: string;
     trafficRuleId: string;
     driverExplanation: string;
-    witnesses: Witness[];
-    evidences: Evidence[];
+    witnesses: Array<Witness>;
+    evidences: Array<EvidenceCA>;
     courtDTG: Date;
     isDocumentTakenOff: boolean;
     isClosed: boolean
