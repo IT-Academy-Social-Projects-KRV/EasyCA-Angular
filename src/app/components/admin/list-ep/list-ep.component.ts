@@ -3,12 +3,12 @@ import { EuroProtocol } from 'src/app/models/euroProtocol';
 import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
-  selector: 'app-list-ca',
-  templateUrl: './list-ca.component.html',
-  styleUrls: ['./list-ca.component.css']
+  selector: 'app-list-ep',
+  templateUrl: './list-ep.component.html',
+  styleUrls: ['./list-ep.component.css']
 })
 
-export class ListCAComponent implements OnInit {
+export class ListEPComponent implements OnInit {
 
   list: EuroProtocol[] = [];
 
