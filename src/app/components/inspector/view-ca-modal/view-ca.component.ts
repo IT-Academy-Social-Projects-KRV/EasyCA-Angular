@@ -18,6 +18,7 @@ export class ViewCAComponent implements OnInit {
   public isAdd = false;
   public protocolCA: CarAccident;
   public witnessesList: Witness[] = [];
+  public protocolCAEdited: CarAccident;
 
   constructor(public fb: FormBuilder,public CAservice: CAService, public transportService: TransportService, private toastr: ToastrService) { }
 
@@ -164,6 +165,18 @@ export class ViewCAComponent implements OnInit {
     let index = this.witnessesList.findIndex(x => x == item);
     this.witnessesList.splice(index, 1);
     this.toastr.success("Witness was delete");
+  }
+
+  handleOk(){
+    this.protocolCAEdited = this.DataForm.value;
+    this.protocolCAEdited.witnesses = this.witnessesList;
+    this.CAservice.updateCAProtocol(this.protocolCAEdited)
+    .subscribe((data: any) => {
+      console.log(data);
+      this.toastr.warning(data, "warning");
+    },
+    err => {}
+    );
   }
 
   handleCancel(): void {

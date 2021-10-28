@@ -1,4 +1,9 @@
-<nz-modal nzWidth="80%" [(nzVisible)]="isVisible"  [nzTitle]="modalTitle" [nzContent]="modalContent" (nzOnCancel)="handleCancel()">
+<nz-modal nzWidth="80%" 
+    [(nzVisible)]="isVisible"  
+    [nzTitle]="modalTitle" 
+    [nzContent]="modalContent"  
+    (nzOnOk)="handleOk()" 
+    (nzOnCancel)="handleCancel()">
     <ng-template #modalTitle> 
       <span *ngIf="!isAdd">Edit CA</span>
       <span *ngIf="isAdd">Add CA</span>
