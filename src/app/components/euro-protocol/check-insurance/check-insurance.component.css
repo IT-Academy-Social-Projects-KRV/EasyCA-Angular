@@ -1,0 +1,22 @@
+.euro_protocol_form{
+   min-height: 100%;
+   min-width: 100%;
+   margin: 0 auto;
+}
+
+.euro_header{
+   padding-bottom: 2%;
+}
+
+.euro_content{
+   margin-left: 5%;
+}
+
+.euro_progres{
+   padding: 1% 0;
+}
+
+.euro_footer_next{
+   display: flex;
+   justify-content: space-between;
+}

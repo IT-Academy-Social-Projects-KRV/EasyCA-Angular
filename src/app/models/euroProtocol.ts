@@ -3,7 +3,6 @@ import { side } from "./side";
 import { Witness } from "./witness";
 
 export interface EuroProtocol {
-    id : string;
     registrationDateTime : Date;
     serialNumber: string;
     address : AddressOfAccident;
