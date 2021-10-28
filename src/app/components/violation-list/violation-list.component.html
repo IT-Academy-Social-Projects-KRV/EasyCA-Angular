@@ -5,34 +5,53 @@
   <div>
     <nz-table #basicTable [nzData]="protocolList" [nzFrontPagination]="false" [nzShowPagination]="false">
       <thead>
-        <tr>
-          <th class="tableHeader">Serial Number</th>
-          <th class="tableHeader">Registration Date</th>
-          <th class="tableHeader">Address Of Accident</th>
-          <th class="tableHeader">Protocol Status</th>
-          <th class="tableHeader"></th>
+        <tr class="tableHeader">
+          <th >Serial Number</th>
+          <th>Registration Date</th>
+          <th>Address Of Accident</th>
+          <th>Protocol Status</th>
+          <th></th>
         </tr>
       </thead>
-      <tbody>
-        <tr *ngFor="let protocol of basicTable.data">
-          <td class="tableBodyCell">{{protocol.serialNumber}}</td>
-          <td class="tableBodyCell">{{protocol.registrationDateTime | date:'MMMM d, y, H:mm'}}</td>
-          <td class="tableBodyCell">
+      <tbody class="tableBodyCell">
+        <tr *ngFor="let protocol of basicTable.data; let i = index">
+          <td>{{protocol.serialNumber}}</td>
+          <td>{{protocol.registrationDateTime | date:'MMMM d, y, H:mm'}}</td>
+          <td>
             <div *ngIf="protocol.address.isInCity === true; then thenBlock else elseBlock"></div>
             <ng-template #thenBlock>{{protocol.address.city}}, {{protocol.address.street}}</ng-template>
             <ng-template #elseBlock>Out of city</ng-template>
           </td>
-          <td class="tableBodyCell">
+          <td>
             <label *ngIf="protocol.isClosed === true">Closed</label>
             <label *ngIf="protocol.isClosed === false">Waiting for sides confirm data</label>
           </td>
-          <td class="tableBodyCell">
-            <button *ngIf="protocol.isClosed === false" nz-button nzType="primary" nzSize="large" class="tableButton">Confirm</button>
-            <button *ngIf="protocol.isClosed === true" nz-button nzType="default" nzSize="large" class="tableButton">View</button>
+          <td>
+            <button *ngIf="protocol.isClosed === false" 
+                    nz-button nzType="primary" 
+                    nzSize="large" 
+                    class="tableButton"
+                    (click)="loadEuroProtocol(i)" 
+                    (click)="showEuroProtocolModal()">
+                    Confirm
+            </button>
+            <button *ngIf="protocol.isClosed === true" 
+                    nz-button nzType="default" 
+                    nzSize="large" 
+                    class="tableButton"
+                    (click)="loadEuroProtocol(i)" 
+                    (click)="showEuroProtocolModal()">
+                    View
+            </button>
           </td>
         </tr>
       </tbody>
     </nz-table>
+    <nz-modal nzWidth="80%" [(nzVisible)]="isEuroProtocolModalVisible" nzTitle="View Euro Protocol Data" [nzContent]="modalContent" (nzOnCancel)="cancelEuroProtocolModal()">
+      <ng-template #modalContent>
+        <app-euro-protocol-view-form [protocolNumber]="selectedEuroProtocolNumber"></app-euro-protocol-view-form>
+      </ng-template>
+    </nz-modal>
     <br>
   </div>
 </div>

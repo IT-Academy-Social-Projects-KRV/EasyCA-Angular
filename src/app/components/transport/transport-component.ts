@@ -5,7 +5,6 @@ import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Router } from '@angular/router';
 import { NzButtonSize } from 'ng-zorro-antd/button';
-import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-transport',
@@ -14,13 +13,14 @@ import { throwError } from 'rxjs';
 })
 export class TransportComponent implements OnInit {
   list: Transport[] = [];
-  isEmpty=true;
+  isEmpty = true;
   size: NzButtonSize = 'large';
   isVisible = false;
   isConfirmLoading = false;
-  isUpdate=false;
+  isUpdate = false;
   errorMessage = ''
-  isTransportListEmpty=true;
+  isTransportListEmpty = true;
+
   public transportForm = this.fb.group({
     id: [''],
     producedBy: [''],
@@ -35,93 +35,89 @@ export class TransportComponent implements OnInit {
       serialNumber: ['']
     }),
   });
-  constructor(public transportService:TransportService, private router: Router, private toastr:ToastrService,public fb: FormBuilder ) { }
-  
-  ngOnInit(){    
+  constructor(public transportService: TransportService, private router: Router, private toastr: ToastrService, public fb: FormBuilder) { }
+
+  ngOnInit() {
     this.getTransports();
   }
 
-  getTransports(){
+  getTransports() {
     this.transportService.refreshList().subscribe(
-      (res:any) => {
+      (res: any) => {
         this.list = res as Transport[];
-        if(this.list.length>0){
+        if (this.list.length > 0) {
           this.isEmpty = false;
-        } 
-      },
-      err => {
-        throwError(err);
-    });
-  }
-  onSubmit(transportForm:FormGroup) {
-      this.transportService.formData=this.transportForm.value;
-      if(this.isUpdate)
-      this.updateCar(transportForm);
-      else
-      this.addCar(transportForm);
-    }
-
-  resetForm(transportForm:FormGroup)
-    {
-    this.isUpdate=false;
-    transportForm.reset();
-    }
-
-  populateForm(selectedRecord:Transport){
-    this.isUpdate=true;
-        this.transportForm.setValue({
-        id: selectedRecord.id,
-        producedBy: selectedRecord.producedBy,
-        model: selectedRecord.model,
-        categoryName: selectedRecord.categoryName,
-        vinCode: selectedRecord.vinCode,
-        carPlate: selectedRecord.carPlate,
-        color: selectedRecord.color,
-        yearOfProduction: selectedRecord.yearOfProduction,
-        insuaranceNumber: {
-          companyName:selectedRecord.insuaranceNumber.companyName,
-          serialNumber: selectedRecord.insuaranceNumber.serialNumber
         }
-      });
-      }
-
-  addCar(transportForm:FormGroup)  {
-    this.transportService.postTransport().subscribe(
-      res =>{     
-        this.resetForm(transportForm); 
-        this.getTransports();
-        this.toastr.success("Transport added","congratulation")
       },
       err => {
-        throwError(err);
       });
   }
 
-  updateCar(transportForm:FormGroup){
-  this.transportService.putTransport().subscribe(
-    res =>{     
-      this.resetForm(transportForm);
-      this.getTransports();
-      this.toastr.info("Transport update","congratulation")
-    },
-    err => {
-      throwError(err);
+  onSubmit(transportForm: FormGroup) {
+    this.transportService.formData = this.transportForm.value;
+    if (this.isUpdate)
+      this.updateCar(transportForm);
+    else
+      this.addCar(transportForm);
+  }
+
+  resetForm(transportForm: FormGroup) {
+    this.isUpdate = false;
+    transportForm.reset();
+  }
+
+  populateForm(selectedRecord: Transport) {
+    this.isUpdate = true;
+    this.transportForm.setValue({
+      id: selectedRecord.id,
+      producedBy: selectedRecord.producedBy,
+      model: selectedRecord.model,
+      categoryName: selectedRecord.categoryName,
+      vinCode: selectedRecord.vinCode,
+      carPlate: selectedRecord.carPlate,
+      color: selectedRecord.color,
+      yearOfProduction: selectedRecord.yearOfProduction,
+      insuaranceNumber: {
+        companyName: selectedRecord.insuaranceNumber.companyName,
+        serialNumber: selectedRecord.insuaranceNumber.serialNumber
+      }
     });
   }
 
-  onDelete(id:string){
-    if(confirm("Are you sure to delete this Transport"))
-    {
-    this.transportService.deleteTransport(id)
-    .subscribe(
-      res=>{
+  addCar(transportForm: FormGroup) {
+    this.transportService.postTransport().subscribe(
+      res => {
+        this.resetForm(transportForm);
         this.getTransports();
-        this.toastr.error("Car Deleted ", "congratulation")
+        this.toastr.success("Transport added", "congratulation")
       },
-      err=>{
-        throwError(err);
-      }
-    )}
+      err => {
+      });
+  }
+
+  updateCar(transportForm: FormGroup) {
+    this.transportService.putTransport().subscribe(
+      res => {
+        this.resetForm(transportForm);
+        this.getTransports();
+        this.toastr.info("Transport update", "congratulation")
+      },
+      err => {
+      });
+  }
+
+  onDelete(id: string) {
+    if (confirm("Are you sure to delete this Transport")) {
+      this.transportService.deleteTransport(id)
+        .subscribe(
+          res => {
+            this.getTransports();
+            this.toastr.error("Car Deleted ", "congratulation")
+          },
+          err => {
+          }
+        )
+    }
   }
 
   showModal(): void {

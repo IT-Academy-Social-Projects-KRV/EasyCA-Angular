@@ -1,0 +1,199 @@
+<nz-modal nzWidth="80%" [(nzVisible)]="isVisible"  [nzTitle]="modalTitle" [nzContent]="modalContent" (nzOnCancel)="handleCancel()">
+    <ng-template #modalTitle> 
+      <span *ngIf="!isAdd">Edit CA</span>
+      <span *ngIf="isAdd">Add CA</span>
+    </ng-template>
+    <ng-template #modalContent>
+      <form [formGroup]="DataForm">
+        <div>
+          <div nz-row nzGutter="16">
+              <div nz-col nzSpan="6">
+                <label class="title">Serial Number:</label>
+                <input nz-input placeholder="Number of protocol" formControlName="serialNumber"/>
+              </div>
+              <div nz-col nzSpan="6">
+                <label class="title">Date of accident:</label>
+                <input nz-input id="registrationDate" formControlName="registrationDateTime" placeholder="Registration date of protocol" />
+              </div>
+              <div nz-col nzSpan="6" [formGroup]="inspectorEmail">
+                <label class="title">Inspector:</label>
+                <input nz-input formControlName="email" placeholder="Inspector name" />
+              </div>
+              <div nz-col nzSpan="3">
+                <div class="taCenter">
+                  <label class="title">Doc:</label>
+                  <input nz-input formControlName="isDocumentTakenOff"/>
+                </div>
+              </div>
+              <div nz-col nzSpan="3">
+                <div class="taCenter">
+                  <label class="title">Status:</label>
+                  <input nz-input formControlName="isClosed"/>
+                </div>
+              </div>
+          </div>
+            <nz-divider></nz-divider>
+            <nz-collapse nzAccordion>
+              <nz-collapse-panel nzHeader="Participant" class="childTitle" formGroupName="sideOfAccident">
+                <div >
+                  <label class="inputLabel">Name:</label>
+                  <input nz-input formControlName="email" placeholder="Side name" />
+                </div>
+                <br>
+                <nz-collapse nzAccordion>
+                  <nz-collapse-panel nzHeader="Transport" class="inputLabel">
+                        <form [formGroup]="transportForm">
+                        <div>
+                          <label class="inputLabel">Model:</label>
+                          <input nz-input  formControlName="producedBy" placeholder="Transport model"/>
+                        </div>
+                        <br>
+                        <nz-row nzGutter="16">
+                          <nz-col nzSpan="8">
+                            <div>
+                              <label class="inputLabel">Car Plate:</label>
+                              <input nz-input placeholder="Transport car plate" formControlName="carPlate"/>
+                            </div>
+                          </nz-col>
+                          <nz-col nzSpan="16">
+                            <div>
+                              <label class="inputLabel">Color:</label>
+                              <input nz-input placeholder="Transport color" formControlName="color"/>
+                            </div>
+                          </nz-col>
+                        </nz-row>
+                        <br>
+                        <nz-row nzGutter="16">
+                          <nz-col nzSpan="8">
+                            <div>
+                              <label class="inputLabel">Production Year:</label>
+                              <input nz-input placeholder="Transport production year" formControlName="yearOfProduction"/>
+                            </div>
+                          </nz-col>
+                          <nz-col nzSpan="16">
+                            <div formGroupName="insuaranceNumber">
+                              <label class="inputLabel">Insurance:</label>
+                              <input nz-input placeholder="Transport insurance" formControlName="companyName"/>
+                            </div>
+                          </nz-col>
+                        </nz-row>
+                      </form>
+                      </nz-collapse-panel> 
+                  <nz-collapse-panel nzHeader="Circumstances" class="inputLabel">
+                    <nz-list class="listItem">
+                      <form [formGroup]="DataForm">
+                        <nz-list-item>
+                          <input nz-input formControlName="accidentCircumstances"/>
+                        </nz-list-item>
+                      </form>
+                    </nz-list>
+                  </nz-collapse-panel>
+                </nz-collapse>
+                <br>
+                <nz-row nzGutter=16>
+                  <nz-col nzSpan=8>
+                    <div>
+                      <label class="inputLabel" for="driverLicenseSerial">Driver License:</label>
+                      <input nz-input formControlName="driverLicenseSerial" placeholder="Driver License" />
+                    </div>
+                  </nz-col>
+                </nz-row>
+              </nz-collapse-panel>
+              <nz-collapse-panel nzHeader="Address" class="childTitle" formGroupName="address">
+                <div nz-row nzGutter="12">
+                  <div nz-col nzSpan="12">
+                    <label class="inputLabel">City:</label>
+                      <input nz-input formControlName="city" placeholder="Accident address city"/>
+                    </div>
+                    <div nz-col nzSpan="12">
+                      <label class="inputLabel">District:</label>
+                        <input nz-input formControlName="district" placeholder="Accident address district"/>
+                    </div>
+                </div>
+                <br>
+                <div nz-row nzGutter="12">
+                  <div nz-col nzSpan="12"> 
+                    <label class="inputLabel">Street:</label>
+                    <input nz-input formControlName="street" placeholder="Accident address street"/>
+                  </div>
+                  <div nz-col nzSpan="12">
+                    <label class="inputLabel">Cross street:</label>
+                    <input nz-input formControlName="crossStreet"  placeholder="Accident address crossStreet"/>
+                  </div>
+                </div>
+                <br>
+                <div nz-row nzGutter="12">
+                  <div nz-col nzSpan="12">
+                    <label class="inputLabel">Coordinates Of Latitude:</label>
+                    <input nz-input formControlName="coordinatesOfLatitude"  placeholder="Accident address coordinatesOfLatitude"/>
+                  </div>
+                  <div nz-col nzSpan="12">
+                  <label class="inputLabel">Coordinates Of Longitude:</label>
+                    <input nz-input formControlName="coordinatesOfLongitude"  placeholder="Accident address coordinatesOfLongitude"/>
+                  </div>
+                </div>
+                  <nz-divider></nz-divider>
+              </nz-collapse-panel>
+              <nz-collapse-panel nzHeader="Witnesses" class="childTitle">
+                  <nz-table #basicTable [nzData]="witnessesList" [nzFrontPagination]="false" [nzShowPagination]="false">
+                    <thead>
+                        <tr class="propertyName">
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Address</th>
+                            <th>Phone number</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of witnessesList">
+                            <td>{{item.firstName}}</td>
+                            <td>{{item.lastName}}</td>
+                            <td>{{item.witnessAddress}}</td>
+                            <td>{{item.phoneNumber}}</td>
+                            <td><i nz-icon nzType="delete" (click)="deleteWitness(item)" nzTheme="twotone"></i></td>
+                        </tr>
+                      </tbody>
+                    </nz-table>
+                    <form [formGroup]="witnessForm" class="addWitness" nz-row (ngSubmit)="addWitness(witnessForm)">
+                      <input formControlName="firstName" required nz-col nzSpan="5" nz-input placeholder="First name"/>
+                      <input formControlName="lastName" required nz-col nzSpan="5" nz-input placeholder="Last name"/>
+                      <input formControlName="witnessAddress" required nz-col nzSpan="5" nz-input placeholder="Address"/>
+                      <input formControlName="phoneNumber" required nz-col nzSpan="6" nz-input placeholder="Phone number"/>
+                      <button nz-button [nzSize]="'large'" nz-col nzSpan="3" [nzType]="'primary'" type="submit">SUBMIT</button>                    
+                    </form>
+                <nz-divider></nz-divider>
+              </nz-collapse-panel>
+              <nz-collapse-panel nzHeader="More" class="childTitle" [formGroup]="DataForm">
+                <div nz-row nzGutter="12">
+                  <div nz-col nzSpan="12">
+                    <label class="inputLabel">Evidence:</label>
+                    <input nz-input formControlName="evidences" placeholder="Evidence"/>
+                  </div>
+                  <div nz-col nzSpan="12">
+                    <label class="inputLabel">Driver explanation:</label>
+                    <input nz-input formControlName="driverExplanation" placeholder="Driver explanation"/>
+                  </div>
+                </div>
+                <br>
+                  <nz-row nzGutter=16>
+                    <nz-col nzSpan=8>
+                      <div>
+                        <label class="inputLabel">Court of DTG:</label>
+                        <input nz-input formControlName="courtDTG" placeholder="Court of DTG"/>
+                      </div>
+                    </nz-col>
+                    <nz-col nzSpan=16>
+                      <div>
+                        <label class="inputLabel">Traffic Rule:</label>
+                        <input nz-input formControlName="trafficRuleId" placeholder="Traffic Rule"/>
+                      </div>
+                    </nz-col>
+                  </nz-row>
+                  <nz-divider></nz-divider>
+              </nz-collapse-panel>
+            </nz-collapse>
+          </div>
+      </form>
+    </ng-template>
+  </nz-modal>

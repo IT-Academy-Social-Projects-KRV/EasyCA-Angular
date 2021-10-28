@@ -1,0 +1,33 @@
+<div>
+    <div>
+        <h1>List of Inspector</h1>
+    </div>
+    <div>
+        <nz-table #basicTable [nzData]="listInspectors" [nzFrontPagination]="false" [nzShowPagination]="false">
+            <thead>
+                <tr class="propertyName">
+                    <th>Email</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="mainName" *ngFor="let insp of listInspectors">
+                    <td>{{insp.email}}</td>
+                    <td>{{insp.firstName}}</td>
+                    <td>{{insp.lastName}}</td>
+                    <td><i nz-icon nzType="delete" (click)="delete(insp.email)" nzTheme="twotone"></i> </td>
+                </tr>
+            </tbody>
+        </nz-table>
+        <br>
+    </div>
+    <div class="taCenter">
+        <button nz-button nzShape="round" [nzType]="'primary'" (click)="showModal()">
+            <span>Add Inspector</span>
+        </button>
+    </div>
+</div>
+
+<app-modal-inspector [setVisible]="this.isVisible" (AddedInspector)="addInspector($event)" (isVisibleEvent)="handleCancel($event)"></app-modal-inspector>

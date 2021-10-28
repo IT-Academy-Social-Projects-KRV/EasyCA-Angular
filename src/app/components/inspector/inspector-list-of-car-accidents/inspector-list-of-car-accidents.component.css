@@ -1,0 +1,23 @@
+.tableHeader {
+    letter-spacing: .07272727em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    word-break: break-word;
+    word-wrap: break-word;
+    color: #5f6368; 
+  }
+
+.tableBodyCell {
+    letter-spacing: .00625em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 18px;
+    hyphens: auto;
+    word-break: break-word;
+    word-wrap: break-word;
+    color: #202124;
+  }
+
+  .alignCenter{
+    text-align:center;
+  }

@@ -25,7 +25,7 @@ export class RegistrationFormComponent implements OnInit {
 
   errorMessage = '';
 
-  constructor(private accountService: AccountService, private router: Router, public fb: FormBuilder, private toastr:ToastrService) {
+  constructor(private accountService: AccountService, private router: Router, public fb: FormBuilder, private toastr: ToastrService) {
     this.signupForm = this.fb.group({
       firstName: ['', [Validators.pattern(this.firstNamePattern)]],
       lastName: ['', [Validators.pattern(this.lastNamePattern)]],
@@ -39,19 +39,19 @@ export class RegistrationFormComponent implements OnInit {
     return this.signupForm.controls;
   }
 
-  ngOnInit() {    
+  ngOnInit() {
   }
 
   onSubmit() {
     this.submitted = true;
-      this.accountService.register(this.signupForm.value)
+    this.accountService.register(this.signupForm.value)
       .subscribe((data: any) => {
         this.isRegistered = true;
         this.isSignUpFailed = false;
       },
-      err => {
-        this.errorMessage = err.error.message;
-        this.isSignUpFailed = true;
-      });
+        err => {
+          this.errorMessage = err;
+          this.isSignUpFailed = true;
+        });
   }
 }
