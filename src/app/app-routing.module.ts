@@ -15,6 +15,7 @@ import { ListCAComponent } from './components/list-ca/list-ca.component';
 import { ListInspectors } from './components/list-inspector/list-inspector.component';
 import { InspectorListOfCarAccidentsComponent } from './components/inspector/inspector-list-of-car-accidents/inspector-list-of-car-accidents.component';
 import { ViewCAComponent } from './components/inspector/view-ca-modal/view-ca.component';
+import { CarAccidentsListComponent } from './components/admin/car-accidents-list/car-accidents-list.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -32,7 +33,8 @@ const routes: Routes = [
   { path: 'listOfCa', component: ListCAComponent },
   { path: 'listOfInspectors', component: ListInspectors },
   { path: 'inspector/list-of-ca', component: InspectorListOfCarAccidentsComponent },
-  { path: 'viewCA', component: ViewCAComponent }
+  { path: 'viewCA', component: ViewCAComponent },
+  { path: 'listOfEP', component: CarAccidentsListComponent }
 ];
 
 @NgModule({
