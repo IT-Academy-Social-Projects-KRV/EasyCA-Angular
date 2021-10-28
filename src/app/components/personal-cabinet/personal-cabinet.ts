@@ -3,7 +3,6 @@ import { AccountService } from 'src/app/services/account.service';
 import { Data } from 'src/app/models/data';
 import { FormBuilder } from "@angular/forms";
 import { ToastrService } from 'ngx-toastr';
-import { ChangePassword } from 'src/app/models/changePassword';
 
 @Component({
   selector: 'app-personal-cabinet',
@@ -15,11 +14,10 @@ export class PersonalCabinetComponent implements OnInit {
   public userName: string;
   public data: Data;
   public isVisible = false;
-  public changePasswordVisible=false;
   public isPersonalData = false;
   public isAddPersonalData = true;
   public errorMessage = '';
-  private userCars: string[];
+  private userCars:string[];
 
   public Icon = this.fb.group({
     name: ['']
@@ -35,15 +33,15 @@ export class PersonalCabinetComponent implements OnInit {
         res => {
           this.data = res;
           this.userName = res.firstName[0] + res.lastName[0];
-
+          
           if (this.data.personalData != null) {
-            this.userCars = res.personalData.userCars;
+            this.userCars=res.personalData.userCars;
             this.isPersonalData = true;
           }
         },
         err => {
           this.isPersonalData = false;
-          this.errorMessage = err;
+          this.errorMessage = err.error.message;
         });
   }
 
@@ -51,10 +49,6 @@ export class PersonalCabinetComponent implements OnInit {
     this.isVisible = $event;
     this.isAddPersonalData = true;
   }
-   receiveChangePasswordVisible($event:boolean)
-   {
-     this.changePasswordVisible=$event;
-   }
 
   editModal() {
     this.isVisible = true;
@@ -62,18 +56,18 @@ export class PersonalCabinetComponent implements OnInit {
   }
 
   update($event: Data) {
-    $event.personalData.userCars = this.userCars;
+    $event.personalData.userCars=this.userCars;
     this.accountService.putPersonalData($event).
       subscribe(
         res => {
           this.toastr.info(res.message, "Success");
           this.isVisible = false;
           this.data = $event;
-
+         
           this.userName = $event.firstName[0] + $event.lastName[0];
         },
         err => {
-          this.toastr.warning('Data not updated', err);
+          this.toastr.warning('Data not updated', err.error.message);
         }
       );
   }
@@ -89,27 +83,8 @@ export class PersonalCabinetComponent implements OnInit {
           this.isAddPersonalData = false;
         },
         err => {
-          this.toastr.warning('Data not added', err);
+          this.toastr.warning('Data not added', err.error.message);
         }
       );
-  }
-
-  changePasswordModal()
-  {
-    this.changePasswordVisible=true;
-  }
-
-  changePassword($event:ChangePassword)
-  {
-     this.accountService.changePassword($event).
-     subscribe(
-       (res:any)=>{
-        this.toastr.info("Password has been changed", "Success");
-        this.changePasswordVisible=false;
-       },
-       (err:any)=>{
-         this.toastr.warning('Password wasnt change',err);
-       }
-     )
   }
 }
