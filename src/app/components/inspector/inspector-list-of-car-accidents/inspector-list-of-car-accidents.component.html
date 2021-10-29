@@ -49,4 +49,6 @@
 <app-view-ca [setAdd]="this.isAdd" 
 [setVisible]="this.isVisible" 
 [setData] = "this.selectedCA" 
-(isVisibleEvent)="handleCancel($event)"></app-view-ca>
+(isVisibleEvent)="handleCancel($event)"
+(protocolCAEditedEvent)="editCA($event)"
+></app-view-ca>

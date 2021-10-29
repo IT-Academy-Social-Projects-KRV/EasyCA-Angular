@@ -47,6 +47,7 @@ export class ViewCAComponent implements OnInit {
   });
 
   @Output() isVisibleEvent = new EventEmitter<boolean>();
+  @Output() protocolCAEditedEvent = new EventEmitter<CarAccident>();
 
   public transportForm = this.fb.group({
     id: [''],
@@ -170,13 +171,9 @@ export class ViewCAComponent implements OnInit {
   handleOk(){
     this.protocolCAEdited = this.DataForm.value;
     this.protocolCAEdited.witnesses = this.witnessesList;
-    this.CAservice.updateCAProtocol(this.protocolCAEdited)
-    .subscribe((data: any) => {
-      console.log(data);
-      this.toastr.warning(data, "warning");
-    },
-    err => {}
-    );
+    
+    this.protocolCAEditedEvent.emit(this.protocolCAEdited);
+    this.isVisible = false;
   }
 
   handleCancel(): void {
