@@ -3,6 +3,7 @@ import { AccountService } from 'src/app/services/account.service';
 import { Data } from 'src/app/models/data';
 import { FormBuilder } from "@angular/forms";
 import { ToastrService } from 'ngx-toastr';
+import { ChangePassword } from 'src/app/models/changePassword';
 
 @Component({
   selector: 'app-personal-cabinet',
@@ -18,6 +19,7 @@ export class PersonalCabinetComponent implements OnInit {
   public isAddPersonalData = true;
   public errorMessage = '';
   private userCars:string[];
+  public changePasswordVisible=false;
 
   public Icon = this.fb.group({
     name: ['']
@@ -41,7 +43,7 @@ export class PersonalCabinetComponent implements OnInit {
         },
         err => {
           this.isPersonalData = false;
-          this.errorMessage = err.error.message;
+          this.errorMessage = err;
         });
   }
 
@@ -67,7 +69,7 @@ export class PersonalCabinetComponent implements OnInit {
           this.userName = $event.firstName[0] + $event.lastName[0];
         },
         err => {
-          this.toastr.warning('Data not updated', err.error.message);
+          this.toastr.warning('Data not updated', err);
         }
       );
   }
@@ -83,8 +85,32 @@ export class PersonalCabinetComponent implements OnInit {
           this.isAddPersonalData = false;
         },
         err => {
-          this.toastr.warning('Data not added', err.error.message);
+          this.toastr.warning('Data not added', err);
         }
       );
+  }
+
+  receiveChangePasswordVisible($event:boolean)
+  {
+    this.changePasswordVisible=$event;
+  }
+
+  changePasswordModal()
+  {
+    this.changePasswordVisible=true;
+  }
+
+  changePassword($event:ChangePassword)
+  {
+     this.accountService.changePassword($event).
+     subscribe(
+       (res:any)=>{
+        this.toastr.info("Password has been changed", "Success");
+        this.changePasswordVisible=false;
+       },
+       (err:any)=>{
+         this.toastr.warning('Password wasnt change',err);
+       }
+     )
   }
 }
