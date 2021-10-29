@@ -37,6 +37,14 @@ import { PersonalDataModalComponent } from './components/personal-cabinet/person
 import { BasicInfoComponent } from './components/personal-cabinet/basic-info/basic-info.component';
 import { AddressComponent } from './components/personal-cabinet/address/address.component';
 import { DriverLicenseComponent } from './components/personal-cabinet/driver-license/driver-license.component';
+import { TermsComponent } from './components/euro-protocol/terms/terms.component';
+import { AccidentAddressComponent } from './components/euro-protocol/accident-address/accident-address.component';
+import { CheckInsuranceComponent } from './components/euro-protocol/check-insurance/check-insurance.component';
+import { CircumstancesComponent } from './components/euro-protocol/circumstances/circumstances.component';
+import { ConfirmationComponent } from './components/euro-protocol/confirmation/confirmation.component';
+import { EvidenceComponent } from './components/euro-protocol/evidence/evidence.component';
+import { ParticipantInfoComponent } from './components/euro-protocol/participant-info/participant-info.component';
+import { WitnessesComponent } from './components/euro-protocol/witnesses/witnesses.component';
 import { InspectorListOfCarAccidentsComponent } from './components/inspector/inspector-list-of-car-accidents/inspector-list-of-car-accidents.component';
 import { ChangePasswordModalComponent } from './components/personal-cabinet/change-password-modal/change-password-modal.component';
 import { ViewCAComponent } from './components/inspector/view-ca-modal/view-ca.component';
@@ -71,6 +79,14 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     BasicInfoComponent,
     AddressComponent,
     DriverLicenseComponent,
+    TermsComponent,
+    AccidentAddressComponent,
+    CheckInsuranceComponent,
+    CircumstancesComponent,
+    ConfirmationComponent,
+    EvidenceComponent,
+    ParticipantInfoComponent,
+    WitnessesComponent,
     InspectorListOfCarAccidentsComponent,
     ChangePasswordModalComponent,
     ViewCAComponent,

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { HOST_URL} from '../configs/config';
 import { Transport } from '../models/Transport';
+import { Observable } from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -14,6 +15,10 @@ const httpOptions = {
 export class TransportService {
   constructor(private http: HttpClient,  public router: Router) { }
   formData: Transport;
+
+  getTransportById(id: string): Observable<Transport>{
+    return this.http.get<Transport>(`${HOST_URL}Transport/GetTransport?transportId=${id}`);
+  }
 
   postTransport(){
     return this.http.post<any>(`${HOST_URL}Transport/AddTransport`, this.formData, httpOptions);
