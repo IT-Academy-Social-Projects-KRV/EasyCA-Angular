@@ -12,6 +12,6 @@ export class SearchService {
     constructor(private http: HttpClient) { }
 
     search(text: string): Observable<any> {
-        return this.http.get<any>(`${HOST_URL}Search/SearchTransport/${text}`);
+        return this.http.get<any>(`${HOST_URL}Search/SearchTransport?search=${text}`);
     }
 }
