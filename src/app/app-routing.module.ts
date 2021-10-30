@@ -11,6 +11,7 @@ import { ViolationListComponent } from './components/violation-list/violation-li
 import { TransportComponent } from './components/transport/transport-component';
 import { EuroProtocolComponent } from './components/euro-protocol/euro-protocol.component';
 import { ResendConfirmationComponent } from './components/resend-confirmation/resend-confirmation.component';
+import { ListEPComponent } from './components/admin/list-ep/list-ep.component';
 import { TermsComponent } from './components/euro-protocol/terms/terms.component';
 import { WitnessesComponent } from './components/euro-protocol/witnesses/witnesses.component';
 import { ParticipantInfoComponent } from './components/euro-protocol/participant-info/participant-info.component';
@@ -22,6 +23,7 @@ import { ListCAComponent } from './components/list-ca/list-ca.component';
 import { ListInspectors } from './components/list-inspector/list-inspector.component';
 import { InspectorListOfCarAccidentsComponent } from './components/inspector/inspector-list-of-car-accidents/inspector-list-of-car-accidents.component';
 import { ViewCAComponent } from './components/inspector/view-ca-modal/view-ca.component';
+import { CarAccidentsListComponent } from './components/admin/car-accidents-list/car-accidents-list.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -36,6 +38,7 @@ const routes: Routes = [
   { path: 'violationList', component: ViolationListComponent},
   { path: 'euroProtocol', component: EuroProtocolComponent},
   { path: 'resendConfirmation', component: ResendConfirmationComponent },
+  { path: 'listOfEP', component: ListEPComponent },
   { path: 'terms', component: TermsComponent},
   { path: 'witnesses', component: WitnessesComponent},
   { path: 'participantInfo', component: ParticipantInfoComponent},
@@ -47,7 +50,8 @@ const routes: Routes = [
   { path: 'listOfCa', component: ListCAComponent },
   { path: 'listOfInspectors', component: ListInspectors },
   { path: 'inspector/list-of-ca', component: InspectorListOfCarAccidentsComponent },
-  { path: 'viewCA', component: ViewCAComponent }
+  { path: 'viewCA', component: ViewCAComponent },
+  { path: 'listOfCa', component: CarAccidentsListComponent }
 ];
 
 @NgModule({

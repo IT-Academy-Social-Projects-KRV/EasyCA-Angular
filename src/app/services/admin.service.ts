@@ -33,4 +33,7 @@ export class AdminService {
    return this.http.get<any>(`${HOST_URL}Admin/GetAllEuroProtocols`);
   }
   
+  getAllCAProtocols() {
+    return this.http.get<any>(`${HOST_URL}Admin/GetAllCAProtocols`);
+   }
 }
