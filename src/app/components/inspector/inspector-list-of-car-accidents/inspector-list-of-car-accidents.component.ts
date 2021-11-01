@@ -45,17 +45,19 @@ export class InspectorListOfCarAccidentsComponent implements OnInit {
       this.toastr.success("CA was updated", "Congratulations");
       let index = this.accidentList.findIndex(x=>x.serialNumber === $event.serialNumber);
       this.accidentList[index] = $event;
-      this.method();
+      this.getAllCAByInspector();
     },
-    err => {}
+    err => {
+      this.toastr.warning(err, "Warning");
+    }
     );
   }
 
   ngOnInit(): void {
-   this.method();
+   this.getAllCAByInspector();
   }
 
-  method(){
+  getAllCAByInspector(){
     this.service.getAllCarAccidentsByInspectorId().subscribe(
       data => {
         if (data.length == 0) {
