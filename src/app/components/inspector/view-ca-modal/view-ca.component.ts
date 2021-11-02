@@ -18,6 +18,7 @@ export class ViewCAComponent implements OnInit {
   public isAdd = false;
   public protocolCA: CarAccident;
   public witnessesList: Witness[] = [];
+  public protocolCAEdited: CarAccident;
 
   constructor(public fb: FormBuilder,public CAservice: CAService, public transportService: TransportService, private toastr: ToastrService) { }
 
@@ -46,6 +47,7 @@ export class ViewCAComponent implements OnInit {
   });
 
   @Output() isVisibleEvent = new EventEmitter<boolean>();
+  @Output() protocolCAEditedEvent = new EventEmitter<CarAccident>();
 
   public transportForm = this.fb.group({
     id: [''],
@@ -164,6 +166,14 @@ export class ViewCAComponent implements OnInit {
     let index = this.witnessesList.findIndex(x => x == item);
     this.witnessesList.splice(index, 1);
     this.toastr.success("Witness was delete");
+  }
+
+  handleOk(){
+    this.protocolCAEdited = this.DataForm.value;
+    this.protocolCAEdited.witnesses = this.witnessesList;
+    
+    this.protocolCAEditedEvent.emit(this.protocolCAEdited);
+    this.isVisible = false;
   }
 
   handleCancel(): void {

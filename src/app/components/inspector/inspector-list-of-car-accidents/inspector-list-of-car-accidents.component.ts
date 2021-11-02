@@ -5,7 +5,7 @@ import { CarAccident } from 'src/app/models/carAccident';
 import { EvidenceCA } from 'src/app/models/evidenceCA';
 import { sideCA } from 'src/app/models/sideCA';
 import { Witness } from 'src/app/models/witness';
-import { InspectorService } from 'src/app/services/inspector.service';
+import { CAService } from 'src/app/services/ca.service';
 
 @Component({
   selector: 'app-inspector-list-of-car-accidents',
@@ -37,10 +37,28 @@ export class InspectorListOfCarAccidentsComponent implements OnInit {
     courtDTG: <Date>{}
   };
   
-  constructor(private inspectorService: InspectorService, private toastr: ToastrService) { }
+  constructor(private service: CAService, private toastr: ToastrService) { }
+
+  editCA($event: CarAccident){
+    this.service.updateCAProtocol($event)
+    .subscribe((data: any) => {
+      this.toastr.success("CA was updated", "Congratulations");
+      let index = this.accidentList.findIndex(x=>x.serialNumber === $event.serialNumber);
+      this.accidentList[index] = $event;
+      this.getAllCAByInspector();
+    },
+    err => {
+      this.toastr.warning(err, "Warning");
+    }
+    );
+  }
 
   ngOnInit(): void {
-    this.inspectorService.getAllCarAccidentsByInspectorId().subscribe(
+   this.getAllCAByInspector();
+  }
+
+  getAllCAByInspector(){
+    this.service.getAllCarAccidentsByInspectorId().subscribe(
       data => {
         if (data.length == 0) {
           this.isAccidentListEmpty = true; 
