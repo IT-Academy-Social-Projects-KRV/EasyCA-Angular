@@ -53,6 +53,19 @@ export class InspectorListOfCarAccidentsComponent implements OnInit {
     );
   }
 
+  addCA($event: CarAccident){
+    this.service.addCAProtocol($event)
+    .subscribe((data: any) => {
+      this.toastr.success("CA was added", "Congratulations");
+      this.accidentList.push($event);
+      this.getAllCAByInspector();
+    },
+    err => {
+      this.toastr.warning(err, "Warning");
+    }
+    );
+  }
+
   ngOnInit(): void {
    this.getAllCAByInspector();
   }

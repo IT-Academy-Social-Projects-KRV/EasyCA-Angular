@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { CarAccident } from 'src/app/models/carAccident';
+import { EvidenceCA } from 'src/app/models/evidenceCA';
 import { Transport } from 'src/app/models/Transport';
 import { Witness } from 'src/app/models/witness';
 import { CAService } from 'src/app/services/ca.service';
@@ -18,7 +19,9 @@ export class ViewCAComponent implements OnInit {
   public isAdd = false;
   public protocolCA: CarAccident;
   public witnessesList: Witness[] = [];
+  public evidencesList: EvidenceCA[] = [];
   public protocolCAEdited: CarAccident;
+  public protocolCAAdded: CarAccident;
 
   constructor(public fb: FormBuilder,public CAservice: CAService, public transportService: TransportService, private toastr: ToastrService) { }
 
@@ -33,6 +36,10 @@ export class ViewCAComponent implements OnInit {
   @Input() set setData(protocol: CarAccident){
       this.protocolCA = protocol;
 
+      if (this.protocolCA.evidences.length > 0) {
+        this.evidencesList = this.protocolCA.evidences;
+      }
+
       if (this.protocolCA.witnesses.length > 0) {
         this.witnessesList = this.protocolCA.witnesses;
       }
@@ -41,14 +48,15 @@ export class ViewCAComponent implements OnInit {
           this.populateForm(protocol);
       }
   }
-
+  
+  @Output() isVisibleEvent = new EventEmitter<boolean>();
+  @Output() protocolCAEditedEvent = new EventEmitter<CarAccident>();
+  @Output() protocolCAAddedEvent = new EventEmitter<CarAccident>();
+ 
   public inspectorEmail = this.fb.group({
     email: localStorage.getItem('email'),
   });
-
-  @Output() isVisibleEvent = new EventEmitter<boolean>();
-  @Output() protocolCAEditedEvent = new EventEmitter<CarAccident>();
-
+  
   public transportForm = this.fb.group({
     id: [''],
     producedBy: [''],
@@ -68,6 +76,10 @@ export class ViewCAComponent implements OnInit {
     witnessAddress: [''],
   });
 
+  public evidenceForm = this.fb.group({
+    evidence: [''],
+  });
+
   public DataForm = this.fb.group({
     serialNumber: [''],
     inspectorId: [''],
@@ -79,8 +91,8 @@ export class ViewCAComponent implements OnInit {
         crossStreet: [''],
         coordinatesOfLatitude: [''],
         coordinatesOfLongitude: [''],
-        isInCity: false,
-        isIntersection: false
+        isInCity: true,
+        isIntersection: true
         }),
     sideOfAccident: this.fb.group({
         email: [''],
@@ -90,10 +102,9 @@ export class ViewCAComponent implements OnInit {
     accidentCircumstances: [''],
     trafficRuleId: [''],
     driverExplanation: [''],
-    evidences: [''],
-    courtDTG: null,
-    isDocumentTakenOff:null,
-    isClosed: null
+    courtDTG: new Date(),
+    isDocumentTakenOff:false,
+    isClosed: false
   });
 
   ngOnInit(): void {
@@ -129,7 +140,6 @@ export class ViewCAComponent implements OnInit {
       accidentCircumstances: selectedRecord.accidentCircumstances,
       trafficRuleId: selectedRecord.trafficRuleId,
       driverExplanation: selectedRecord.driverExplanation,
-      evidences: selectedRecord.evidences,
       courtDTG: selectedRecord.courtDTG,
       isDocumentTakenOff: selectedRecord.isDocumentTakenOff,
       isClosed: selectedRecord.isClosed
@@ -149,7 +159,7 @@ export class ViewCAComponent implements OnInit {
           }
         })},
         error => { }
-      )
+    );
   }
 
   addWitness(data: any) {
@@ -169,14 +179,46 @@ export class ViewCAComponent implements OnInit {
   }
 
   handleOk(){
-    this.protocolCAEdited = this.DataForm.value;
-    this.protocolCAEdited.witnesses = this.witnessesList;
-    
-    this.protocolCAEditedEvent.emit(this.protocolCAEdited);
+    if(this.isAdd){
+      this.transportService.getTransportByCarPlate(this.transportForm.value.carPlate)
+      .subscribe((data: any)=>{
+        this.transportForm.setValue({
+          carPlate: data.carPlate,
+          color: data.color,
+          model: data.model,
+          producedBy: data.producedBy,
+          id: data.id,
+          yearOfProduction: data.yearOfProduction,
+          insuaranceNumber:{
+            companyName: data.insuaranceNumber.companyName,
+          }
+        });
+        this.DataForm.value.sideOfAccident.transportId = this.transportForm.value.id;
+        this.DataForm.value.address.isInCity = true;
+        this.DataForm.value.serialNumber = "123";
+        this.DataForm.value.address.isIntersection = false;
+        this.protocolCAAdded = this.DataForm.value;
+        this.protocolCAAdded.inspectorId = "";
+        this.protocolCAAdded.isClosed = false;
+        this.protocolCAAdded.isDocumentTakenOff = true;
+        this.protocolCAAdded.courtDTG = new Date();
+        this.protocolCAAdded.registrationDateTime = new Date();
+        this.protocolCAAdded.witnesses = this.witnessesList;
+        this.protocolCAAdded.evidences = this.evidencesList;
+        this.protocolCAAddedEvent.emit(this.protocolCAAdded);
+      });
+    }
+    else{
+      this.protocolCAEdited = this.DataForm.value;
+      this.protocolCAEdited.witnesses = this.witnessesList;
+      this.protocolCAEditedEvent.emit(this.protocolCAEdited);
+    } 
     this.isVisible = false;
   }
 
   handleCancel(): void {
-      this.isVisibleEvent.emit(false);
+    this.transportForm.reset();
+    this.DataForm.reset();
+    this.isVisibleEvent.emit(false);
   }
 }
