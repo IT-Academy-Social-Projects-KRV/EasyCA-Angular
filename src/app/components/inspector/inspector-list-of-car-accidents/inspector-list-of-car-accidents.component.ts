@@ -36,7 +36,7 @@ export class InspectorListOfCarAccidentsComponent implements OnInit {
     isClosed: <boolean>{},
     courtDTG: <Date>{}
   };
-  
+
   constructor(private service: CAService, private toastr: ToastrService) { }
 
   editCA($event: CarAccident){

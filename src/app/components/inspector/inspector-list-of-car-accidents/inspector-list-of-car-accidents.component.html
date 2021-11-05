@@ -46,10 +46,11 @@
     </div>
 </div>
 
-<app-view-ca [setAdd]="this.isAdd" 
+<app-view-ca 
+[setAdd]="this.isAdd" 
 [setVisible]="this.isVisible" 
 [setData] = "this.selectedCA" 
 (isVisibleEvent)="handleCancel($event)"
 (protocolCAEditedEvent)="editCA($event)"
-(protocolCAAddedEvent)="addCA($event)"
-></app-view-ca>
+(protocolCAAddedEvent)="addCA($event)">
+</app-view-ca>

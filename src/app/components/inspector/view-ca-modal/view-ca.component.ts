@@ -16,7 +16,7 @@ import { TransportService } from 'src/app/services/transport.service';
 export class ViewCAComponent implements OnInit {
 
   public isVisible = false;
-  public isAdd = false;
+  public isAdd = true;
   public protocolCA: CarAccident;
   public witnessesList: Witness[] = [];
   public evidencesList: EvidenceCA[] = [];
@@ -27,6 +27,11 @@ export class ViewCAComponent implements OnInit {
 
   @Input() set setVisible(isVisible: boolean) {
     this.isVisible = isVisible;
+    
+    if(!this.isAdd){
+      this.transportForm.reset();
+      this.DataForm.reset();
+    }
   }
 
   @Input() set setAdd(isAdd: boolean) {
@@ -45,7 +50,7 @@ export class ViewCAComponent implements OnInit {
       }
 
       if(this.isAdd === false && this.protocolCA){
-          this.populateForm(protocol);
+        this.populateForm(protocol);
       }
   }
   
@@ -115,50 +120,54 @@ export class ViewCAComponent implements OnInit {
   }
 
   populateForm(selectedRecord: CarAccident) {
-    let address = selectedRecord.address;
-    let sideOfAccident = selectedRecord.sideOfAccident;
+    let isAddress = Object.keys(selectedRecord.address).length != 0 ? true : false;
 
-    this.DataForm.setValue({
-      serialNumber: selectedRecord.serialNumber,
-      inspectorId: selectedRecord.inspectorId,
-      registrationDateTime: selectedRecord.registrationDateTime,
-      address: {
-        city: address.city,
-        district: address.district,
-        street: address.street,
-        crossStreet: address.crossStreet,
-        coordinatesOfLatitude: address.coordinatesOfLatitude,
-        coordinatesOfLongitude: address.coordinatesOfLongitude,
-        isInCity: address.isInCity,
-        isIntersection: address.isIntersection,
-      },
-      sideOfAccident: {
-        email: sideOfAccident.email,
-        transportId: sideOfAccident.transportId,
-        driverLicenseSerial: sideOfAccident.driverLicenseSerial,
-      },
-      accidentCircumstances: selectedRecord.accidentCircumstances,
-      trafficRuleId: selectedRecord.trafficRuleId,
-      driverExplanation: selectedRecord.driverExplanation,
-      courtDTG: selectedRecord.courtDTG,
-      isDocumentTakenOff: selectedRecord.isDocumentTakenOff,
-      isClosed: selectedRecord.isClosed
-    });
+    if(isAddress){
+      let address = selectedRecord.address;
+      let sideOfAccident = selectedRecord.sideOfAccident;
+        
+      this.DataForm.setValue({
+        serialNumber: selectedRecord.serialNumber,
+        inspectorId: selectedRecord.inspectorId,
+        registrationDateTime: selectedRecord.registrationDateTime,
+        address: {
+          city: address.city,
+          district: address.district,
+          street: address.street,
+          crossStreet: address.crossStreet,
+          coordinatesOfLatitude: address.coordinatesOfLatitude,
+          coordinatesOfLongitude: address.coordinatesOfLongitude,
+          isInCity: address.isInCity,
+          isIntersection: address.isIntersection,
+        },
+        sideOfAccident: {
+          email: sideOfAccident.email,
+          transportId: sideOfAccident.transportId,
+          driverLicenseSerial: sideOfAccident.driverLicenseSerial,
+        },
+        accidentCircumstances: selectedRecord.accidentCircumstances,
+        trafficRuleId: selectedRecord.trafficRuleId,
+        driverExplanation: selectedRecord.driverExplanation,
+        courtDTG: selectedRecord.courtDTG,
+        isDocumentTakenOff: selectedRecord.isDocumentTakenOff,
+        isClosed: selectedRecord.isClosed
+      });
+    }
 
     this.transportService.getTransportById(this.DataForm.value.sideOfAccident.transportId)
     .subscribe((data: Transport)=>{
-        this.transportForm.setValue({
-          carPlate: data.carPlate,
-          color: data.color,
-          model: data.model,
-          producedBy: data.producedBy,
-          id: data.id,
-          yearOfProduction: data.yearOfProduction,
-          insuaranceNumber:{
-            companyName: data.insuaranceNumber.companyName,
-          }
-        })},
-        error => { }
+      this.transportForm.setValue({
+        carPlate: data.carPlate,
+        color: data.color,
+        model: data.model,
+        producedBy: data.producedBy,
+        id: data.id,
+        yearOfProduction: data.yearOfProduction,
+        insuaranceNumber:{
+          companyName: data.insuaranceNumber.companyName,
+        }
+      })},
+      error => { }
     );
   }
 
@@ -217,8 +226,6 @@ export class ViewCAComponent implements OnInit {
   }
 
   handleCancel(): void {
-    this.transportForm.reset();
-    this.DataForm.reset();
     this.isVisibleEvent.emit(false);
   }
 }
