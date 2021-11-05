@@ -20,7 +20,10 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
-import { NzListModule } from 'ng-zorro-antd/list'
+import { NzListModule } from 'ng-zorro-antd/list';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzImageModule } from 'ng-zorro-antd/image';
 
 @NgModule({
   exports: [
@@ -45,7 +48,10 @@ import { NzListModule } from 'ng-zorro-antd/list'
     NzAvatarModule,
     NzProgressModule,
     NzCollapseModule,
-    NzListModule
+    NzListModule,
+    NzUploadModule,
+    NzMessageModule,
+    NzImageModule
   ]
 })
 export class DemoNgZorroAntdModule {}

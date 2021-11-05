@@ -48,6 +48,8 @@ import { WitnessesComponent } from './components/euro-protocol/witnesses/witness
 import { InspectorListOfCarAccidentsComponent } from './components/inspector/inspector-list-of-car-accidents/inspector-list-of-car-accidents.component';
 import { ChangePasswordModalComponent } from './components/personal-cabinet/change-password-modal/change-password-modal.component';
 import { ViewCAComponent } from './components/inspector/view-ca-modal/view-ca.component';
+import { FileUploadComponent } from './components/file/file-upload/file-upload.component';
+import { FileViewComponent } from './components/file/file-view/file-view.component';
 import { CarAccidentsListComponent } from './components/admin/car-accidents-list/car-accidents-list.component';
 
 const antDesignIcons = AllIcons as {
@@ -90,6 +92,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     InspectorListOfCarAccidentsComponent,
     ChangePasswordModalComponent,
     ViewCAComponent,
+    FileUploadComponent,
+    FileViewComponent,
     CarAccidentsListComponent
   ],
   imports: [
