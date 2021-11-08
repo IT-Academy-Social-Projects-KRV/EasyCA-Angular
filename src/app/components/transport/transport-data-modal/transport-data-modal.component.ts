@@ -85,9 +85,18 @@ export class TransportDataModalComponent implements OnInit {
   @Output() isVisibleEvent = new EventEmitter<boolean>();
   @Output() AddedTransport = new EventEmitter<Transport>();
   @Output() EditedTransport = new EventEmitter<Transport>();
+  @Output() DeletedTransport = new EventEmitter<Transport>();
   @Output() setsetTransport = new EventEmitter<Transport>();
 
   handleCancel(): void {
     this.isVisibleEvent.emit(false);
   } 
+
+  confirm():void{
+    this.DeletedTransport.emit(this.transportForm.value);
+  }
+
+  cancel():void{
+    this.toastr.warning("You must to confirm delete car!");
+  }
 }

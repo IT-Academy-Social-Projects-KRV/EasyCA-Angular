@@ -21,6 +21,7 @@ import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzListModule } from 'ng-zorro-antd/list'
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 
 @NgModule({
   exports: [
@@ -45,7 +46,8 @@ import { NzListModule } from 'ng-zorro-antd/list'
     NzAvatarModule,
     NzProgressModule,
     NzCollapseModule,
-    NzListModule
+    NzListModule,
+    NzPopconfirmModule
   ]
 })
 export class DemoNgZorroAntdModule {}

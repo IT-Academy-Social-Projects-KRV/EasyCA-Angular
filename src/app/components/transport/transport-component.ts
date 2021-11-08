@@ -74,13 +74,12 @@ export class TransportComponent implements OnInit {
     this.currentTransport = car;
   }
 
-  onDelete(id:string){    
-    this.transportService.deleteTransport(id)
+  onDelete($event: Transport){    
+    this.transportService.deleteTransport($event.id)
     .subscribe(
       res=>{      
-        console.log(id);  
         this.toastr.error("Car Deleted ", "Congratulation");
-        let index = this.list.findIndex(x => x.id == id);
+        let index = this.list.findIndex(x => x.id == $event.id);
         this.list.splice(index, 1);
         this.isVisible = false;
       },

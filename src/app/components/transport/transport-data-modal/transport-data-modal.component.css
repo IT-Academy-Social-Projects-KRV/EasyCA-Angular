@@ -1,0 +1,43 @@
+[nz-button] {
+    margin-right: 8px;
+    margin-bottom: 12px;
+  }
+nz-button-group [nz-button] {
+    margin-right: 0;
+  }
+  [nz-input]{
+    font-size: 20px;
+    height:50px
+}
+.propertyName{
+  letter-spacing: .07272727em;
+  font-family: Roboto,Arial,sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+  word-break: break-word;
+  word-wrap: break-word;
+  color: #5f6368; 
+}
+.mainName{
+  letter-spacing: .00625em;
+  font-family: Roboto,Arial,sans-serif;
+  font-size: 18px;
+  hyphens: auto;
+  word-break: break-word;
+  word-wrap: break-word;
+  color: #202124;
+}
+
+.btnDel{
+    border-radius: 20px;
+    height: 32px;
+    background-color: red;
+    color: white;
+    outline: none;
+    border: none;
+    width: 90px;
+}
+
+.btnDel:hover{
+    background-color: rgb(255, 60, 60);
+}

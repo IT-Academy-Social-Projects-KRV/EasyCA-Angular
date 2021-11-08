@@ -10,7 +10,6 @@
                     <th class="propertyName">Car Model</th>
                     <th class="propertyName">Plate</th>
                     <th class="propertyName">Color</th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -22,7 +21,6 @@
                         <a>{{car.color}}</a>
                         <nz-divider nzType="vertical"></nz-divider>
                     </td>
-                    <td><i nz-icon nzType="delete" nzTheme="twotone" (click)="onDelete(car.id)"></i> </td>
                 </tr>
             </tbody>
         </nz-table>
@@ -40,5 +38,6 @@
 (isVisibleEvent)="handleCancel($event)" 
 [setAdd]="this.isAdd" 
 (AddedTransport)="addCar($event)" 
-(EditedTransport)="updateCar($event)">
+(EditedTransport)="updateCar($event)"
+(DeletedTransport)="onDelete($event)">
 </app-transport-data-modal>

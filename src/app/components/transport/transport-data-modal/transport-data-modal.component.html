@@ -90,6 +90,13 @@
             <div nz-row>
                 <button nz-button nzShape="round" [nzType]="'primary'"
                     type="submit" [disabled]="transportForm.invalid">SUBMIT</button>
+                    <a nz-popconfirm
+                       nzPopconfirmTitle="Are you sure delete this car?"
+                       nzPopconfirmPlacement="bottom"
+                       (nzOnConfirm)="confirm()"
+                       (nzOnCancel)="cancel()">
+                       <input type="button" class="btnDel" value="DELETE" nz-button nzShape="round"/>
+                    </a>
             </div>
         </form>
     </ng-template>
