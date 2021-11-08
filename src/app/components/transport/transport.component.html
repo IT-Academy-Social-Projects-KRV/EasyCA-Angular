@@ -14,12 +14,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="mainName" (click)="showModal(false)" (click)="setCurrentTransport(car.id)" *ngFor="let car of list">
+                <tr class="mainName" (click)="showModal(false)" (click)="setCurrentTransport(car)" *ngFor="let car of list">
                     <td>{{car.producedBy}}</td>
                     <td>{{car.model}}</td>
                     <td>{{car.carPlate}}</td>
                     <td>
-                        <a> {{ car.color}}</a>
+                        <a>{{car.color}}</a>
                         <nz-divider nzType="vertical"></nz-divider>
                     </td>
                     <td><i nz-icon nzType="delete" nzTheme="twotone" (click)="onDelete(car.id)"></i> </td>
@@ -40,4 +40,5 @@
 (isVisibleEvent)="handleCancel($event)" 
 [setAdd]="this.isAdd" 
 (AddedTransport)="addCar($event)" 
-(EditedTransport)="updateCar($event)"></app-transport-data-modal>
+(EditedTransport)="updateCar($event)">
+</app-transport-data-modal>

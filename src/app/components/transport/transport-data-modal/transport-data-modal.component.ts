@@ -50,14 +50,18 @@ export class TransportDataModalComponent implements OnInit {
           serialNumber: selectedRecord.insuaranceNumber.serialNumber
         }
       });      
-    }
+  }
 
   resetForm(TransportForm: FormGroup) {
     TransportForm.reset();
   }
 
   onSubmit() {
-    this.AddedTransport.emit(this.transportForm.value);
+    if(this.isAdd){
+      this.AddedTransport.emit(this.transportForm.value);
+    }
+    else this.EditedTransport.emit(this.transportForm.value);
+    this.transportForm.reset();
   }
 
   @Input() set setVisible(isVisible: boolean){
@@ -66,11 +70,12 @@ export class TransportDataModalComponent implements OnInit {
 
   @Input() set setAdd(isAdd: boolean){
     this.isAdd = isAdd;
-    this.resetForm(this.transportForm);
+    if(isAdd){
+      this.resetForm(this.transportForm);
+    }
   }
 
   @Input() set setTransport(transport: Transport){
-    console.log(transport);
     this.transport = transport;
     if(this.transport && !this.isAdd){
       this.populateForm(this.transport);

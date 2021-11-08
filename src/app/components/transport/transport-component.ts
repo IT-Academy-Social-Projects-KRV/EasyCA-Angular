@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Transport } from 'src/app/models/Transport';
 import { TransportService } from 'src/app/services/transport.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder } from "@angular/forms";
 import { throwError } from 'rxjs';
+import { Insuarance } from 'src/app/models/Insuarance';
 
 @Component({
   selector: 'app-transport',
@@ -16,11 +17,26 @@ export class TransportComponent implements OnInit {
   public isVisible = false;  
   public errorMessage = ''; 
   public isAdd = false; 
-  public currentTransport: Transport; 
+
+  public currentTransport: Transport = {
+    id: <string>{},
+    producedBy: <string>{},
+    model: <string>{},
+    categoryName: <string>{},
+    vinCode: <string>{},
+    carPlate: <string>{},
+    color: <string>{},
+    yearOfProduction: <number>{},
+    insuaranceNumber: <Insuarance>{},
+  }
   
   constructor(public transportService:TransportService, private toastr:ToastrService,public fb: FormBuilder ) { }
   
   ngOnInit(){    
+    this.getAllTransport();
+  }  
+
+  getAllTransport(){
     this.transportService.getAllTransports().subscribe(
       (res: any) => {
         this.list = res as Transport[];        
@@ -28,14 +44,14 @@ export class TransportComponent implements OnInit {
       err => {
         throwError(err);
     });
-  }  
+  }
 
   addCar($event: Transport)  {
     this.transportService.postTransport($event).subscribe(
       res =>{ 
-        this.toastr.success("Transport added","congratulation");
+        this.toastr.success("Transport added","Congratulation");
         this.isVisible = false;
-        this.list.push($event);
+        this.getAllTransport();
       },
       err => {
         throwError(err);
@@ -45,17 +61,17 @@ export class TransportComponent implements OnInit {
   updateCar($event: Transport){
   this.transportService.putTransport($event).subscribe(
     res =>{     
-      this.toastr.info("Transport update","congratulation")
+      this.toastr.success("Transport update","Congratulation")
       this.isVisible = false;
+      this.getAllTransport();
     },
     err => {
       throwError(err);
     });
   }  
 
-  setCurrentTransport(id:string){
-    let index = this.list.findIndex(x => x.id == id);
-    this.currentTransport = this.list[index];
+  setCurrentTransport(car:Transport){
+    this.currentTransport = car;
   }
 
   onDelete(id:string){    
