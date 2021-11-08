@@ -1,0 +1,70 @@
+.euro_protocol_form{
+   min-height: 100%;
+   min-width: 100%;
+   margin: 0 auto;
+}
+
+.euro_header{
+   padding-bottom: 2%;
+}
+
+.euro_content{
+   margin-left: 5%;
+}
+
+.information{
+   display: flex;
+   justify-content: space-around;   
+}
+
+.information_col{
+   width: 100%;
+}
+
+.euro_footer_next{
+   display: flex;
+   justify-content: space-between;
+}
+
+.euro_progres{
+   padding: 1% 0;
+}
+
+.ant-form-item{
+   margin-left: 15%;
+   width: 70%;
+}
+
+.circumstance{
+   display: flex;
+   width: 100%;  
+   border-bottom: 1px solid #bdc0c0;
+}
+
+.ant-form input[type=checkbox] {
+   line-height: normal;
+   margin-right: 20px;
+}
+
+h2{
+   font-size: 26px;
+}
+
+h4{
+   font-size: 16px;
+}
+
+h5{
+   margin-left: 3%;
+   font-size: 12px;
+}
+
+h6{
+   margin-left: 15%;
+   font-size: 14px;
+}
+
+p{
+   color: rgba(0,0,0,.85);
+   font-weight: 500;
+}

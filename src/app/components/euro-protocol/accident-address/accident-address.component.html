@@ -1,0 +1,84 @@
+<div class="euro_protocol_form">
+   <div class="euro_header">
+     <h2>The address of the accident</h2>
+   </div>
+   <div class="euro_content">
+     <div>
+       <form nz-form [formGroup]="cityAddressForm">
+         <nz-form-item>
+           <div>
+             <input type="checkbox" name="isInCity" (change)="onChange($event)"/> 
+             <label for="isInCity">
+               The accident occurred in the city
+             </label>
+            </div>
+         </nz-form-item>
+         <div [hidden]="!isInCity">  
+           <nz-form-item>
+             <nz-form-label [nzSpan]="24">City</nz-form-label>
+             <nz-form-control [nzSpan]="10">
+               <input nz-input placeholder="Please input a city name" formControlName="city" required name="city" />
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label [nzSpan]="24">District</nz-form-label>
+              <nz-form-control [nzSpan]="10">
+                <input nz-input placeholder="Please input a district name" formControlName="district" required name="district" />
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label [nzSpan]="24">Street</nz-form-label>
+              <nz-form-control [nzSpan]="10">
+                <input nz-input placeholder="Please input a street name" formControlName="street" required name="street" />
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label [nzSpan]="24">Cross Street</nz-form-label>
+              <nz-form-control [nzSpan]="10">
+                <input nz-input placeholder="Please input a cross street" formControlName="CrossStreet" required name="crossStreet" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          </form>
+          <div [hidden]="isInCity">
+           <form [formGroup]="outsideAddressForm">
+           <h6>
+             If the accident occurred outside the city, enter the coordinates of the accident
+            </h6>
+            <nz-form-item>
+           <nz-form-label [nzSpan]="24">Latitude</nz-form-label>
+           <nz-form-control [nzSpan]="10">
+             <input nz-input placeholder="Please input a coordinates of latitude" formControlName="coordinatesOfLatitude" required name="coordinatesOfLatitude" />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="24">Longitude</nz-form-label>
+            <nz-form-control [nzSpan]="10">
+              <input nz-input placeholder="Please input a coordinates of longitude" formControlName="coordinatesOfLongitude" required name="coordinatesOfLongitude" />
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </div>
+       <form [formGroup]="damageForm">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="24">Damage</nz-form-label>
+          <nz-form-control [nzSpan]="10">
+            <input nz-input placeholder="Please input a damage" formControlName="damage" required name="damage" />
+          </nz-form-control>
+        </nz-form-item>
+       </form>
+     </div>
+   </div>
+   <div class="euro_progres">
+     <nz-progress [nzPercent]="44" [nzShowInfo]="false" nzStatus="active" ></nz-progress>
+   </div>
+   <div class="euro_footer_next">
+     <button nz-button nzType="primary" [nzSize]="'large'" (click)="changePage(2)" >
+       <i nz-icon nzType="left"></i> Backward
+     </button>
+     <button nz-button nzType="primary" *ngIf="(!isInCity && !outsideAddressForm.invalid || isInCity && !cityAddressForm.invalid)&& !damageForm.invalid" [nzSize]="'large'" (click)="changePage(4)">
+       Forward
+       <i nz-icon nzType="right"></i>
+     </button>
+   </div>
+ </div>

@@ -1,0 +1,7 @@
+<div>
+    <nz-image-group class="image-group" *ngFor="let image of images">
+        <div class="gallery">
+            <img nz-image nzSrc="data:{{image.contentType}};base64,{{image.file}}" width="150" height="150">
+        </div>
+    </nz-image-group>
+</div>

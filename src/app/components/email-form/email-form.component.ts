@@ -10,23 +10,22 @@ import { AccountService } from 'src/app/services/account.service';
 export class EmailFormComponent implements OnInit {
   errorMessage = '';
 
-  constructor(private accountService: AccountService,private route: ActivatedRoute,private router:Router) { }
+  constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-   this.confirmEmail();
+    this.confirmEmail();
   }
 
-  confirmEmail=()=>
-  {
+  confirmEmail = () => {
     const token = this.route.snapshot.queryParams['token'];
     const email = this.route.snapshot.queryParams['email'];
-     
-    this.accountService.confirmEmail('Auth/ConfirmEmail',token,email) 
-    .subscribe(() => {
-      this.router.navigate(['/emailVerify']);
-    },
-    err => {
-      this.errorMessage = err.error.message;
-    });
+
+    this.accountService.confirmEmail('Auth/ConfirmEmail', token, email)
+      .subscribe(() => {
+        this.router.navigate(['/emailVerify']);
+      },
+        err => {
+          this.errorMessage = err;
+        });
   }
 }
