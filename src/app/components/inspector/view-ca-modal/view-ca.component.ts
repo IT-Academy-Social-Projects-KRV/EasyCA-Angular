@@ -115,10 +115,6 @@ export class ViewCAComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  showModal() {
-    this.isVisible = true;
-  }
-
   populateForm(selectedRecord: CarAccident) {
     let isAddress = Object.keys(selectedRecord.address).length != 0 ? true : false;
 
@@ -222,7 +218,7 @@ export class ViewCAComponent implements OnInit {
       this.protocolCAEdited.witnesses = this.witnessesList;
       this.protocolCAEditedEvent.emit(this.protocolCAEdited);
     } 
-    this.isVisible = false;
+    this.isVisibleEvent.emit(false);
   }
 
   handleCancel(): void {

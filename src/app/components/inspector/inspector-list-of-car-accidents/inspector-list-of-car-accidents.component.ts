@@ -81,8 +81,9 @@ export class InspectorListOfCarAccidentsComponent implements OnInit {
           this.accidentList = data;
         }
       },
-      error => { }
-      )
+      error => { 
+        this.toastr.warning(error, "Warning");
+      })
   }
 
   showModal(isAdd: boolean) {
