@@ -61,7 +61,6 @@ export class TransportDataModalComponent implements OnInit {
       this.AddedTransport.emit(this.transportForm.value);
     }
     else this.EditedTransport.emit(this.transportForm.value);
-    this.transportForm.reset();
   }
 
   @Input() set setVisible(isVisible: boolean){
@@ -86,7 +85,6 @@ export class TransportDataModalComponent implements OnInit {
   @Output() AddedTransport = new EventEmitter<Transport>();
   @Output() EditedTransport = new EventEmitter<Transport>();
   @Output() DeletedTransport = new EventEmitter<Transport>();
-  @Output() setsetTransport = new EventEmitter<Transport>();
 
   handleCancel(): void {
     this.isVisibleEvent.emit(false);

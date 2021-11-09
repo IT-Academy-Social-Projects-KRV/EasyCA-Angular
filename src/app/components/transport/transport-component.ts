@@ -3,7 +3,6 @@ import { Transport } from 'src/app/models/Transport';
 import { TransportService } from 'src/app/services/transport.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder } from "@angular/forms";
-import { throwError } from 'rxjs';
 import { Insuarance } from 'src/app/models/Insuarance';
 
 @Component({
@@ -42,8 +41,8 @@ export class TransportComponent implements OnInit {
         this.list = res as Transport[];        
       },
       err => {
-        throwError(err);
-    });
+        this.toastr.warning(err, "Error");
+      });
   }
 
   addCar($event: Transport)  {
@@ -54,7 +53,7 @@ export class TransportComponent implements OnInit {
         this.getAllTransport();
       },
       err => {
-        throwError(err);
+        this.toastr.warning(err, "Error");
       });
   }
 
@@ -66,7 +65,7 @@ export class TransportComponent implements OnInit {
       this.getAllTransport();
     },
     err => {
-      throwError(err);
+      this.toastr.warning(err, "Error");
     });
   }  
 
@@ -84,7 +83,7 @@ export class TransportComponent implements OnInit {
         this.isVisible = false;
       },
       err=>{
-        throwError(err);
+        this.toastr.warning(err, "Error");
       }
     )
   }
