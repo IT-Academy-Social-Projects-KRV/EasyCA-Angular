@@ -37,6 +37,7 @@ import { PersonalDataModalComponent } from './components/personal-cabinet/person
 import { BasicInfoComponent } from './components/personal-cabinet/basic-info/basic-info.component';
 import { AddressComponent } from './components/personal-cabinet/address/address.component';
 import { DriverLicenseComponent } from './components/personal-cabinet/driver-license/driver-license.component';
+import { TransportDataModalComponent } from './components/transport/transport-data-modal/transport-data-modal.component';
 import { TermsComponent } from './components/euro-protocol/terms/terms.component';
 import { AccidentAddressComponent } from './components/euro-protocol/accident-address/accident-address.component';
 import { CheckInsuranceComponent } from './components/euro-protocol/check-insurance/check-insurance.component';
@@ -81,6 +82,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     BasicInfoComponent,
     AddressComponent,
     DriverLicenseComponent,
+    TransportDataModalComponent,
     TermsComponent,
     AccidentAddressComponent,
     CheckInsuranceComponent,

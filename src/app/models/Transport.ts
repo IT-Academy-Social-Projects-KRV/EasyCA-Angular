@@ -6,7 +6,6 @@ export interface Transport{
     categoryName: string;
     vinCode: string;
     carPlate: string;
-    userId:string;
     color: string;
     yearOfProduction: number;
     insuaranceNumber: Insuarance;

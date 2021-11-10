@@ -27,3 +27,17 @@ nz-button-group [nz-button] {
   word-wrap: break-word;
   color: #202124;
 }
+
+.btnDel{
+    border-radius: 20px;
+    height: 32px;
+    background-color: red;
+    color: white;
+    outline: none;
+    border: none;
+    width: 90px;
+}
+
+.btnDel:hover{
+    background-color: rgb(255, 60, 60);
+}
