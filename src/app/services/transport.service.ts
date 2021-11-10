@@ -19,8 +19,8 @@ export class TransportService {
     return this.http.get<Transport>(`${HOST_URL}Transport/GetTransport?transportId=${id}`);
   }
 
-  postTransport(){
-    return this.http.post<any>(`${HOST_URL}Transport/AddTransport`, this.formData, httpOptions);
+  postTransport(transport: Transport){
+    return this.http.post<any>(`${HOST_URL}Transport/AddTransport`, transport, httpOptions);
   }
   
   putTransport(transport: Transport){

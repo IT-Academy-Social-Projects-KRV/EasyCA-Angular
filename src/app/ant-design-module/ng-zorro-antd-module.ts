@@ -20,9 +20,8 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
-import { NzListModule } from 'ng-zorro-antd/list'
-import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzListModule } from 'ng-zorro-antd/list';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzImageModule } from 'ng-zorro-antd/image';
@@ -51,7 +50,7 @@ import { NzImageModule } from 'ng-zorro-antd/image';
     NzProgressModule,
     NzCollapseModule,
     NzListModule,
-    NzPopconfirmModule
+    NzPopconfirmModule,
     NzUploadModule,
     NzMessageModule,
     NzImageModule

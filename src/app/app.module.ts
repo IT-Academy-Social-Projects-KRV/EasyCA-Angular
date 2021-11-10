@@ -82,7 +82,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     BasicInfoComponent,
     AddressComponent,
     DriverLicenseComponent,
-    TransportDataModalComponent
+    TransportDataModalComponent,
     TermsComponent,
     AccidentAddressComponent,
     CheckInsuranceComponent,

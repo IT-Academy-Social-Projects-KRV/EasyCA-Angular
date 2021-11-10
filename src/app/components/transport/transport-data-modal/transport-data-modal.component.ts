@@ -91,6 +91,7 @@ export class TransportDataModalComponent implements OnInit {
   } 
 
   confirm():void{
+    this.transportForm.value.id = this.transport.id;
     this.DeletedTransport.emit(this.transportForm.value);
   }
 

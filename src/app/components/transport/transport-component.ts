@@ -50,7 +50,7 @@ export class TransportComponent implements OnInit {
   getAllTransport(){
     this.transportService.getAllTransports().subscribe(
       (res: any) => {
-        this.list = res as Transport[];        
+        this.list = res as Transport[];    
       },
       err => {
         this.toastr.warning(err, "Error");
@@ -92,7 +92,7 @@ export class TransportComponent implements OnInit {
     this.transportService.deleteTransport($event.id)
     .subscribe(
       res=>{      
-        this.toastr.error("Car Deleted ", "Congratulation");
+        this.toastr.success("Car Deleted ", "Congratulation");
         let index = this.list.findIndex(x => x.id == $event.id);
         this.list.splice(index, 1);
         this.isVisible = false;
