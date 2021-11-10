@@ -26,4 +26,8 @@ export class CAService {
   addCAProtocol(protocol: CarAccident){
     return this.http.post<any>(`${HOST_URL}CarAccident/CreateCA`, protocol, httpOptions);
   }
+
+  getAllCAByDriverLicenseId(driverLicenseId: string): Observable<CarAccident[]> {
+    return this.http.get<CarAccident[]>(`${HOST_URL}CarAccident/GetAllPersonsCAByInspector?personDriverId=${driverLicenseId}`);
+  }
 }

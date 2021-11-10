@@ -52,6 +52,7 @@ import { ViewCAComponent } from './components/inspector/view-ca-modal/view-ca.co
 import { FileUploadComponent } from './components/file/file-upload/file-upload.component';
 import { FileViewComponent } from './components/file/file-view/file-view.component';
 import { CarAccidentsListComponent } from './components/admin/car-accidents-list/car-accidents-list.component';
+import { InspectorListOfDriverCaComponent } from './components/inspector/inspector-list-of-driver-ca/inspector-list-of-driver-ca.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -96,7 +97,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     ViewCAComponent,
     FileUploadComponent,
     FileViewComponent,
-    CarAccidentsListComponent
+    CarAccidentsListComponent,
+    InspectorListOfDriverCaComponent
   ],
   imports: [
     BrowserModule,
