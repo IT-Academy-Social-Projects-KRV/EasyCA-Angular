@@ -18,6 +18,7 @@ export class PersonalDataModalComponent implements OnInit {
   @Input() set setData(data: Data) {
     this.data = data;
   }
+
   @Input() set setIsAdd(add: boolean) {
     this.isAdd = add;
   }
@@ -34,11 +35,9 @@ export class PersonalDataModalComponent implements OnInit {
   @Output() submittedEvent = new EventEmitter<Data>();
   @Output() addedEvent = new EventEmitter<Data>();
 
-
   constructor(public fb: FormBuilder, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-
   }
 
   public DataForm = this.fb.group({
@@ -155,7 +154,7 @@ export class PersonalDataModalComponent implements OnInit {
             },
             userCars: userCars
           }
-        });
+      });
     }
   }
 }

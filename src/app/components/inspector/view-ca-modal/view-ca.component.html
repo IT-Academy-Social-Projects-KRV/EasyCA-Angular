@@ -11,59 +11,60 @@
     <ng-template #modalContent>
       <form [formGroup]="DataForm">
         <div>
-          <div nz-row nzGutter="16">
+          <div *ngIf="!isAdd" nz-row nzGutter="16">
               <div nz-col nzSpan="6">
                 <label class="title">Serial Number:</label>
-                <input nz-input placeholder="Number of protocol" formControlName="serialNumber"/>
+                <input nz-input placeholder="Number of protocol" formControlName="serialNumber" readonly/>
               </div>
               <div nz-col nzSpan="6">
                 <label class="title">Date of accident:</label>
-                <input nz-input id="registrationDate" formControlName="registrationDateTime" placeholder="Registration date of protocol" />
+                <input nz-input id="registrationDate" formControlName="registrationDateTime" placeholder="Registration date of protocol" readonly/>
               </div>
               <div nz-col nzSpan="6" [formGroup]="inspectorEmail">
                 <label class="title">Inspector:</label>
-                <input nz-input formControlName="email" placeholder="Inspector name" />
+                <input nz-input formControlName="email" placeholder="Inspector name" readonly/>
               </div>
               <div nz-col nzSpan="3">
                 <div class="taCenter">
                   <label class="title">Doc:</label>
-                  <input nz-input formControlName="isDocumentTakenOff"/>
+                  <input nz-input formControlName="isDocumentTakenOff" required/>
                 </div>
               </div>
               <div nz-col nzSpan="3">
                 <div class="taCenter">
                   <label class="title">Status:</label>
-                  <input nz-input formControlName="isClosed"/>
+                  <input nz-input formControlName="isClosed" readonly/>
                 </div>
               </div>
           </div>
-            <nz-divider></nz-divider>
+            <nz-divider *ngIf="!isAdd"></nz-divider>
             <nz-collapse nzAccordion>
               <nz-collapse-panel nzHeader="Participant" class="childTitle" formGroupName="sideOfAccident">
-                <div >
-                  <label class="inputLabel">Name:</label>
-                  <input nz-input formControlName="email" placeholder="Side name" />
+                <div>
+                  <label *ngIf="!isAdd" class="inputLabel">Name:</label>
+                  <label *ngIf="isAdd" class="inputLabel">Email:</label>
+                  <input nz-input formControlName="email" placeholder="Side email"/>
                 </div>
                 <br>
                 <nz-collapse nzAccordion>
-                  <nz-collapse-panel nzHeader="Transport" class="inputLabel">
+                  <nz-collapse-panel *ngIf="!isAdd" nzHeader="Transport" class="inputLabel">
                         <form [formGroup]="transportForm">
                         <div>
                           <label class="inputLabel">Model:</label>
-                          <input nz-input  formControlName="producedBy" placeholder="Transport model"/>
+                          <input nz-input readonly formControlName="producedBy" placeholder="Transport model"/>
                         </div>
                         <br>
                         <nz-row nzGutter="16">
                           <nz-col nzSpan="8">
                             <div>
                               <label class="inputLabel">Car Plate:</label>
-                              <input nz-input placeholder="Transport car plate" formControlName="carPlate"/>
+                              <input nz-input readonly placeholder="Transport car plate" formControlName="carPlate"/>
                             </div>
                           </nz-col>
                           <nz-col nzSpan="16">
                             <div>
                               <label class="inputLabel">Color:</label>
-                              <input nz-input placeholder="Transport color" formControlName="color"/>
+                              <input nz-input readonly placeholder="Transport color" formControlName="color"/>
                             </div>
                           </nz-col>
                         </nz-row>
@@ -72,13 +73,13 @@
                           <nz-col nzSpan="8">
                             <div>
                               <label class="inputLabel">Production Year:</label>
-                              <input nz-input placeholder="Transport production year" formControlName="yearOfProduction"/>
+                              <input nz-input readonly placeholder="Transport production year" formControlName="yearOfProduction"/>
                             </div>
                           </nz-col>
                           <nz-col nzSpan="16">
                             <div formGroupName="insuaranceNumber">
                               <label class="inputLabel">Insurance:</label>
-                              <input nz-input placeholder="Transport insurance" formControlName="companyName"/>
+                              <input nz-input readonly placeholder="Transport insurance" formControlName="companyName"/>
                             </div>
                           </nz-col>
                         </nz-row>
@@ -88,7 +89,8 @@
                     <nz-list class="listItem">
                       <form [formGroup]="DataForm">
                         <nz-list-item>
-                          <input nz-input formControlName="accidentCircumstances"/>
+                          <input *ngIf="isAdd" nz-input formControlName="accidentCircumstances"/>
+                          <input *ngIf="!isAdd" nz-input readonly formControlName="accidentCircumstances"/>
                         </nz-list-item>
                       </form>
                     </nz-list>
@@ -96,12 +98,16 @@
                 </nz-collapse>
                 <br>
                 <nz-row nzGutter=16>
-                  <nz-col nzSpan=8>
-                    <div>
+                    <div nz-col nzSpan="12">
                       <label class="inputLabel" for="driverLicenseSerial">Driver License:</label>
                       <input nz-input formControlName="driverLicenseSerial" placeholder="Driver License" />
                     </div>
-                  </nz-col>
+                    <div *ngIf="isAdd" nz-col nzSpan="12">
+                        <form [formGroup]="transportForm">
+                        <label class="inputLabel" for="driverLicenseSerial">Transport car Plate:</label>
+                        <input nz-input formControlName="carPlate" placeholder="Car plate" />
+                      </form>
+                    </div>
                 </nz-row>
               </nz-collapse-panel>
               <nz-collapse-panel nzHeader="Address" class="childTitle" formGroupName="address">
@@ -171,10 +177,7 @@
               </nz-collapse-panel>
               <nz-collapse-panel nzHeader="More" class="childTitle" [formGroup]="DataForm">
                 <div nz-row nzGutter="12">
-                  <div nz-col nzSpan="12">
-                    <label class="inputLabel">Evidence:</label>
-                    <input nz-input formControlName="evidences" placeholder="Evidence"/>
-                  </div>
+                  <!-- place for evidences in future -->
                   <div nz-col nzSpan="12">
                     <label class="inputLabel">Driver explanation:</label>
                     <input nz-input formControlName="driverExplanation" placeholder="Driver explanation"/>
@@ -188,10 +191,16 @@
                         <input nz-input formControlName="courtDTG" placeholder="Court of DTG"/>
                       </div>
                     </nz-col>
-                    <nz-col nzSpan=16>
+                    <nz-col nzSpan=12>
                       <div>
                         <label class="inputLabel">Traffic Rule:</label>
                         <input nz-input formControlName="trafficRuleId" placeholder="Traffic Rule"/>
+                      </div>
+                    </nz-col>
+                    <nz-col nzSpan=4>
+                      <div class="taCenter">
+                        <label class="inputLabel">Doc take of:</label>
+                        <input nz-input formControlName="isDocumentTakenOff" required/>
                       </div>
                     </nz-col>
                   </nz-row>

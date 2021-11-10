@@ -36,7 +36,7 @@ export class InspectorListOfCarAccidentsComponent implements OnInit {
     isClosed: <boolean>{},
     courtDTG: <Date>{}
   };
-  
+
   constructor(private service: CAService, private toastr: ToastrService) { }
 
   editCA($event: CarAccident){
@@ -45,6 +45,19 @@ export class InspectorListOfCarAccidentsComponent implements OnInit {
       this.toastr.success("CA was updated", "Congratulations");
       let index = this.accidentList.findIndex(x=>x.serialNumber === $event.serialNumber);
       this.accidentList[index] = $event;
+      this.getAllCAByInspector();
+    },
+    err => {
+      this.toastr.warning(err, "Warning");
+    }
+    );
+  }
+
+  addCA($event: CarAccident){
+    this.service.addCAProtocol($event)
+    .subscribe((data: any) => {
+      this.toastr.success("CA was added", "Congratulations");
+      this.accidentList.push($event);
       this.getAllCAByInspector();
     },
     err => {
@@ -68,8 +81,9 @@ export class InspectorListOfCarAccidentsComponent implements OnInit {
           this.accidentList = data;
         }
       },
-      error => { }
-      )
+      error => { 
+        this.toastr.warning(error, "Warning");
+      })
   }
 
   showModal(isAdd: boolean) {
