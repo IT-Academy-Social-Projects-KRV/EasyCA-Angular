@@ -4,6 +4,8 @@ import { TransportService } from 'src/app/services/transport.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder } from "@angular/forms";
 import { Insuarance } from 'src/app/models/Insuarance';
+import { AccountService } from 'src/app/services/account.service';
+import { Data } from 'src/app/models/data';
 
 @Component({
   selector: 'app-transport',
@@ -16,6 +18,7 @@ export class TransportComponent implements OnInit {
   public isVisible = false;  
   public errorMessage = ''; 
   public isAdd = false; 
+  public personalData: Data;
 
   public currentTransport: Transport = {
     id: <string>{},
@@ -29,10 +32,19 @@ export class TransportComponent implements OnInit {
     insuaranceNumber: <Insuarance>{},
   }
   
-  constructor(public transportService:TransportService, private toastr:ToastrService,public fb: FormBuilder ) { }
+  constructor(public accountService: AccountService, public transportService:TransportService, private toastr:ToastrService,public fb: FormBuilder ) { }
   
   ngOnInit(){    
     this.getAllTransport();
+
+    this.accountService.getPersonalData()
+      .subscribe(
+        res => {
+          this.personalData = res;
+        },
+        err => {
+          this.toastr.warning("Personal data is empty", "Warning")
+        });
   }  
 
   getAllTransport(){
@@ -46,15 +58,18 @@ export class TransportComponent implements OnInit {
   }
 
   addCar($event: Transport)  {
-    this.transportService.postTransport($event).subscribe(
-      res =>{ 
-        this.toastr.success("Transport added","Congratulation");
-        this.isVisible = false;
-        this.getAllTransport();
-      },
-      err => {
-        this.toastr.warning(err, "Error");
-      });
+    if(this.personalData.personalData!=null){
+      this.transportService.postTransport($event).subscribe(
+        res =>{ 
+          this.toastr.success("Transport added","Congratulation");
+          this.isVisible = false;
+          this.getAllTransport();
+        },
+        err => {
+          this.toastr.warning(err, "Error");
+        });
+    }
+    else this.toastr.warning("At first you must create a personal data, and after you can add transport","Warning");
   }
 
   updateCar($event: Transport){
