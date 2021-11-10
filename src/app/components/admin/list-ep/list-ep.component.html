@@ -1,0 +1,32 @@
+<div>
+    <div>
+        <h1>List of Euro Protocols</h1>
+    </div>
+    <div>
+        <nz-table #basicTable [nzData]="list" [nzPageSize]="5">
+            <thead>
+                <tr class="propertyName">
+                    <th>SERIAL NUMBER</th>
+                    <th>REGISTRATION DATE</th>
+                    <th>ADDRESS OF ACCIDENT</th>
+                    <th>PROTOCOL STATUS</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="mainName" *ngFor="let ep of basicTable.data"> 
+                    <td>{{ep.serialNumber}}</td>
+                    <td >{{ep.registrationDateTime | date:'MMMM d, y, H:mm'}}</td>
+                    <td>
+                        <div *ngIf="ep.address.isInCity === true; then thenBlock else elseBlock"></div>
+                        <ng-template #thenBlock>{{ep.address.city}}, {{ep.address.street}}</ng-template>
+                        <ng-template #elseBlock>Out of city</ng-template>
+                    </td>
+                    <td *ngIf="ep.isClosed === true">Closed</td>
+                    <td *ngIf="ep.isClosed === false">Waiting for second side</td>
+                </tr>
+            </tbody>
+        </nz-table>
+        <br>
+    </div>
+</div>
