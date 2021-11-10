@@ -23,6 +23,7 @@ import { ListInspectors } from './components/list-inspector/list-inspector.compo
 import { InspectorListOfCarAccidentsComponent } from './components/inspector/inspector-list-of-car-accidents/inspector-list-of-car-accidents.component';
 import { ViewCAComponent } from './components/inspector/view-ca-modal/view-ca.component';
 import { CarAccidentsListComponent } from './components/admin/car-accidents-list/car-accidents-list.component';
+import { InspectorListOfDriverCaComponent } from './components/inspector/inspector-list-of-driver-ca/inspector-list-of-driver-ca.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -48,6 +49,7 @@ const routes: Routes = [
   { path: 'accidentAddress', component: AccidentAddressComponent},
   { path: 'listOfInspectors', component: ListInspectors },
   { path: 'inspector/list-of-ca', component: InspectorListOfCarAccidentsComponent },
+  { path: 'inspector/list-of-driver-ca', component: InspectorListOfDriverCaComponent },
   { path: 'viewCA', component: ViewCAComponent },
   { path: 'listOfCa', component: CarAccidentsListComponent }
 ];

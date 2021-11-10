@@ -36,7 +36,12 @@
                 </nz-dropdown-menu>
             </li>
             <li nz-menu-item *ngIf="this.accountService.userRole ==='inspector'">
-                <button class="transp" nz-menu-item routerLink="/inspector/list-of-ca">Inspector</button>
+                <button class="transp" nz-menu-item routerLink="/inspector/list-of-ca" nz-dropdown [nzDropdownMenu]="inspectorMenu">Inspector</button>
+                <nz-dropdown-menu #inspectorMenu="nzDropdownMenu">
+                    <ul nz-menu>    
+                        <li nz-menu-item routerLink="/inspector/list-of-driver-ca">List of driver CA</li>
+                    </ul>
+                </nz-dropdown-menu>
             </li>
             <li nz-menu-item>
                 <button class="transp" nz-menu-item nz-dropdown [nzDropdownMenu]="adminMenu"  

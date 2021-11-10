@@ -1,0 +1,41 @@
+.inline label {
+    width: 200px;
+    font-size: 18px;
+    margin: 10px;
+}
+
+.inline input {
+    margin: 10px;
+}
+
+.inline button {
+    margin: 10px;
+}
+
+.inline {
+    display: flex;
+}
+
+.center{
+    text-align: center;
+  }
+
+.tableHeader {
+    letter-spacing: .07272727em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    word-break: break-word;
+    word-wrap: break-word;
+    color: #5f6368; 
+  }
+
+.tableBodyCell {
+    letter-spacing: .00625em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 18px;
+    hyphens: auto;
+    word-break: break-word;
+    word-wrap: break-word;
+    color: #202124;
+  }
