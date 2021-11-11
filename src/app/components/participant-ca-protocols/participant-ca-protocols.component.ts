@@ -17,30 +17,16 @@ export class ParticipantCAProtocolsComponent implements OnInit {
   constructor(private accountService: AccountService, private caService: CAService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.getDriverId();
+    this.getCaProtocols();
   }
 
-  getDriverId() {
-
-    this.accountService.getPersonalData().
-      subscribe((data: any) => {
-        console.log(data);
-        this.getCaProtocols(data.personalData.userDriverLicense.licenseSerialNumber);
-      },
-        err => {
-          this.toastr.warning("Please create personal data", err);
-        }
-      )
-  }
-
-  getCaProtocols(driverId: string) {
-    this.caService.getAllCAByDriverLicenseId(driverId)
+  getCaProtocols() {
+    this.caService.getAllCAForParticipant()
       .subscribe((data: any) => {
         this.accidentList = data;
 
         if (this.accidentList.length > 0) {
           this.isAccidentListEmpty = false;
-          console.log(this.accidentList);
         }
         else {
           this.toastr.warning("There are no CA protocols registered for this driver", "Warning");
