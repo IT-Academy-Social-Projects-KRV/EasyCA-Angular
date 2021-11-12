@@ -30,4 +30,8 @@ export class CAService {
   getAllCAByDriverLicenseId(driverLicenseId: string): Observable<CarAccident[]> {
     return this.http.get<CarAccident[]>(`${HOST_URL}CarAccident/GetAllPersonsCAByInspector?personDriverId=${driverLicenseId}`);
   }
+
+  getAllCAForParticipant(){
+    return this.http.get<CarAccident[]>(`${HOST_URL}CarAccident/GetAllCAProtocolsByPerson`);
+  }
 }

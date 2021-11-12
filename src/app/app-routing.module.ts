@@ -24,6 +24,7 @@ import { InspectorListOfCarAccidentsComponent } from './components/inspector/ins
 import { ViewCAComponent } from './components/inspector/view-ca-modal/view-ca.component';
 import { CarAccidentsListComponent } from './components/admin/car-accidents-list/car-accidents-list.component';
 import { InspectorListOfDriverCaComponent } from './components/inspector/inspector-list-of-driver-ca/inspector-list-of-driver-ca.component';
+import { ParticipantCAProtocolsComponent } from './components/participant-ca-protocols/participant-ca-protocols.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -51,7 +52,8 @@ const routes: Routes = [
   { path: 'inspector/list-of-ca', component: InspectorListOfCarAccidentsComponent },
   { path: 'inspector/list-of-driver-ca', component: InspectorListOfDriverCaComponent },
   { path: 'viewCA', component: ViewCAComponent },
-  { path: 'listOfCa', component: CarAccidentsListComponent }
+  { path: 'listOfCa', component: CarAccidentsListComponent },
+  { path: 'listOfCaParticipant',component:ParticipantCAProtocolsComponent}
 ];
 
 @NgModule({
