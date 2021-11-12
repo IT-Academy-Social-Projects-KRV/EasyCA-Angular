@@ -28,7 +28,7 @@ export class ViewCAComponent implements OnInit {
   @Input() set setVisible(isVisible: boolean) {
     this.isVisible = isVisible;
     
-    if(!this.isAdd){
+    if(this.isAdd){
       this.transportForm.reset();
       this.DataForm.reset();
     }
