@@ -1,0 +1,49 @@
+.title {
+    letter-spacing: .07272727em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 20px;
+    text-transform: uppercase;
+    word-break: break-word;
+    word-wrap: break-word;
+  }
+
+.childTitle {
+    letter-spacing: .07272727em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    word-break: break-word;
+    word-wrap: break-word;
+  }
+  
+.inputLabel {
+    letter-spacing: .07272727em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 15px;
+    text-transform: uppercase;
+    word-break: break-word;
+    word-wrap: break-word;
+  }
+
+p {
+  font-size: 16px;
+  height:40px;
+}
+
+.listItem {
+    letter-spacing: normal;
+    font-family: Arial;
+    font-size: 16px;
+    text-transform: none;
+    word-break: normal;
+    word-wrap: normal;
+}
+
+textarea {
+  font-size: 16px;
+  height:40px;
+}
+
+.taCenter{
+    text-align: center;
+}

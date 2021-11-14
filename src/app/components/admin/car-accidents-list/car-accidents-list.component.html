@@ -1,9 +1,9 @@
 <div>
     <div>
-        <h1>List of CA</h1>
+        <h1>List of car accidents</h1>
     </div>
     <div>
-        <nz-table #basicTable [nzData]="list" [nzPageSize]="5">
+        <nz-table #basicTable [nzData]="accidentList" [nzPageSize]="5">
             <thead>
                 <tr class="propertyName">
                     <th>SERIAL NUMBER</th>
@@ -14,19 +14,24 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="mainName" *ngFor="let ep of basicTable.data"> 
-                    <td>{{ep.serialNumber}}</td>
-                    <td >{{ep.registrationDateTime | date:'MMMM d, y, H:mm'}}</td>
+                <tr class="mainName" *ngFor="let accident of basicTable.data" (click)="showModal()"
+                    (click)="setSelectedCA(accident)">
+                    <td>{{accident.serialNumber}}</td>
+                    <td>{{accident.registrationDateTime | date:'MMMM d, y, H:mm'}}</td>
                     <td>
-                        <div *ngIf="ep.address.isInCity === true; then thenBlock else elseBlock"></div>
-                        <ng-template #thenBlock>{{ep.address.city}}, {{ep.address.street}}</ng-template>
+                        <div *ngIf="accident.address.isInCity === true; then thenBlock else elseBlock"></div>
+                        <ng-template #thenBlock>{{accident.address.city}}, {{accident.address.street}}</ng-template>
                         <ng-template #elseBlock>Out of city</ng-template>
                     </td>
-                    <td *ngIf="ep.isClosed === true">Closed</td>
-                    <td *ngIf="ep.isClosed === false">Waiting for second side</td>
+                    <td *ngIf="accident.isClosed === true">Closed</td>
+                    <td *ngIf="accident.isClosed === false">Waiting for second side</td>
+                    <td></td>
                 </tr>
             </tbody>
         </nz-table>
         <br>
     </div>
 </div>
+
+<app-admin-view-ca [setVisible]="this.isVisible" [setData]="this.selectedCA" (isVisibleEvent)="handleCancel($event)">
+</app-admin-view-ca>
