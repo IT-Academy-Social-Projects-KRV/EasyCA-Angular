@@ -7,11 +7,11 @@ import { CAService } from 'src/app/services/ca.service';
 import { TransportService } from 'src/app/services/transport.service';
 
 @Component({
-  selector: 'app-admin-view-ca',
-  templateUrl: './admin-view-ca.component.html',
-  styleUrls: ['./admin-view-ca.component.css']
+  selector: 'app-participant-view-ca',
+  templateUrl: './participant-view-ca.component.html',
+  styleUrls: ['./participant-view-ca.component.css']
 })
-export class AdminViewCAComponent implements OnInit {
+export class ParticipantViewCaComponent implements OnInit {
 
   public isVisible = false;
   public protocolCA: CarAccident;
@@ -127,7 +127,10 @@ export class AdminViewCAComponent implements OnInit {
       });
     }
 
-    this.transportService.getTransportById(this.dataForm.value.sideOfAccident.transportId)
+    let isTransportId = Object.keys(this.dataForm.value.sideOfAccident.transportId).length != 0 ? true : false;
+
+    if (isTransportId) {
+      this.transportService.getTransportById(this.dataForm.value.sideOfAccident.transportId)
       .subscribe((data: Transport) => {
         this.transportForm.setValue({
           carPlate: data.carPlate,
@@ -142,11 +145,13 @@ export class AdminViewCAComponent implements OnInit {
         })
       },
         error => { }
-      )
+      );
+    }
+
+    
   }
 
   handleCancel(): void {
     this.isVisibleEvent.emit(false);
   }
-
 }

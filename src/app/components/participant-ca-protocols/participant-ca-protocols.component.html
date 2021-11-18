@@ -14,7 +14,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="tableBodyCell" *ngFor="let accident of basicTable.data">
+                <tr class="tableBodyCell" *ngFor="let accident of basicTable.data" (click)="showModal()"
+                (click)="setSelectedCA(accident)">
                     <td>{{accident.serialNumber}}</td>
                     <td>{{accident.registrationDateTime | date:'MMMM d, y, H:mm'}}</td>
                     <td>
@@ -31,3 +32,6 @@
         <br>
     </div>
 </div>
+
+<app-participant-view-ca [setVisible]="this.isVisible" [setData]="this.selectedCA" (isVisibleEvent)="handleCancel($event)">
+</app-participant-view-ca>
