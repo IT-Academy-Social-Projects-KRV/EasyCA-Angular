@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { TokenStorageService } from './token-storage.service';
-import { HOST_URL, RESEND_CONFIRMATION_URI } from '../configs/config';
-import { RESTORE_PASSWORD_URI } from '../configs/config';
 import { User } from '../models/User';
 import { Observable } from 'rxjs';
 import { RestorePassword } from '../models/restorePassword';
@@ -12,6 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { ResendConfirmation } from '../models/resendConfirmation';
 import { PersonalData } from '../models/personalData';
 import { ChangePassword } from '../models/changePassword';
+import { AppConfigService } from './app-config.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -21,16 +20,16 @@ const httpOptions = {
 })
 
 export class AccountService {
-  constructor(private http: HttpClient, public router: Router, private tokenStorageService: TokenStorageService, private cookieService: CookieService) { }
+  constructor(private http: HttpClient, public router: Router, private tokenStorageService: TokenStorageService, private cookieService: CookieService, private configuration: AppConfigService) { }
   errorMessage = '';
 
   login(user: User) {
-    return this.http.post<any>(`${HOST_URL}Auth/Login`, user, httpOptions);
+    return this.http.post<any>(`${this.configuration.backendUrl}Auth/Login`, user, httpOptions);
   }
 
   register(user: User): Observable<any> {
-    user.clientURI = "http://localhost:4200/emailVerify";
-    return this.http.post<any>(`${HOST_URL}Auth/Register`, user, httpOptions)
+    user.clientURI = this.configuration.emailConfirmationUrl;
+    return this.http.post<any>(`${this.configuration.backendUrl}Auth/Register`, user, httpOptions)
   }
 
   get isLoggedIn(): boolean {
@@ -43,15 +42,15 @@ export class AccountService {
   }
 
   putPersonalData(data: Data) {
-    return this.http.put<any>(`${HOST_URL}Account/UpdateData`, data, httpOptions);
+    return this.http.put<any>(`${this.configuration.backendUrl}Account/UpdateData`, data, httpOptions);
   }
 
   getPersonalData() {
-    return this.http.get<any>(`${HOST_URL}Account/GetUserById`);
+    return this.http.get<any>(`${this.configuration.backendUrl}Account/GetUserById`);
   }
 
   addPersonalData(data: PersonalData) {
-    return this.http.post<any>(`${HOST_URL}Account/CreatePersonalData`, data, httpOptions);
+    return this.http.post<any>(`${this.configuration.backendUrl}Account/CreatePersonalData`, data, httpOptions);
   }
 
   logout() {
@@ -62,26 +61,24 @@ export class AccountService {
   }
 
   confirmEmail(route: string, token: string, email: string) {
-    return this.http.get<any>(`${HOST_URL}${route}/${token}/${email}`);
+    return this.http.get<any>(`${this.configuration.backendUrl}${route}/${token}/${email}`);
   }
 
   forgotPassword(data: RestorePassword) {
-    console.log(data);
-    data.passwordURI = RESTORE_PASSWORD_URI;
-    return this.http.post<any>(`${HOST_URL}Auth/ForgotPassword`, data, httpOptions);
+    data.passwordURI = this.configuration.restorePasswordUrl;
+    return this.http.post<any>(`${this.configuration.backendUrl}Auth/ForgotPassword`, data, httpOptions);
   }
 
   restorePassword(route: string, token: string, email: string, password: string) {
-    return this.http.get<any>(`${HOST_URL}${route}/${password}/${token}/${email}`);
+    return this.http.get<any>(`${this.configuration.backendUrl}${route}/${password}/${token}/${email}`);
   }
 
   resendConfirmation(data: ResendConfirmation) {
-    data.resendConfirmationURI = RESEND_CONFIRMATION_URI;
-    return this.http.post<any>(`${HOST_URL}Auth/ResendConfirmation`, data, httpOptions);
+    data.resendConfirmationURI = this.configuration.emailConfirmationUrl;
+    return this.http.post<any>(`${this.configuration.backendUrl}Auth/ResendConfirmation`, data, httpOptions);
   }
   
-  changePassword(data:ChangePassword)
-  {
-    return this.http.post<any>(`${HOST_URL}Account/ChangePassword`,data,httpOptions);
+  changePassword(data:ChangePassword) {
+    return this.http.post<any>(`${this.configuration.backendUrl}Account/ChangePassword`,data,httpOptions);
   }
 }

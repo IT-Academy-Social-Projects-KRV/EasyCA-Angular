@@ -55,6 +55,8 @@ import { CarAccidentsListComponent } from './components/admin/car-accidents-list
 import { InspectorListOfDriverCaComponent } from './components/inspector/inspector-list-of-driver-ca/inspector-list-of-driver-ca.component';
 import { ParticipantCAProtocolsComponent } from './components/participant-ca-protocols/participant-ca-protocols.component';
 import { AdminViewCAComponent } from './components/admin/admin-view-ca/admin-view-ca.component';
+import { APP_INITIALIZER } from '@angular/core';
+import { AppConfigService } from './services/app-config.service';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -119,6 +121,16 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
   providers: [
     { provide: NZ_I18N, useValue: en_US },
     { provide: NZ_ICONS, useValue: icons },
+    {
+      provide: APP_INITIALIZER,
+      multi: true,
+      deps: [AppConfigService],
+      useFactory: (appConfigService: AppConfigService) => {
+        return () => {
+          return appConfigService.loadAppConfig();
+        };
+      }
+    },
     authInterceptorProviders,
     CookieService ],
   bootstrap: [AppComponent]
