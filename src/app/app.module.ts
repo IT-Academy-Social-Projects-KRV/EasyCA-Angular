@@ -55,6 +55,7 @@ import { CarAccidentsListComponent } from './components/admin/car-accidents-list
 import { InspectorListOfDriverCaComponent } from './components/inspector/inspector-list-of-driver-ca/inspector-list-of-driver-ca.component';
 import { ParticipantCAProtocolsComponent } from './components/participant-ca-protocols/participant-ca-protocols.component';
 import { AdminViewCAComponent } from './components/admin/admin-view-ca/admin-view-ca.component';
+import { ParticipantViewCaComponent } from './components/participant-view-ca/participant-view-ca.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -102,7 +103,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     CarAccidentsListComponent,
     InspectorListOfDriverCaComponent,
     ParticipantCAProtocolsComponent,
-    AdminViewCAComponent
+    AdminViewCAComponent,
+    ParticipantViewCaComponent
   ],
   imports: [
     BrowserModule,
