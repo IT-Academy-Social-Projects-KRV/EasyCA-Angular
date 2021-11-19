@@ -1,25 +1,25 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HOST_URL } from '../configs/config';
 import { ViewFile } from '../models/viewFile';
+import { AppConfigService } from './app-config.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class FileService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private configuration: AppConfigService) { }
 
   uploadFile(formData: FormData) {
-    return this.http.post<any>(`${HOST_URL}File/UploadFiles`, formData);
+    return this.http.post<any>(`${this.configuration.backendUrl}File/UploadFiles`, formData);
   }
 
   downloadFiles(id: string[]) {
-    return this.http.get<ViewFile[]>(`${HOST_URL}File/DownloadFiles?ids=${id.join('&ids=')}`);
+    return this.http.get<ViewFile[]>(`${this.configuration.backendUrl}File/DownloadFiles?ids=${id.join('&ids=')}`);
   }
 
   deleteFile(fileId: string) {
-    return this.http.delete<any>(`${HOST_URL}File/DeleteFile/${fileId}`);
+    return this.http.delete<any>(`${this.configuration.backendUrl}File/DeleteFile/${fileId}`);
   }
 
   getBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
