@@ -92,6 +92,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     EnterDataSecondSideComponent,
     InspectorListOfCarAccidentsComponent,
     ChangePasswordModalComponent,
+
     TransportDataModalComponent,
     TermsComponent,
     AccidentAddressComponent,
@@ -110,7 +111,9 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     InspectorListOfDriverCaComponent,
     ParticipantCAProtocolsComponent,
     AdminViewCAComponent,
-    ParticipantViewCaComponent
+    ParticipantViewCaComponent,
+    
+    ViewCAComponent
   ],
   imports: [
     BrowserModule,
