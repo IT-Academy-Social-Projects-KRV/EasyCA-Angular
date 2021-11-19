@@ -175,9 +175,17 @@
                     </form>
                 <nz-divider></nz-divider>
               </nz-collapse-panel>
+              <nz-collapse-panel nzHeader="Evidences" class="childTitle">
+                <div>
+                  <app-file-upload (fileIdListEvent)="addEvidence($event)"></app-file-upload>
+                </div>
+                <div>
+                  <app-file-view [fileIdList]="evidencesList"></app-file-view>
+                </div>
+              <nz-divider></nz-divider>
+            </nz-collapse-panel>
               <nz-collapse-panel nzHeader="More" class="childTitle" [formGroup]="DataForm">
                 <div nz-row nzGutter="12">
-                  <!-- place for evidences in future -->
                   <div nz-col nzSpan="12">
                     <label class="inputLabel">Driver explanation:</label>
                     <input nz-input formControlName="driverExplanation" placeholder="Driver explanation"/>
