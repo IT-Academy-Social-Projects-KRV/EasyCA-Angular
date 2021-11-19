@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { HOST_URL} from '../configs/config';
 import { Transport } from '../models/Transport';
+import { Observable } from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -12,26 +13,29 @@ const httpOptions = {
 })
 
 export class TransportService {
-  constructor(private http: HttpClient,  public router: Router) { }
-  formData: Transport;
+  constructor(private http: HttpClient,  public router: Router) { }  
 
-  postTransport(){
-    return this.http.post<any>(`${HOST_URL}Transport/AddTransport`, this.formData, httpOptions);
+  getTransportById(id: string): Observable<Transport>{
+    return this.http.get<Transport>(`${HOST_URL}Transport/GetTransport?transportId=${id}`);
+  }
+
+  postTransport(transport: Transport){
+    return this.http.post<any>(`${HOST_URL}Transport/AddTransport`, transport, httpOptions);
   }
   
-  putTransport(){
-    return this.http.put<Transport>(`${HOST_URL}Transport/UpdateTransport`, this.formData, httpOptions);
+  putTransport(transport: Transport){
+    return this.http.put<any>(`${HOST_URL}Transport/UpdateTransport`, transport, httpOptions);
   }
 
   deleteTransport(id:string){
     return this.http.delete(`${HOST_URL}Transport/DeleteTransport?transportId=${id}`);
   }
 
-  refreshList(){    
+  getAllTransports(){    
     return this.http.get(`${HOST_URL}Transport/GetAllTransports`);
   }
 
   getTransportByCarPlate(carPlate: string){
-    return this.http.get<Transport>(`${HOST_URL}Transport/GetTransportByCarPlate?carPlate=${carPlate}`);
+    return this.http.get(`${HOST_URL}Transport/GetTransportByCarPlate?carPlate=${carPlate}`);
   }
 }

@@ -1,0 +1,45 @@
+<div class="inline">
+    <label class="title">Driver License Id:</label>
+    <input nz-input name="driverLicenseIdInput" placeholder="Driver License Id" #driverLicenseId />
+    <button nz-button (click)="requestListOfCA(driverLicenseId.value)" [nzType]="'primary'">Search CA Protocols</button>
+</div>
+<div *ngIf="isListRequested">
+    <div>
+        <nz-table #basicTable [nzData]="accidentList" [nzPageSize]="5">
+            <thead>
+                <tr class="tableHeader">
+                    <th>SERIAL NUMBER</th>
+                    <th>REGISTRATION DATE</th>
+                    <th>ADDRESS OF ACCIDENT</th>
+                    <th>PROTOCOL STATUS</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="tableBodyCell" 
+                *ngFor="let accident of basicTable.data" 
+                (click)="showModal()"
+                (click)="setSelectedCA(accident)">
+                    <td>{{accident.serialNumber}}</td>
+                    <td>{{accident.registrationDateTime | date:'MMMM d, y, H:mm'}}</td>
+                    <td>
+                        <div *ngIf="accident.address.isInCity === true; then thenBlock else elseBlock"></div>
+                        <ng-template #thenBlock>{{accident.address.city}}, {{accident.address.street}}</ng-template>
+                        <ng-template #elseBlock>Out of city</ng-template>
+                    </td>
+                    <td *ngIf="accident.isClosed === true">Closed</td>
+                    <td *ngIf="accident.isClosed === false">Waiting for second side</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </nz-table>
+        <br>
+    </div>
+</div>
+
+<app-view-ca 
+[setAdd]="false" 
+[setVisible]="this.isVisible" 
+[setData] = "this.selectedCA" 
+(isVisibleEvent)="handleCancel($event)">
+</app-view-ca>

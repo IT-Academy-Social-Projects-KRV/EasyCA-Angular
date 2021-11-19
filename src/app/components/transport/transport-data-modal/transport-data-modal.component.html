@@ -1,0 +1,104 @@
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter"
+    (nzOnCancel)="handleCancel()">
+    <ng-template #modalTitle>
+        <span *ngIf="isAdd">Add Car</span>
+        <span *ngIf="!isAdd">Update Car</span>
+    </ng-template>
+    <ng-template #modalContent>
+        <form novalidate autocomplete="off" [formGroup]="transportForm" (ngSubmit)="onSubmit()">
+            <input type="hidden" formControlName="id" />
+            <div>
+                <label for="producedBy">Car Company</label>
+                <nz-form-item>
+                    <nz-form-control>
+                        <input nz-input id="producedBy" placeholder="Car Company" formControlName="producedBy" required>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div>
+                <label for="model">Model</label>
+                <nz-form-item>
+                    <nz-form-control>
+                        <input nz-input id="model" placeholder="Your Car Model" formControlName="model" required>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div>
+                <label for="vinCode">VIN</label>
+                <nz-form-item>
+                    <nz-form-control>
+                        <input nz-input id="vinCode" placeholder="17 Digit Car VIN-code" formControlName="vinCode"
+                            required maxlength="17" minlength="17">
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div>
+                <label for="carPlate">Car Plate</label>
+                <nz-form-item>
+                    <nz-form-control>
+                        <input nz-input id="carPlate" placeholder="Car Plate" formControlName="carPlate" required>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div>
+                <label for="color">Car color</label>
+                <nz-form-item>
+                    <nz-form-control>
+                        <input nz-input id="color" placeholder="Color" formControlName="color" required>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+                <div nz-col [nzSpan]="12">
+                    <label for="categoryName">category belong</label>
+                    <nz-form-item>
+                        <nz-form-control>
+                            <input nz-input id="categoryName" placeholder="Car categoty" formControlName="categoryName"
+                                required>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzSpan]="12">
+                    <label for="yearOfProduction">Car age</label>
+                    <nz-form-item>
+                        <nz-form-control>
+                            <input nz-input id="yearOfProduction" placeholder="year" formControlName="yearOfProduction"
+                                required>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+            </div>
+            <div> <label>Insuarance</label> </div>
+            <div nz-row formGroupName="insuaranceNumber" [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+                <div nz-col [nzSpan]="12">
+                    <label for="companyName">Name of the insurance company</label>
+                    <nz-form-item>
+                        <nz-form-control>
+                            <input nz-input placeholder="Company Name" formControlName="companyName" required>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzSpan]="12">
+                    <label for="serialNumber">Serial number of insurance</label>
+                    <nz-form-item>
+                        <nz-form-control>
+                            <input nz-input placeholder="Serial Number" formControlName="serialNumber" required>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+            </div>
+            <div nz-row>
+                <button nz-button nzShape="round" [nzType]="'primary'"
+                    type="submit" [disabled]="transportForm.invalid">SUBMIT</button>
+                    <a *ngIf="!isAdd" nz-popconfirm
+                       nzPopconfirmTitle="Are you sure delete this car?"
+                       nzPopconfirmPlacement="bottom"
+                       (nzOnConfirm)="confirm()"
+                       (nzOnCancel)="cancel()">
+                       <input type="button" class="btnDel" value="DELETE" nz-button nzShape="round"/>
+                    </a>
+            </div>
+        </form>
+    </ng-template>
+    <ng-template #modalFooter></ng-template>
+</nz-modal>

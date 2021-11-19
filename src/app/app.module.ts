@@ -29,8 +29,7 @@ import { EuroProtocolComponent } from './components/euro-protocol/euro-protocol.
 import { CookieService } from 'ngx-cookie-service';
 import { ResendConfirmationComponent } from './components/resend-confirmation/resend-confirmation.component';
 import { ModalInspectors } from './components/list-inspector/modal-inspectors/modal-inspector.component';
-import { ListCAComponent } from './components/list-ca/list-ca.component';
-import { ModalCAComponent } from './components/list-ca/modal-ca/modal-ca.component';
+import { ListEPComponent } from './components/admin/list-ep/list-ep.component';
 import { ListInspectors } from './components/list-inspector/list-inspector.component';
 import { PersonalDataIsEmptyComponent } from './components/personal-cabinet/personal-data-is-empty/personal-data-is-empty.component';
 import { PersonalDataModalComponent } from './components/personal-cabinet/personal-data-modal/personal-data-modal.component';
@@ -40,8 +39,25 @@ import { DriverLicenseComponent } from './components/personal-cabinet/driver-lic
 import { EuroProtocolViewFormComponent } from './components/euro-protocol-view-form/euro-protocol-view-form.component';
 import { ConfirmComponent } from './components/violation-list/confirm/confirm.component';
 import { EnterDataSecondSideComponent } from './components/violation-list/enter-data-second-side/enter-data-second-side.component';
+import { TransportDataModalComponent } from './components/transport/transport-data-modal/transport-data-modal.component';
+import { TermsComponent } from './components/euro-protocol/terms/terms.component';
+import { AccidentAddressComponent } from './components/euro-protocol/accident-address/accident-address.component';
+import { CheckInsuranceComponent } from './components/euro-protocol/check-insurance/check-insurance.component';
+import { CircumstancesComponent } from './components/euro-protocol/circumstances/circumstances.component';
+import { ConfirmationComponent } from './components/euro-protocol/confirmation/confirmation.component';
+import { EvidenceComponent } from './components/euro-protocol/evidence/evidence.component';
+import { ParticipantInfoComponent } from './components/euro-protocol/participant-info/participant-info.component';
+import { WitnessesComponent } from './components/euro-protocol/witnesses/witnesses.component';
 import { InspectorListOfCarAccidentsComponent } from './components/inspector/inspector-list-of-car-accidents/inspector-list-of-car-accidents.component';
 import { ChangePasswordModalComponent } from './components/personal-cabinet/change-password-modal/change-password-modal.component';
+import { ViewCAComponent } from './components/inspector/view-ca-modal/view-ca.component';
+import { FileUploadComponent } from './components/file/file-upload/file-upload.component';
+import { FileViewComponent } from './components/file/file-view/file-view.component';
+import { CarAccidentsListComponent } from './components/admin/car-accidents-list/car-accidents-list.component';
+import { InspectorListOfDriverCaComponent } from './components/inspector/inspector-list-of-driver-ca/inspector-list-of-driver-ca.component';
+import { ParticipantCAProtocolsComponent } from './components/participant-ca-protocols/participant-ca-protocols.component';
+import { AdminViewCAComponent } from './components/admin/admin-view-ca/admin-view-ca.component';
+import { ParticipantViewCaComponent } from './components/participant-view-ca/participant-view-ca.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -65,19 +81,36 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     ResendConfirmationComponent,
     EuroProtocolViewFormComponent,
     ModalInspectors,
-    ListCAComponent,
-    ModalCAComponent,
+    ListEPComponent,
     ListInspectors,
     PersonalDataIsEmptyComponent,
     PersonalDataModalComponent,
     BasicInfoComponent,
     AddressComponent,
-    DriverLicenseComponent,
+    DriverLicenseComponent,    
     ConfirmComponent,
     EnterDataSecondSideComponent,
     InspectorListOfCarAccidentsComponent,
-    ChangePasswordModalComponent
-
+    ChangePasswordModalComponent,
+    TransportDataModalComponent,
+    TermsComponent,
+    AccidentAddressComponent,
+    CheckInsuranceComponent,
+    CircumstancesComponent,
+    ConfirmationComponent,
+    EvidenceComponent,
+    ParticipantInfoComponent,
+    WitnessesComponent,
+    InspectorListOfCarAccidentsComponent,
+    ChangePasswordModalComponent,
+    ViewCAComponent,
+    FileUploadComponent,
+    FileViewComponent,
+    CarAccidentsListComponent,
+    InspectorListOfDriverCaComponent,
+    ParticipantCAProtocolsComponent,
+    AdminViewCAComponent,
+    ParticipantViewCaComponent
   ],
   imports: [
     BrowserModule,

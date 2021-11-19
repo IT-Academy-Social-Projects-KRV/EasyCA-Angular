@@ -10,126 +10,34 @@
                     <th class="propertyName">Car Model</th>
                     <th class="propertyName">Plate</th>
                     <th class="propertyName">Color</th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let car of basicTable.data">
-                    <td class="mainName" (click)="populateForm(car)" (click)="showModal()">{{car.producedBy}}</td>
-                    <td class="mainName" (click)="populateForm(car)" (click)="showModal()">{{car.model}}</td>
-                    <td class="mainName" (click)="populateForm(car)" (click)="showModal()">{{car.carPlate}}</td>
-                    <td class="mainName">
-                        <a> {{ car.color}}</a>
+                <tr class="mainName" (click)="showModal(false)" (click)="setCurrentTransport(car)" *ngFor="let car of list">
+                    <td>{{car.producedBy}}</td>
+                    <td>{{car.model}}</td>
+                    <td>{{car.carPlate}}</td>
+                    <td>
+                        <a>{{car.color}}</a>
                         <nz-divider nzType="vertical"></nz-divider>
                     </td>
-                    <td><i nz-icon nzType="delete" nzTheme="twotone" (click)="onDelete(car.id)"></i> </td>
                 </tr>
             </tbody>
         </nz-table>
         <br>
     </div>
     <div>
-        <button nz-button [nzSize]="size" nzShape="round" [nzType]="'primary'" (click)="showModal()"
-            (click)="resetForm(this.transportForm)">
+        <button nz-button nzShape="round" [nzType]="'primary'" (click)="showModal(true)">
             <span>Add Transport</span>
         </button>
     </div>
 </div>
-
-<nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter"
-    (nzOnCancel)="handleCancel()">
-    <ng-template #modalTitle>
-        <span *ngIf="!isUpdate">Add Car</span>
-        <span *ngIf="isUpdate">Update Car</span>
-    </ng-template>
-    <ng-template #modalContent>
-        <form novalidate autocomplete="off" [formGroup]="transportForm" (ngSubmit)="onSubmit(transportForm)">
-            <input type="hidden" formControlName="id" />
-            <div>
-                <label for="producedBy">Car Company</label>
-                <nz-form-item>
-                    <nz-form-control>
-                        <input nz-input id="producedBy" placeholder="Car Company" formControlName="producedBy" required>
-                    </nz-form-control>
-                </nz-form-item>
-            </div>
-            <div>
-                <label for="model">Model</label>
-                <nz-form-item>
-                    <nz-form-control>
-                        <input nz-input id="model" placeholder="Your Car Model" formControlName="model" required>
-                    </nz-form-control>
-                </nz-form-item>
-            </div>
-            <div>
-                <label for="vinCode">VIN</label>
-                <nz-form-item>
-                    <nz-form-control>
-                        <input nz-input id="vinCode" placeholder="17 Digit Car VIN-code" formControlName="vinCode"
-                            required maxlength="17" minlength="17">
-                    </nz-form-control>
-                </nz-form-item>
-            </div>
-            <div>
-                <label for="carPlate">Car Plate</label>
-                <nz-form-item>
-                    <nz-form-control>
-                        <input nz-input id="carPlate" placeholder="Car Plate" formControlName="carPlate" required>
-                    </nz-form-control>
-                </nz-form-item>
-            </div>
-            <div>
-                <label for="color">Car color</label>
-                <nz-form-item>
-                    <nz-form-control>
-                        <input nz-input id="color" placeholder="Color" formControlName="color" required>
-                    </nz-form-control>
-                </nz-form-item>
-            </div>
-            <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
-                <div nz-col [nzSpan]="12">
-                    <label for="categoryName">category belong</label>
-                    <nz-form-item>
-                        <nz-form-control>
-                            <input nz-input id="categoryName" placeholder="Car categoty" formControlName="categoryName"
-                                required>
-                        </nz-form-control>
-                    </nz-form-item>
-                </div>
-                <div nz-col [nzSpan]="12">
-                    <label for="yearOfProduction">Car age</label>
-                    <nz-form-item>
-                        <nz-form-control>
-                            <input nz-input id="yearOfProduction" placeholder="year" formControlName="yearOfProduction"
-                                required>
-                        </nz-form-control>
-                    </nz-form-item>
-                </div>
-            </div>
-            <div> <label>Insuarance</label> </div>
-            <div nz-row formGroupName="insuaranceNumber" [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
-                <div nz-col [nzSpan]="12">
-                    <label for="companyName">Name of the insurance company</label>
-                    <nz-form-item>
-                        <nz-form-control>
-                            <input nz-input placeholder="Company Name" formControlName="companyName" required>
-                        </nz-form-control>
-                    </nz-form-item>
-                </div>
-                <div nz-col [nzSpan]="12">
-                    <label for="serialNumber">Serial number of insurance</label>
-                    <nz-form-item>
-                        <nz-form-control>
-                            <input nz-input placeholder="Serial Number" formControlName="serialNumber" required>
-                        </nz-form-control>
-                    </nz-form-item>
-                </div>
-            </div>
-            <div nz-row>
-                <button (click)="handleOk()" nz-button [nzSize]="size" nzShape="round" [nzType]="'primary'"
-                    type="submit" [disabled]="transportForm.invalid">SUBMIT</button>
-            </div>
-        </form>
-    </ng-template>
-    <ng-template #modalFooter></ng-template>
-</nz-modal>
+<app-transport-data-modal 
+[setTransport]="this.currentTransport" 
+[setVisible]="this.isVisible" 
+(isVisibleEvent)="handleCancel($event)" 
+[setAdd]="this.isAdd" 
+(AddedTransport)="addCar($event)" 
+(EditedTransport)="updateCar($event)"
+(DeletedTransport)="onDelete($event)">
+</app-transport-data-modal>
