@@ -72,6 +72,7 @@ export class EuroProtocolComponent implements OnInit {
         break;
       }
       case EvidenceComponent: {
+        this.setCommunication();
         break;
       }
       case CheckInsuranceComponent: {

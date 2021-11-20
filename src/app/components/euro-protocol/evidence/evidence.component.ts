@@ -1,4 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { EuroProtocol } from 'src/app/models/euroProtocol';
+import { Evidence } from 'src/app/models/evidence';
 
 @Component({
   selector: 'app-evidence',
@@ -6,14 +8,31 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./evidence.component.css']
 })
 export class EvidenceComponent implements OnInit {
-
+  public euroProtocol: EuroProtocol;
+  public fileIdList: Array<string> = [];
+  public evidenceList: Evidence[] = [];
+  
   constructor() { }
 
   ngOnInit(): void {}
 
+  @Input() set euroProtocolInput(euroProtocol: EuroProtocol) {
+    this.euroProtocol = euroProtocol;
+  }
+
+  @Output() euroProtocolEvent = new EventEmitter<EuroProtocol>();
+
   @Output() indexChangedEvent = new EventEmitter<number>();
 
-  changePage(index:number){
+  changeEuroProtocol($event: EuroProtocol) {
+    this.fileIdList.forEach(x => this.evidenceList.push({explanation:'', photoSchema: x.toString(), attachments: []}));
+    $event.sideA.evidences = this.evidenceList;
+    this.euroProtocolEvent.emit($event);
+    this.evidenceList = [];
+  }
+  
+  changePage(index:number) {
+    this.changeEuroProtocol(this.euroProtocol);
     this.indexChangedEvent.emit(index);
   }
 }
