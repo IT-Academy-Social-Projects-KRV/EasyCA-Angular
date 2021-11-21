@@ -25,7 +25,7 @@ export class EvidenceComponent implements OnInit {
   @Output() indexChangedEvent = new EventEmitter<number>();
 
   changeEuroProtocol($event: EuroProtocol) {
-    this.fileIdList.forEach(x => this.evidenceList.push({explanation:'', photoSchema: x.toString(), attachments: []}));
+    this.fileIdList.forEach(x => this.evidenceList.push({explanation:'', photoSchema: x, attachments: []}));
     $event.sideA.evidences = this.evidenceList;
     this.euroProtocolEvent.emit($event);
     this.evidenceList = [];

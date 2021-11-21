@@ -231,7 +231,7 @@ export class ViewCAComponent implements OnInit {
     this.evidencesList = $event;
 
     this.evidencesList.forEach(item => {
-      arrayEvidence.push({photoSchema: item.toString()});
+      arrayEvidence.push({photoSchema: item});
     });
 
     this.evidencesListNormal = arrayEvidence;
