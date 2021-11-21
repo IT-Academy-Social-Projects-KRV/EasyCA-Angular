@@ -20,11 +20,11 @@ export class TransportService {
   }
 
   postTransport(transport: Transport){
-    return this.http.post<any>(`${HOST_URL}Transport/AddTransport`, transport, httpOptions);
+    return this.http.post<Transport>(`${HOST_URL}Transport/AddTransport`, transport, httpOptions);
   }
   
   putTransport(transport: Transport){
-    return this.http.put<any>(`${HOST_URL}Transport/UpdateTransport`, transport, httpOptions);
+    return this.http.put<Transport>(`${HOST_URL}Transport/UpdateTransport`, transport, httpOptions);
   }
 
   deleteTransport(id:string){
@@ -32,10 +32,10 @@ export class TransportService {
   }
 
   getAllTransports(){    
-    return this.http.get(`${HOST_URL}Transport/GetAllTransports`);
+    return this.http.get<Transport>(`${HOST_URL}Transport/GetAllTransports`);
   }
 
   getTransportByCarPlate(carPlate: string){
-    return this.http.get(`${HOST_URL}Transport/GetTransportByCarPlate?carPlate=${carPlate}`);
+    return this.http.get<Transport>(`${HOST_URL}Transport/GetTransportByCarPlate?carPlate=${carPlate}`);
   }
 }

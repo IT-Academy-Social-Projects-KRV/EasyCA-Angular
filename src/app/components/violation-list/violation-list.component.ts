@@ -47,8 +47,7 @@ export class ViolationListComponent implements OnInit {
       circumstances: Array<number>(),
       driverLicenseSerial:'',
       damage:'',      
-      isGulty: false,
-      protocolSerial:''
+      isGulty: false
     }}
 
   ngOnInit(): void {
@@ -89,7 +88,6 @@ export class ViolationListComponent implements OnInit {
 
   this.side.damage="No";
   this.side.isGulty=false;
-  this.side.protocolSerial=this.selectedEuroProtocolNumber;
   console.log(this.data);
   
   this.euroProtocolService.registerSideBEuroProtocol(this.side)

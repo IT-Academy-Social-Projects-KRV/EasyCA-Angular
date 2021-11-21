@@ -5,12 +5,7 @@ import { FormBuilder } from "@angular/forms";
 import { EuroProtocolService } from 'src/app/services/euroProtocolService';
 import { TransportService } from 'src/app/services/transport.service';
 import { EuroProtocol } from 'src/app/models/euroProtocol';
-
 import { Side } from 'src/app/models/side';
-import { Evidence } from 'src/app/models/evidence';
-// =======
- import { side } from 'src/app/models/side';
-// >>>>>>> dev
 import { AddressOfAccident } from 'src/app/models/addressOfAccident';
 import { Witness } from 'src/app/models/witness';
 import { Renderer2 } from '@angular/core';
@@ -35,8 +30,8 @@ export class EuroProtocolComponent implements OnInit {
   private euroProtocol: EuroProtocol = {
     registrationDateTime: <Date>{},
     serialNumber: <string>{},
-    sideA: <side>{},
-    sideB: <side>{},
+    sideA: <Side>{},
+    sideB: <Side>{},
     address: <AddressOfAccident>{},
     isClosed: <boolean>{},
     witnesses: <Array<Witness>>{}

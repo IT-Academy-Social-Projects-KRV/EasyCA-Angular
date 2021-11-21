@@ -8,5 +8,4 @@ export interface Side {
     driverLicenseSerial: string;
     damage: string;
     isGulty: boolean;
-    protocolSerial:string;
 }
