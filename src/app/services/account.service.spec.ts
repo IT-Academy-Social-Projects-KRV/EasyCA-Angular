@@ -3,7 +3,6 @@ import { AccountService } from "./account.service";
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { User } from "../models/User";
-import { HOST_URL } from "../configs/config";
 
 describe('AccountService', () => {
    let accountService: AccountService;
@@ -40,7 +39,7 @@ describe('AccountService', () => {
       );
       backend.expectOne({
          method: 'POST',
-         url: `${HOST_URL}Auth/Login`
+         url: `http://localhost:5500/api/Auth/Login`
       }).flush({
          success: true,
          message: 'login was successful'
@@ -60,7 +59,7 @@ describe('AccountService', () => {
 
       backend.expectOne({
          method: 'POST',
-         url: `${HOST_URL}Auth/Login`
+         url: `http://localhost:5500/api/Auth/Login`
       }).flush({
          success: false,
          message: 'email and password combination is wrong'
@@ -79,7 +78,7 @@ describe('AccountService', () => {
 
       backend.expectOne({
          method: 'POST',
-         url: `${HOST_URL}Auth/Register`
+         url: `http://localhost:5500/api/Auth/Register`
       }).flush({
          success: true,
          message: 'the user has been registered'
@@ -98,7 +97,7 @@ describe('AccountService', () => {
 
       backend.expectOne({
          method: 'POST',
-         url: `${HOST_URL}Auth/Register`
+         url: `http://localhost:5500/api/Auth/Register`
       }).flush({
          success: false,
          message: 'the user has not been registered'
