@@ -80,8 +80,7 @@ export class AdminViewCAComponent implements OnInit {
     driverExplanation: [''],
     evidences: [''],
     courtDTG: null,
-    isDocumentTakenOff: null,
-    isClosed: null
+    isDocumentTakenOff: null
   });
 
   ngOnInit(): void {

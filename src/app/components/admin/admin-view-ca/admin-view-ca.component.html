@@ -11,15 +11,15 @@
       <form [formGroup]="dataForm">
         <div>
           <div nz-row nzGutter="16">
-              <div nz-col nzSpan="6">
+              <div nz-col nzSpan="7">
                 <label class="title">Serial Number:</label>
                 <input nz-input placeholder="Number of protocol" formControlName="serialNumber" readonly/>
               </div>
-              <div nz-col nzSpan="6">
+              <div nz-col nzSpan="7">
                 <label class="title">Date of accident:</label>
                 <input nz-input id="registrationDate" formControlName="registrationDateTime" placeholder="Registration date of protocol" readonly/>
               </div>
-              <div nz-col nzSpan="6">
+              <div nz-col nzSpan="7">
                 <label class="title">Inspector ID:</label>
                 <input nz-input formControlName="inspectorId" placeholder="Inspector ID" readonly/>
               </div>
@@ -27,12 +27,6 @@
                 <div class="taCenter">
                   <label class="title">Doc:</label>
                   <input nz-input formControlName="isDocumentTakenOff" readonly/>
-                </div>
-              </div>
-              <div nz-col nzSpan="3">
-                <div class="taCenter">
-                  <label class="title">Status:</label>
-                  <input nz-input formControlName="isClosed" readonly/>
                 </div>
               </div>
           </div>
