@@ -37,7 +37,7 @@ import { BasicInfoComponent } from './components/personal-cabinet/basic-info/bas
 import { AddressComponent } from './components/personal-cabinet/address/address.component';
 import { DriverLicenseComponent } from './components/personal-cabinet/driver-license/driver-license.component';
 import { EuroProtocolViewFormComponent } from './components/euro-protocol-view-form/euro-protocol-view-form.component';
-import { ConfirmComponent } from './components/violation-list/confirm/confirm.component';
+import { ConfirmComponent } from './components/violation-list/euro-protocol-notconfirmed-view-form/euro-protocol-notconfirmed-view-form.component';
 import { EnterDataSecondSideComponent } from './components/violation-list/enter-data-second-side/enter-data-second-side.component';
 import { TransportDataModalComponent } from './components/transport/transport-data-modal/transport-data-modal.component';
 import { TermsComponent } from './components/euro-protocol/terms/terms.component';

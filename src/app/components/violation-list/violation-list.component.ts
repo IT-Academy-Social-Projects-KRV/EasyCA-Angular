@@ -28,7 +28,6 @@ export class ViolationListComponent implements OnInit {
   public checkedCircumstancesId:number[]=[];
   public selectedEuroProtocolNumber: string;
   public isEuroProtocolModalVisible = false;
-  public isEuroProtocolConfirmModalVisible = false;
   public condition:boolean;
   public isSecondSideForm = false;
   private carPlateSideB: string;
@@ -39,15 +38,15 @@ export class ViolationListComponent implements OnInit {
     public accountService: AccountService, 
     public transportService: TransportService,
     public euroProtocolService: EuroProtocolService,
-    private toastr: ToastrService,
-    ) {        this.side = {
-      email:'',
-      transportId:'',
+    private toastr: ToastrService) {      this.side = {
+      email:<string>{},
+      transportId:<string>{},
       evidences:Array<Evidence>(),
       circumstances: Array<number>(),
-      driverLicenseSerial:'',
-      damage:'',      
-      isGulty: false
+      driverLicenseSerial:<string>{},
+      damage:<string>{},      
+      isGulty: <boolean>{},
+      protocolSerial: <string>{}
     }}
 
   ngOnInit(): void {
@@ -85,10 +84,12 @@ export class ViolationListComponent implements OnInit {
   this.side.email=this.data.email;
   this.side.transportId=this.transport.id;
   this.side.circumstances=$event;
-
+  this.side.driverLicenseSerial=this.data.personalData.userDriverLicense.licenseSerialNumber;
+  this.side.protocolSerial=this.selectedEuroProtocolNumber;
   this.side.damage="No";
   this.side.isGulty=false;
   console.log(this.data);
+  console.log(this.side);
   
   this.euroProtocolService.registerSideBEuroProtocol(this.side)
   .subscribe(
@@ -104,22 +105,19 @@ export class ViolationListComponent implements OnInit {
   }
   ContinueFill(){
     this.isSecondSideForm=true;
+    this.isEuroProtocolModalVisible=false;
   }
   loadEuroProtocol(id: number) : void {
     this.condition=this.protocolList[id].isClosed;
     this.selectedEuroProtocolNumber = this.protocolList[id].serialNumber;
     console.log( this.selectedEuroProtocolNumber);
   }
-  showEuroProtocolConfirmModal(): void {
-    this.isEuroProtocolConfirmModalVisible = true;
-  }
+  
   showEuroProtocolModal() : void {
     this.isEuroProtocolModalVisible = true;
   }
+
   cancelEuroProtocolModal() : void {
     this.isEuroProtocolModalVisible = false;
-  }
-  canceConfirmlEuroProtocolModal() : void {
-    this.isEuroProtocolConfirmModalVisible = false;
-  }
+  } 
 }

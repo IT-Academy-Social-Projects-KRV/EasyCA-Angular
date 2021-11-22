@@ -8,9 +8,9 @@ import { EuroProtocolService } from 'src/app/services/euroProtocolService';
 import { ViolationListService } from 'src/app/services/violation-list.service';
 
 @Component({
-  selector: 'app-confirm',
-  templateUrl: './confirm.component.html',
-  styleUrls: ['./confirm.component.css']
+  selector: 'app-euro-protocol-notconfirmed-view-form',
+  templateUrl: './euro-protocol-notconfirmed-view-form.component.html',
+  styleUrls: ['./euro-protocol-notconfirmed-view-form.component.css']
 })
 export class ConfirmComponent implements OnInit {
   public isVisible = false;

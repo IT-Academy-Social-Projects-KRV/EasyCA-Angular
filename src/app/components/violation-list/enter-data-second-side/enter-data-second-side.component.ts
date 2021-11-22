@@ -101,7 +101,7 @@ export class EnterDataSecondSideComponent implements OnInit {
   previous(array:string) {
     this.myCarousel.pre();
     if(this.array[1]===array){ 
-      this.height=1200;
+      this.height=200;
     }
     if(this.array[2]===array){ 
       this.height=1000;
