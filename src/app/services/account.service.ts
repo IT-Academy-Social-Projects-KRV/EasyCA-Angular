@@ -48,7 +48,7 @@ export class AccountService {
   getPersonalData() {
     return this.http.get<any>(`${this.configuration.backendUrl}Account/GetUserById`);
   }
-
+ 
   addPersonalData(data: PersonalData) {
     return this.http.post<any>(`${this.configuration.backendUrl}Account/CreatePersonalData`, data, httpOptions);
   }
