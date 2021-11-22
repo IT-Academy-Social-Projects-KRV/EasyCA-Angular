@@ -123,7 +123,6 @@ export class AdminViewCAComponent implements OnInit {
         evidences: selectedRecord.evidences,
         courtDTG: selectedRecord.courtDTG,
         isDocumentTakenOff: selectedRecord.isDocumentTakenOff,
-        isClosed: selectedRecord.isClosed
       });
     }
 

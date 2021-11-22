@@ -23,8 +23,6 @@
                         <ng-template #thenBlock>{{accident.address.city}}, {{accident.address.street}}</ng-template>
                         <ng-template #elseBlock>Out of city</ng-template>
                     </td>
-                    <td *ngIf="accident.isClosed === true">Closed</td>
-                    <td *ngIf="accident.isClosed === false">Waiting for second side</td>
                     <td></td>
                 </tr>
             </tbody>

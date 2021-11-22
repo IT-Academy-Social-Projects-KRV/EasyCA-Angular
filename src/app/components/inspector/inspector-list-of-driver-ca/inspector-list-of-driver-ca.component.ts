@@ -31,7 +31,6 @@ export class InspectorListOfDriverCaComponent implements OnInit {
     witnesses: <Array<Witness>>[],
     evidences:<Array<EvidenceCA>>[],
     isDocumentTakenOff: <boolean>{},
-    isClosed: <boolean>{},
     courtDTG: <Date>{}
   };
 
@@ -67,7 +66,7 @@ export class InspectorListOfDriverCaComponent implements OnInit {
 
   setSelectedCA(selectedCA: CarAccident) {
     this.selectedCA = selectedCA;
-  } 
+  }
 
   handleCancel($event: boolean) {
     this.isVisible = $event;

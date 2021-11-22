@@ -16,8 +16,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="tableBodyCell" 
-                *ngFor="let accident of basicTable.data" 
+                <tr class="tableBodyCell"
+                *ngFor="let accident of basicTable.data"
                 (click)="showModal()"
                 (click)="setSelectedCA(accident)">
                     <td>{{accident.serialNumber}}</td>
@@ -27,8 +27,6 @@
                         <ng-template #thenBlock>{{accident.address.city}}, {{accident.address.street}}</ng-template>
                         <ng-template #elseBlock>Out of city</ng-template>
                     </td>
-                    <td *ngIf="accident.isClosed === true">Closed</td>
-                    <td *ngIf="accident.isClosed === false">Waiting for second side</td>
                     <td></td>
                 </tr>
             </tbody>
@@ -37,9 +35,9 @@
     </div>
 </div>
 
-<app-view-ca 
-[setAdd]="false" 
-[setVisible]="this.isVisible" 
-[setData] = "this.selectedCA" 
+<app-view-ca
+[setAdd]="false"
+[setVisible]="this.isVisible"
+[setData] = "this.selectedCA"
 (isVisibleEvent)="handleCancel($event)">
 </app-view-ca>

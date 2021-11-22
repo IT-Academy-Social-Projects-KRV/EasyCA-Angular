@@ -1,10 +1,10 @@
-<nz-modal nzWidth="80%" 
-    [(nzVisible)]="isVisible"  
-    [nzTitle]="modalTitle" 
-    [nzContent]="modalContent"  
-    (nzOnOk)="handleOk()" 
+<nz-modal nzWidth="80%"
+    [(nzVisible)]="isVisible"
+    [nzTitle]="modalTitle"
+    [nzContent]="modalContent"
+    (nzOnOk)="handleOk()"
     (nzOnCancel)="handleCancel()">
-    <ng-template #modalTitle> 
+    <ng-template #modalTitle>
       <span *ngIf="!isAdd">Edit CA</span>
       <span *ngIf="isAdd">Add CA</span>
     </ng-template>
@@ -28,12 +28,6 @@
                 <div class="taCenter">
                   <label class="title">Doc:</label>
                   <input nz-input formControlName="isDocumentTakenOff" required/>
-                </div>
-              </div>
-              <div nz-col nzSpan="3">
-                <div class="taCenter">
-                  <label class="title">Status:</label>
-                  <input nz-input formControlName="isClosed" readonly/>
                 </div>
               </div>
           </div>
@@ -84,7 +78,7 @@
                           </nz-col>
                         </nz-row>
                       </form>
-                      </nz-collapse-panel> 
+                      </nz-collapse-panel>
                   <nz-collapse-panel nzHeader="Circumstances" class="inputLabel">
                     <nz-list class="listItem">
                       <form [formGroup]="DataForm">
@@ -123,7 +117,7 @@
                 </div>
                 <br>
                 <div nz-row nzGutter="12">
-                  <div nz-col nzSpan="12"> 
+                  <div nz-col nzSpan="12">
                     <label class="inputLabel">Street:</label>
                     <input nz-input formControlName="street" placeholder="Accident address street"/>
                   </div>
@@ -171,7 +165,7 @@
                       <input formControlName="lastName" required nz-col nzSpan="5" nz-input placeholder="Last name"/>
                       <input formControlName="witnessAddress" required nz-col nzSpan="5" nz-input placeholder="Address"/>
                       <input formControlName="phoneNumber" required nz-col nzSpan="6" nz-input placeholder="Phone number"/>
-                      <button nz-button [nzSize]="'large'" nz-col nzSpan="3" [nzType]="'primary'" type="submit">SUBMIT</button>                    
+                      <button nz-button [nzSize]="'large'" nz-col nzSpan="3" [nzType]="'primary'" type="submit">SUBMIT</button>
                     </form>
                 <nz-divider></nz-divider>
               </nz-collapse-panel>
