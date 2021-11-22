@@ -28,7 +28,7 @@ export class ViewCAComponent implements OnInit {
 
   @Input() set setVisible(isVisible: boolean) {
     this.isVisible = isVisible;
-    
+
     if(this.isAdd){
       this.transportForm.reset();
       this.DataForm.reset();
@@ -54,15 +54,15 @@ export class ViewCAComponent implements OnInit {
         this.populateForm(protocol);
       }
   }
-  
+
   @Output() isVisibleEvent = new EventEmitter<boolean>();
   @Output() protocolCAEditedEvent = new EventEmitter<CarAccident>();
   @Output() protocolCAAddedEvent = new EventEmitter<CarAccident>();
- 
+
   public inspectorEmail = this.fb.group({
     email: localStorage.getItem('email'),
   });
-  
+
   public transportForm = this.fb.group({
     id: [''],
     producedBy: [''],
@@ -106,7 +106,6 @@ export class ViewCAComponent implements OnInit {
     driverExplanation: [''],
     courtDTG: new Date(),
     isDocumentTakenOff:false,
-    isClosed: false
   });
 
   ngOnInit(): void {
@@ -147,7 +146,6 @@ export class ViewCAComponent implements OnInit {
         driverExplanation: selectedRecord.driverExplanation,
         courtDTG: selectedRecord.courtDTG,
         isDocumentTakenOff: selectedRecord.isDocumentTakenOff,
-        isClosed: selectedRecord.isClosed
       });
     }
 
@@ -206,7 +204,6 @@ export class ViewCAComponent implements OnInit {
         this.protocolCAAdded.serialNumber = "123";
         this.protocolCAAdded.address.isIntersection = false;
         this.protocolCAAdded.inspectorId = "";
-        this.protocolCAAdded.isClosed = false;
         this.protocolCAAdded.isDocumentTakenOff = true;
         this.protocolCAAdded.courtDTG = new Date();
         this.protocolCAAdded.registrationDateTime = new Date();
@@ -222,7 +219,7 @@ export class ViewCAComponent implements OnInit {
       this.protocolCAEdited.evidences = this.evidencesListNormal;
       this.editCA(this.protocolCAEdited);
       this.clearLocalEvidence();
-    } 
+    }
     this.isVisibleEvent.emit(false);
   }
 

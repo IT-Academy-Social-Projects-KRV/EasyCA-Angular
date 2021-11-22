@@ -31,7 +31,6 @@ export class ParticipantCAProtocolsComponent implements OnInit {
     witnesses: <Array<Witness>>[],
     evidences: <Array<EvidenceCA>>[],
     isDocumentTakenOff: <boolean>{},
-    isClosed: <boolean>{},
     courtDTG: <Date>{}
   };
 

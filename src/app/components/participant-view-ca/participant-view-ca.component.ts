@@ -123,7 +123,6 @@ export class ParticipantViewCaComponent implements OnInit {
         evidences: selectedRecord.evidences,
         courtDTG: selectedRecord.courtDTG,
         isDocumentTakenOff: selectedRecord.isDocumentTakenOff,
-        isClosed: selectedRecord.isClosed
       });
     }
 
@@ -148,7 +147,7 @@ export class ParticipantViewCaComponent implements OnInit {
       );
     }
 
-    
+
   }
 
   handleCancel(): void {
