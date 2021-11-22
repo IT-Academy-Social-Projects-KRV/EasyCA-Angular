@@ -28,7 +28,7 @@ export class FileUploadComponent implements OnInit {
     return this.fileService.uploadFile(formData).subscribe(
       data => {
         file.onSuccess!(data, file.postFile as any, file.headers!);
-        this.fileIdList.push(data.data);
+        this.fileIdList.push(...data.data);
         this.msg.success("Image uploaded!");
         this.fileIdListEvent.emit(this.fileIdList);
       },
