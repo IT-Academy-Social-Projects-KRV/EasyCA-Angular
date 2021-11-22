@@ -104,4 +104,18 @@ describe('AccountService', () => {
          message: 'the user has not been registered'
       });
    })
+
+   it('should get personal data', () => {
+      const mockUser = { address: 'Rivne', ipn: '123456789', serviceNumber: '987654321', 
+                         birthDay: '02.02.1996', jobPosition: 'programmer', userDriverLicense: '1', userCars: 'car'};
+
+      accountService.getPersonalData().subscribe( user => {
+         expect(user).toEqual(mockUser);
+      });
+
+      backend.expectOne({
+         method: 'GET',
+         url: 'http://localhost:5500/api/Account/GetUserById'
+      }).flush(mockUser);
+   });
 });

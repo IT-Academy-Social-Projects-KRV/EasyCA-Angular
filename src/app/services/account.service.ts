@@ -49,7 +49,7 @@ export class AccountService {
   getPersonalData() {
     return this.http.get<any>(`${HOST_URL}Account/GetUserById`);
   }
-
+ 
   addPersonalData(data: PersonalData) {
     return this.http.post<any>(`${HOST_URL}Account/CreatePersonalData`, data, httpOptions);
   }
