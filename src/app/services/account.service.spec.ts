@@ -111,8 +111,8 @@ describe('AccountService', () => {
 
       accountService.getPersonalData().subscribe( user => {
          expect(user).toEqual(mockUser);
-      });
-
+      }); 
+      
       backend.expectOne({
          method: 'GET',
          url: 'http://localhost:5500/api/Account/GetUserById'
