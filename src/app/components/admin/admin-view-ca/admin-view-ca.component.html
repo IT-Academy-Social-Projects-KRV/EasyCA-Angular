@@ -20,8 +20,10 @@
                 <input nz-input id="registrationDate" formControlName="registrationDateTime" placeholder="Registration date of protocol" readonly/>
               </div>
               <div nz-col nzSpan="7">
-                <label class="title">Inspector ID:</label>
-                <input nz-input formControlName="inspectorId" placeholder="Inspector ID" readonly/>
+                <form [formGroup]="inspectorEmail">
+                  <label class="title">Inspector email:</label>
+                  <input nz-input formControlName="email" placeholder="Inspector email" readonly/>
+                </form>
               </div>
               <div nz-col nzSpan="3">
                 <div class="taCenter">

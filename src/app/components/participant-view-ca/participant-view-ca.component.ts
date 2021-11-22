@@ -3,7 +3,9 @@ import { FormBuilder } from '@angular/forms';
 import { CarAccident } from 'src/app/models/carAccident';
 import { EvidenceCA } from 'src/app/models/evidenceCA';
 import { Transport } from 'src/app/models/Transport';
+import { User } from 'src/app/models/User';
 import { Witness } from 'src/app/models/witness';
+import { AccountService } from 'src/app/services/account.service';
 import { CAService } from 'src/app/services/ca.service';
 import { TransportService } from 'src/app/services/transport.service';
 
@@ -20,7 +22,8 @@ export class ParticipantViewCaComponent implements OnInit {
   public witnessesList: Witness[] = [];
   public evidencesListNormal: EvidenceCA[] = [];
 
-  constructor(public fb: FormBuilder, public CAservice: CAService, public transportService: TransportService) { }
+  constructor(public accountService: AccountService, public fb: FormBuilder, 
+    public CAservice: CAService, public transportService: TransportService) { }
 
   @Input() set setVisible(isVisible: boolean) {
     this.isVisible = isVisible;
@@ -54,6 +57,10 @@ export class ParticipantViewCaComponent implements OnInit {
     insuaranceNumber: this.fb.group({
       companyName: [''],
     }),
+  });
+
+  public inspectorEmail = this.fb.group({
+    email: [''],
   });
 
   public witnessForm = this.fb.group({
@@ -104,6 +111,16 @@ export class ParticipantViewCaComponent implements OnInit {
       let address = selectedRecord.address;
       let sideOfAccident = selectedRecord.sideOfAccident;
 
+      this.accountService.getUserById(selectedRecord.inspectorId)
+      .subscribe((data: User) => {
+        console.log(data.email);
+        this.inspectorEmail.setValue({
+          email: data.email
+        })
+      }, 
+      err=>{}
+      )
+
       this.protocolCA.evidences.forEach(item => {
         this.evidencesList.push(item.photoSchema);
       });
@@ -153,11 +170,9 @@ export class ParticipantViewCaComponent implements OnInit {
           }
         })
       },
-        error => { }
+      error => { }
       );
     }
-
-
   }
 
   handleCancel(): void {
