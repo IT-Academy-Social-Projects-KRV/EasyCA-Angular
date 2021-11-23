@@ -1,6 +1,4 @@
-export class ResendConfirmation {
-    constructor(
-        public email: string,
-        public resendConfirmationURI: string
-    ) { }
+export interface ResendConfirmation {
+    email: string,
+    resendConfirmationURI: string
 } 

@@ -1,8 +1,6 @@
-export class RestorePassword {
-    constructor(
-        public email: string,
-        public newPassword : string,
-        public confirmPassword : string,
-        public passwordURI: string
-    ) { }
-  } 
+export interface RestorePassword {
+    email: string,
+    newPassword : string,
+    confirmPassword : string,
+    passwordURI: string
+} 

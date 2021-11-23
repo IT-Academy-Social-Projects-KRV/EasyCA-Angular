@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { AddressOfAccident } from 'src/app/models/addressOfAccident';
-import { CarAccident } from 'src/app/models/carAccident';
-import { EvidenceCA } from 'src/app/models/evidenceCA';
-import { sideCA } from 'src/app/models/sideCA';
-import { Witness } from 'src/app/models/witness';
+import { AddressOfAccident } from 'src/app/models/AddressOfAccident';
+import { CarAccident } from 'src/app/models/CarAccident';
+import { Evidence } from 'src/app/models/Evidence';
+import { sideCA } from 'src/app/models/SideCA';
+import { Witness } from 'src/app/models/Witness';
 import { CAService } from 'src/app/services/ca.service';
 
 @Component({
@@ -29,7 +29,7 @@ export class ParticipantCAProtocolsComponent implements OnInit {
     trafficRuleId: <string>{},
     driverExplanation: <string>{},
     witnesses: <Array<Witness>>[],
-    evidences: <Array<EvidenceCA>>[],
+    evidences: <Array<Evidence>>[],
     isDocumentTakenOff: <boolean>{},
     courtDTG: <Date>{}
   };

@@ -1,4 +1,4 @@
-import { AddressOfAccident } from "./addressOfAccident";
+import { AddressOfAccident } from "./AddressOfAccident";
 
 export interface EuroProtocolSimpleModel {
     serialNumber: string;

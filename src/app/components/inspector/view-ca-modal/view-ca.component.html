@@ -12,15 +12,15 @@
       <form [formGroup]="DataForm">
         <div>
           <div *ngIf="!isAdd" nz-row nzGutter="16">
-              <div nz-col nzSpan="6">
+              <div nz-col nzSpan="7">
                 <label class="title">Serial Number:</label>
                 <input nz-input placeholder="Number of protocol" formControlName="serialNumber" readonly/>
               </div>
-              <div nz-col nzSpan="6">
+              <div nz-col nzSpan="7">
                 <label class="title">Date of accident:</label>
                 <input nz-input id="registrationDate" formControlName="registrationDateTime" placeholder="Registration date of protocol" readonly/>
               </div>
-              <div nz-col nzSpan="6" [formGroup]="inspectorEmail">
+              <div nz-col nzSpan="7" [formGroup]="inspectorEmail">
                 <label class="title">Inspector:</label>
                 <input nz-input formControlName="email" placeholder="Inspector name" readonly/>
               </div>

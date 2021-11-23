@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ChangePassword } from 'src/app/models/changePassword';
+import { ChangePassword } from 'src/app/models/ChangePassword';
 
 @Component({
   selector: 'app-change-password-modal',
