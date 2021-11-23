@@ -58,6 +58,9 @@ import { InspectorListOfDriverCaComponent } from './components/inspector/inspect
 import { ParticipantCAProtocolsComponent } from './components/participant-ca-protocols/participant-ca-protocols.component';
 import { AdminViewCAComponent } from './components/admin/admin-view-ca/admin-view-ca.component';
 import { ParticipantViewCaComponent } from './components/participant-view-ca/participant-view-ca.component';
+import { AllDataComponent } from './components/violation-list/enter-data-second-side/all-data/all-data.component';
+import { CircumstanceComponent } from './components/violation-list/enter-data-second-side/circumstance/circumstance.component';
+import { SucessComponent } from './components/violation-list/enter-data-second-side/sucess/sucess.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -92,7 +95,6 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     EnterDataSecondSideComponent,
     InspectorListOfCarAccidentsComponent,
     ChangePasswordModalComponent,
-
     TransportDataModalComponent,
     TermsComponent,
     AccidentAddressComponent,
@@ -111,9 +113,11 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     InspectorListOfDriverCaComponent,
     ParticipantCAProtocolsComponent,
     AdminViewCAComponent,
-    ParticipantViewCaComponent,
-    
-    ViewCAComponent
+    ParticipantViewCaComponent,    
+    ViewCAComponent,
+    AllDataComponent,
+    CircumstanceComponent,
+    SucessComponent
   ],
   imports: [
     BrowserModule,

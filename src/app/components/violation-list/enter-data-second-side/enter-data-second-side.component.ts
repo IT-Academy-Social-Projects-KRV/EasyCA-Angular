@@ -1,10 +1,12 @@
-import { Component, EventEmitter, HostBinding, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { NzCarouselComponent } from 'ng-zorro-antd/carousel';
-import { FormBuilder, FormGroup } from "@angular/forms";
-import { Data } from 'src/app/models/data';
-import { Transport } from 'src/app/models/Transport';
-import { ThrowStmt } from '@angular/compiler';
-import { Circumstance } from 'src/app/models/circumstance';
+import { Component, ComponentFactory, ComponentFactoryResolver, ComponentRef, EventEmitter,  Input, OnInit, Output, ViewChild, ViewContainerRef, } from '@angular/core';
+import { Side } from 'src/app/models/side';
+import { Evidence } from 'src/app/models/evidence';
+import { EuroProtocolService } from 'src/app/services/euroProtocolService';
+import { ToastrService } from 'ngx-toastr';
+import { AllDataComponent } from './all-data/all-data.component';
+import { CircumstanceComponent } from './circumstance/circumstance.component';
+import { SucessComponent } from './sucess/sucess.component';
+import { Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-enter-data-second-side',
@@ -13,146 +15,108 @@ import { Circumstance } from 'src/app/models/circumstance';
 })
 export class EnterDataSecondSideComponent implements OnInit {
 
-  public data: Data;
-  public transport: Transport; 
-  public circumstancesList: Circumstance[];
-  public checkedCircumstancesId: number[]=[]; 
   public isVisible = false;
-  public isMainForm=false;
-  public array = ["EnterCarPlate","AllData","Circumstance","Sucess"];
-  public effect = 'fade';
-  public personalDataForm = this.fb.group({
-    email: [''],
-    firstName: [''],
-    lastName: [''],
-    birthDay: null,
-    licenseSerialNumber: [''],
-    issuedBy: [''],
-    expirationDate: null   
-  });  
-  public transportForm = this.fb.group({
-    id: [''],
-    producedBy: [''],
-    model: [''],
-    categoryName: [''],
-    vinCode: [''],
-    carPlate: [''],
-    color: [''],
-    yearOfProduction: [''],
-    insuaranceNumber:['']
-  });
-  @HostBinding('style.height.px') height: number;
+  private side:Side= {
+    email:<string>{},
+    transportId:<string>{},
+    evidences:Array<Evidence>(),
+    circumstances: Array<number>(),
+    driverLicenseSerial:<string>{},
+    damage:<string>{},      
+    isGulty: <boolean>{},
+    protocolSerial: <string>{}
+  }; 
+  
+  public euroProtocolNumber:string;
   public carPlate: string;
+  public effect = 'fade';
+
+  private components:Array<any> = [AllDataComponent, CircumstanceComponent, SucessComponent];
+  private componentRef: ComponentRef<any>;
+  public index = -1;
+
+  @ViewChild('mainComponent', { read: ViewContainerRef }) container: any;
+  
   @Input() set setVisible(isVisible: boolean) {
     this.isVisible = isVisible;    
   } 
-  @Input() set setCircumstance(circumstancesList: Circumstance[]) {
-    this.circumstancesList = circumstancesList;
-  }
-  @Input() set setData(data: Data) {
-    this.data = data;
-    console.log(this.data);  
-    this.populatepersonalDataForm()
-  }  
-  @Input() set setTransport(transport: Transport) {
-    this.transport = transport;   
-    this.populatetransportForm();
-  }
-
-
-  @Output() circumstanceOutput = new EventEmitter<{circumstancesList: Circumstance[]}>();
-  @Output() carPlateOutput = new EventEmitter<string>();
+  @Input() set setEuroProtocolNumber(euroProtocolNumber: string) {
+    this.euroProtocolNumber = euroProtocolNumber;
+  } 
   @Output() isVisibleEvent = new EventEmitter<boolean>();
-  @Output() checkedCircumstancesIdOutput =new EventEmitter<number[]>();  
 
-  @ViewChild(NzCarouselComponent, { static: false })
-  myCarousel: NzCarouselComponent; 
+  constructor(public euroProtocolService: EuroProtocolService,
+    private toastr: ToastrService,
+    public renderer: Renderer2,
+    private resolver: ComponentFactoryResolver) { }
 
+  generatePage(): void {
+    let component = this.components[this.index];
 
-  onChange(id:Circumstance, event: any) {
-    if(event.target.checked) {
-      this.checkedCircumstancesId.push(id.circumstanceId);
-    } else {
-      let index = this.checkedCircumstancesId.findIndex(x => x == id.circumstanceId);
-      this.checkedCircumstancesId.splice(index,1);
-    }
-    console.log(this.checkedCircumstancesId);
-  }
-  constructor(public fb: FormBuilder) { }
+    this.container.clear();
+    const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(component);
+    this.componentRef = this.container.createComponent(factory);
+    switch (component) {
 
-  next(arrayName:string) {
-    this.myCarousel.next();   
-             
-    if(this.array[0]===arrayName){ 
-      this.carPlateOutput.emit(this.carPlate);
-      this.height=1000;     
-    }
-    if(this.array[1]===arrayName){
-      this.height=1220;
-    }
-    if(this.array[2]===arrayName){ 
-      this.checkedCircumstancesIdOutput.emit(this.checkedCircumstancesId);
-      this.height=450;
-    }  
-  console.log(arrayName);
-  console.log(this.array[0]);
-
-  }
-  previous(array:string) {
-    this.myCarousel.pre();
-    if(this.array[1]===array){ 
-      this.height=200;
-    }
-    if(this.array[2]===array){ 
-      this.height=1000;
-    }
-    if(this.array[3]===array){ 
-      this.height=1220;
-    }
-    console.log(array);
-  }
-
-  populatepersonalDataForm(){
-    if (this.data.personalData) {
-    let personalData = this.data.personalData;
-    let driverLicense = personalData.userDriverLicense;
-    this.personalDataForm.setValue(
-      {
-      email: this.data.email,
-      firstName: this.data.firstName,
-      lastName: this.data.lastName,
-      birthDay: personalData.birthDay,
-      licenseSerialNumber: driverLicense.licenseSerialNumber,
-      issuedBy: driverLicense.issuedBy,
-      expirationDate: driverLicense.expirationDate
-      });
-    }
-  }
-  populatetransportForm(){
-    if (this.transport) { 
-      this.transportForm.setValue(
-        {
-          id: this.transport.id,
-          producedBy: this.transport.producedBy,
-          model: this.transport.model,
-          categoryName: this.transport.categoryName,
-          vinCode: this.transport.vinCode,
-          carPlate: this.transport.carPlate,
-          color: this.transport.color,
-          yearOfProduction: this.transport.yearOfProduction,
-          insuaranceNumber:this.transport.insuaranceNumber
-        });
+      case AllDataComponent: {
+        this.setCommunication();
+        this.componentRef.instance.carPlateInput = this.carPlate;
+        break;
       }
+      case CircumstanceComponent: {
+        this.setCommunication();
+        break;
+      }
+      case SucessComponent: {     
+        this.registr();
+        break;
+      }
+      default:
+        {
+          this.setCommunication();
+        }
+    };
+  }
+  changeIndex($event: number) {
+    if($event==-1){this.container.clear(); this.index = $event;}
+    else{    
+      this.index = $event;
+      this.generatePage();}
+  }
+  setCommunication() {
+    this.componentRef.instance.sideInput = this.side;
+    this.componentRef.instance.sideEvent.subscribe((val: Side) => this.setSide(val));
   }
 
-  sendCarPlate():void{
-    this.carPlateOutput.emit(this.carPlate);
+  registr(){    
+    this.side.protocolSerial=this.euroProtocolNumber;
+    this.side.damage="Yes";
+    this.side.isGulty=false;     
+    this.euroProtocolService.registerSideBEuroProtocol(this.side)
+    .subscribe(
+      res => {
+        this.toastr.info("Great", "Success");
+        console.log(res);
+      },
+      err => {
+        this.toastr.warning('Data not added', err.error.message);
+          console.log(err);
+      });
+      console.log(this.side);
+    }
+
+  setCarPlate($event: string) {
+      this.carPlate = $event;
+   }
+
+  setSide($event: Side) {
+    this.side = $event;
   }
+
   handleCancel(): void {
     this.isVisibleEvent.emit(false);
-    this.height=270;
-  }
-  ngOnInit(): void {
+    window.location.reload();
   }
 
+  ngOnInit(): void {  }
 }

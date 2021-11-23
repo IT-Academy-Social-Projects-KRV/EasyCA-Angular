@@ -1,0 +1,26 @@
+
+  [nz-button] {
+    margin-right: 8px;
+    margin-bottom: 12px;
+  }
+  nz-button-group [nz-button] {
+    margin-right: 0px;
+  }
+  .alignCenter{
+    text-align:center;
+  }
+  .circle{
+    border-radius: 50%;
+    background-color: rgb(54, 243, 29);
+    height: 150px;
+    width: 150px;
+    padding: 50px;
+  }
+  .myDiv{
+    display: flex;
+    justify-content: center;
+  }
+  .check{
+    font-size: 40px;
+  }
+  

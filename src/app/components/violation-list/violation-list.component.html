@@ -55,10 +55,8 @@
 
     <div>
       <app-enter-data-second-side [setVisible]="this.isSecondSideForm" (isVisibleEvent)="visibleSecondSideForm($event)"
-        [setCircumstance]="this.circumstancesList" (carPlateOutput)="setInfo($event)"
-        (checkedCircumstancesIdOutput)="registr($event)" [setData]="this.data" [setTransport]="this.transport">
+       [setEuroProtocolNumber]="this.selectedEuroProtocolNumber">
       </app-enter-data-second-side>
     </div>
-
   </div>
 </div>

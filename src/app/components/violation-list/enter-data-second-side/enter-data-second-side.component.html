@@ -1,205 +1,29 @@
-<nz-modal nzWidth="80%" [(nzVisible)]="isVisible" nzTitle="Enter Your Data" [nzContent]="modalContent"  [nzFooter]="modalFooter"
-  (nzOnCancel)="handleCancel()">
-  <ng-template #modalContent>
-    <nz-carousel [nzEffect]="effect" [nzDots]="false">
-      <div nz-carousel-content  *ngFor="let index of array; let i = index">
-        <div class="carousel" [style.height.px]="this.height" >
-         <div  *ngIf="(index==='EnterCarPlate')" class="first" >
-          <h1 class="alignCenter" >Please Enter Your CarPlate</h1>
-          <input class="alignCenter" nz-input id="carPlate" type="text" [(ngModel)]="carPlate">
+<nz-modal nzWidth="80%" [(nzVisible)]="isVisible" nzTitle="Enter Your Data" [nzContent]="modalContent"
+    [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()">
+    <ng-template #modalContent>
+        <div #mainComponent>   
         </div>
-        <div *ngIf="(index==='AllData')">         
-            <h1 class="alignCenter">1st participant of the accident</h1>
-            <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
-                <div nz-col [nzSpan]="12">
-                    <form autocomplete="off" [formGroup]="personalDataForm" >
-                        <h2 class="alignCenter">Driver license</h2>
-                        <div>
-                            <nz-form-item>
-                                <nz-form-label [nzSpan]="24">Last name of the driver</nz-form-label>
-                                <nz-form-control [nzSpan]="24">
-                                    <input nz-input placeholder="Please input your last name" id="lastName"
-                                        formControlName="lastName" required nzSize="large" readonly/>
-                                </nz-form-control>
-                            </nz-form-item>
-                        </div>
-                        <div>
-                            <nz-form-item>
-                                <nz-form-label [nzSpan]="24">First name of the driver</nz-form-label>
-                                <nz-form-control [nzSpan]="24">
-                                    <input nz-input placeholder="Please input your last name" id="firstName"
-                                        formControlName="firstName" required nzSize="large"readonly />
-                                </nz-form-control>
-                            </nz-form-item>
-                        </div>
-                        <div>
-                            <nz-form-item>
-                                <nz-form-label [nzSpan]="24">Date of birth</nz-form-label>
-                                <nz-form-control [nzSpan]="24">
-                                    <nz-date-picker id="birthDay" formControlName="birthDay" [nzSize]="'large'" readonly>
-                                    </nz-date-picker>
-                                </nz-form-control>
-                            </nz-form-item>
-                        </div>
-                        <div>
-                            <nz-form-item>
-                                <nz-form-label [nzSpan]="24">License serial number</nz-form-label>
-                                <nz-form-control [nzSpan]="24">
-                                    <input nz-input placeholder="Please input serial number" id="licenseSerialNumber"
-                                        formControlName="licenseSerialNumber" required nzSize="large" readonly/>
-                                </nz-form-control>
-                            </nz-form-item>
-                        </div>
-                        <div>
-                            <nz-form-item>
-                                <nz-form-label [nzSpan]="24">Issued authority</nz-form-label>
-                                <nz-form-control [nzSpan]="24">
-                                    <input nz-input placeholder="Please input your issued authority" id="issuedBy"
-                                        formControlName="issuedBy" required nzSize="large" readonly/>
-                                </nz-form-control>
-                            </nz-form-item>
-                        </div>
-                        <div>
-                            <nz-form-item>
-                                <nz-form-label [nzSpan]="24">Expiration date</nz-form-label>
-                                <nz-form-control [nzSpan]="24">
-                                    <nz-date-picker id="expirationDate" formControlName="expirationDate" [nzSize]="'large'" readonly>
-                                    </nz-date-picker>
-                                </nz-form-control>
-                            </nz-form-item>
-                        </div>
-                    </form>
-                </div>
-                <div nz-col [nzSpan]="12">
-                    <form novalidate autocomplete="off" [formGroup]="transportForm">
-                        <h2 class="alignCenter">Technical passport</h2>
-                        <div>
-                            <nz-form-item>
-                                <nz-form-label [nzSpan]="24">Made by</nz-form-label>
-                                <nz-form-control [nzSpan]="24">
-                                    <input nz-input placeholder="Input made by" id="producedBy" formControlName="producedBy"
-                                        required nzSize="large" readonly/>
-                                </nz-form-control>
-                            </nz-form-item>
-                        </div>
-                        <div>
-                            <nz-form-item>
-                                <nz-form-label [nzSpan]="24">Model</nz-form-label>
-                                <nz-form-control [nzSpan]="24">
-                                    <input nz-input placeholder="Input model" id="model" formControlName="model" required
-                                        nzSize="large" readonly/>
-                                </nz-form-control>
-                            </nz-form-item>
-                        </div>
-                        <div>
-                            <nz-form-item>
-                                <nz-form-label [nzSpan]="24">Car categoty</nz-form-label>
-                                <nz-form-control [nzSpan]="24">
-                                    <input nz-input placeholder="Input car categoty" id="categoryName"
-                                        formControlName="categoryName" required nzSize="large" readonly/>
-                                </nz-form-control>
-                            </nz-form-item>
-                        </div>
-                        <div>
-                            <nz-form-item>
-                                <nz-form-label [nzSpan]="24">Vin code</nz-form-label>
-                                <nz-form-control [nzSpan]="24">
-                                    <input nz-input placeholder="Input vin code" id="vinCode" formControlName="vinCode" required
-                                        nzSize="large" readonly/>
-                                </nz-form-control>
-                            </nz-form-item>
-                        </div>
-                        <div>
-                            <nz-form-item>
-                                <nz-form-label [nzSpan]="24">Car plate</nz-form-label>
-                                <nz-form-control [nzSpan]="24">
-                                    <input nz-input placeholder="Input car plate" id="carPlate" formControlName="carPlate"
-                                        required nzSize="large" readonly/>
-                                </nz-form-control>
-                            </nz-form-item>
-                        </div>
-                        <div>
-                            <nz-form-item>
-                                <nz-form-label [nzSpan]="24">Color</nz-form-label>
-                                <nz-form-control [nzSpan]="24">
-                                    <input nz-input placeholder="Input color" id="color" formControlName="color" required
-                                        nzSize="large"  readonly/>
-                                </nz-form-control>
-                            </nz-form-item>
-                        </div>
-                        <div>
-                            <nz-form-item>
-                                <nz-form-label [nzSpan]="24">Year of production</nz-form-label>
-                                <nz-form-control [nzSpan]="24">
-                                    <input nz-input placeholder="Input Car Year" id="yearOfProduction"
-                                        formControlName="yearOfProduction" required nzSize="large" readonly />
-                                </nz-form-control>
-                            </nz-form-item>
-                        </div>
-                    </form>
-                </div>
-            </div>      
-        </div>
-        <div *ngIf="(index==='Circumstance')"> 
-          <div>
-          <h2>Circumstances of the accident</h2>
-          <div>
-            <h5>Choose the circumstances of the accident according 
-                to the actions of each participant</h5>            
+      
+        <div *ngIf="index===-1" class="first" >
+                <h1 class="alignCenter" >Please Enter Your CarPlate</h1>
+                <input class="alignCenter" nz-input id="carPlate" type="text" [(ngModel)]="carPlate">
+            </div>
+        <div>
+            <div class="euro_progres">
+                <nz-progress [nzPercent]="25*(index+2)" [nzShowInfo]="false"  nzStatus="active" ></nz-progress>
+            </div>
             <br>
-            <div>
-                <form nz-form *ngFor="let item of this.circumstancesList">
-                    <div>
-                        <nz-form-item>
-                            <div class="circumstance">
-                                <div>
-                                    <input type="checkbox"  (change)="onChange(item, $event)"/> 
-                                </div>
-                                <div>
-                                    <p>{{item.circumstanceName}}</p>
-                                </div>
-                            </div>
-                        </nz-form-item>
-                    </div>
-                </form>
+            <div class="euro_footer_next">
+                <button nz-button *ngIf="!(index===-1)" nzType="default" nzSize="large"
+                    (click)="changeIndex(index-1)"> <i nz-icon nzType="left"></i>Previous</button>
+                <button nz-button *ngIf="!(index===2) " nzType="default" nzSize="large"
+                    (click)="changeIndex(index+1)">Next <i nz-icon nzType="right"></i></button>
             </div>
         </div>
-      </div>          
-        </div>
-        <div *ngIf="(index==='Sucess')">
-          <div >
-            <h2>The European protocol is issued</h2>
-        </div>
-        <div nz-col="" nzspan="12" nzoffset="6" class="alignCenter">
-          <div class="myDiv">
-            <div class="circle">
-              <span class="check"><i nz-icon nzType="check" nzTheme="outline"></i></span>
-            </div>
-          </div>
-          <div>
-            <h1>Personal info </h1>
-          </div>
-          <div>
-            Info about you and your preferences across Easy-CA
-          </div>
-          <br><br>
-        </div>
-        </div>
-        <div class="euro_progres">
-          <nz-progress [nzPercent]="25*(i+1)" [nzShowInfo]="false" ></nz-progress>
-        </div>
-        <br>
-        <div class="euro_footer_next">
-          <button nz-button *ngIf="!(index==='EnterCarPlate')" nzType="default" nzSize="large" (click)="previous(index)"> <i nz-icon
-              nzType="left"></i>Previous</button>
-          <button nz-button *ngIf="!(index==='Sucess') " nzType="default" nzSize="large" (click)="next(index)">Next <i nz-icon nzType="right"></i></button>
-        </div>
-        </div>
-      </div>
-    </nz-carousel>
-  </ng-template>
-  <ng-template #modalFooter>
-    <div  class="first" > </div>
-    <button nz-button nzType="default" (click)="handleCancel()">Close</button>
+
+    </ng-template>
+    <ng-template #modalFooter>
+        <div class="first"> </div>
+        <button nz-button nzType="default" (click)="handleCancel()">Close</button>
     </ng-template>
 </nz-modal>
