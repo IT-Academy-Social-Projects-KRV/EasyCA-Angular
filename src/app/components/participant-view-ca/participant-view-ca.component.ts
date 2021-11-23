@@ -113,9 +113,8 @@ export class ParticipantViewCaComponent implements OnInit {
 
       this.accountService.getUserById(selectedRecord.inspectorId)
       .subscribe((data: User) => {
-        console.log(data.email);
         this.inspectorEmail.setValue({
-          email: data.email
+          email: data.firstName + " " + data.lastName,
         })
       }, 
       err=>{}
