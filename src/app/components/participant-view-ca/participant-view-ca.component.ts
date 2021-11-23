@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { CarAccident } from 'src/app/models/carAccident';
+import { EvidenceCA } from 'src/app/models/evidenceCA';
 import { Transport } from 'src/app/models/Transport';
 import { Witness } from 'src/app/models/witness';
 import { CAService } from 'src/app/services/ca.service';
@@ -15,7 +16,9 @@ export class ParticipantViewCaComponent implements OnInit {
 
   public isVisible = false;
   public protocolCA: CarAccident;
+  public evidencesList: string[] = [];
   public witnessesList: Witness[] = [];
+  public evidencesListNormal: EvidenceCA[] = [];
 
   constructor(public fb: FormBuilder, public CAservice: CAService, public transportService: TransportService) { }
 
@@ -25,6 +28,10 @@ export class ParticipantViewCaComponent implements OnInit {
 
   @Input() set setData(protocol: CarAccident) {
     this.protocolCA = protocol;
+
+    if (this.protocolCA.evidences.length > 0) {
+      this.evidencesListNormal = this.protocolCA.evidences;
+    }
 
     if (this.protocolCA.witnesses.length > 0) {
       this.witnessesList = this.protocolCA.witnesses;
@@ -81,7 +88,6 @@ export class ParticipantViewCaComponent implements OnInit {
     evidences: [''],
     courtDTG: null,
     isDocumentTakenOff: null,
-    isClosed: null
   });
 
   ngOnInit(): void {
@@ -97,6 +103,10 @@ export class ParticipantViewCaComponent implements OnInit {
     if (isAddress) {
       let address = selectedRecord.address;
       let sideOfAccident = selectedRecord.sideOfAccident;
+
+      this.protocolCA.evidences.forEach(item => {
+        this.evidencesList.push(item.photoSchema);
+      });
 
       this.dataForm.setValue({
         serialNumber: selectedRecord.serialNumber,
