@@ -19,7 +19,7 @@ export class EuroProtocolService {
   constructor(private http: HttpClient,  public router: Router, private configuration: AppConfigService) { }
 
   registerSideBEuroProtocol(side:Side):Observable<Side>{
-    return this.http.post<Side>(`${HOST_URL}EuroProtocol/RegisterSideBEuroProtocol`, side, httpOptions);
+    return this.http.post<Side>(`${this.configuration.backendUrl}EuroProtocol/RegisterSideBEuroProtocol`, side, httpOptions);
   } 
 
   getAllCircumstances(){
