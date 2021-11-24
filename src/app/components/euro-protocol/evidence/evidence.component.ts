@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { EuroProtocol } from 'src/app/models/euroProtocol';
-import { Evidence } from 'src/app/models/evidence';
+import { EuroProtocol } from 'src/app/models/EuroProtocol';
+import { Evidence } from 'src/app/models/Evidence';
 
 @Component({
   selector: 'app-evidence',
@@ -25,7 +25,7 @@ export class EvidenceComponent implements OnInit {
   @Output() indexChangedEvent = new EventEmitter<number>();
 
   changeEuroProtocol($event: EuroProtocol) {
-    this.fileIdList.forEach(x => this.evidenceList.push({explanation:'', photoSchema: x, attachments: []}));
+    this.fileIdList.forEach(x => this.evidenceList.push({photoSchema: x}));
     $event.sideA.evidences = this.evidenceList;
     this.euroProtocolEvent.emit($event);
     this.evidenceList = [];

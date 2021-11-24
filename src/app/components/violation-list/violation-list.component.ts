@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { EuroProtocolSimpleModel } from 'src/app/models/euroProtocolSimpleModel';
+import { EuroProtocolSimpleModel } from 'src/app/models/EuroProtocolSimpleModel';
 import { ViolationListService } from 'src/app/services/violation-list.service';
 
 @Component({

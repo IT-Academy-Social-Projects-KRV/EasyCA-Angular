@@ -1,5 +1,3 @@
-export class RefreshToken{
-    constructor(
-      public refreshToken:string
-    ){}
+export interface RefreshToken{
+    refreshToken:string
 }

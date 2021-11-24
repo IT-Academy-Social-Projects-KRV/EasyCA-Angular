@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Circumstance } from '../models/circumstance';
-import { EuroProtocolFullModel } from '../models/euroProtocolFullModel';
+import { Circumstance } from '../models/Circumstance';
+import { EuroProtocolFullModel } from '../models/EuroProtocolFullModel';
 import { EuroProtocolService } from '../services/euroProtocolService';
 import { ViolationListService } from '../services/violation-list.service';
 

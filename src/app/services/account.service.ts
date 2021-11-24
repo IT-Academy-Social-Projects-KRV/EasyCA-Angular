@@ -4,12 +4,12 @@ import { Router } from '@angular/router';
 import { TokenStorageService } from './token-storage.service';
 import { User } from '../models/User';
 import { Observable } from 'rxjs';
-import { RestorePassword } from '../models/restorePassword';
-import { Data } from '../models/data';
+import { RestorePassword } from '../models/RestorePassword';
+import { Data } from '../models/Data';
 import { CookieService } from 'ngx-cookie-service';
-import { ResendConfirmation } from '../models/resendConfirmation';
+import { ResendConfirmation } from '../models/ResendConfirmation';
 import { PersonalData } from '../models/personalData';
-import { ChangePassword } from '../models/changePassword';
+import { ChangePassword } from '../models/ChangePassword';
 import { AppConfigService } from './app-config.service';
 
 const httpOptions = {
@@ -45,12 +45,12 @@ export class AccountService {
     return this.http.put<any>(`${this.configuration.backendUrl}Account/UpdateData`, data, httpOptions);
   }
 
-  getPersonalData() {
-    return this.http.get<any>(`${this.configuration.backendUrl}Account/GetUserById`);
+  getPersonalData(): Observable<Data> {
+    return this.http.get<Data>(`${this.configuration.backendUrl}Account/GetUserById`);
   }
 
-  getUserById(id: string) {
-    return this.http.get<any>(`${this.configuration.backendUrl}Account/GetUserById/${id}`);
+  getUserById(id: string): Observable<User> {
+    return this.http.get<User>(`${this.configuration.backendUrl}Account/GetUserById/${id}`);
   }
  
   addPersonalData(data: PersonalData) {

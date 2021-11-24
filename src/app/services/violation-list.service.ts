@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { EuroProtocolFullModel } from '../models/euroProtocolFullModel';
-import { EuroProtocolSimpleModel } from '../models/euroProtocolSimpleModel';
+import { EuroProtocolFullModel } from '../models/EuroProtocolFullModel';
+import { EuroProtocolSimpleModel } from '../models/EuroProtocolSimpleModel';
 import { AppConfigService } from './app-config.service';
 
 @Injectable({

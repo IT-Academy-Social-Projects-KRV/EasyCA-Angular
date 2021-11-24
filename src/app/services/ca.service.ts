@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { CarAccident } from '../models/carAccident';
+import { CarAccident } from '../models/CarAccident';
 import { Observable } from 'rxjs';
 import { AppConfigService } from './app-config.service';
 
@@ -31,7 +31,7 @@ export class CAService {
     return this.http.get<CarAccident[]>(`${this.configuration.backendUrl}CarAccident/GetAllPersonsCAByInspector?personDriverId=${driverLicenseId}`);
   }
 
-  getAllCAForParticipant(){
+  getAllCAForParticipant(): Observable<CarAccident[]>{
     return this.http.get<CarAccident[]>(`${this.configuration.backendUrl}CarAccident/GetAllCAProtocolsByPerson`);
   }
 }

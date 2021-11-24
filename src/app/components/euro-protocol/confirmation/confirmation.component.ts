@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { EuroProtocol } from 'src/app/models/euroProtocol';
+import { EuroProtocol } from 'src/app/models/EuroProtocol';
 import { EuroProtocolService } from 'src/app/services/euroProtocolService';
 
 @Component({

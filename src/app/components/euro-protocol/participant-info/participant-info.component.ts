@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { EuroProtocol } from 'src/app/models/euroProtocol';
+import { EuroProtocol } from 'src/app/models/EuroProtocol';
 import { AccountService } from 'src/app/services/account.service';
 import { TransportService } from 'src/app/services/transport.service';
 

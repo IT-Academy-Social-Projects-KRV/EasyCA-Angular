@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { CarAccident } from 'src/app/models/carAccident';
-import { EvidenceCA } from 'src/app/models/evidenceCA';
+import { CarAccident } from 'src/app/models/CarAccident';
+import { Evidence } from 'src/app/models/Evidence';
 import { Transport } from 'src/app/models/Transport';
 import { User } from 'src/app/models/User';
-import { Witness } from 'src/app/models/witness';
+import { Witness } from 'src/app/models/Witness';
 import { AccountService } from 'src/app/services/account.service';
 import { CAService } from 'src/app/services/ca.service';
 import { TransportService } from 'src/app/services/transport.service';
@@ -20,7 +20,7 @@ export class AdminViewCAComponent implements OnInit {
   public protocolCA: CarAccident;
   public evidencesList: string[] = [];
   public witnessesList: Witness[] = [];
-  public evidencesListNormal: EvidenceCA[] = [];
+  public evidencesListNormal: Evidence[] = [];
 
   constructor(public accountService: AccountService, public fb: FormBuilder, public CAservice: CAService, public transportService: TransportService) { }
 
