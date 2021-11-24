@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Circumstance } from 'src/app/models/circumstance';
 import { Side } from 'src/app/models/side';
 import { EuroProtocolService } from 'src/app/services/euroProtocolService';
@@ -14,19 +15,24 @@ export class CircumstanceComponent implements OnInit {
   public circumstancesList: Circumstance[];
   public checkedCircumstancesId: number[]=[];
   public index: number;
-  constructor(public euroProtocolService: EuroProtocolService) { }
+  constructor(public euroProtocolService: EuroProtocolService, public toastr: ToastrService) { }
+
   ngOnInit(): void {
      this.euroProtocolService.getAllCircumstances()
      .subscribe(data =>  this.circumstancesList = data,
-      err=>{ console.log(err);
+      err=>{ 
+        this.toastr.warning(err, "Warning");
       });
   }
+
   @Input() set sideInput(side: Side) {
     this.side = side;
   }
+
   @Input() set indexInput($event: number) {
     this.index = $event;
   }
+
   @Output() createSideEvent = new EventEmitter();
   @Output() sideEvent = new EventEmitter<Side>();
   @Output() indexChangedEvent = new EventEmitter<number>();
@@ -34,17 +40,17 @@ export class CircumstanceComponent implements OnInit {
   onChange(id:Circumstance, event: any) {
     if(event.target.checked) {
       this.checkedCircumstancesId.push(id.circumstanceId);
-    } else {
+    } 
+    else {
       let index = this.checkedCircumstancesId.findIndex(x => x == id.circumstanceId);
       this.checkedCircumstancesId.splice(index,1);
     }
-    console.log(this.checkedCircumstancesId);
 
     this.side.circumstances=this.checkedCircumstancesId;
     this.sideEvent.emit(this.side);
   }
-  // changePage(index: number) {   
-  //   this.indexChangedEvent.emit(index);  
-  // }
-  createSide(){   this.sideEvent.emit(this.side); this.createSideEvent.emit();}
+  
+  createSide(){  
+    this.sideEvent.emit(this.side); this.createSideEvent.emit();
+  }
 }

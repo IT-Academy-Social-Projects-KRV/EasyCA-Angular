@@ -5,6 +5,7 @@ import { Transport } from 'src/app/models/Transport';
 import { AccountService } from 'src/app/services/account.service';
 import { TransportService } from 'src/app/services/transport.service';
 import { Side } from 'src/app/models/side';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-all-data',
@@ -44,16 +45,20 @@ export class AllDataComponent implements OnInit {
   @Input() set sideInput(side: Side) {
     this.side = side;
   }
+
   @Input() set carPlateInput(carPlate: string) {
     this.carPlate = carPlate;
     this.setTransport();
   }
+
   @Output() sideEvent = new EventEmitter<Side>();
+
   @Output() indexChangedEvent = new EventEmitter<number>();
   
   constructor(public fb: FormBuilder,
     public accountService: AccountService, 
-    public transportService: TransportService,) { }
+    public transportService: TransportService,
+    public toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.accountService.getPersonalData()
@@ -64,8 +69,9 @@ export class AllDataComponent implements OnInit {
         this.side.email=res.email,
         this.side.driverLicenseSerial=res.personalData.userDriverLicense.licenseSerialNumber;
       },
-      err =>{ console.log(err);
-    });
+      err =>{ 
+        this.toastr.warning(err, "Warning");
+      });
   }
   
   setTransport(){
@@ -75,7 +81,8 @@ export class AllDataComponent implements OnInit {
          this.populatetransportForm(),
          this.side.transportId=res.id
         },
-      err=>{ console.log(err);
+      err=>{         
+        this.toastr.warning(err, "Warning");
     });     
     this.sideEvent.emit(this.side); 
   }

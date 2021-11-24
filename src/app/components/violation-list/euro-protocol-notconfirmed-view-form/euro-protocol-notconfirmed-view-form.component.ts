@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Circumstance } from 'src/app/models/circumstance';
@@ -14,11 +14,11 @@ import { ViolationListService } from 'src/app/services/violation-list.service';
 })
 export class ConfirmComponent implements OnInit {
   public isVisible = false;
-  @Input() public protocolNumber: string;
   public protocol: EuroProtocolFullModel
+  @Input() public protocolNumber: string;
 
-  errorMessage: string;
-  isAnyErrors = false;
+  public errorMessage: string;
+  public isAnyErrors = false;
 
   constructor(
     public fb: FormBuilder,
@@ -26,8 +26,6 @@ export class ConfirmComponent implements OnInit {
     public violationListService: ViolationListService,
     public euroProtocolService: EuroProtocolService, 
     private toastr: ToastrService) { }
-
-
 
   ngOnInit(): void {
     this.violationListService.getEuroProtocolBySerialNumber(this.protocolNumber).subscribe(
@@ -67,6 +65,7 @@ export class ConfirmComponent implements OnInit {
       err => {
         this.isAnyErrors = true;
         this.errorMessage = "Couldn't to load protocol's data";
+        this.toastr.warning("Couldn't to load protocol's data", "Warning");
       }
     );
    }

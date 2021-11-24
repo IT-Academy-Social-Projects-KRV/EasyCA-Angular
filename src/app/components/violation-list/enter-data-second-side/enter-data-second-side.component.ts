@@ -40,9 +40,11 @@ export class EnterDataSecondSideComponent implements OnInit {
   @Input() set setVisible(isVisible: boolean) {
     this.isVisible = isVisible;    
   } 
+
   @Input() set setEuroProtocolNumber(euroProtocolNumber: string) {
     this.euroProtocolNumber = euroProtocolNumber;
   } 
+
   @Output() isVisibleEvent = new EventEmitter<boolean>();
 
   constructor(public euroProtocolService: EuroProtocolService,
@@ -77,12 +79,14 @@ export class EnterDataSecondSideComponent implements OnInit {
         }
     };
   }
+
   changeIndex($event: number) {
     if($event==-1){this.container.clear(); this.index = $event;}
     else{    
       this.index = $event;
       this.generatePage();}
   }
+
   setCommunication() {
     this.componentRef.instance.sideInput = this.side;
     this.componentRef.instance.sideEvent.subscribe((val: Side) => this.setSide(val));
@@ -95,18 +99,16 @@ export class EnterDataSecondSideComponent implements OnInit {
     this.euroProtocolService.registerSideBEuroProtocol(this.side)
     .subscribe(
       res => {
-        this.toastr.info("Great", "Success");
+        this.toastr.success("Great", "Success");
         console.log(res);
       },
       err => {
         this.toastr.warning('Data not added', err.error.message);
-          console.log(err);
       });
-      console.log(this.side);
     }
 
   setCarPlate($event: string) {
-      this.carPlate = $event;
+    this.carPlate = $event;
    }
 
   setSide($event: Side) {
@@ -115,7 +117,7 @@ export class EnterDataSecondSideComponent implements OnInit {
 
   handleCancel(): void {
     this.isVisibleEvent.emit(false);
-    window.location.reload();
+    // window.location.reload();
   }
 
   ngOnInit(): void {  }
