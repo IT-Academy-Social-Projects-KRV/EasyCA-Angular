@@ -8,7 +8,7 @@ import { RestorePassword } from '../models/RestorePassword';
 import { Data } from '../models/Data';
 import { CookieService } from 'ngx-cookie-service';
 import { ResendConfirmation } from '../models/ResendConfirmation';
-import { PersonalData } from '../models/personalData';
+import { PersonalData } from '../models/PersonalData';
 import { ChangePassword } from '../models/ChangePassword';
 import { AppConfigService } from './app-config.service';
 
