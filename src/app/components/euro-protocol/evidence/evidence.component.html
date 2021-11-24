@@ -3,12 +3,7 @@
      <h2>Evidence</h2>
    </div>
    <div class="euro_content">
-     <div>
-       <h5>
-         Photos, videos, and photo proofs will be added to this page later, as
-         there is no video storage service yet.
-       </h5>
-     </div>
+     <app-file-upload (fileIdListEvent)="fileIdList = $event"></app-file-upload>
    </div>
    <div class="euro_progres">
      <nz-progress [nzPercent]="66" [nzShowInfo]="false" nzStatus="active" ></nz-progress>

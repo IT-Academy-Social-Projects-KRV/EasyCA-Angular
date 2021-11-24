@@ -17,5 +17,4 @@ export interface CarAccident {
     evidences: Array<EvidenceCA>;
     courtDTG: Date;
     isDocumentTakenOff: boolean;
-    isClosed: boolean
 }

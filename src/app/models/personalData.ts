@@ -8,4 +8,4 @@ export interface PersonalData {
          jobPosition: string;
          userDriverLicense: UserDriverLicense;
          userCars: Array<string>;
- } 
+ }  

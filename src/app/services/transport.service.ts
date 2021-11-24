@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { HOST_URL} from '../configs/config';
 import { Transport } from '../models/Transport';
 import { Observable } from 'rxjs';
+import { AppConfigService } from './app-config.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -13,29 +13,30 @@ const httpOptions = {
 })
 
 export class TransportService {
-  constructor(private http: HttpClient,  public router: Router) { }  
+  constructor(private http: HttpClient,  public router: Router, private configuration: AppConfigService) { }  
 
   getTransportById(id: string): Observable<Transport>{
-    return this.http.get<Transport>(`${HOST_URL}Transport/GetTransport?transportId=${id}`);
+    return this.http.get<Transport>(`${this.configuration.backendUrl}Transport/GetTransport?transportId=${id}`);
   }
 
   postTransport(transport: Transport){
-    return this.http.post<Transport>(`${HOST_URL}Transport/AddTransport`, transport, httpOptions);
+    return this.http.post<Transport>(`${this.configuration.backendUrl}Transport/AddTransport`, transport, httpOptions);
   }
   
   putTransport(transport: Transport){
-    return this.http.put<Transport>(`${HOST_URL}Transport/UpdateTransport`, transport, httpOptions);
+    return this.http.put<Transport>(`${this.configuration.backendUrl}Transport/UpdateTransport`, transport, httpOptions);
+
   }
 
   deleteTransport(id:string){
-    return this.http.delete(`${HOST_URL}Transport/DeleteTransport?transportId=${id}`);
+    return this.http.delete(`${this.configuration.backendUrl}Transport/DeleteTransport?transportId=${id}`);
   }
 
-  getAllTransports(){    
-    return this.http.get<Transport>(`${HOST_URL}Transport/GetAllTransports`);
+  getAllTransports(){  
+    return this.http.get<Transport>(`${this.configuration.backendUrl}Transport/GetAllTransports`);
   }
 
   getTransportByCarPlate(carPlate: string){
-    return this.http.get<Transport>(`${HOST_URL}Transport/GetTransportByCarPlate?carPlate=${carPlate}`);
+    return this.http.get<Transport>(`${this.configuration.backendUrl}Transport/GetTransportByCarPlate?carPlate=${carPlate}`);
   }
 }

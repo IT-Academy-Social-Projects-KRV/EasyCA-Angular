@@ -14,7 +14,7 @@ import { CAService } from 'src/app/services/ca.service';
 })
 
 export class InspectorListOfCarAccidentsComponent implements OnInit {
-  
+
   public accidentList: CarAccident[];
   public isAccidentListEmpty = false;
   public isVisible = false;
@@ -33,7 +33,6 @@ export class InspectorListOfCarAccidentsComponent implements OnInit {
     witnesses: <Array<Witness>>[],
     evidences:<Array<EvidenceCA>>[],
     isDocumentTakenOff: <boolean>{},
-    isClosed: <boolean>{},
     courtDTG: <Date>{}
   };
 
@@ -74,14 +73,14 @@ export class InspectorListOfCarAccidentsComponent implements OnInit {
     this.service.getAllCarAccidentsByInspectorId().subscribe(
       data => {
         if (data.length == 0) {
-          this.isAccidentListEmpty = true; 
+          this.isAccidentListEmpty = true;
           this.toastr.warning("CA protocols is empty", "Warning");
         }
         else {
           this.accidentList = data;
         }
       },
-      error => { 
+      error => {
         this.toastr.warning(error, "Warning");
       })
   }
@@ -93,7 +92,7 @@ export class InspectorListOfCarAccidentsComponent implements OnInit {
 
   setSelectedCA(selectedCA: CarAccident) {
     this.selectedCA = selectedCA;
-  } 
+  }
 
   handleCancel($event: boolean) {
     this.isVisible = $event;

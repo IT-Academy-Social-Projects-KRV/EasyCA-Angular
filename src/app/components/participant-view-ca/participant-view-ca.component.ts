@@ -1,8 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { CarAccident } from 'src/app/models/carAccident';
+import { EvidenceCA } from 'src/app/models/evidenceCA';
 import { Transport } from 'src/app/models/Transport';
+import { User } from 'src/app/models/User';
 import { Witness } from 'src/app/models/witness';
+import { AccountService } from 'src/app/services/account.service';
 import { CAService } from 'src/app/services/ca.service';
 import { TransportService } from 'src/app/services/transport.service';
 
@@ -15,9 +18,12 @@ export class ParticipantViewCaComponent implements OnInit {
 
   public isVisible = false;
   public protocolCA: CarAccident;
+  public evidencesList: string[] = [];
   public witnessesList: Witness[] = [];
+  public evidencesListNormal: EvidenceCA[] = [];
 
-  constructor(public fb: FormBuilder, public CAservice: CAService, public transportService: TransportService) { }
+  constructor(public accountService: AccountService, public fb: FormBuilder, 
+    public CAservice: CAService, public transportService: TransportService) { }
 
   @Input() set setVisible(isVisible: boolean) {
     this.isVisible = isVisible;
@@ -25,6 +31,10 @@ export class ParticipantViewCaComponent implements OnInit {
 
   @Input() set setData(protocol: CarAccident) {
     this.protocolCA = protocol;
+
+    if (this.protocolCA.evidences.length > 0) {
+      this.evidencesListNormal = this.protocolCA.evidences;
+    }
 
     if (this.protocolCA.witnesses.length > 0) {
       this.witnessesList = this.protocolCA.witnesses;
@@ -47,6 +57,10 @@ export class ParticipantViewCaComponent implements OnInit {
     insuaranceNumber: this.fb.group({
       companyName: [''],
     }),
+  });
+
+  public inspectorEmail = this.fb.group({
+    email: [''],
   });
 
   public witnessForm = this.fb.group({
@@ -81,7 +95,6 @@ export class ParticipantViewCaComponent implements OnInit {
     evidences: [''],
     courtDTG: null,
     isDocumentTakenOff: null,
-    isClosed: null
   });
 
   ngOnInit(): void {
@@ -97,6 +110,19 @@ export class ParticipantViewCaComponent implements OnInit {
     if (isAddress) {
       let address = selectedRecord.address;
       let sideOfAccident = selectedRecord.sideOfAccident;
+
+      this.accountService.getUserById(selectedRecord.inspectorId)
+      .subscribe((data: User) => {
+        this.inspectorEmail.setValue({
+          email: data.firstName + " " + data.lastName,
+        })
+      }, 
+      err=>{}
+      )
+
+      this.protocolCA.evidences.forEach(item => {
+        this.evidencesList.push(item.photoSchema);
+      });
 
       this.dataForm.setValue({
         serialNumber: selectedRecord.serialNumber,
@@ -123,7 +149,6 @@ export class ParticipantViewCaComponent implements OnInit {
         evidences: selectedRecord.evidences,
         courtDTG: selectedRecord.courtDTG,
         isDocumentTakenOff: selectedRecord.isDocumentTakenOff,
-        isClosed: selectedRecord.isClosed
       });
     }
 
@@ -144,11 +169,9 @@ export class ParticipantViewCaComponent implements OnInit {
           }
         })
       },
-        error => { }
+      error => { }
       );
     }
-
-    
   }
 
   handleCancel(): void {
