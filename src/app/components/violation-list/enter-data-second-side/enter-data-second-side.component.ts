@@ -70,7 +70,7 @@ export class EnterDataSecondSideComponent implements OnInit {
         break;
       }
       case SucessComponent: {     
-        this.registr();
+        this.register();
         break;
       }
       default:
@@ -92,7 +92,7 @@ export class EnterDataSecondSideComponent implements OnInit {
     this.componentRef.instance.sideEvent.subscribe((val: Side) => this.setSide(val));
   }
 
-  registr(){    
+  register(){    
     this.side.protocolSerial=this.euroProtocolNumber;
     this.side.damage="Yes";
     this.side.isGulty=false;     
@@ -117,7 +117,6 @@ export class EnterDataSecondSideComponent implements OnInit {
 
   handleCancel(): void {
     this.isVisibleEvent.emit(false);
-    // window.location.reload();
   }
 
   ngOnInit(): void {  }
