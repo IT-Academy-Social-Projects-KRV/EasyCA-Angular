@@ -7,7 +7,7 @@
        <form nz-form [formGroup]="cityAddressForm">
          <nz-form-item>
            <div>
-             <input type="checkbox" name="isInCity" (change)="onChange($event)"/> 
+             <input type="checkbox" name="isInCity" (change)="onChangeIsInCity($event)"/> 
              <label for="isInCity">
                The accident occurred in the city
              </label>
@@ -33,11 +33,21 @@
               </nz-form-control>
             </nz-form-item>
             <nz-form-item>
-              <nz-form-label [nzSpan]="24">Cross Street</nz-form-label>
-              <nz-form-control [nzSpan]="10">
-                <input nz-input placeholder="Please input a cross street" formControlName="CrossStreet" required name="crossStreet" />
-              </nz-form-control>
+              <div>
+                <input type="checkbox" formControlName="IsIntersection" name="isIntersection" (change)="onChangeIsIntersection($event)"/> 
+                <label for="isIntersection">
+                  The accident occurred at an intersection
+                </label>
+               </div>
             </nz-form-item>
+            <div [hidden]="!isIntersection">
+              <nz-form-item>
+                <nz-form-label [nzSpan]="24">Cross Street</nz-form-label>
+                <nz-form-control [nzSpan]="10">
+                  <input nz-input placeholder="Please input a cross street" formControlName="CrossStreet" name="crossStreet" />
+                </nz-form-control>
+              </nz-form-item>
+          </div>            
           </div>
           </form>
           <div [hidden]="isInCity">
@@ -76,7 +86,10 @@
      <button nz-button nzType="primary" [nzSize]="'large'" (click)="changePage(2)" >
        <i nz-icon nzType="left"></i> Backward
      </button>
-     <button nz-button nzType="primary" *ngIf="(!isInCity && !outsideAddressForm.invalid || isInCity && !cityAddressForm.invalid)&& !damageForm.invalid" [nzSize]="'large'" (click)="changePage(4)">
+     <button nz-button nzType="primary" 
+            *ngIf="(!isInCity && !outsideAddressForm.invalid || isInCity && !cityAddressForm.invalid) && !damageForm.invalid" 
+            [nzSize]="'large'" 
+            (click)="changePage(4)">
        Forward
        <i nz-icon nzType="right"></i>
      </button>
