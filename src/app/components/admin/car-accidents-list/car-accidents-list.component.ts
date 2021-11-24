@@ -3,7 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AddressOfAccident } from 'src/app/models/AddressOfAccident';
 import { CarAccident } from 'src/app/models/CarAccident';
 import { Evidence } from 'src/app/models/Evidence';
-import { sideCA } from 'src/app/models/SideCA';
+import { SideCA } from 'src/app/models/SideCA';
 import { Witness } from 'src/app/models/Witness';
 import { AdminService } from 'src/app/services/admin.service';
 
@@ -24,7 +24,7 @@ export class CarAccidentsListComponent implements OnInit {
     inspectorId: <string>{},
     registrationDateTime: <Date>{},
     address: <AddressOfAccident>{},
-    sideOfAccident: <sideCA>{},
+    sideOfAccident: <SideCA>{},
     accidentCircumstances: <string>{},
     trafficRuleId: <string>{},
     driverExplanation: <string>{},

@@ -1,6 +1,6 @@
 import { AddressOfAccident } from "./AddressOfAccident";
 import { Evidence } from "./Evidence";
-import { sideCA } from "./SideCA";
+import { SideCA } from "./SideCA";
 import { Witness } from "./Witness";
 
 export interface CarAccident {
@@ -9,7 +9,7 @@ export interface CarAccident {
     inspectorId: string;
     registrationDateTime: Date;
     address: AddressOfAccident;
-    sideOfAccident: sideCA;
+    sideOfAccident: SideCA;
     accidentCircumstances: string;
     trafficRuleId: string;
     driverExplanation: string;
