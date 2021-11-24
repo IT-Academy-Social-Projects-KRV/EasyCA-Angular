@@ -23,7 +23,7 @@ describe('ViolationListService', () => {
 
    afterEach(() => {
       backend.verify();
-  });
+   });
 
    it('should be created', () => {
       expect(violationService).toBeTruthy();
@@ -185,5 +185,5 @@ describe('ViolationListService', () => {
        method: 'GET',
        url: 'http://localhost:5500/api/EuroProtocol/GetEuroProtocolBySerialNumber?serialNumber=00000001'
     }).flush(mockListOfEP);
- });
+   });
 });
