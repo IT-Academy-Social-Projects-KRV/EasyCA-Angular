@@ -45,8 +45,8 @@ export class AccountService {
     return this.http.put<any>(`${this.configuration.backendUrl}Account/UpdateData`, data, httpOptions);
   }
 
-  getPersonalData(): Observable<Data> {
-    return this.http.get<Data>(`${this.configuration.backendUrl}Account/GetUserById`);
+  getPersonalData() {
+    return this.http.get<any>(`${this.configuration.backendUrl}Account/GetUserById`);
   }
 
   getUserById(id: string): Observable<User> {

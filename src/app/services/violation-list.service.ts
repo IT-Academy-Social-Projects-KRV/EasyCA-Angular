@@ -12,8 +12,7 @@ export class ViolationListService {
 
   constructor(public http: HttpClient, private configuration: AppConfigService) { }
 
-  getAllEuroProtocolsByEmail(): Observable<EuroProtocolSimpleModel[]> {
-    const email = localStorage.getItem('email');
+  getAllEuroProtocolsByEmail(email:string): Observable<EuroProtocolSimpleModel[]> {
     return this.http.get<EuroProtocolSimpleModel[]>(`${this.configuration.backendUrl}EuroProtocol/FindAllEuroProtocolsByEmail?email=${email}`);
   }
 

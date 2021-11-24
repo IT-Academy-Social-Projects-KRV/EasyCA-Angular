@@ -1,4 +1,4 @@
-import { PersonalData } from "./personalData";
+import { PersonalData } from "./PersonalData";
 
 export interface Data { 
     email: string;
