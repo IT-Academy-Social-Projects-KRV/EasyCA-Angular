@@ -19,6 +19,10 @@ export class ViolationListComponent implements OnInit {
   constructor(public violationListService: ViolationListService ) {   }
 
   ngOnInit(): void {
+    this.getAllEP();
+  }
+
+  getAllEP(){
     this.violationListService.getAllEuroProtocolsByEmail()
       .subscribe(
       data => this.protocolList = data,
@@ -28,6 +32,8 @@ export class ViolationListComponent implements OnInit {
 
   visibleSecondSideForm($event: boolean) {
     this.isSecondSideForm = $event;
+    this.getAllEP();
+
   } 
 
   ContinueFill(){
@@ -38,7 +44,6 @@ export class ViolationListComponent implements OnInit {
   loadEuroProtocol(id: number) : void {
     this.condition=this.protocolList[id].isClosed;
     this.selectedEuroProtocolNumber = this.protocolList[id].serialNumber;
-    console.log( this.selectedEuroProtocolNumber);
   }
   
   showEuroProtocolModal() : void {
