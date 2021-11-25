@@ -40,11 +40,9 @@ export class EnterDataSecondSideComponent implements OnInit {
   @Input() set setVisible(isVisible: boolean) {
     this.isVisible = isVisible;    
   } 
-
   @Input() set setEuroProtocolNumber(euroProtocolNumber: string) {
     this.euroProtocolNumber = euroProtocolNumber;
   } 
-
   @Output() isVisibleEvent = new EventEmitter<boolean>();
 
   constructor(public euroProtocolService: EuroProtocolService,
@@ -63,6 +61,7 @@ export class EnterDataSecondSideComponent implements OnInit {
       case AllDataComponent: {
         this.setCommunication();
         this.componentRef.instance.carPlateInput = this.carPlate;
+        this.componentRef.instance.demageCarEvent.subscribe((demage:string)=>this.setCarDemage(demage));
         break;
       }
       case CircumstanceComponent: {
@@ -70,7 +69,7 @@ export class EnterDataSecondSideComponent implements OnInit {
         break;
       }
       case SucessComponent: {     
-        this.register();
+        this.registr();
         break;
       }
       default:
@@ -79,44 +78,49 @@ export class EnterDataSecondSideComponent implements OnInit {
         }
     };
   }
-
   changeIndex($event: number) {
     if($event==-1){this.container.clear(); this.index = $event;}
     else{    
       this.index = $event;
       this.generatePage();}
   }
-
   setCommunication() {
     this.componentRef.instance.sideInput = this.side;
     this.componentRef.instance.sideEvent.subscribe((val: Side) => this.setSide(val));
   }
 
-  register(){    
+  registr(){    
     this.side.protocolSerial=this.euroProtocolNumber;
-    this.side.damage="Yes";
+  
     this.side.isGulty=false;     
     this.euroProtocolService.registerSideBEuroProtocol(this.side)
     .subscribe(
       res => {
-        this.toastr.success("Great", "Success");
+        this.toastr.info("Great", "Success");
         console.log(res);
       },
       err => {
         this.toastr.warning('Data not added', err.error.message);
+          console.log(err);
       });
+      console.log(this.side);
     }
 
   setCarPlate($event: string) {
     this.carPlate = $event;
-   }
+  }
+
+  setCarDemage($event: string) {
+    this.side.damage=$event;
+    console.log(this.side.damage);
+  }    
 
   setSide($event: Side) {
     this.side = $event;
   }
 
   handleCancel(): void {
-    this.isVisibleEvent.emit(false);
+    this.isVisibleEvent.emit(false);   
   }
 
   ngOnInit(): void {  }

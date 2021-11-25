@@ -60,7 +60,17 @@
                             </nz-form-control>
                         </nz-form-item>
                     </div>
+              
                 </form>
+                <div>
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="24">Please enter your damage of Car </nz-form-label>
+                        <nz-form-control [nzSpan]="24">
+                            <input nz-input placeholder="Please input your damage" id="carDamage"
+                            required nzSize="large" [(ngModel)]="carDamage" (ngModelChange)="onChange($event)"/>                        
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
             </div>
             <div nz-col [nzSpan]="12">
                 <form novalidate autocomplete="off" [formGroup]="transportForm">

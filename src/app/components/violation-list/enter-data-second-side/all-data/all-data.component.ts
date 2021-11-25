@@ -17,6 +17,7 @@ export class AllDataComponent implements OnInit {
   public data: Data;
   public transport: Transport; 
   public carPlate: string;
+  public carDamage: string;
   private side:Side;
   public index: number;
 
@@ -53,7 +54,7 @@ export class AllDataComponent implements OnInit {
 
   @Output() sideEvent = new EventEmitter<Side>();
 
-  @Output() indexChangedEvent = new EventEmitter<number>();
+  @Output() demageCarEvent = new EventEmitter<string>();
   
   constructor(public fb: FormBuilder,
     public accountService: AccountService, 
@@ -72,6 +73,11 @@ export class AllDataComponent implements OnInit {
       err =>{ 
         this.toastr.warning(err, "Warning");
       });
+  }
+
+  onChange( event: any) {
+    console.log(this.carDamage);
+      this.demageCarEvent.emit(this.carDamage); 
   }
   
   setTransport(){

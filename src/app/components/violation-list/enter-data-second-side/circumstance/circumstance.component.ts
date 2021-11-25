@@ -29,13 +29,8 @@ export class CircumstanceComponent implements OnInit {
     this.side = side;
   }
 
-  @Input() set indexInput($event: number) {
-    this.index = $event;
-  }
-
   @Output() createSideEvent = new EventEmitter();
   @Output() sideEvent = new EventEmitter<Side>();
-  @Output() indexChangedEvent = new EventEmitter<number>();
   
   onChange(id:Circumstance, event: any) {
     if(event.target.checked) {
