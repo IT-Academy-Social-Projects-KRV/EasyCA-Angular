@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EuroProtocol } from 'src/app/models/euroProtocol';
+import { EuroProtocol } from 'src/app/models/EuroProtocol';
 import { AdminService } from 'src/app/services/admin.service';
 
 @Component({

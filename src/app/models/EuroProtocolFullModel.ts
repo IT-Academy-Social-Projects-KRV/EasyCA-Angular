@@ -1,5 +1,5 @@
-import { Data } from "./data";
-import { EuroProtocol } from "./euroProtocol";
+import { Data } from "./Data";
+import { EuroProtocol } from "./EuroProtocol";
 import { Transport } from "./Transport";
 
 export interface EuroProtocolFullModel {

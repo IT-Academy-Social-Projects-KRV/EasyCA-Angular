@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Inspector } from 'src/app/models/inspector';
+import { Inspector } from 'src/app/models/Inspector';
 import { AdminService } from 'src/app/services/admin.service';
 
 @Component({

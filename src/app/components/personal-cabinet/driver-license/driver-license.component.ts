@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UserDriverLicense } from 'src/app/models/userDriverLicense';
+import { UserDriverLicense } from 'src/app/models/UserDriverLicense';
 
 @Component({
   selector: 'app-driver-license',

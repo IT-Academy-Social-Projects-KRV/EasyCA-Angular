@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { EuroProtocolSimpleModel } from 'src/app/models/euroProtocolSimpleModel';
+import { EuroProtocolSimpleModel } from 'src/app/models/EuroProtocolSimpleModel';
 import { ViolationListService } from 'src/app/services/violation-list.service';
 
 @Component({
@@ -13,15 +13,16 @@ import { ViolationListService } from 'src/app/services/violation-list.service';
 export class ViolationListComponent implements OnInit {
   selectedEuroProtocolNumber: string;
   isEuroProtocolModalVisible = false;
+  public email = localStorage.getItem('email');
 
   constructor(public fb: FormBuilder, public http: HttpClient, public violationListService: ViolationListService) { }
   protocolList: EuroProtocolSimpleModel[];
 
   ngOnInit(): void {
-    this.violationListService.getAllEuroProtocolsByEmail()
+    this.violationListService.getAllEuroProtocolsByEmail(this.email!)
     .subscribe(
       data => this.protocolList = data,
-      () => { }
+      err => { }
     );
   }
 
@@ -32,6 +33,7 @@ export class ViolationListComponent implements OnInit {
   showEuroProtocolModal() : void {
     this.isEuroProtocolModalVisible = true;
   }
+
   cancelEuroProtocolModal() : void {
     this.isEuroProtocolModalVisible = false;
   }

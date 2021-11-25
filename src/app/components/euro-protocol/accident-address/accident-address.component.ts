@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { EuroProtocol } from 'src/app/models/euroProtocol';
+import { EuroProtocol } from 'src/app/models/EuroProtocol';
 
 @Component({
   selector: 'app-accident-address',
@@ -10,6 +10,7 @@ import { EuroProtocol } from 'src/app/models/euroProtocol';
 export class AccidentAddressComponent implements OnInit {
 
   public isInCity = false;
+  public isIntersection = false;
   public euroProtocol: EuroProtocol;
 
   constructor(public fb: FormBuilder) { }
@@ -37,7 +38,7 @@ export class AccidentAddressComponent implements OnInit {
     street: [''],
     CrossStreet: [''],
     IsInCity: true,
-    IsIntersection: true,
+    IsIntersection: false,
   })
 
   public damageForm = this.fb.group({
@@ -49,8 +50,12 @@ export class AccidentAddressComponent implements OnInit {
     this.indexChangedEvent.emit(index);
   }
 
-  onChange($event: any) {
+  onChangeIsInCity($event: any) {
     this.isInCity = $event.target.checked;
+  }
+
+  onChangeIsIntersection($event: any) {
+    this.isIntersection = $event.target.checked;
   }
 
   setAddress() {
@@ -79,10 +84,21 @@ export class AccidentAddressComponent implements OnInit {
           city: address.city,
           district: address.district,
           street: address.street,
-          CrossStreet: address.CrossStreet,
+          CrossStreet: address.crossStreet,
           IsInCity: true,
-          IsIntersection: true,
+          IsIntersection: false,
         })
+
+        if (address.IsIntersection) {
+          this.cityAddressForm.setValue({
+            city: address.city,
+            district: address.district,
+            street: address.street,
+            CrossStreet: address.crossStreet,
+            IsInCity: true,
+            IsIntersection: true,
+          })
+        }
       }
       else {
         this.outsideAddressForm.setValue({

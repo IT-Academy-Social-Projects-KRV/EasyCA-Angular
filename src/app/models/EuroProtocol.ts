@@ -1,6 +1,6 @@
-import { AddressOfAccident } from "./addressOfAccident";
-import { side } from "./side";
-import { Witness } from "./witness";
+import { AddressOfAccident } from "./AddressOfAccident";
+import { side } from "./Side";
+import { Witness } from "./Witness";
 
 export interface EuroProtocol {
     registrationDateTime : Date;

@@ -1,4 +1,4 @@
 export interface Insuarance {    
-        companyName: string;        
-        serialNumber: string;
-    }
+    companyName: string;        
+    serialNumber: string;
+}

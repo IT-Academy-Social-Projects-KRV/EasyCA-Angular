@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { ToastrService } from 'ngx-toastr';
-import { Data } from 'src/app/models/data';
+import { Data } from 'src/app/models/Data';
 
 @Component({
   selector: 'app-personal-data-modal',
