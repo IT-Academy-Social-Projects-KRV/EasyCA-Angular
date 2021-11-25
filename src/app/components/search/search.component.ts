@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Transport } from 'src/app/models/Transport';
+import { SearchTransport } from 'src/app/models/SearchTransport';
 import { SearchService } from 'src/app/services/search.service';
 
 @Component({
@@ -10,7 +10,8 @@ import { SearchService } from 'src/app/services/search.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  public transport: Transport | null;
+  public transport: SearchTransport;
+  public isModalVisible = false;
 
   constructor(private fb: FormBuilder, private searchService: SearchService, private toastr: ToastrService) { }
 
@@ -26,10 +27,15 @@ export class SearchComponent implements OnInit {
     this.searchService.search(text.search)
       .subscribe(data => {
         this.transport = data;
+        this.isModalVisible = true;
       },
         err => {
-          this.transport = null;
+          this.isModalVisible = false;
           this.toastr.warning(err,"Warning");
         });
+  }
+  hideModal()
+  {
+    this.isModalVisible = false;
   }
 }
