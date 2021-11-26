@@ -21,3 +21,6 @@
 .tableButton{
   width: 90px;
 }
+.hid{
+  visibility: hidden;
+}

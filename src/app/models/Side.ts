@@ -1,6 +1,6 @@
 import { Evidence } from "./Evidence";
 
-export interface side {
+export interface Side {
     email: string;
     transportId: string;
     circumstances: Array<number>;
@@ -8,4 +8,5 @@ export interface side {
     driverLicenseSerial: string;
     damage: string;
     isGulty: boolean;
+    protocolSerial: string;
 }

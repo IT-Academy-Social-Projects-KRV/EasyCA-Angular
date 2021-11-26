@@ -28,7 +28,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { EuroProtocolComponent } from './components/euro-protocol/euro-protocol.component';
 import { CookieService } from 'ngx-cookie-service';
 import { ResendConfirmationComponent } from './components/resend-confirmation/resend-confirmation.component';
-import { EuroProtocolViewFormComponent } from './euro-protocol-view-form/euro-protocol-view-form.component';
 import { ModalInspectors } from './components/list-inspector/modal-inspectors/modal-inspector.component';
 import { ListEPComponent } from './components/admin/list-ep/list-ep.component';
 import { ListInspectors } from './components/list-inspector/list-inspector.component';
@@ -37,6 +36,9 @@ import { PersonalDataModalComponent } from './components/personal-cabinet/person
 import { BasicInfoComponent } from './components/personal-cabinet/basic-info/basic-info.component';
 import { AddressComponent } from './components/personal-cabinet/address/address.component';
 import { DriverLicenseComponent } from './components/personal-cabinet/driver-license/driver-license.component';
+import { EuroProtocolViewFormComponent } from './components/euro-protocol-view-form/euro-protocol-view-form.component';
+import { ConfirmComponent } from './components/violation-list/euro-protocol-notconfirmed-view-form/euro-protocol-notconfirmed-view-form.component';
+import { EnterDataSecondSideComponent } from './components/violation-list/enter-data-second-side/enter-data-second-side.component';
 import { TransportDataModalComponent } from './components/transport/transport-data-modal/transport-data-modal.component';
 import { TermsComponent } from './components/euro-protocol/terms/terms.component';
 import { AccidentAddressComponent } from './components/euro-protocol/accident-address/accident-address.component';
@@ -58,6 +60,9 @@ import { AdminViewCAComponent } from './components/admin/admin-view-ca/admin-vie
 import { APP_INITIALIZER } from '@angular/core';
 import { AppConfigService } from './services/app-config.service';
 import { ParticipantViewCaComponent } from './components/participant-view-ca/participant-view-ca.component';
+import { AllDataComponent } from './components/violation-list/enter-data-second-side/all-data/all-data.component';
+import { CircumstanceComponent } from './components/violation-list/enter-data-second-side/circumstance/circumstance.component';
+import { SucessComponent } from './components/violation-list/enter-data-second-side/sucess/sucess.component';
 import { SearchComponent } from './components/search/search.component';
 
 const antDesignIcons = AllIcons as {
@@ -88,7 +93,11 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     PersonalDataModalComponent,
     BasicInfoComponent,
     AddressComponent,
-    DriverLicenseComponent,
+    DriverLicenseComponent,    
+    ConfirmComponent,
+    EnterDataSecondSideComponent,
+    InspectorListOfCarAccidentsComponent,
+    ChangePasswordModalComponent,
     TransportDataModalComponent,
     TermsComponent,
     AccidentAddressComponent,
@@ -107,6 +116,11 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     InspectorListOfDriverCaComponent,
     ParticipantCAProtocolsComponent,
     AdminViewCAComponent,
+    ParticipantViewCaComponent,    
+    ViewCAComponent,
+    AllDataComponent,
+    CircumstanceComponent,
+    SucessComponent
     ParticipantViewCaComponent,
     SearchComponent
   ],

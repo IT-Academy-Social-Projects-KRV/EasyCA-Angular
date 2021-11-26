@@ -1,0 +1,27 @@
+<div> 
+    <div>
+    <h2>Circumstances of the accident</h2>
+    <div>
+      <h5>Choose the circumstances of the accident according 
+          to the actions of each participant</h5>            
+      <br>
+      <div>
+          <form nz-form *ngFor="let item of this.circumstancesList">
+              <div>
+                  <nz-form-item>
+                      <div class="circumstance">
+                          <div>
+                              <input type="checkbox"  (change)="onChange(item, $event)"/> 
+                          </div>
+                          <div>
+                              <p>{{item.circumstanceName}}</p>
+                          </div>
+                      </div>
+                  </nz-form-item>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>      
+
+  </div>

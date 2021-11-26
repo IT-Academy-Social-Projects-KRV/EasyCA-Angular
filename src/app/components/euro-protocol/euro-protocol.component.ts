@@ -4,10 +4,12 @@ import { AccountService } from 'src/app/services/account.service';
 import { FormBuilder } from "@angular/forms";
 import { EuroProtocolService } from 'src/app/services/euroProtocolService';
 import { TransportService } from 'src/app/services/transport.service';
-import { EuroProtocol } from 'src/app/models/EuroProtocol';
-import { side } from 'src/app/models/Side';
+import { Side } from '../../models/Side';
+import { EuroProtocol } from '../../models/EuroProtocol';
+
 import { AddressOfAccident } from 'src/app/models/AddressOfAccident';
 import { Witness } from 'src/app/models/Witness';
+
 import { Renderer2 } from '@angular/core';
 import { CheckInsuranceComponent } from './check-insurance/check-insurance.component';
 import { TermsComponent } from './terms/terms.component';
@@ -30,8 +32,8 @@ export class EuroProtocolComponent implements OnInit {
   private euroProtocol: EuroProtocol = {
     registrationDateTime: <Date>{},
     serialNumber: <string>{},
-    sideA: <side>{},
-    sideB: <side>{},
+    sideA: <Side>{},
+    sideB: <Side>{},
     address: <AddressOfAccident>{},
     isClosed: <boolean>{},
     witnesses: <Array<Witness>>{}
@@ -45,10 +47,12 @@ export class EuroProtocolComponent implements OnInit {
   
   @ViewChild('mainComponent', { read: ViewContainerRef }) container: any;
 
+
   constructor(private router: Router, public accountService: AccountService, public fb: FormBuilder,
     public service: EuroProtocolService, public transportService: TransportService,
     public renderer: Renderer2, private resolver: ComponentFactoryResolver, private toastr: ToastrService
   ) { }
+
 
   ngOnInit(): void { }
 
@@ -101,11 +105,14 @@ export class EuroProtocolComponent implements OnInit {
     this.componentRef.instance.euroProtocolEvent.subscribe((val: EuroProtocol) => this.setEuroProtocol(val));
   }
 
+
   createEuroProtocol() {
+
 
     this.euroProtocol.registrationDateTime = new Date();
     this.euroProtocol.serialNumber = "000013";
     this.euroProtocol.isClosed = false;
+
 
     this.service.createEuroProtocol(this.euroProtocol)
       .subscribe(
@@ -117,6 +124,7 @@ export class EuroProtocolComponent implements OnInit {
           this.toastr.warning("Warning", err.error.message);
         });
   }
+
 
   changeIndex($event: number) {
     this.index = $event;

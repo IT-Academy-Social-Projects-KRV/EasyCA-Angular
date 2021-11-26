@@ -1,0 +1,29 @@
+<nz-modal nzWidth="80%" [(nzVisible)]="isVisible" nzTitle="Enter Your Data" [nzContent]="modalContent"
+    [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()">
+    <ng-template #modalContent>
+        <div #mainComponent>   
+        </div>
+      
+        <div *ngIf="index===-1" class="first" >
+                <h1 class="alignCenter" >Please Enter Your CarPlate</h1>
+                <input class="alignCenter" nz-input id="carPlate" type="text" [(ngModel)]="carPlate">
+            </div>
+        <div>
+            <div class="euro_progres">
+                <nz-progress [nzPercent]="25*(index+2)" [nzShowInfo]="false"  nzStatus="active" ></nz-progress>
+            </div>
+            <br>
+            <div class="euro_footer_next">
+                <button nz-button *ngIf="!(index===-1)" nzType="default" nzSize="large"
+                    (click)="changeIndex(index-1)"> <i nz-icon nzType="left"></i>Previous</button>
+                <button nz-button *ngIf="!(index===2) " nzType="default" nzSize="large"
+                    (click)="changeIndex(index+1)">Next <i nz-icon nzType="right"></i></button>
+            </div>
+        </div>
+
+    </ng-template>
+    <ng-template #modalFooter>
+        <div class="first"> </div>
+        <button nz-button nzType="default" (click)="handleCancel()">Close</button>
+    </ng-template>
+</nz-modal>

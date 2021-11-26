@@ -20,16 +20,18 @@ export class TransportService {
   }
 
   postTransport(transport: Transport){
-    return this.http.post<any>(`${this.configuration.backendUrl}Transport/AddTransport`, transport, httpOptions);
+    return this.http.post<Transport>(`${this.configuration.backendUrl}Transport/AddTransport`, transport, httpOptions);
   }
   
   putTransport(transport: Transport){
-    return this.http.put<any>(`${this.configuration.backendUrl}Transport/UpdateTransport`, transport, httpOptions);
+    return this.http.put<Transport>(`${this.configuration.backendUrl}Transport/UpdateTransport`, transport, httpOptions);
+
   }
 
   deleteTransport(id:string){
     return this.http.delete(`${this.configuration.backendUrl}Transport/DeleteTransport?transportId=${id}`);
   }
+
 
   getAllTransports(): Observable<Transport[]>{    
     return this.http.get<Transport[]>(`${this.configuration.backendUrl}Transport/GetAllTransports`);

@@ -6,7 +6,7 @@
     <nz-table #basicTable [nzData]="protocolList" [nzFrontPagination]="false" [nzShowPagination]="false">
       <thead>
         <tr class="tableHeader">
-          <th >Serial Number</th>
+          <th>Serial Number</th>
           <th>Registration Date</th>
           <th>Address Of Accident</th>
           <th>Protocol Status</th>
@@ -27,31 +27,36 @@
             <label *ngIf="protocol.isClosed === false">Waiting for sides confirm data</label>
           </td>
           <td>
-            <button *ngIf="protocol.isClosed === false" 
-                    nz-button nzType="primary" 
-                    nzSize="large" 
-                    class="tableButton"
-                    (click)="loadEuroProtocol(i)" 
-                    (click)="showEuroProtocolModal()">
-                    Confirm
+            <button *ngIf="protocol.isClosed === false" nz-button nzType="primary" nzSize="large" class="tableButton"
+              (click)="loadEuroProtocol(i)" (click)="showEuroProtocolModal()">
+              Confirm
             </button>
-            <button *ngIf="protocol.isClosed === true" 
-                    nz-button nzType="default" 
-                    nzSize="large" 
-                    class="tableButton"
-                    (click)="loadEuroProtocol(i)" 
-                    (click)="showEuroProtocolModal()">
-                    View
+            <button *ngIf="protocol.isClosed === true" nz-button nzType="default" nzSize="large" class="tableButton"
+              (click)="loadEuroProtocol(i)" (click)="showEuroProtocolModal()">
+              View
             </button>
           </td>
         </tr>
       </tbody>
     </nz-table>
-    <nz-modal nzWidth="80%" [(nzVisible)]="isEuroProtocolModalVisible" nzTitle="View Euro Protocol Data" [nzContent]="modalContent" (nzOnCancel)="cancelEuroProtocolModal()">
+
+
+    <nz-modal nzWidth="80%" [(nzVisible)]="isEuroProtocolModalVisible" nzTitle="View Euro Protocol Data"
+      [nzContent]="modalContent" (nzOnCancel)="cancelEuroProtocolModal()" [nzFooter]="modalFooter">>
       <ng-template #modalContent>
-        <app-euro-protocol-view-form [protocolNumber]="selectedEuroProtocolNumber"></app-euro-protocol-view-form>
+        <app-euro-protocol-notconfirmed-view-form  *ngIf="this.condition === false" [protocolNumber]="selectedEuroProtocolNumber"></app-euro-protocol-notconfirmed-view-form>
+        <app-euro-protocol-view-form  *ngIf="this.condition === true"[protocolNumber]="selectedEuroProtocolNumber"></app-euro-protocol-view-form>
+      </ng-template>
+      <ng-template #modalFooter>
+        <button nz-button nzType="primary" *ngIf="this.condition === false"(click)="ContinueFill()">Continue Fill
+          Data</button>
       </ng-template>
     </nz-modal>
-    <br>
+
+    <div>
+      <app-enter-data-second-side [setVisible]="this.isSecondSideForm" (isVisibleEvent)="visibleSecondSideForm($event)"
+       [setEuroProtocolNumber]="this.selectedEuroProtocolNumber">
+      </app-enter-data-second-side>
+    </div>
   </div>
 </div>
