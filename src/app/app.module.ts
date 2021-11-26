@@ -120,7 +120,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     ViewCAComponent,
     AllDataComponent,
     CircumstanceComponent,
-    SucessComponent
+    SucessComponent,
     ParticipantViewCaComponent,
     SearchComponent
   ],
