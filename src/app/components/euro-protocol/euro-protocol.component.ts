@@ -4,7 +4,7 @@ import { AccountService } from 'src/app/services/account.service';
 import { FormBuilder } from "@angular/forms";
 import { EuroProtocolService } from 'src/app/services/euroProtocolService';
 import { TransportService } from 'src/app/services/transport.service';
-import { Side } from '../../models/side';
+import { Side } from '../../models/Side';
 import { EuroProtocol } from '../../models/EuroProtocol';
 
 import { AddressOfAccident } from 'src/app/models/AddressOfAccident';

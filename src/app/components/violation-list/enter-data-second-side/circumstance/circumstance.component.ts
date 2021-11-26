@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Circumstance } from 'src/app/models/circumstance';
-import { Side } from 'src/app/models/side';
+import { Circumstance } from 'src/app/models/Circumstance';
+import { Side } from 'src/app/models/Side';
 import { EuroProtocolService } from 'src/app/services/euroProtocolService';
 
 @Component({

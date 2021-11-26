@@ -1,6 +1,6 @@
 import { Component, ComponentFactory, ComponentFactoryResolver, ComponentRef, EventEmitter,  Input, OnInit, Output, ViewChild, ViewContainerRef, } from '@angular/core';
-import { Side } from 'src/app/models/side';
-import { Evidence } from 'src/app/models/evidence';
+import { Side } from 'src/app/models/Side';
+import { Evidence } from 'src/app/models/Evidence';
 import { EuroProtocolService } from 'src/app/services/euroProtocolService';
 import { ToastrService } from 'ngx-toastr';
 import { AllDataComponent } from './all-data/all-data.component';

@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Data } from 'src/app/models/data';
+import { Data } from 'src/app/models/Data';
 import { Transport } from 'src/app/models/Transport';
 import { AccountService } from 'src/app/services/account.service';
 import { TransportService } from 'src/app/services/transport.service';
-import { Side } from 'src/app/models/side';
+import { Side } from 'src/app/models/Side';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

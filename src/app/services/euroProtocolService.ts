@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Side } from '../models/side';
+import { Side } from '../models/Side';
 import { EuroProtocol } from '../models/EuroProtocol';
 import { AppConfigService } from './app-config.service';
 import { Circumstance } from '../models/Circumstance';

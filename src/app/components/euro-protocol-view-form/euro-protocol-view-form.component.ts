@@ -4,7 +4,7 @@ import { FormBuilder} from '@angular/forms';
 import { EuroProtocolFullModel } from '../../models/EuroProtocolFullModel';
 import { EuroProtocolService } from '../../services/euroProtocolService';
 import { ViolationListService } from '../../services/violation-list.service';
-import { Circumstance } from '../../models/circumstance';
+import { Circumstance } from '../../models/Circumstance';
 
 @Component({
   selector: 'app-euro-protocol-view-form',
