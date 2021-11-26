@@ -63,6 +63,7 @@ import { ParticipantViewCaComponent } from './components/participant-view-ca/par
 import { AllDataComponent } from './components/violation-list/enter-data-second-side/all-data/all-data.component';
 import { CircumstanceComponent } from './components/violation-list/enter-data-second-side/circumstance/circumstance.component';
 import { SucessComponent } from './components/violation-list/enter-data-second-side/sucess/sucess.component';
+import { SearchComponent } from './components/search/search.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -120,6 +121,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     AllDataComponent,
     CircumstanceComponent,
     SucessComponent
+    ParticipantViewCaComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

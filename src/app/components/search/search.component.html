@@ -1,0 +1,46 @@
+<div class="test">
+    <nz-input-group [formGroup]="searchForm" nzSearch nzSize="large" [nzAddOnAfter]="suffixButton"
+        class="ant-input-group">
+        <input type="text" formControlName="search" nz-input placeholder="Plate / VIN" />
+    </nz-input-group>
+    <ng-template #suffixButton>
+        <button nz-button nzType="primary" nzSize="large" (click)="search()" nzSearch>Search</button>
+    </ng-template>
+</div>
+<nz-modal [(nzVisible)]="isModalVisible" nzTitle="Search transport result" (nzOnCancel)="hideModal()"
+    (nzOnOk)="hideModal()" [nzContent]="modalContent" [nzCancelText]="null" nzWidth="80%">
+    <ng-template #modalContent>
+            <nz-table nzTemplateMode nzFrontPagination="false" nzShowPagination="false">
+                <tbody>
+                    <tr>
+                        <td class="propertyName">Manufacturer: </td>
+                        <td class="mainName">{{transport.producedBy}}</td>
+                    </tr>
+                    <tr>
+                        <td class="propertyName">Model: </td>
+                        <td class="mainName">{{transport.model}}</td>
+                    </tr>
+                    <tr>
+                        <td class="propertyName">Category: </td>
+                        <td class="mainName">{{transport.categoryName}}</td>
+                    </tr>
+                    <tr>
+                        <td class="propertyName">Car Plate:</td>
+                        <td class="mainName">{{transport.carPlate}}</td>
+                    </tr>
+                    <tr>
+                        <td class="propertyName">Color:</td>
+                        <td class="mainName">{{transport.color}}</td>
+                    </tr>
+                    <tr>
+                        <td class="propertyName">Year Of Production: </td>
+                        <td class="mainName">{{transport.yearOfProduction}}</td>
+                    </tr>
+                    <tr>
+                        <td class="propertyName">Registered Car Accidents: </td>
+                        <td class="mainName">{{transport.carAccidentsRegistered}}</td>
+                    </tr>
+                </tbody>
+            </nz-table>
+    </ng-template>
+</nz-modal>
