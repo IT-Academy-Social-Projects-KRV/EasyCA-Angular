@@ -32,11 +32,12 @@ export class TransportService {
     return this.http.delete(`${this.configuration.backendUrl}Transport/DeleteTransport?transportId=${id}`);
   }
 
-  getAllTransports(){  
-    return this.http.get<Transport>(`${this.configuration.backendUrl}Transport/GetAllTransports`);
+
+  getAllTransports(): Observable<Transport[]>{    
+    return this.http.get<Transport[]>(`${this.configuration.backendUrl}Transport/GetAllTransports`);
   }
 
-  getTransportByCarPlate(carPlate: string){
+  getTransportByCarPlate(carPlate: string): Observable<Transport>{
     return this.http.get<Transport>(`${this.configuration.backendUrl}Transport/GetTransportByCarPlate?carPlate=${carPlate}`);
   }
 }

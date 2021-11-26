@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EuroProtocolSimpleModel } from 'src/app/models/euroProtocolSimpleModel';
 import { ViolationListService } from 'src/app/services/violation-list.service';
+import { EuroProtocolSimpleModel } from '../../models/EuroProtocolSimpleModel';
 
 @Component({
   selector: 'app-violation-list',
@@ -10,6 +10,7 @@ import { ViolationListService } from 'src/app/services/violation-list.service';
 
 export class ViolationListComponent implements OnInit {
 
+  public email = localStorage.getItem('email');
   public protocolList: EuroProtocolSimpleModel[];  
   public selectedEuroProtocolNumber: string;
   public isEuroProtocolModalVisible = false;
@@ -23,11 +24,11 @@ export class ViolationListComponent implements OnInit {
   }
 
   fillViolationList():void{
-    this.violationListService.getAllEuroProtocolsByEmail()
+    this.violationListService.getAllEuroProtocolsByEmail(this.email!)
     .subscribe(
-    data => this.protocolList = data,
-    () => { }
-  );
+      data => this.protocolList = data,
+      err => { }
+    );
   }
 
   visibleSecondSideForm($event: boolean) {
@@ -43,7 +44,6 @@ export class ViolationListComponent implements OnInit {
   loadEuroProtocol(id: number) : void {
     this.condition=this.protocolList[id].isClosed;
     this.selectedEuroProtocolNumber = this.protocolList[id].serialNumber;
-    console.log( this.selectedEuroProtocolNumber);
   }
   
   showEuroProtocolModal() : void {

@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormBuilder } from "@angular/forms";
 import { Insuarance } from 'src/app/models/Insuarance';
 import { AccountService } from 'src/app/services/account.service';
-import { Data } from 'src/app/models/data';
+import { Data } from 'src/app/models/Data';
 
 @Component({
   selector: 'app-transport',

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { NzImage } from 'ng-zorro-antd/image';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { ViewFile } from 'src/app/models/viewFile';
+import { ViewFile } from 'src/app/models/ViewFile';
 import { FileService } from 'src/app/services/file.service';
 
 @Component({

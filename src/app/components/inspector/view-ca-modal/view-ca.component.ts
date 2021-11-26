@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { CarAccident } from 'src/app/models/carAccident';
-import { EvidenceCA } from 'src/app/models/evidenceCA';
+import { CarAccident } from 'src/app/models/CarAccident';
+import { Evidence } from 'src/app/models/Evidence';
 import { Transport } from 'src/app/models/Transport';
-import { Witness } from 'src/app/models/witness';
+import { Witness } from 'src/app/models/Witness';
 import { CAService } from 'src/app/services/ca.service';
 import { TransportService } from 'src/app/services/transport.service';
 
@@ -22,7 +22,7 @@ export class ViewCAComponent implements OnInit {
   public evidencesList: string[] = [];
   public protocolCAEdited: CarAccident;
   public protocolCAAdded: CarAccident;
-  public evidencesListNormal: EvidenceCA[] = [];
+  public evidencesListNormal: Evidence[] = [];
 
   constructor(public fb: FormBuilder,public CAservice: CAService, public transportService: TransportService, private toastr: ToastrService) { }
 
@@ -224,7 +224,7 @@ export class ViewCAComponent implements OnInit {
   }
 
   addEvidence($event: Array<string>){
-    let arrayEvidence: EvidenceCA[]=[];
+    let arrayEvidence: Evidence[]=[];
     this.evidencesList = $event;
 
     this.evidencesList.forEach(item => {

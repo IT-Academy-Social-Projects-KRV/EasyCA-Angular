@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { EuroProtocolFullModel } from '../models/euroProtocolFullModel';
-import { EuroProtocolSimpleModel } from '../models/euroProtocolSimpleModel';
+import { EuroProtocolFullModel } from '../models/EuroProtocolFullModel';
+import { EuroProtocolSimpleModel } from '../models/EuroProtocolSimpleModel';
 import { AppConfigService } from './app-config.service';
 
 @Injectable({
@@ -12,8 +12,7 @@ export class ViolationListService {
 
   constructor(public http: HttpClient, private configuration: AppConfigService) { }
 
-  getAllEuroProtocolsByEmail(): Observable<EuroProtocolSimpleModel[]> {
-    const email = localStorage.getItem('email');
+  getAllEuroProtocolsByEmail(email:string): Observable<EuroProtocolSimpleModel[]> {
     return this.http.get<EuroProtocolSimpleModel[]>(`${this.configuration.backendUrl}EuroProtocol/FindAllEuroProtocolsByEmail?email=${email}`);
   }
 

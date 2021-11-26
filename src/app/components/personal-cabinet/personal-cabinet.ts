@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/services/account.service';
-import { Data } from 'src/app/models/data';
+import { Data } from 'src/app/models/Data';
 import { FormBuilder } from "@angular/forms";
 import { ToastrService } from 'ngx-toastr';
-import { ChangePassword } from 'src/app/models/changePassword';
+import { ChangePassword } from 'src/app/models/ChangePassword';
 
 @Component({
   selector: 'app-personal-cabinet',

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { EuroProtocol } from '../models/euroProtocol';
-import { Circumstance } from '../models/circumstance';
-import { Observable } from 'rxjs';
 import { Side } from '../models/side';
+import { EuroProtocol } from '../models/EuroProtocol';
 import { AppConfigService } from './app-config.service';
+import { Circumstance } from '../models/Circumstance';
+import { Observable } from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -21,9 +21,9 @@ export class EuroProtocolService {
   registerSideBEuroProtocol(side:Side):Observable<Side>{
     return this.http.post<Side>(`${this.configuration.backendUrl}EuroProtocol/RegisterSideBEuroProtocol`, side, httpOptions);
   } 
-
-  getAllCircumstances(){
-    return this.http.get<any>(`${this.configuration.backendUrl}EuroProtocol/GetAllCircumstances`);
+  
+  getAllCircumstances(): Observable<Circumstance[]>{
+    return this.http.get<Circumstance[]>(`${this.configuration.backendUrl}EuroProtocol/GetAllCircumstances`);
   }
   
   createEuroProtocol(protocol: EuroProtocol){

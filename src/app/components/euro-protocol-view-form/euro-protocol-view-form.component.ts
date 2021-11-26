@@ -1,16 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-
-import { Circumstance } from '../../models/circumstance';
-import { EuroProtocolFullModel } from '../../models/euroProtocolFullModel';
+import { FormBuilder} from '@angular/forms';
+import { EuroProtocolFullModel } from '../../models/EuroProtocolFullModel';
 import { EuroProtocolService } from '../../services/euroProtocolService';
 import { ViolationListService } from '../../services/violation-list.service';
-
-// import { Circumstance } from '../models/circumstance';
-// import { EuroProtocolFullModel } from '../models/euroProtocolFullModel';
-// import { EuroProtocolService } from '../services/euroProtocolService';
-// import { ViolationListService } from '../services/violation-list.service';
+import { Circumstance } from '../../models/circumstance';
 
 @Component({
   selector: 'app-euro-protocol-view-form',

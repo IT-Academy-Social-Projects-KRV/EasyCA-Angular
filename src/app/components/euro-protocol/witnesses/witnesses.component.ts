@@ -2,8 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NzButtonSize } from 'ng-zorro-antd/button';
 import { ToastrService } from 'ngx-toastr';
-import { EuroProtocol } from 'src/app/models/euroProtocol';
-import { Witness } from 'src/app/models/witness';
+import { EuroProtocol } from 'src/app/models/EuroProtocol';
+import { Witness } from 'src/app/models/Witness';
 
 @Component({
   selector: 'app-witnesses',

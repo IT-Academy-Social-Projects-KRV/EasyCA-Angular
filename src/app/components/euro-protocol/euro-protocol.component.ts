@@ -4,10 +4,12 @@ import { AccountService } from 'src/app/services/account.service';
 import { FormBuilder } from "@angular/forms";
 import { EuroProtocolService } from 'src/app/services/euroProtocolService';
 import { TransportService } from 'src/app/services/transport.service';
-import { EuroProtocol } from 'src/app/models/euroProtocol';
-import { Side } from 'src/app/models/side';
-import { AddressOfAccident } from 'src/app/models/addressOfAccident';
-import { Witness } from 'src/app/models/witness';
+import { Side } from '../../models/side';
+import { EuroProtocol } from '../../models/EuroProtocol';
+
+import { AddressOfAccident } from 'src/app/models/AddressOfAccident';
+import { Witness } from 'src/app/models/Witness';
+
 import { Renderer2 } from '@angular/core';
 import { CheckInsuranceComponent } from './check-insurance/check-insurance.component';
 import { TermsComponent } from './terms/terms.component';

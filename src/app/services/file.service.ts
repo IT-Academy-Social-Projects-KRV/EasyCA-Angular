@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ViewFile } from '../models/viewFile';
+import { Observable } from 'rxjs';
+import { ViewFile } from '../models/ViewFile';
 import { AppConfigService } from './app-config.service';
 
 @Injectable({
@@ -14,7 +15,7 @@ export class FileService {
     return this.http.post<any>(`${this.configuration.backendUrl}File/UploadFiles`, formData);
   }
 
-  downloadFiles(id: string[]) {
+  downloadFiles(id: string[]): Observable<ViewFile[]> {
     return this.http.get<ViewFile[]>(`${this.configuration.backendUrl}File/DownloadFiles?ids=${id.join('&ids=')}`);
   }
 
