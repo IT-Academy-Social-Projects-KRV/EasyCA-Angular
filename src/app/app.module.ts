@@ -58,6 +58,7 @@ import { AdminViewCAComponent } from './components/admin/admin-view-ca/admin-vie
 import { APP_INITIALIZER } from '@angular/core';
 import { AppConfigService } from './services/app-config.service';
 import { ParticipantViewCaComponent } from './components/participant-view-ca/participant-view-ca.component';
+import { SearchComponent } from './components/search/search.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -106,7 +107,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     InspectorListOfDriverCaComponent,
     ParticipantCAProtocolsComponent,
     AdminViewCAComponent,
-    ParticipantViewCaComponent
+    ParticipantViewCaComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

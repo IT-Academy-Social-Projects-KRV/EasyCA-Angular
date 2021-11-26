@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Transport } from '../models/Transport';
+import { SearchTransport } from '../models/SearchTransport';
 import { AppConfigService } from './app-config.service';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class SearchService {
 
     constructor(private http: HttpClient, private configuration: AppConfigService) { }
 
-    search(text: string): Observable<Transport> {
-        return this.http.get<Transport>(`${this.configuration.backendUrl}Search/SearchTransport?search=${text}`);
+    search(text: string): Observable<SearchTransport> {
+        return this.http.get<SearchTransport>(`${this.configuration.backendUrl}Search/SearchTransport?search=${text}`);
     }
 }
