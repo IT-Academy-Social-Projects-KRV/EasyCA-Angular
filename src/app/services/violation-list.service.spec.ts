@@ -70,7 +70,7 @@ describe('ViolationListService', () => {
                 driverLicenseSerial: 'QWE123456',
                 damage: 'front',
                 isGulty: false,
-                protocolSerial: '123'
+                protocolSerial: 'qwe',
             },
             sideB: {
                 email: 'kosminfeed@gmail.com',
@@ -80,7 +80,7 @@ describe('ViolationListService', () => {
                 driverLicenseSerial: 'QWE333711',
                 damage: 'side',
                 isGulty: false,
-                protocolSerial: '123'
+                protocolSerial: 'qwe',
             },
             isClosed: false,
             witnesses: [{

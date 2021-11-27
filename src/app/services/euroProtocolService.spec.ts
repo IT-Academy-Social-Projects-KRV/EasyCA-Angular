@@ -116,7 +116,7 @@ describe('EuroProtocolService', () => {
                 coordinatesOfLatitude: 'wrong data', 
                 coordinatesOfLongitude: 'wrong data',
                 isInCity: false, 
-                isIntersection: false 
+                isIntersection: false,
             },
             sideA: {
                 email: 'wrong data@gmail.com',
@@ -125,8 +125,8 @@ describe('EuroProtocolService', () => {
                 evidences: [{photoSchema: 'wrong data'}],
                 driverLicenseSerial: 'wrong data',
                 damage: 'wrong data',
-                isGulty: false,
-                protocolSerial: '123'
+                isGulty: false, 
+                protocolSerial: 'string'
             },
             sideB: {
                 email: 'wrong data@gmail.com',
