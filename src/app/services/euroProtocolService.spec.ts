@@ -67,6 +67,7 @@ describe('EuroProtocolService', () => {
             driverLicenseSerial: 'QWE123456',
             damage: 'front',
             isGulty: false,
+            protocolSerial: '123'
         },
         sideB: {
             email: 'kosminfeed@gmail.com',
@@ -76,6 +77,7 @@ describe('EuroProtocolService', () => {
             driverLicenseSerial: 'QWE333711',
             damage: 'side',
             isGulty: false,
+            protocolSerial: '123'
         },
         isClosed: false,
         witnesses: [{
@@ -124,6 +126,7 @@ describe('EuroProtocolService', () => {
                 driverLicenseSerial: 'wrong data',
                 damage: 'wrong data',
                 isGulty: false,
+                protocolSerial: '123'
             },
             sideB: {
                 email: 'wrong data@gmail.com',
@@ -133,6 +136,7 @@ describe('EuroProtocolService', () => {
                 driverLicenseSerial: 'wrong data',
                 damage: 'wrong data',
                 isGulty: false,
+                protocolSerial: '123'
             },
             isClosed: false,
             witnesses: [{
