@@ -32,7 +32,6 @@ export class TransportService {
     return this.http.delete(`${this.configuration.backendUrl}Transport/DeleteTransport?transportId=${id}`);
   }
 
-
   getAllTransports(): Observable<Transport[]>{    
     return this.http.get<Transport[]>(`${this.configuration.backendUrl}Transport/GetAllTransports`);
   }
