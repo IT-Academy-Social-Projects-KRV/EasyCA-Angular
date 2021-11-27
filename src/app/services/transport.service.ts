@@ -16,7 +16,7 @@ export class TransportService {
   constructor(private http: HttpClient,  public router: Router, private configuration: AppConfigService) { }  
 
   getTransportById(id: string): Observable<Transport>{
-    return this.http.get<Transport>(`${this.configuration.backendUrl}Transport/GetTransport?transportId=${id}`);
+    return this.http.get<Transport>(`${this.configuration.backendUrl}Transport/GetTransportById?transportId=${id}`);
   }
 
   postTransport(transport: Transport){
