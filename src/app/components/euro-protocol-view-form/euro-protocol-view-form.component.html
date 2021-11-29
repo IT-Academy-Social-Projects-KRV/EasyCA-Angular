@@ -199,38 +199,24 @@
       </nz-row>
     </nz-collapse-panel>
     <nz-collapse-panel nzHeader="Witnesses" class="childTitle">
-      <div *ngFor="let witness of protocol.euroProtocol.witnesses">
-        <div>
-          <label class="inputLabel">Name:</label>
-          <input nz-input id="firstName" placeholder="Witness first name"
-            [ngModel]="witness.firstName + ' ' + witness.lastName" readonly />
-        </div>
-        <br>
-        <div>
-          <label class="inputLabel">Address:</label>
-          <textarea nz-input [nzAutosize]="{ minRows: 1, maxRows: 3 }" id="witnessAddress" placeholder="Witness address"
-            [ngModel]="witness.witnessAddress" readonly></textarea>
-        </div>
-        <br>
-        <nz-row nzGutter=16>
-          <nz-col nzSpan=8>
-            <div>
-              <label class="inputLabel">Phone Number:</label>
-              <input nz-input id="phoneNumber" placeholder="Witness phone number" [ngModel]="witness.phoneNumber"
-                readonly />
-            </div>
-          </nz-col>
-          <nz-col nzSpan=16>
-            <div>
-              <label class="inputLabel">Side of conflict:</label>
-              <input nz-input id="isVictim" placeholder="Witness side of conflict"
-                [ngClass]="witness.isVictim ? 'isVictim' : 'isGuilty'" [ngModel]="witness.isVictim? 'Victim' : 'Guilty'"
-                readonly />
-            </div>
-          </nz-col>
-        </nz-row>
-        <nz-divider></nz-divider>
-      </div>
+      <nz-table #basicTable [nzData]="witnessesList" [nzFrontPagination]="false" [nzShowPagination]="false">
+        <thead>
+            <tr class="propertyName">
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Address</th>
+                <th>Phone number</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of witnessesList" readonly>
+                <td>{{item.firstName}}</td>
+                <td>{{item.lastName}}</td>
+                <td>{{item.witnessAddress}}</td>
+                <td>{{item.phoneNumber}}</td>
+            </tr>
+          </tbody>
+        </nz-table>
     </nz-collapse-panel>
   </nz-collapse>
 </div>

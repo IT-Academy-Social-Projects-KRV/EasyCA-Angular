@@ -4,6 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Circumstance } from 'src/app/models/Circumstance';
 import { EuroProtocolFullModel } from 'src/app/models/EuroProtocolFullModel';
+import { Witness } from 'src/app/models/Witness';
 import { EuroProtocolService } from 'src/app/services/euroProtocolService';
 import { ViolationListService } from 'src/app/services/violation-list.service';
 
@@ -12,9 +13,12 @@ import { ViolationListService } from 'src/app/services/violation-list.service';
   templateUrl: './euro-protocol-notconfirmed-view-form.component.html',
   styleUrls: ['./euro-protocol-notconfirmed-view-form.component.css']
 })
+
 export class ConfirmComponent implements OnInit {
   public isVisible = false;
-  public protocol: EuroProtocolFullModel
+  public protocol: EuroProtocolFullModel;
+  public witnessesList: Witness[] = [];
+
   @Input() public protocolNumber: string;
 
   public errorMessage: string;
@@ -33,6 +37,7 @@ export class ConfirmComponent implements OnInit {
         this.protocol = data;
         {
           let address = this.protocol.euroProtocol.address;
+          this.witnessesList = this.protocol.euroProtocol.witnesses;
           let fullAddress: string;
           if (address.isInCity) {
             fullAddress = address.city + ', ' + address.district + ' district';
