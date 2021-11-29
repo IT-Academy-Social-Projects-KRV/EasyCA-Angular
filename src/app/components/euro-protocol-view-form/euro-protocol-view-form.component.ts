@@ -5,18 +5,20 @@ import { EuroProtocolFullModel } from '../../models/EuroProtocolFullModel';
 import { EuroProtocolService } from '../../services/euroProtocolService';
 import { ViolationListService } from '../../services/violation-list.service';
 import { Circumstance } from '../../models/Circumstance';
+import { Witness } from 'src/app/models/Witness';
 
 @Component({
   selector: 'app-euro-protocol-view-form',
   templateUrl: './euro-protocol-view-form.component.html',
   styleUrls: ['./euro-protocol-view-form.component.css']
 })
-export class EuroProtocolViewFormComponent implements OnInit {
 
+export class EuroProtocolViewFormComponent implements OnInit {
   @Input() public protocolNumber: string;
   public protocol: EuroProtocolFullModel;
-  errorMessage: string;
-  isAnyErrors = false;
+  public witnessesList: Witness[] = [];
+  public errorMessage: string;
+  public isAnyErrors = false;
 
   constructor(
     public fb: FormBuilder,
@@ -30,6 +32,7 @@ export class EuroProtocolViewFormComponent implements OnInit {
         this.protocol = data;
         {
           let address = this.protocol.euroProtocol.address;
+          this.witnessesList = this.protocol.euroProtocol.witnesses;
           let fullAddress: string;
           if (address.isInCity) {
             fullAddress = address.city + ', ' + address.district + ' district';
