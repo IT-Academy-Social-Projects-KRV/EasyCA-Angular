@@ -165,7 +165,8 @@ describe('AdminService', () => {
                 evidences: [{photoSchema: ''}],
                 driverLicenseSerial: '236365256426',
                 damage: 'left side',
-                isGulty: true
+                isGulty: true,
+                protocolSerial: ''
             },
             sideB: {
                 email: 'sideB@gmail.com',
@@ -174,7 +175,8 @@ describe('AdminService', () => {
                 evidences: [{photoSchema: ''}],
                 driverLicenseSerial: '314517641364',
                 damage: 'front side',
-                isGulty: false
+                isGulty: false,
+                protocolSerial: ''
             },
             isClosed: true,
             witnesses: [{

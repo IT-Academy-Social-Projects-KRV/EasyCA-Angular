@@ -62,7 +62,7 @@ export class PersonalCabinetComponent implements OnInit {
     this.accountService.putPersonalData($event).
       subscribe(
         res => {
-          this.toastr.info(res.message, "Success");
+          this.toastr.success(res.message, "Success");
           this.isVisible = false;
           this.data = $event;
          
@@ -78,7 +78,7 @@ export class PersonalCabinetComponent implements OnInit {
     this.accountService.addPersonalData($event.personalData).
       subscribe(
         res => {
-          this.toastr.info(res.message, "Success");
+          this.toastr.success(res.message, "Success");
           this.isVisible = false;
           this.data = $event;
           this.isPersonalData = true;
@@ -105,7 +105,7 @@ export class PersonalCabinetComponent implements OnInit {
      this.accountService.changePassword($event).
      subscribe(
        (res:any)=>{
-        this.toastr.info("Password has been changed", "Success");
+        this.toastr.success("Password has been changed", "Success");
         this.changePasswordVisible=false;
        },
        (err:any)=>{
